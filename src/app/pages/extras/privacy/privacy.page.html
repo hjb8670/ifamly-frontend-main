@@ -1,0 +1,14 @@
+<ion-header class="ion-no-border ion-padding" color="blanco" >
+  <ion-toolbar color="blanco" >
+    <ion-buttons slot="start">
+      <ion-back-button icon="chevron-back" mode="md" (click)="regresar()"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="title_txt" mode="ios">{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="blanco ion-padding" fullscreen>
+  <ion-text>
+    <p [innerHTML]="contenido"></p>
+  </ion-text>
+</ion-content>

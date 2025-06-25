@@ -1,0 +1,53 @@
+<ion-header class="ion-no-border ion-padding" color="blanco" >
+  <ion-toolbar color="blanco" >
+    <ion-buttons slot="start">
+      <ion-back-button icon="chevron-back" defaultHref="profile-details" mode="md"></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-buttons slot="end">
+      <ion-button class="skip-Bt" (click)="next('skip')" defaultHref="profile-details">{{ 'I-AM.AboutTxt' | translate }}</ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="blanco ion-padding" fullscreen>
+  <form [formGroup]="iamForm" (ngSubmit)="next('next')">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h1 class="text-h1">{{ 'I-AM.Title1' | translate }}</h1>
+        </ion-col>
+      </ion-row>
+
+      <ion-item lines="none" detail>
+        <ion-select formControlName="iam_a"  [interfaceOptions]="customIamOptions" interface="action-sheet" 
+          cancelText="Cancel" (ionChange)="seleccionarIam()">
+          <li *ngFor="let obj of iams">
+            <ion-select-option [value]="obj.id">{{ obj.name.slice(1) }}</ion-select-option>
+          </li>
+        </ion-select>
+      </ion-item>
+
+      <ion-row>
+        <ion-col>
+          <h1 class="text-h1">{{ 'I-AM.Title2' | translate }}</h1>
+        </ion-col>
+      </ion-row>
+
+      <ion-item lines="none" detail>
+        <ion-select formControlName="iam_looking" (ionChange)="seleccionarIamlooking()" [interfaceOptions]="customIamLookingOptions" interface="action-sheet" cancelText="Cancel">
+          <li *ngFor="let obj of iamlookings">
+            <ion-select-option [value]="obj.id">{{ obj.name.slice(1) }}</ion-select-option>
+          </li>
+        </ion-select>
+      </ion-item>
+
+      <ion-row>
+        <ion-button class="next-Bt" color="primary1" type="submit">
+          {{ 'I-AM.btnNext' | translate }}
+        </ion-button>
+      </ion-row>
+
+    </ion-grid>
+  </form>
+
+</ion-content>

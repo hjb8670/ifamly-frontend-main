@@ -1,0 +1,238 @@
+<ion-header class="ion-no-border ion-padding" color="blanco" >
+  <div class="contenedor-img">
+    <img class="imgCover ion-no-padding" src={{imgCover}}>
+  </div>
+
+  <ion-toolbar color="rgba(255,255,255,0)">
+    <ion-buttons slot="start">
+      <ion-back-button class="btnBack" icon="chevron-back" defaultHref="main/tabs/experience" mode="md"></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons class="menuBtn" slot="end" (click)="openMenuPopover( $event )">
+      <ion-icon class="menuIcon" name="ellipsis-vertical"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="blanco">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <p class="nameExp">{{ experience?.title }}</p>
+        <p class="countryExp">{{ experience?.location.country }}</p>
+      </ion-col>
+      <ion-col size="3" *ngIf="isOwner" >
+        <ion-button class="btnEdit" fill="none" (click)="editExp()">
+          <!-- <ion-icon slot="start" name="pencil-outline"></ion-icon> -->
+          <img class="imgEdit" src="../../../../assets/icon/13-Edit_pen.png">
+          {{ 'EXP-DETAIL.EditBtn' | translate }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="9">
+        <p class="locationTitle">{{ 'EXP-DETAIL.LocTitle' | translate }}</p>
+        <p class="dir1Exp">{{ experience?.location.address }} {{ experience?.location.city }}</p>
+        <p class="dir2Exp">{{ experience?.location.state }} {{ experience?.location.country }}</p>
+      </ion-col>
+      <ion-col size="3">
+        <div class="contPosition" (click)="openMap(experience?.location.latitud,experience?.location.longitud)">
+          <img class="imgPosition" src="../../../../assets/icon/14-Location_white.png">
+          <ion-label class="txtPosition">{{ experience?.location.radio }} {{ uniDistancia }}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p class="locationTitle">{{ 'EXP-DETAIL.DTTitle' | translate }}</p>
+       <p class="pExp">{{ experience?.dateTime | date:'MMMM d, y':'':'en-US' }}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p class="locationTitle">{{ 'EXP-DETAIL.DesTitle' | translate }}</p>
+        <!-- <p class="dir1Exp">{{ experience?.description }}</p>  -->
+        <p class="pExp" *ngIf="!showMoreDes">{{ trimString(textDes,100) }}</p>
+        <p class="pExp" *ngIf="showMoreDes">{{ textDes }}</p>
+        <a class="DesA" (click)="showMoreDes = !showMoreDes" *ngIf="textDes.length > 100">{{ 'EXP-DETAIL.txtRead' | translate }} <span [innerHtml]="(showMoreDes ? 'EXP-DETAIL.txtLess' : 'EXP-DETAIL.txtMore') | translate"></span></a>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <hr class="lineHR">
+        <div class="contPeople">
+          <img class="imgPeople" src="../../../../assets/icon/15-Group.png">
+          <ion-label class="txtPeople">{{ 'EXP-DETAIL.txt1People' | translate }} {{ experience?.amountPeople }} {{ 'EXP-DETAIL.txt2People' | translate }}</ion-label>
+        </div>
+        <hr class="lineHR">
+      </ion-col>
+    </ion-row>
+
+    <ng-container *ngIf="!isOwner">
+      <ion-row>
+        <ion-col (click)="selectPerson(ownerExp, imgUsers[0])">
+          <ion-item class="ion-no-padding ion-no-margin" lines="none">
+            <ion-avatar class="avatarOwner">
+              <img [src]="imgUsers[0]" />
+            </ion-avatar>
+            <!-- <ion-label class="nameOwner">{{ ownerExp?.name }} {{ ownerExp?.lastName }}</ion-label> -->
+            <ion-text class="nameOwner">
+              <p class="namePeopleLst" >{{ ownerExp?.firstName }} {{ ownerExp?.lastName }}</p>
+              <div class="contRating" (click)="openRatingExperiences()">
+                <img class="imgStart" src="../../../../assets/icon/16-Star.png">
+                <ion-label class="txtRating">{{ ownerExp?.rateExperiences || 0 }} {{ 'EXP-DETAIL.txtRates' | translate }}</ion-label>
+              </div>
+            </ion-text>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <p class="aboutTitle">{{ 'EXP-DETAIL.txtAbout' | translate }}</p>
+          <p class="pExp" *ngIf="!showAboutMe">{{ trimString(textAboutMe,100) }}</p>
+          <p class="pExp" *ngIf="showAboutMe">{{ textAboutMe }}</p>
+          <a class="DesA" (click)="showAboutMe = !showAboutMe" *ngIf="textAboutMe.length > 100">{{ 'EXP-DETAIL.txtRead' | translate }} <span [innerHtml]="(showAboutMe ? 'EXP-DETAIL.txtLess' : 'EXP-DETAIL.txtMore') | translate"></span></a>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <p class="hostTitle">{{ 'EXP-DETAIL.txtHost' | translate }}</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6" class="ion-no-padding" *ngIf="galImgs[0]?.length > 0">
+          <img class="imgHost1" src={{galImgs[0]}} (click)="openPhoto(0)" />
+        </ion-col>
+        <ion-col size="6" class="ion-no-padding">
+          <ion-row>
+            <ion-col class="ion-no-padding" *ngIf="galImgs[1]?.length > 0">
+              <img class="imgHost2" src={{galImgs[1]}} (click)="openPhoto(1)" />
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="ion-no-padding" *ngIf="galImgs[2]?.length > 0">
+              <img class="imgHost3" src={{galImgs[2]}} (click)="openPhoto(2)" />
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+
+      <ion-modal #mPhoto class="modalPhoto" [enterAnimation]="enterAnimation" [leaveAnimation]="leaveAnimation">
+        <ng-template>
+          <ion-content>
+            <div id="photoviewer-container"></div>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+
+      <ion-row *ngIf="isOpen">
+        <ion-button class="intersted-Bt" color="primary1" (click)="doInterest()" *ngIf="!interestedExp">
+          {{ 'EXP-DETAIL.btnIntersted' | translate }}
+          <img class="imgVIP" src="../../../../assets/icon/12-Vip_card.png" *ngIf="isVIPExp">
+        </ion-button>
+        <ion-button class="intersted-Bt" color="primary1" (click)="doUnInterest()" *ngIf="interestedExp">
+          {{ 'EXP-DETAIL.btnUnIntersted' | translate }}
+        </ion-button>
+      </ion-row>
+
+      <ion-col *ngIf="!isOpen">
+        <ion-button class="intersted-Bt" (click)="leaveRating()" color="primary1">
+          <ion-icon slot="start" name="star-outline"></ion-icon>
+          {{ 'MATCH-DETAIL.btnLeaveRating' | translate }}
+        </ion-button>
+      </ion-col>
+
+    </ng-container>
+
+    <ng-container *ngIf="isOwner">
+      <ion-row>
+        <ion-col>
+          <p class="locationTitle">{{ 'EXP-DETAIL.titleIntPeople' | translate }}</p>
+          <p class="pExp">{{ 'EXP-DETAIL.subTitleIntPeople' | translate }}</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <p class="pendingReqTitle">{{ 'EXP-DETAIL.PendingReq' | translate }} {{noPendingReq}}</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-list class="listPeopleLst">
+        <ng-container *ngFor="let usr of interestedUsrList; let i = index;">
+          <ion-item class="itemPeopleLst" lines="none" *ngIf="usr?.status == pendingUsr">
+            <img class="imgPeopleLst" [class.defaultImg]="imgUsers[i]" [src]="imgUsers[i]" slot="start" (click)="selectPerson(usr, imgUsers[i])"/>
+            <ion-text class="textPeopleLst" (click)="selectPerson(usr, imgUsers[i])">
+              <p class="namePeopleLst" >{{usr?.name}}</p>
+              <p class="locPeopleLst">{{usr?.location?.city}}, {{usr?.location?.state}}</p>
+             <!--  <div class="contRating" (click)="openRatingUser()">
+                <img class="imgStart" src="../../../../assets/icon/16-Star.png">
+                <ion-label class="txtRating">{{ usr?.rateUserExperiences || 0 }} {{ 'EXP-DETAIL.txtRates' | translate }}</ion-label>
+              </div> -->
+            </ion-text>
+            <ion-button class="btnPeopleLst" color="gris1" (click)="acceptPeople(usr?.personId, allowUsr, i)" slot="end" *ngIf="isOpen">
+              {{ 'EXP-DETAIL.AllowBt' | translate }}
+            </ion-button>
+            <ion-button class="btnPeopleLst" color="primary1" (click)="acceptPeople(usr?.personId, denyUsr,i)" slot="end" *ngIf="isOpen">
+              {{ 'EXP-DETAIL.DenyBt' | translate }}
+            </ion-button>
+            <ion-button class="btnLeaveRating" color="primary1" (click)="leaveRatingAssistan(usr?.personId, usr?.name, imgUsers[i])" slot="end" *ngIf="!isOpen">
+              <ion-icon slot="start" name="star-outline"></ion-icon>
+              {{ 'MATCH-DETAIL.btnLeaveRating' | translate }}
+            </ion-button>
+          </ion-item>
+          <div class="contRating" (click)="openRatingUser(usr?.personId, usr?.name, usr?.rateUserExperiences, imgUsers[i])">
+            <img class="imgStart" src="../../../../assets/icon/16-Star.png">
+            <ion-label class="txtRating">{{ usr?.rateUserExperiences || 0 }} {{ 'EXP-DETAIL.txtRates' | translate }}</ion-label>
+          </div>
+          <hr class="linePeople" *ngIf="i < interestedUsrList?.length-1 && usr?.status == pendingUsr">
+        </ng-container>
+      </ion-list>
+
+      <hr class="lineDivPeople"> 
+
+      <ion-row>
+        <ion-col>
+          <p class="pendingReqTitle">{{ 'EXP-DETAIL.RegisteredUsr' | translate }} {{noRegistered}}</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-list class="listPeopleLst">
+        <ng-container *ngFor="let usr of interestedUsrList; let i = index;">
+          <ion-item class="itemPeopleLst" lines="none" *ngIf="usr?.status == allowUsr" (click)="selectPerson(usr, imgUsers[i])">
+            <img class="imgPeopleLst" [src]="imgUsers[i]" slot="start"/>
+            <ion-text class="textPeopleLst">
+              <p class="namePeopleLst" >{{usr?.name}}</p>
+              <p class="locPeopleLst" >{{usr?.location?.city}}, {{usr?.location?.state}}</p>
+            </ion-text>
+            <ion-button slot="end" color="negro" (click)="chatMatch($event,usr)">
+              <ion-icon slot="icon-only" name="chatbubble"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <hr class="linePeople" *ngIf="i < interestedUsrList?.length-1 && usr?.status == pendingUsr">
+        </ng-container>
+      </ion-list>
+
+      <ion-row *ngIf="isOpen">
+        <ion-button class="intersted-Bt" color="primary1" (click)="cancelExperience()">
+          {{ 'EXP-DETAIL.btnCancelExp' | translate }}
+        </ion-button>
+      </ion-row>
+
+      <ion-row style="margin-top: 10px;" *ngIf="!isOpen">
+        <ion-col></ion-col>
+      </ion-row>
+
+    </ng-container>
+
+</ion-grid>
+
+
+</ion-content>

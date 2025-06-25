@@ -1,0 +1,86 @@
+<ion-content class="ion-padding" color="blanco" fullscreen>
+  <ion-grid style="margin-top: 80px;">
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <img class="img-acc" *ngIf="imgProfile  !== undefined" src="{{imgProfile}}">
+         <img class="img-acc" *ngIf="imgProfile == undefined" src="../../../assets/icon/30-Default_no-image.jpeg">
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="ion-no-padding ion-no-margin ion-text-center">
+        <p class="p-name">{{usrApp?.firstName}} , {{usrApp?.age}}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="row-btn">
+      <ion-col size="6" class="ion-no-margin ion-no-padding">
+        <img class="btn-lat" src="../../../assets/icon/27-Settings.png" (click)="setting()">
+        <p class="btn-title">{{ 'ACCOUNT.tSetting' | translate }}</p>
+      </ion-col>
+      
+      <!-- <ion-col size="4" class="ion-no-margin ion-no-padding">
+        <img class="btn-center" src="../../../assets/icon/28-Add_photo.png" (click)="addPhoto()">
+        <p class="btn-title">{{ 'ACCOUNT.tAddPhoto' | translate }}</p>
+      </ion-col> -->
+      <ion-col size="6" class="ion-no-margin ion-no-padding">
+        <img class="btn-lat" src="../../../assets/icon/29-Edit.png" (click)="edit()">
+        <p class="btn-title">{{ 'ACCOUNT.tEdit' | translate }}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p class="txtTitle">{{ 'ACCOUNT.LocTitle' | translate }}</p>
+        <p class="txtBody">{{ usrApp?.location.city }}, {{ usrApp?.location.state }} {{ usrApp?.location.country }}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p class="txtTitle">{{ 'ACCOUNT.BioTitle' | translate }}</p>
+        <p class="txtBody" *ngIf="!showAboutMe">{{ trimString(textAboutMe,100) }}</p>
+        <p class="txtBody" *ngIf="showAboutMe">{{ textAboutMe }}</p>
+        <a class="DesA" (click)="showAboutMe = !showAboutMe" *ngIf="textAboutMe.length > 100">{{ 'MATCH-DETAIL.txtRead' | translate }} <span [innerHtml]="(showAboutMe ? 'MATCH-DETAIL.txtLess' : 'MATCH-DETAIL.txtMore') | translate"></span></a>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p class="txtTitle">{{ 'ACCOUNT.txtGallery' | translate }}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="img-col" size="6" >
+        <img class="imgGallery1" src={{galImgs[0]}} (click)="openPhoto(0)" *ngIf = galImgs[0] />
+      </ion-col>
+      <ion-col class="img-col" size="6">
+        <img class="imgGallery1" src={{galImgs[1]}} (click)="openPhoto(1)" *ngIf = galImgs[1]/>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="img-col" size="4">
+        <img class="imgGallery1" src={{galImgs[2]}} (click)="openPhoto(2)" *ngIf = galImgs[2]/>
+      </ion-col>
+      <ion-col class="img-col" size="4">
+        <img class="imgGallery1" src={{galImgs[3]}} (click)="openPhoto(3)" *ngIf = galImgs[3]/>
+      </ion-col>
+      <ion-col class="img-col" size="4">
+        <img class="imgGallery1" src={{galImgs[4]}} (click)="openPhoto(4)" *ngIf = galImgs[4]/>
+      </ion-col>
+    </ion-row>
+
+    <ion-modal #mPhoto class="modalPhoto" [enterAnimation]="enterAnimation" [leaveAnimation]="leaveAnimation">
+      <ng-template>
+        <ion-content>
+          <div id="photoviewer-container"></div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+
+  </ion-grid>
+
+</ion-content>

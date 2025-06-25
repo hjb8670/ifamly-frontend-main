@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar>
+      <!-- <ion-buttons slot="start">
+        <ion-button (click)="confirmChanges()">Done</ion-button>
+      </ion-buttons> -->
+      <ion-title class="title-header">{{ title }}</ion-title>
+      <ion-buttons slot="end">
+        <ion-button class="btn-cancel" (click)="cancelChanges()">{{ btnCancel }}</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-searchbar class="search-bar" placeholder="{{ phSearch }}" (ionInput)="searchbarInput($event)"></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content color="light">
+    <ion-list id="modal-list" [inset]="true">
+      <ion-item *ngFor="let item of filteredItems; trackBy: trackItems">
+        <span [class]="'flag-icon-ow fi fi-'+item.iso.toLowerCase()"> </span>
+        <ion-checkbox [value]="item.iso" [checked]="isChecked(item.iso)" (ionChange)="checkboxChange($event)">
+            {{ item.country.substring(0,20).toUpperCase() }} ({{ item.code }})</ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </ion-content>

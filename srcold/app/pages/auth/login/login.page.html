@@ -1,0 +1,128 @@
+<ion-content color="blanco" fullscreen>
+
+  <form [formGroup]="loginForm" (ngSubmit)="singIn()">
+    <ion-grid>
+      <ion-row>
+        <ion-button class="singUp-Bt" color="blanco" [routerLink]="['/registry']">
+          {{ 'LOGIN.btnSingUp' | translate }}
+        </ion-button>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <div><img class="logoImg" src="../../../../assets/logoApp.jpg"></div>
+          <!-- <h4>{{ 'LOGIN.title' | translate }}</h4> -->
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <h1>{{ 'LOGIN.WelcomeTxt1' | translate }}</h1>
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-row>
+        <ion-col>
+          <h1>{{ 'LOGIN.WelcomeTxt2' | translate }}</h1>
+        </ion-col>
+      </ion-row> -->
+
+      <ion-row style="margin-top: 20px;">
+        <ion-col>
+          <ion-item fill="outline" shape="round" lines="none" mode="md">
+            <ion-label class="camposLabel-CItem" position="floating">{{ 'LOGIN.EmailLabel' | translate }}</ion-label> 
+            <ion-input class="input-CItem" formControlName="email" type="email" inputmode="email" required></ion-input>
+          </ion-item>
+          <!-- <p class="camposLabel">{{ 'LOGIN.EmailLabel' | translate }}</p> 
+          <ion-input formControlName="email" type="email" inputmode="email" placeholder="{{ 'LOGIN.EmailLabel' | translate }}"required></ion-input> -->
+
+          <div class="validation-errors" *ngIf = presentarErroresCampos>
+            <ng-container *ngFor="let validation of validation_messages.email">
+              <div class="error-message" *ngIf="email.hasError(validation.type) && (email.dirty || email.touched)">
+                <small class="error-message">{{ 'LOGIN.'+validation.message | translate }}</small>
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item fill="outline" shape="round" lines="none" mode="md">
+            <ion-label class="camposLabel-CItem" position="floating">{{ 'LOGIN.PasswordLabel' | translate }}</ion-label> 
+            <ion-input class="input-CItem" formControlName="password" type="{{!view ? 'password' : 'text'}}" required></ion-input>
+            <ion-img class="img-view" slot="end" src="../../../../assets/icon/view.png" (click)="verContra()"></ion-img>
+          </ion-item>
+
+          <!-- <p class="camposLabel-SItem">{{ 'LOGIN.PasswordLabel' | translate }}</p> 
+          <ion-input class="input-SItem" formControlName="password" type="password" placeholder="{{ 'LOGIN.PasswordLabel' | translate }}" required></ion-input> -->
+          <div class="validation-errors" *ngIf = presentarErroresCampos>
+            <ng-container *ngFor="let validation of validation_messages.password">
+              <div class="error-message" *ngIf="password.hasError(validation.type) && (password.dirty || password.touched)">
+                <small class="error-message">{{ 'LOGIN.'+validation.message | translate }}</small>
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <a class="forgotPass-a" routerLink='/forgot-password'>{{ 'LOGIN.ForgotPass' | translate }}</a>
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-row>
+        <ion-col>
+          <hr>
+          <p class="OrSingIn-P">{{ 'LOGIN.OrSingIn' | translate }}</p>
+        </ion-col>
+      </ion-row> -->
+
+      <!-- <ion-row>
+       
+        <ion-col size="6">
+          <img class="singInG-Bt" src="../../../../assets/icon/02-Boton_Google.png" (click)="singInGoogle()">
+        </ion-col>
+        <ion-col size="6">
+          <img class="singInA-Bt" src="../../../../assets/icon/03-Boton_Apple.png" (click)="singInApple()">
+        </ion-col>
+      </ion-row> -->
+
+      <ion-row>
+        <ion-col>
+          <p class="TermTxt-P">{{ 'LOGIN.TermsText' | translate }} <a class="a_ft" (click)="params('terms-complete')">{{ 'LOGIN.terminosCondiciones' | translate }}</a></p>
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-row>
+        <ion-col>
+        
+          <p class="TermTxtLink-P"><a class="a_ft" (click)="params('terms-complete')">{{ 'LOGIN.terminosCondiciones' | translate }}</a></p>
+        </ion-col>
+      </ion-row> -->
+
+      <ion-row>
+        <ion-button class="singIn-Bt" color="primary1" type="submit">
+          {{ 'LOGIN.btnSingIn' | translate }}
+        </ion-button>
+      </ion-row>
+
+
+      <!-- <ion-row>
+        <ion-col>
+          <ion-label class="label_ver">
+            {{verApp}}
+          </ion-label>
+        </ion-col>
+      </ion-row> -->
+      
+    </ion-grid>
+  </form>
+</ion-content>
+
+<!-- <ion-footer>
+  <ion-toolbar>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer> -->

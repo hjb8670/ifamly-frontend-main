@@ -1,0 +1,38 @@
+.hdExperience {
+    background: var(--ion-color-blanco);
+    padding-bottom: 0px;
+    margin-bottom: 20px;
+}
+ion-toolbar{
+    --background: white;
+}
+.titleExperience {
+    font-family: 'Sk-Modernist-Bold';
+    font-size: 24px;
+}
+
+.ocultar{
+    display: none;
+}
+.txtTitle {
+    font-family: 'Sk-Modernist-Bold';
+    font-size: 16px;
+    color: var(--ion-color-negro);
+    margin-bottom: 0;
+    text-align: center;
+}
+
+
+
+.talkjs-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hide chat when !mostrarChat */
+.ocultar {
+  display: none;
+}

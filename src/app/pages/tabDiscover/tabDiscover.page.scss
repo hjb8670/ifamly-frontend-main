@@ -1,0 +1,356 @@
+ion-content{
+    --overflow:hidden;
+}
+.hdPage {
+    background: var(--ion-color-blanco);
+    padding-bottom: 0px;
+}
+
+ion-back-button {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+}
+
+.titlePage {
+    font-family: 'Sk-Modernist-Bold';
+    font-size: 24px;
+    text-align: center;
+    margin-top: -5px;
+    margin-bottom: 0;
+}
+
+.titleLoc {
+    font-family: 'Sk-Modernist-Regular';
+    font-size: 12px;
+    color: var(--ion-color-gris1);
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+.menuBtn {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.menuIcon {
+    font-size: 28px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contenedorCard {
+    position: relative;
+    height: 82%;
+}
+
+ion-card {
+    position: absolute;
+    width: 90%;
+    margin-left: 5%;
+    //margin-right: 5%;
+    //text-align: center;
+    /* border-style: solid;
+    border-width: 0;
+    border-radius: 15px; */
+    --background: none;
+    box-shadow: none !important;
+}
+
+.card-img {
+    object-fit: cover;
+    width: 100%;
+    background-color: white;
+    //height: 550px;
+    border-style: solid;
+    border-width: 0;
+    border-radius: 15px;
+}
+
+.card-boton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.card-gradient {
+    position: absolute;
+    background: linear-gradient(0deg, rgba(255, 79, 1, 1) 0%, rgba(255, 255, 255, 0) 25%);
+    width: 100%;
+    height: 100%;
+    border-style: solid;
+    border-width: 0;
+    border-radius: 15px;
+    top: 0;
+}
+
+.menuBtn {
+    font-size: 18px;
+    background: var(--ion-color-blanco);
+    height: 48px;
+    width: 50px;
+    color: var(--ion-color-negro);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+}
+
+.menuIcon {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-title {
+    position: absolute;
+    font-family: 'Sk-Modernist-Bold';
+    font-size: 30px;
+    color: var(--ion-color-blanco);
+    bottom: 50px;
+    left: 15px;
+}
+
+.card-subtitle {
+    position: absolute;
+    font-family: 'Sk-Modernist-Regular';
+    font-size: 18px;
+    color: var(--ion-color-blanco);
+    bottom: 25px;
+    left: 15px;
+}
+
+.card-start {
+    position: absolute;
+    width: 13px;
+    bottom: 25px;
+}
+
+.card-ratings {
+    position: absolute;
+    font-family: 'Sk-Modernist-Regular';
+    font-size: 12px;
+    color: var(--ion-color-blanco);
+    bottom: 25px;
+    right: 15px;
+    //right: 5%;
+}
+
+.card-like-dis {
+    position: absolute;
+    width: 26%;
+    top: 38%;
+    left: 38%;
+}
+
+.row-btn {
+    align-items: center;
+    text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.btn-small {
+    width: 60px;
+}
+
+.btn-big {
+    width: 100px;
+}
+
+//******** MODAL FILTER ***********//
+.header-filter {
+    margin-top: 10px;
+}
+
+.div-modal-g {
+    height: 75%;
+}
+
+.div-modal {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.listModal {
+    margin-top: 0;
+    padding-top: 0;
+    /* .ios {
+        margin-top: 8px;
+    } */
+}
+
+.titleModal {
+    font-family: 'Sk-Modernist-Bold';
+    font-size: 22px;
+}
+
+.clearModal {
+    font-family: 'Sk-Modernist-Bold';
+    font-size: 16px;
+    color: var(--ion-color-primary1);
+    padding-top: 14px;
+    //padding-right: 10px;
+}
+
+.text-h1 {
+    font-family: 'Sk-Modernist-Bold';
+    font-size: 16px;
+    color: var(--ion-color-negro);
+    /* margin-top: -10px;
+    margin-bottom: 0px; */
+}
+
+.text-h1-2 {
+    font-family: 'Sk-Modernist-Regular';
+    font-size: 12px;
+    text-align: end;
+    color: var(--ion-color-gris1);
+    margin-top: 22px;
+}
+
+ion-item {
+    --background: var(--ion-color-blanco);
+    --color: var(--ion-color-negro);
+    --color-focused: var(--ion-color-negro);
+    --border-width: 1px !important;
+    --border-radius: 15px;
+    --border-color: var(--ion-color-negro);
+    //--padding-bottom: 0px; 
+    --padding-start: 15px;
+    --highlight-color-invalid: none;
+    --highlight-color-valid: none;
+    --highlight-color-focused: none !important;
+    /* margin-top: 30px;
+    margin-bottom: 70px; */
+}
+
+ion-select {
+    font-family: 'Sk-Modernist-Regular';
+    font-size: 16px;
+    --padding-end: 0px;
+}
+
+ion-select::part(icon) {
+    display: none !important;
+}
+
+.rangePersonal {
+    --bar-background: var(--ion-color-gris1);
+    --bar-background-active: var(--ion-color-primary1);
+    --bar-height: 5px;
+    --knob-size: 28px;
+    --knob-border-radius: 50%;
+    --bar-border-radius: 20px;
+    --knob-background: var(--ion-color-primary1);
+    --knob-box-shadow: 0px 0px 0px 3px #fff;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.text-subtitle {
+    font-family: 'Sk-Modernist-Bold';
+    font-size: 18px;
+    color: var(--ion-color-negro);
+    margin-bottom: -10px;
+}
+
+.apply-Bt {
+    display: block;
+    font-family: 'Sk-Modernist-Bold';
+    font-size: 15px;
+    text-transform: none;
+    width: 100%;
+    height: 45px;
+    --border-radius: 10px;
+    --box-shadow: none;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.item-toggle {
+    font-family: 'Sk-Modernist-Bold';
+    font-size: 16px;
+    --detail-icon-color: var(--ion-color-primary1);
+    --border-width: 0 !important;
+    --padding-start: 10px;
+    --padding-end: 0px !important;
+    margin-right: -10px;
+}
+
+.toggleChk {
+    display: flex;
+    --background: var(--ion-color-gris1);
+    --background-checked: var(--ion-color-primary1);
+    --handle-background: var(--ion-color-blanco);
+    --handle-background-checked: var(--ion-color-blanco);
+    --handle-spacing: 2px;
+    --handle-height: 25px;
+    --handle-width: 25px;
+    width: 50px;
+    height: 30px;
+    padding: 0;
+    padding-right: 0;
+    border: 0.6px solid var(--ion-color-blanco);
+    border-radius: 18px;
+}
+
+.divNoFound {
+    height: 100%;
+}
+
+.imgNoFound {
+    display: block;
+    width: 35%;
+    margin-top: 35%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pNoFoundRegular {
+    text-align: center;
+    font-family: 'Sk-Modernist-Regular';
+    font-size: 16px;
+    margin: 30px 20px 0 20px;
+}
+
+.pNoFound {
+    text-align: center;
+    font-family: 'Sk-Modernist-Bold';
+    font-size: 18px;
+    margin: 30px 20px 0 20px;
+}
+
+.skeleton-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.skeleton-img {
+    width: 100%;
+    //height: 500px;
+    border-radius: 8px;
+}
+
+.skeleton-buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px 0;
+    margin-top: 40px;
+}
+
+.skeleton-btnT {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.skeleton-btnL {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}

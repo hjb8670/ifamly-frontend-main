@@ -1,0 +1,26 @@
+ion-img {
+    width: 25px;
+}
+
+.border-tab {
+    border-top-color: var(--ion-color-primary1);
+    border-top-width: 2px;
+    border-top-style: solid;
+}
+
+.numeroUnread {
+    background: red;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 15%;
+    top: 15%;
+
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: white; 
+    font-size: 12px; 
+    font-weight: bold;
+}

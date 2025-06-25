@@ -1,0 +1,56 @@
+ion-back-button {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.skip-Bt {
+    font-family: 'Sk-Modernist-Bold';
+    font-size: 15px;
+    text-transform: none;
+    //margin-top: 160px;
+}
+
+.text-h1 {
+    font-family: 'Sk-Modernist-Bold';
+    font-size: 36px;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+.campoItem {
+    --background: var(--ion-color-blanco);
+    --color: var(--ion-color-negro);
+    --color-focused: var(--ion-color-negro);
+    --border-width: 1px !important;
+    --border-radius: 15px;
+    --border-color: var(--ion-color-negro);
+    //--padding-bottom: 0px; 
+    --padding-start: 15px;
+    --highlight-color-invalid: none;
+    --highlight-color-valid: none;
+    --highlight-color-focused: none !important;
+    margin-top: 10px;
+    //margin-bottom: 70px;
+}
+
+ion-searchbar {
+    font-family: 'Sk-Modernist-Bold';
+    font-size: 15px;
+    //--box-shadow: none;
+}
+
+
+
+.next-Bt {
+    display: block;
+    font-family: 'Sk-Modernist-Bold';
+    font-size: 15px;
+    text-transform: none;
+    width: 100%;
+    height: 40px;
+    --border-radius: 10px;
+    --box-shadow:none;
+    margin-top: 200px;
+}

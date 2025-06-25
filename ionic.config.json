@@ -1,0 +1,7 @@
+{
+  "name": "iFamily",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

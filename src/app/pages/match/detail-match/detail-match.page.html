@@ -1,0 +1,209 @@
+<ion-header class="ion-no-border ion-padding" color="blanco" >
+  <div class="img-conteiner">
+    <img class="imgCover ion-no-padding" src={{imgCover}}>
+  </div>
+
+  <ion-toolbar color="rgba(255,255,255,0)">
+    <ion-buttons slot="start">
+      <ion-button class="btnBack" (click)="backTabMatch()">
+        <ion-icon name="chevron-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons class="menuBtn" slot="end" (click)="openMenuPopover( $event )">
+      <ion-icon class="menuIcon" name="ellipsis-vertical"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-header [ngStyle]="{'background-image': 'url(' + imgCover + ' no-repeat center/cover fixed)'}">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button class="btnBack" (click)="backTabMatch()">
+        <ion-icon name="chevron-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons class="menuBtn" slot="end" (click)="openMenuPopover( $event )">
+      <ion-icon class="menuIcon" name="ellipsis-vertical"></ion-icon>
+    </ion-buttons>
+    <img src={{imgCover}} class="header-background" />
+  </ion-toolbar>
+</ion-header> -->
+
+
+
+
+<ion-content class="ion-padding" color="blanco">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <p class="nameMatch">{{ usrMatch?.firstName }} {{ usrMatch?.lastName }}, {{ usrMatch?.age }}</p>
+        <!-- <p class="roleMatch">{{ iam_des.slice(1) }}</p> -->
+         <p class="roleMatch">{{ iam_des?.slice(1) || '' }}</p>
+      </ion-col>
+      <ion-col size="3" *ngIf="typePerson !== 1">
+        <ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-button class="btnMessage" (click)="sendMessage()">
+              <ion-icon name="paper-plane-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-col>
+    
+    </ion-row>
+   
+    <!-- <ion-row>
+      <ion-col>
+        <div *ngFor="let itm of createTempArray(usrMatch?.rate); let i = index">
+          <img class="rate-start" src="../../../assets/icon/16-Star.png" [style.left]="setPositionStart(5, i)">
+        </div>
+        <div class="text-ratings" [style.left]="setPositionStart(20, usrMatch?.rate)">({{usrMatch?.rates}} {{ 'MATCH-DETAIL.RatingTxt' | translate }})</div>
+      </ion-col>
+    </ion-row> -->
+
+    <ion-row>
+      <ion-col size="9">
+        <p class="txtLocation">{{ 'MATCH-DETAIL.LocTitle' | translate }}</p>
+        <!-- <p class="dir1Exp">{{ usrMatch?.location.address }} {{ usrMatch?.location.city.name }}</p> -->
+        <p class="dirExp">{{ usrMatch?.location.city }}, {{ usrMatch?.location.state }} {{ usrMatch?.location.country }}</p>
+      </ion-col>
+      <!-- <ion-col size="3">
+        <div class="contPosition" (click)="openMap(usrMatch?.location.city)"  *ngIf="typePerson !== 1">
+          <img class="imgPosition" src="../../../../assets/icon/14-Location_white.png">
+          <ion-label class="txtPosition">{{ usrMatch?.location.radio }} {{ uniDistancia }}</ion-label>
+        </div>
+      </ion-col> -->
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p class="txtTitle">{{ 'MATCH-DETAIL.txtAbout' | translate }}</p>
+        <p class="pExp" *ngIf="!showAboutMe">{{ trimString(textAboutMe,100) }}</p>
+        <p class="pExp" *ngIf="showAboutMe">{{ textAboutMe }}</p>
+        <a class="DesA" (click)="showAboutMe = !showAboutMe" *ngIf="textAboutMe.length > 100">{{ 'MATCH-DETAIL.txtRead' | translate }} <span [innerHtml]="(showAboutMe ? 'MATCH-DETAIL.txtLess' : 'MATCH-DETAIL.txtMore') | translate"></span></a>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+       
+            <ion-item slot="header">
+              <ion-label class="accord-label-hd">{{ 'MATCH-DETAIL.hdMoreAbout' | translate }}</ion-label>
+            </ion-item>
+            <div class="accord-slot_cntnt ion-padding"  *ngIf="height?.length > 0">
+              <p class="accord-title-secc" style="margin-top: 0px;">{{ 'MATCH-DETAIL.titleSecc1' | translate }}</p>
+              <p class="accord-body-secc">{{height}}</p>
+            </div>
+            <div class="accord-slot_cntnt ion-padding"  *ngIf="gender?.length > 0">
+              <p class="accord-title-secc">{{ 'MATCH-DETAIL.titleSecc2' | translate }}</p>
+              <p class="accord-body-secc">{{gender}}</p>
+            </div>
+            <div class="accord-slot_cntnt ion-padding"  *ngIf="education?.length > 0">
+              <p class="accord-title-secc">{{ 'MATCH-DETAIL.titleSecc3' | translate }}</p>
+              <p class="accord-body-secc">{{education}}</p>
+            </div>
+            <div class="accord-slot_cntnt ion-padding"  *ngIf="languajes?.length > 0">
+              <p class="accord-title-secc">{{ 'MATCH-DETAIL.titleSecc4' | translate }}</p>
+              <p class="accord-body-secc">{{languajes}}</p>
+            </div>
+            <div class="accord-slot_cntnt ion-padding"  *ngIf="sign?.length > 0">
+              <p class="accord-title-secc">{{ 'MATCH-DETAIL.titleSecc5' | translate }}</p>
+              <p class="accord-body-secc">{{sign}}</p>
+            </div>
+            <div class="accord-slot_cntnt ion-padding"  *ngIf="sports?.length > 0">
+              <p class="accord-title-secc">{{ 'MATCH-DETAIL.titleSecc6' | translate }}</p>
+              <p class="accord-body-secc">{{sports}}</p>
+            </div>
+            <div class="accord-slot_cntnt ion-padding"  *ngIf="hobbies?.length > 0">
+              <p class="accord-title-secc">{{ 'MATCH-DETAIL.titleSecc7' | translate }}</p>
+              <p class="accord-body-secc">{{hobbies}}</p>
+            </div>
+            <div class="accord-slot_cntnt ion-padding"  *ngIf="kids?.length > 0">
+              <p class="accord-title-secc">{{ 'MATCH-DETAIL.titleSecc8' | translate }}</p>
+              <p class="accord-body-secc">{{kids}}</p>
+            </div>
+            <div class="accord-slot_cntnt ion-padding"  *ngIf="pets?.length > 0">
+              <p class="accord-title-secc">{{ 'MATCH-DETAIL.titleSecc9' | translate }}</p>
+              <p class="accord-body-secc">{{pets}}</p>
+            </div>
+            <div class="accord-slot_cntnt ion-padding"  *ngIf="values_traits?.length > 0">
+              <p class="accord-title-secc">{{ 'MATCH-DETAIL.titleSecc10' | translate }}</p>
+              <p class="accord-body-secc">{{values_traits}}</p>
+            </div>
+            <div class="accord-slot_cntnt ion-padding"  *ngIf="drinking?.length > 0">
+              <p class="accord-title-secc">{{ 'MATCH-DETAIL.titleSecc11' | translate }}</p>
+              <p class="accord-body-secc">{{drinking}}</p>
+            </div>
+            <div class="accord-slot_cntnt ion-padding"  *ngIf="smoking?.length > 0">
+              <p class="accord-title-secc">{{ 'MATCH-DETAIL.titleSecc12' | translate }}</p>
+              <p class="accord-body-secc">{{smoking}}</p>
+            </div>
+            <div class="accord-slot_cntnt ion-padding"  *ngIf="drugs?.length > 0">
+              <p class="accord-title-secc">{{ 'MATCH-DETAIL.titleSecc13' | translate }}</p>
+              <p class="accord-body-secc">{{drugs}}</p>
+            </div>
+            <div class="accord-slot_cntnt ion-padding"  *ngIf="religion?.length > 0">
+              <p class="accord-title-secc">{{ 'MATCH-DETAIL.titleSecc14' | translate }}</p>
+              <p class="accord-body-secc">{{religion}}</p>
+            </div>
+            <div class="accord-slot_cntnt ion-padding"  *ngIf="political?.length > 0">
+              <p class="accord-title-secc">{{ 'MATCH-DETAIL.titleSecc15' | translate }}</p>
+              <p class="accord-body-secc">{{political}}</p>
+            </div>
+         
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <p class="txtTitle">{{ 'MATCH-DETAIL.txtGallery' | translate }}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="img-col" size="6" *ngIf="galImgs[0]?.length > 0">
+        <img class="imgGallery1" src={{galImgs[0]}} (click)="openPhoto(0)" />
+      </ion-col>
+      <ion-col class="img-col" size="6" *ngIf="galImgs[1]?.length > 0">
+        <img class="imgGallery1" src={{galImgs[1]}} (click)="openPhoto(1)" />
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="img-col" size="4" *ngIf="galImgs[2]?.length > 0">
+        <img class="imgGallery1" src={{galImgs[2]}} (click)="openPhoto(2)" />
+      </ion-col>
+      <ion-col class="img-col" size="4" *ngIf="galImgs[3]?.length > 0">
+        <img class="imgGallery1" src={{galImgs[3]}} (click)="openPhoto(3)" />
+      </ion-col>
+      <ion-col class="img-col" size="4" *ngIf="galImgs[4]?.length > 0">
+        <img class="imgGallery1" src={{galImgs[4]}} (click)="openPhoto(4)" />
+      </ion-col>
+    </ion-row>
+
+    <ion-modal #mPhoto class="modalPhoto" [enterAnimation]="enterAnimation" [leaveAnimation]="leaveAnimation">
+      <ng-template>
+        <ion-content>
+          <div id="photoviewer-container"></div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+    <ion-row *ngIf="typePerson !== 1">
+      <ion-col>
+        <ion-button class="btnAction" (click)="unMatch()" color="gris1">
+          <ion-icon slot="start" name="heart-dislike-outline"></ion-icon>
+          {{ 'MATCH-DETAIL.btnUnMatch' | translate }}
+        </ion-button>
+      </ion-col>
+      <!-- <ion-col size="6">
+        <ion-button class="btnAction" (click)="leaveRating()" color="primary1">
+          <ion-icon slot="start" name="star-outline"></ion-icon>
+          {{ 'MATCH-DETAIL.btnLeaveRating' | translate }}
+        </ion-button>
+      </ion-col> -->
+    </ion-row>
+
+
+  </ion-grid>
+</ion-content>

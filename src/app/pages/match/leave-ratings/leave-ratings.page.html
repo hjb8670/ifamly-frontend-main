@@ -1,0 +1,68 @@
+<ion-header class="ion-no-border ion-padding" color="blanco" >
+  <ion-toolbar color="blanco" >
+    <ion-buttons slot="start">
+      <ion-back-button icon="chevron-back" defaultHref="detail-match" mode="md"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="blanco" fullscreen>
+  <form [formGroup]="leaveRForm" (ngSubmit)="onSubmit()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-avatar>
+            <img class="img-avatar" src={{imgCover}} />
+          </ion-avatar>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <p class="txtName">{{name}} {{lastName}}</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 15px; margin-left:16px;">
+        <ion-col class="ion-text-center">
+          <ion-rating-stars
+            [rating]="0"
+            color="var(--ion-color-gris1)"
+            filledColor="var(--ion-color-primary1)"
+            [margin]="10"
+            [size]="42"
+            [disabled]="false"
+            (ratingChange)="ratingChanged($event)">
+          </ion-rating-stars>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <p class="fieldTitle">{{ 'LEAVE-RATING.ExpComment' | translate }}</p>
+          <ion-item shape="round" lines="none" mode="md">
+            <ion-textarea class="input-CItem" formControlName="comment" inputmode="text" placeholder="{{ 'LEAVE-RATING.phComment' | translate }}" rows="6" required></ion-textarea>
+          </ion-item>
+
+          <div class="validation-errors" *ngIf = presentarErroresCampos>
+            <ng-container *ngFor="let validation of validation_messages.comment">
+              <div class="error-message" *ngIf="comment.hasError(validation.type) && (comment.dirty || comment.touched)">
+                <small class="error-message">{{ 'LEAVE-RATING.'+validation.message | translate }}</small>
+              </div>
+            </ng-container>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button class="submit-Bt" color="primary1" type="submit">
+            {{ 'LEAVE-RATING.btnSubmit' | translate }}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </form>
+
+</ion-content>

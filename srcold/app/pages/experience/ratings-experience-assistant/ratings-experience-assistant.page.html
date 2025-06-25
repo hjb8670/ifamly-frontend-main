@@ -1,0 +1,58 @@
+<ion-header class="ion-no-border ion-padding">
+  <ion-toolbar  style="--background: none;">
+    <ion-buttons slot="start">
+      <ion-button class="btnBack" (click)="backPage()">
+        <ion-icon name="chevron-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="blanco" fullscreen>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-avatar>
+          <img class="img-avatar" src={{imageAssistant}} />
+        </ion-avatar>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <p class="txtName">{{nameAssistant}}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-bottom: 5px;">
+      <ion-col>
+        <div class="content-starts">
+          <div *ngFor="let itm of createTempArray(5); let i = index">
+            <!-- <img class="rate-start" src="../../../assets/icon/16-Star.png" [style.left]="setPositionStart(5, i)"> -->
+            <ion-icon class="rate-start" name="star" [style.left]="setPositionStart(5, 52, i)" *ngIf="i < rateAssistant"></ion-icon>
+            <ion-icon class="rate-start-gris" name="star-outline" [style.left]="setPositionStart(5, 52, i)" *ngIf="i >= rateAssistant"></ion-icon>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ng-container *ngFor="let rate of rates">
+      <ion-row>
+        <ion-col>
+          <p class="date-rate">{{converterDatetoString(rate?.dateRate)}}</p>
+          <div class="div-start-lt" *ngFor="let itm of createTempArray(rate?.rate); let i = index">
+            <img class="rate-start-lt" src="../../../assets/icon/16-Star.png" [style.left]="setPositionStart(5, 15, i)">
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p class="comment-rate">{{rate?.commentRate}}</p>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+
+  </ion-grid>
+
+
+</ion-content>

@@ -1,0 +1,78 @@
+<ion-header class="ion-no-border ion-padding" color="blanco" >
+  <ion-toolbar color="blanco" >
+    <ion-buttons slot="start">
+      <ion-icon name="chevron-back" (click)="back()"></ion-icon>
+    </ion-buttons>
+     <ion-title class="title_txt" mode="ios">{{ 'PHOTO-VIEW.TitleTxt' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="save-Bt"
+  [disabled]="
+    galleryImgs.length <= 1 || 
+    imgsChecked.length === 0 || 
+    imgsChecked.length === galleryImgs.length
+  "
+  (click)="delete()">
+  {{ 'PHOTO-VIEW.delete' | translate }}
+</ion-button>
+      <ion-button class="save-Bt" (click)="save()">{{ 'PHOTO-VIEW.SaveTxt' | translate }}</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="blanco ion-padding" fullscreen>
+  <input type="file" #fileInput accept="image/png, image/gif, image/jpeg" style="position: absolute; width: 0; height: 0; opacity: 0" multiple  (change)="testup($event)">
+  <ion-row>
+    <ion-col></ion-col>
+     <ion-col size="4" class="ion-no-margin ion-no-padding">
+        <img class="addphoto btn-center" src="../../../assets/icon/28-Add_photo.png" (click)="fileInput.click()">
+        <p class="btn-title" style="text-align: center;">{{ 'ACCOUNT.tAddPhoto' | translate }}</p>
+      </ion-col>
+      <ion-col></ion-col>
+  </ion-row>
+  <ion-grid style="margin-top: 5px;">
+    <ion-row>
+      <ion-col>
+        <p class="txtTitle">{{ 'PHOTO-VIEW.mensajeSubtitle' | translate }}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="img-col" size="6" *ngFor="let img of galleryImgs; let i = index" style="text-align: center;align-content: center;">
+        <img 
+          [ngClass]="{'imgSelected': imgsChecked.includes(img.imageId), 'imgGallery1': true}" 
+          [src]="img.multimediaUrl" 
+          (click)="openPhoto(img.multimediaUrl)" 
+        />
+        
+        <ion-checkbox 
+          [checked]="imgsChecked.includes(img.imageId)" 
+          class="checklist" 
+          (ionChange)="seleccionarImg(i, img.imageId)">
+        </ion-checkbox>
+      </ion-col>
+      
+      <!-- <ion-col class="img-col" size="8">
+        <img class="imgGallery1" src={{galImgs[1]}} (click)="openPhoto(1)" />
+      </ion-col> -->
+    </ion-row>
+    <!--<ion-row>
+      <ion-col class="img-col" size="4">
+        <img class="imgGallery1" src={{galImgs[2]}} (click)="openPhoto(2)" />
+      </ion-col>
+      <ion-col class="img-col" size="4">
+        <img class="imgGallery1" src={{galImgs[3]}} (click)="openPhoto(3)" />
+      </ion-col>
+      <ion-col class="img-col" size="4">
+        <img class="imgGallery1" src={{galImgs[4]}} (click)="openPhoto(4)" />
+      </ion-col>
+    </ion-row> -->
+
+    <ion-modal #mPhoto class="modalPhoto" [enterAnimation]="enterAnimation" [leaveAnimation]="leaveAnimation" >
+      <ng-template>
+        <ion-content>
+          <div id="photoviewer-container" ></div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+  </ion-grid>
+</ion-content>

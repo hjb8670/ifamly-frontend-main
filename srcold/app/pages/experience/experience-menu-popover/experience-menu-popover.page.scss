@@ -1,0 +1,24 @@
+ion-item {
+    height: 30px;
+    font-size: 15px;
+    //margin-bottom: 10px;
+    /*.ios {
+        font-size: 15px;
+    }*///Si solo se quiere para ios
+}
+
+.itemSelected {
+    --background: var(--ion-color-primary1);
+    border-style: solid;
+    border-color: var(--ion-color-primary1);
+    border-radius: 15px;
+}
+
+ion-label{
+    margin-top: -10px;
+}
+
+.labelselected {
+    font-family: 'Sk-Modernist-Bold';
+    color: var(--ion-color-blanco);
+}

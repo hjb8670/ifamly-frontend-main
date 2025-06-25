@@ -1,0 +1,100 @@
+<ion-header class="ion-no-border ion-padding" color="blanco" >
+  <ion-toolbar color="blanco" >
+    <ion-buttons slot="start">
+      <ion-back-button icon="chevron-back" defaultHref="my-mobile" mode="md"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="blanco ion-padding" fullscreen>
+  <div id="sign-in-button"></div>
+
+  <form [formGroup]="VCodeForm" (ngSubmit)="next()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h1 class="time-h1">{{strTOTO}}</h1>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <h1 class="text-h1">{{ 'VC.Text' | translate }} {{metodCode}}</h1>
+        </ion-col>
+      </ion-row>
+
+      <ion-row mode="md">
+        <ion-col>
+          <ion-item class="item-field" fill="outline" shape="round" lines="none" mode="md">
+            <ion-input class="input-CItem" formControlName="codigo" type="numeric" inputmode="numeric" minlength="6" maxlength="6" style="text-align: center;"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-row mode="md">
+        <ion-col style="display: flex; justify-content: center;">
+          <ion-item [class]="styleC[0]" lines="none">
+            <ion-input class="input-CItem" #C0 formControlName="c0" type="text" inputmode="numeric" placeholder="0" autofocus="true" 
+              clearOnEdit="true" minlength="1" maxlength="1" size="1" (ionChange)="onInputC($event, 0, C1)" required></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col style="display: flex; justify-content: center;">
+          <ion-item [class]="styleC[1]" lines="none">
+            <ion-input class="input-CItem" #C1 formControlName="c1" type="text" inputmode="numeric" placeholder="0" 
+              clearOnEdit="true" minlength="1" maxlength="1" size="1" (ionChange)="onInputC($event, 1, C2)" required></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col style="display: flex; justify-content: center;">
+          <ion-item [class]="styleC[2]" lines="none">
+            <ion-input class="input-CItem" #C2 formControlName="c2" type="text" inputmode="numeric" placeholder="0" 
+              clearOnEdit="true" minlength="1" maxlength="1" size="1" (ionChange)="onInputC($event, 2, C3)" required></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col style="display: flex; justify-content: center;">
+          <ion-item [class]="styleC[3]" lines="none">
+            <ion-input class="input-CItem" #C3 formControlName="c3" type="text" inputmode="numeric" placeholder="0" 
+              clearOnEdit="true" minlength="1" maxlength="1" size="1" (ionChange)="onInputC($event, 3, C4)" required></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col style="display: flex; justify-content: center;">
+          <ion-item [class]="styleC[4]" lines="none">
+            <ion-input class="input-CItem" #C4 formControlName="c4" type="text" inputmode="numeric" placeholder="0" 
+              clearOnEdit="true" minlength="1" maxlength="1" size="1" (ionChange)="onInputC($event, 4, C5)" required></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col style="display: flex; justify-content: center;">
+          <ion-item [class]="styleC[5]" lines="none">
+            <ion-input class="input-CItem" #C5 formControlName="c5" type="text" inputmode="numeric" placeholder="0" 
+              clearOnEdit="true" minlength="1" maxlength="1" size="1" (ionChange)="onInputC($event, 5, C5)" required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row> -->
+      <ion-row>
+        <ion-col>
+          <h1 class="text-h1">{{ 'VC.SendCodeEmail' | translate }} <a class="link" (click)="sendCodeEmail()">{{ 'VC.Email' | translate }}</a></h1>
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-row>
+        <ion-col>
+          <p class="SendAgain-P"><a class="a_sa" (click)="sendAgain()">{{ 'VC.SendAgain' | translate }}</a></p>
+        </ion-col>
+      </ion-row> -->
+
+      <ion-row>
+        <ion-button class="next-Bt" color="primary1" type="submit">
+          {{ 'VC.btnNext' | translate }}
+        </ion-button>
+      </ion-row>
+
+      <!-- <ion-row>
+        <ion-col size="12">
+          <p class="SendAgain-P"><a class="a_sa" (click)="sendCodeEmail()">{{ 'VC.SendCodeEmail' | translate }}</a></p>
+        </ion-col>
+      </ion-row> -->
+
+    </ion-grid>
+
+  </form>
+
+</ion-content>

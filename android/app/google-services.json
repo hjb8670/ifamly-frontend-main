@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "1008524938992",
+    "project_id": "ifamily-180d6",
+    "storage_bucket": "ifamily-180d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008524938992:android:a317446fc831dba2b13c35",
+        "android_client_info": {
+          "package_name": "com.hit2b.iFamily"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1008524938992-6a69jkvt1sq47ub6fuciva7rd8v63158.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hit2b.iFamily",
+            "certificate_hash": "cba1c14e7a0736f85311338c68fd0226642e918f"
+          }
+        },
+        {
+          "client_id": "1008524938992-6bfm8agf4c2ip3u1hn2dk90vngloud45.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hit2b.iFamily",
+            "certificate_hash": "ce0b3110e8a9a725cc7f39031c33b73462ff26ef"
+          }
+        },
+        {
+          "client_id": "1008524938992-tesl4nq07h550n063b9p28kenopd0ule.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEpIlQqezFyCIIphd6mLqO1tOMPTy1VFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1008524938992-te3ve7vnfsqv90sf0nf4t4a38fprv2uo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1008524938992-4i2fu12rj9onlig6jjdidrepuodboom2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hit2b.iFamily"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -11,7 +11,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   ExperienceService: () => (/* binding */ ExperienceService)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ 33712);
@@ -33,7 +33,7 @@ let ExperienceService = class ExperienceService {
   }
   getExperiences(pagNextId, pagRecordLimit, location, experienceCategoryId) {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log('category id', experienceCategoryId);
       const data = {
         pagNextId,
@@ -61,7 +61,7 @@ let ExperienceService = class ExperienceService {
   }
   getMyExperiences(pagNextId, pagRecordLimit, experienceCategoryId) {
     var _this2 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         pagNextId,
         pagRecordLimit,
@@ -87,7 +87,7 @@ let ExperienceService = class ExperienceService {
   }
   getExperiencesById(experienceId) {
     var _this3 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this3.userService.token);
       return new Promise(resolve => {
         _this3.http.get(`${URL}/experience/get/` + experienceId, {
@@ -106,7 +106,7 @@ let ExperienceService = class ExperienceService {
   }
   getOwnerExperiences(ownerId) {
     var _this4 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this4.userService.token);
       return new Promise(resolve => {
         _this4.http.get(`${URL}/user/` + ownerId, {
@@ -125,7 +125,7 @@ let ExperienceService = class ExperienceService {
   }
   setInterestExperiences(experienceId) {
     var _this5 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this5.userService.token);
       return new Promise(resolve => {
         _this5.http.get(`${URL}/experience/guests/register-guest/${experienceId}`, {
@@ -145,7 +145,7 @@ let ExperienceService = class ExperienceService {
   }
   addExperience(experience) {
     var _this6 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         ...experience
       };
@@ -168,7 +168,7 @@ let ExperienceService = class ExperienceService {
   }
   updateExperience(experience) {
     var _this7 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         ...experience
       };
@@ -191,7 +191,7 @@ let ExperienceService = class ExperienceService {
   }
   getIMGS(experienceId) {
     var _this8 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       // const tVal = await this.userService.validaToken();
       // if( !tVal ) {
       //   return;
@@ -216,7 +216,7 @@ let ExperienceService = class ExperienceService {
   }
   deleteExperience(experienceId) {
     var _this9 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this9.userService.token);
       return new Promise(resolve => {
         _this9.http.delete(`${URL}/experience/delete/${experienceId}`, {
@@ -238,7 +238,7 @@ let ExperienceService = class ExperienceService {
   }
   uploadIMG(experienceId, multimediaName, multimediaBase64) {
     var _this10 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       //hOMOLOGAR TAMAÑO DE IMAGENES.
       multimediaBase64 = yield _utilities_service__WEBPACK_IMPORTED_MODULE_3__.UtilitiesService.compressBase64Image(multimediaBase64, 800, 800, 0.7);
       const data = {
@@ -269,7 +269,7 @@ let ExperienceService = class ExperienceService {
   }
   getAllUsers(experienceId) {
     var _this11 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this11.userService.token);
       return new Promise(resolve => {
         _this11.http.get(`${URL}/experience/guests/get-guests/${experienceId}`, {
@@ -290,7 +290,7 @@ let ExperienceService = class ExperienceService {
   }
   updateGuest(personId, experienceId, status) {
     var _this12 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         personId,
         experienceId,
@@ -316,7 +316,7 @@ let ExperienceService = class ExperienceService {
   }
   checkedRegisterGuest(experienceId) {
     var _this13 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this13.userService.token);
       return new Promise(resolve => {
         _this13.http.get(`${URL}/experience/guests/check-register-guest/${experienceId}`, {
@@ -340,7 +340,7 @@ let ExperienceService = class ExperienceService {
   }
   deleteInterestExperiences(experienceId) {
     var _this14 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this14.userService.token);
       return new Promise(resolve => {
         _this14.http.get(`${URL}/experience/guests/deregister-guest/${experienceId}`, {
@@ -360,7 +360,7 @@ let ExperienceService = class ExperienceService {
   }
   setFeedbackExperience(targetExperience, rate, comment) {
     var _this15 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         targetExperience,
         rate,
@@ -385,7 +385,7 @@ let ExperienceService = class ExperienceService {
   }
   getRatesHost(idHost) {
     var _this16 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this16.userService.token);
       return new Promise(resolve => {
         _this16.http.get(`${URL}/experience/feedback/user/${idHost}`, {
@@ -405,7 +405,7 @@ let ExperienceService = class ExperienceService {
   }
   setFeedbackExperienceAssistant(idAssistant, targetExperience, rate, comment) {
     var _this17 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         targetExperience,
         rate,
@@ -430,7 +430,7 @@ let ExperienceService = class ExperienceService {
   }
   getRatesAssistan(idAssistant) {
     var _this18 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this18.userService.token);
       return new Promise(resolve => {
         _this18.http.get(`${URL}/experience/guests/get-guests/user/${idAssistant}`, {
@@ -473,7 +473,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   UtilitiesService: () => (/* binding */ UtilitiesService)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ 33712);
@@ -495,7 +495,7 @@ let UtilitiesService = class UtilitiesService {
   }
   getCountryISO() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return new Promise(resolve => {
         _this.http.get(`${urlIPInfo}?token=${tokenIPInfo}`).subscribe({
           next: resp => {
@@ -518,7 +518,7 @@ let UtilitiesService = class UtilitiesService {
     })();
   }
   static compressBase64Image(base64, maxWidth = 800, maxHeight = 800, quality = 0.7) {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return new Promise(resolve => {
         const img = new Image();
         img.onload = () => {

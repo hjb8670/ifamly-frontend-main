@@ -142,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AppComponent: () => (/* binding */ AppComponent)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _app_component_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.html?ngResource */ 10440);
 /* harmony import */ var _app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component.scss?ngResource */ 25004);
@@ -181,11 +181,11 @@ let AppComponent = class AppComponent {
     this.initializeApp();
   }
   ngOnInit() {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {})();
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {})();
   }
   initializeApp() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         // Initialize Language Service
         const lang = yield _this.languageService.getSavedLanguage();
@@ -203,7 +203,7 @@ let AppComponent = class AppComponent {
             cssClass: 'popupclass'
           });
           modal.onDidDismiss().then( /*#__PURE__*/function () {
-            var _ref = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dataReturned) {});
+            var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dataReturned) {});
             return function (_x) {
               return _ref.apply(this, arguments);
             };
@@ -219,7 +219,7 @@ let AppComponent = class AppComponent {
           cssClass: 'popupclass'
         });
         modal.onDidDismiss().then( /*#__PURE__*/function () {
-          var _ref2 = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dataReturned) {});
+          var _ref2 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dataReturned) {});
           return function (_x2) {
             return _ref2.apply(this, arguments);
           };
@@ -341,7 +341,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   InitGuard: () => (/* binding */ InitGuard)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 24040);
@@ -362,7 +362,7 @@ let InitGuard = class InitGuard {
   }
   canActivate() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (_this.isInitialized) {
         return true;
       }
@@ -391,7 +391,7 @@ let InitGuard = class InitGuard {
   }
   goDiscovers() {
     var _this2 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const discoverUsrs = yield _this2.preLoadDis();
       console.log('GO DISCOVER USRS: ', discoverUsrs);
       let navegationExtras = {
@@ -404,7 +404,7 @@ let InitGuard = class InitGuard {
   }
   preLoadDis() {
     var _this3 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         const filter = {
           selfRole: null,
@@ -434,7 +434,7 @@ let InitGuard = class InitGuard {
     })();
   }
   setAvatarImg(usrDicover) {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {})();
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {})();
   } // for (const usr of usrDicover) {
   //   usr.image = '../../../assets/icon/30-Default_no-image.jpeg';
   //   const res_imgs =  <ImagesUser[]> await this.matchService.getIMGS(usr.personId.toString());
@@ -512,7 +512,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   SelectlangPage: () => (/* binding */ SelectlangPage)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _selectlang_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./selectlang.page.html?ngResource */ 1634);
 /* harmony import */ var _selectlang_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./selectlang.page.scss?ngResource */ 26392);
@@ -564,7 +564,7 @@ let SelectlangPage = class SelectlangPage {
   }
   selectLanguage(lang) {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (_this.pageid == 'settings') {
         console.log(lang);
         _this.languageService.setLanguage(lang.value);
@@ -580,7 +580,7 @@ let SelectlangPage = class SelectlangPage {
   }
   onScroll() {
     var _this2 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const scrollEl = yield _this2.content.getScrollElement();
       const scrollTop = scrollEl.scrollTop;
       const scrollHeight = scrollEl.scrollHeight;
@@ -638,7 +638,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AppleSignInService: () => (/* binding */ AppleSignInService)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/fire/compat/auth */ 16088);
@@ -662,7 +662,7 @@ let AppleSignInService = class AppleSignInService {
   }
   signInWithAppleNative() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         const appleAuthResponse = yield _capacitor_community_apple_sign_in__WEBPACK_IMPORTED_MODULE_2__.SignInWithApple.authorize(_this.optionsAppleSignIn);
         const credential = new firebase_compat_app__WEBPACK_IMPORTED_MODULE_1__["default"].auth.OAuthProvider('apple.com').credential({
@@ -700,7 +700,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   DataStorageService: () => (/* binding */ DataStorageService)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/storage */ 2108);
@@ -711,7 +711,7 @@ __webpack_require__.r(__webpack_exports__);
 let DataStorageService = class DataStorageService {
   constructor() {}
   set(key, value) {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.set({
         key: key,
         value: value
@@ -719,7 +719,7 @@ let DataStorageService = class DataStorageService {
     })();
   }
   get(key) {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const {
         value
       } = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.get({
@@ -729,7 +729,7 @@ let DataStorageService = class DataStorageService {
     })();
   }
   remove(key) {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({
         key: key
       });
@@ -757,7 +757,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   FirebaseAuthService: () => (/* binding */ FirebaseAuthService)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/environments/environment */ 36716);
@@ -800,7 +800,7 @@ let FirebaseAuthService = class FirebaseAuthService {
         });
       });
       _capacitor_firebase_authentication__WEBPACK_IMPORTED_MODULE_6__.FirebaseAuthentication.addListener('phoneCodeSent', /*#__PURE__*/function () {
-        var _ref = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (event) {
+        var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (event) {
           _this.ngZone.run(() => {
             _this.phoneCodeSentSubject.next(event);
           });
@@ -820,7 +820,7 @@ let FirebaseAuthService = class FirebaseAuthService {
   }
   initialize() {
     var _this2 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (_this2.platform.is('capacitor')) {
         return;
       }
@@ -836,19 +836,19 @@ let FirebaseAuthService = class FirebaseAuthService {
   }
   //Obtener el token de autenticación
   getIdToken(options) {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const result = yield _capacitor_firebase_authentication__WEBPACK_IMPORTED_MODULE_6__.FirebaseAuthentication.getIdToken(options);
       return result.token;
     })();
   }
   //Validación con telefono y generación de código SMS
   signInWithPhoneNumber(options) {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return yield _capacitor_firebase_authentication__WEBPACK_IMPORTED_MODULE_6__.FirebaseAuthentication.signInWithPhoneNumber(options);
     })();
   }
   confirmVerificationCode(options) {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return yield _capacitor_firebase_authentication__WEBPACK_IMPORTED_MODULE_6__.FirebaseAuthentication.confirmVerificationCode(options);
     })();
   }
@@ -857,20 +857,20 @@ let FirebaseAuthService = class FirebaseAuthService {
   }
   sendVerificationCodeEmail(email, lang) {
     var _this3 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return _this3.usrService.getCodeEmail(email, lang);
     })();
   }
   validaCodeEmail(email, code) {
     var _this4 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return _this4.usrService.validaCodeEmail(email, code);
     })();
   }
   //SignIn con Apple
   signInWithApple() {
     var _this5 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (_this5.platform.is('ios')) {
         return yield _this5.appleSignInService.signInWithAppleNative();
       } else {
@@ -879,12 +879,12 @@ let FirebaseAuthService = class FirebaseAuthService {
     })();
   }
   signInWithAppleWeb() {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return (yield _capacitor_firebase_authentication__WEBPACK_IMPORTED_MODULE_6__.FirebaseAuthentication.signInWithApple()).user;
     })();
   }
   getidToken() {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const auth = (0,_firebase_auth__WEBPACK_IMPORTED_MODULE_3__.getAuth)();
       console.log('Usr: ', auth.currentUser);
       yield (0,_firebase_auth__WEBPACK_IMPORTED_MODULE_3__.getIdToken)(auth.currentUser, true).then(idToken => {
@@ -894,7 +894,7 @@ let FirebaseAuthService = class FirebaseAuthService {
   }
   //Cerrar sesión
   logout() {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       yield _capacitor_firebase_authentication__WEBPACK_IMPORTED_MODULE_6__.FirebaseAuthentication.signOut();
     })();
   }
@@ -928,7 +928,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   GoogleSignInService: () => (/* binding */ GoogleSignInService)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 27832);
@@ -975,7 +975,7 @@ let GoogleSignInService = class GoogleSignInService {
        return currentTokens?.idToken;
   } */
   refreshToken() {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         const data = yield _codetrix_studio_capacitor_google_auth__WEBPACK_IMPORTED_MODULE_1__.GoogleAuth.refresh();
         if (data.accessToken) {
@@ -994,7 +994,7 @@ let GoogleSignInService = class GoogleSignInService {
     })();
   }
   loginViaGoogle() {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       let user_t = null;
       yield _codetrix_studio_capacitor_google_auth__WEBPACK_IMPORTED_MODULE_1__.GoogleAuth.signIn().then(user => {
         user_t = user;
@@ -1005,7 +1005,7 @@ let GoogleSignInService = class GoogleSignInService {
     })();
   }
   logout() {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       yield _codetrix_studio_capacitor_google_auth__WEBPACK_IMPORTED_MODULE_1__.GoogleAuth.signOut().then(user => {
         console.log('SUCCESS LOGOUT');
       }).catch(error => {
@@ -1134,7 +1134,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   LanguageService: () => (/* binding */ LanguageService)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ 33712);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 94280);
@@ -1160,7 +1160,7 @@ let LanguageService = class LanguageService {
   }
   setInitialAppLanguage() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       let language = 'en'; // Fallback language
       try {
         // Ensure the translate service is initialized
@@ -1180,7 +1180,7 @@ let LanguageService = class LanguageService {
     })();
   }
   getSavedLanguage() {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const result = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.get({
         key: LNG_KEY
       });
@@ -1189,7 +1189,7 @@ let LanguageService = class LanguageService {
   }
   setLanguage(lng) {
     var _this2 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this2.translate.use(lng); // Change the language dynamically
       yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.set({
         key: LNG_KEY,
@@ -1199,7 +1199,7 @@ let LanguageService = class LanguageService {
   }
   translateText(text) {
     var _this3 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const cacheKey = `${_this3.targetLang}-${text}`;
       if (_this3.translationCache.has(cacheKey)) {
         return _this3.translationCache.get(cacheKey);
@@ -1388,7 +1388,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   MatchService: () => (/* binding */ MatchService)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ 33712);
@@ -1419,7 +1419,7 @@ let MatchService = class MatchService {
   }
   principal() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       /* */
       // this.uiService.showLoader();
       _this.user = yield _this.userService.getUserBasic('');
@@ -1436,18 +1436,24 @@ let MatchService = class MatchService {
       // console.log('MATCH OLD: ', this.oldMatchPerson);
       if (_this.todayMatchPerson.length > 0) {
         _this.todayMatchPerson.forEach(x => {
-          _this.matchPerson.push(x);
+          if (!_this.matchPerson.some(m => m.matchId === x.matchId)) {
+            _this.matchPerson.push(x);
+          }
         });
       }
       _this.todayMatchPerson.length > 1 ? _this.newMatch = true : _this.newMatch = false;
       if (_this.yesterdayMatchPerson.length > 0) {
         _this.yesterdayMatchPerson.forEach(x => {
-          _this.matchPerson.push(x);
+          if (!_this.matchPerson.some(m => m.matchId === x.matchId)) {
+            _this.matchPerson.push(x);
+          }
         });
       }
       if (_this.oldMatchPerson.length > 0) {
         _this.oldMatchPerson.forEach(x => {
-          _this.matchPerson.push(x);
+          if (!_this.matchPerson.some(m => m.matchId === x.matchId)) {
+            _this.matchPerson.push(x);
+          }
         });
       }
       _this.uiService.loader ? _this.uiService.hideLoader : null;
@@ -1455,7 +1461,7 @@ let MatchService = class MatchService {
   }
   setAvatarImg(matchP) {
     var _this2 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       for (const usr of matchP) {
         usr.image = '../../../assets/icon/30-Default_no-image.jpeg';
         // validación para tomar el otro usuario del match
@@ -1473,7 +1479,7 @@ let MatchService = class MatchService {
   }
   getDiscoverProfiles(pagNextId, pagRecordLimit, filter) {
     var _this3 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = '';
       // { pagNextId, pagRecordLimit, ...filter };
       // if(Array.isArray(data["selfRole"])){data["selfRole"] = Number(data["selfRole"][0])}
@@ -1485,7 +1491,7 @@ let MatchService = class MatchService {
           headers
         }).subscribe({
           next: function () {
-            var _ref = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
+            var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
               if (resp['sCode'] == 200) {
                 let usrs_discover = resp['sData'] === undefined ? [] : resp['sData'];
                 /* for (const usr of usrs_discover) {
@@ -1514,7 +1520,7 @@ let MatchService = class MatchService {
   }
   getCatalogueXUsr(idDiscover, idCatalogue) {
     var _this4 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this4.userService.token);
       return new Promise(resolve => {
         _this4.http.get(`${URL}/catalogue/person/${idDiscover}/catalogue/${idCatalogue}`, {
@@ -1538,7 +1544,7 @@ let MatchService = class MatchService {
   }
   doMatchProfiles(personLiked, accionId, isLike, isSuperLike, matchId) {
     var _this5 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         personLiked,
         accionId,
@@ -1569,14 +1575,14 @@ let MatchService = class MatchService {
   }
   getMatches(fecha, personIdOwner) {
     var _this6 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this6.userService.token);
       return new Promise(resolve => {
         _this6.http.get(`${URL}/match/matches/${fecha}`, {
           headers
         }).subscribe({
           next: function () {
-            var _ref2 = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
+            var _ref2 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
               let usrMatchPerson = resp['sData'];
               for (const usr of usrMatchPerson) {
                 let personId = usr.personLiked.toString() == personIdOwner ? usr.personLikes : usr.personLiked;
@@ -1620,7 +1626,7 @@ let MatchService = class MatchService {
   } */
   setFeedback(targetProfile, rate, comment) {
     var _this7 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         selfProfile: (yield _this7.userService.getUser('')).personId,
         targetProfile,
@@ -1646,7 +1652,7 @@ let MatchService = class MatchService {
   }
   getRates(idMatch) {
     var _this8 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this8.userService.token);
       return new Promise(resolve => {
         _this8.http.get(`${URL}/discover/feedback/${idMatch}`, {
@@ -1666,7 +1672,7 @@ let MatchService = class MatchService {
   }
   uploadIMG(imagesArray) {
     var _this9 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       // Homologar tamaño de imagenes
       console.log(imagesArray);
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this9.userService.token);
@@ -1690,7 +1696,7 @@ let MatchService = class MatchService {
   }
   uploadIMG2(imagesArray) {
     var _this10 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       // Homologar tamaño de imagenes
       const {
         value
@@ -1720,7 +1726,7 @@ let MatchService = class MatchService {
   }
   getIMGS(personId) {
     var _this11 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log("GetImags: ", personId);
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this11.userService.token);
       return new Promise(resolve => {
@@ -1743,7 +1749,7 @@ let MatchService = class MatchService {
   }
   getIMGSOfPerson(personId) {
     var _this12 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this12.userService.token);
       return new Promise(resolve => {
         _this12.http.get(`${URL}/discover/image/${personId}`, {
@@ -1765,7 +1771,7 @@ let MatchService = class MatchService {
   }
   setAvatarIMG(imageId) {
     var _this13 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this13.userService.token);
       return new Promise(resolve => {
         _this13.http.get(`${URL}/discover/image/set-avatar/${imageId}`, {
@@ -1786,7 +1792,7 @@ let MatchService = class MatchService {
   }
   deleteIMG(imageIds) {
     var _this14 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this14.userService.token);
       return new Promise(resolve => {
         _this14.http.request('delete', `${URL}/discover/image`, {
@@ -1806,7 +1812,7 @@ let MatchService = class MatchService {
   }
   rollbackLike(personaId) {
     var _this15 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this15.userService.token);
       return new Promise(resolve => {
         _this15.http.get(`${URL}/match/rollback/${personaId}`, {
@@ -1827,7 +1833,7 @@ let MatchService = class MatchService {
   }
   blockMatch(matchId, report) {
     var _this16 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         matchId,
         report
@@ -1856,7 +1862,7 @@ let MatchService = class MatchService {
   }
   getConversationXUsr(personId) {
     var _this17 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this17.userService.token);
       return new Promise(resolve => {
         _this17.http.get(`${URL}/match/conversation/${personId}`, {
@@ -1905,7 +1911,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   UiService: () => (/* binding */ UiService)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/angular */ 78848);
@@ -1923,7 +1929,7 @@ let UiService = class UiService {
   }
   alertOK(message) {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const alert = yield _this.alertController.create({
         backdropDismiss: false,
         message,
@@ -1934,7 +1940,7 @@ let UiService = class UiService {
   }
   alertOK_CANCEL(message) {
     var _this2 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       let resUsr = false;
       const alert = yield _this2.alertController.create({
         message,
@@ -1963,10 +1969,10 @@ let UiService = class UiService {
   }
   //***** LOADER CONTROL *****
   showLoader() {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {})();
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {})();
   }
   hideLoader() {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {})();
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {})();
   }
   static {
     this.ctorParameters = () => [{
@@ -1996,7 +2002,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   UserService: () => (/* binding */ UserService)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ 33712);
@@ -2056,7 +2062,7 @@ let UserService = class UserService {
         headers
       }).subscribe({
         next: function () {
-          var _ref = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
+          var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
             console.log('RESP LOGIN', resp);
             if (String(resp['token']).length > 0) {
               let res_gToken = yield _this.guardarToken(resp['token']);
@@ -2088,7 +2094,7 @@ let UserService = class UserService {
           };
         }(),
         error: function () {
-          var _ref2 = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (_error) {
+          var _ref2 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (_error) {
             console.log("ERROR CON EL SERVIDOR", _error);
             _this.token = null;
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({
@@ -2105,7 +2111,7 @@ let UserService = class UserService {
   }
   resetPasssword(email, lang) {
     var _this2 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log('Email reset password', email);
       return new Promise(resolve => {
         _this2.http.get(`${URL}/passwoord/resetPW/${email}/${lang}`).subscribe({
@@ -2128,7 +2134,7 @@ let UserService = class UserService {
         headers
       }).subscribe({
         next: function () {
-          var _ref3 = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
+          var _ref3 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
             resolve(resp);
             /* if (resp['ok']) {
               this.guardarToken(resp['token']);
@@ -2144,7 +2150,7 @@ let UserService = class UserService {
           };
         }(),
         error: function () {
-          var _ref4 = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (_error2) {
+          var _ref4 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (_error2) {
             console.log("ERROR CON EL SERVIDOR", _error2);
             _this3.token = null;
             yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({
@@ -2167,7 +2173,7 @@ let UserService = class UserService {
         headers
       }).subscribe({
         next: function () {
-          var _ref5 = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
+          var _ref5 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
             if (resp['sCode'] != 1) {
               resolve(false);
               return;
@@ -2180,7 +2186,7 @@ let UserService = class UserService {
           };
         }(),
         error: function () {
-          var _ref6 = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (_error3) {
+          var _ref6 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (_error3) {
             console.log("ERROR CON EL SERVIDOR", _error3);
             resolve(false);
           });
@@ -2202,7 +2208,7 @@ let UserService = class UserService {
         headers
       }).subscribe({
         next: function () {
-          var _ref7 = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
+          var _ref7 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
             console.log(resp);
             resolve(resp);
           });
@@ -2211,7 +2217,7 @@ let UserService = class UserService {
           };
         }(),
         error: function () {
-          var _ref8 = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (_error4) {
+          var _ref8 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (_error4) {
             console.log("ERROR CON EL SERVIDOR", _error4);
             resolve(false);
           });
@@ -2229,7 +2235,7 @@ let UserService = class UserService {
         headers
       }).subscribe({
         next: function () {
-          var _ref9 = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
+          var _ref9 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
             resolve(resp['sCode']);
             return;
           });
@@ -2238,7 +2244,7 @@ let UserService = class UserService {
           };
         }(),
         error: function () {
-          var _ref10 = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (_error5) {
+          var _ref10 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (_error5) {
             console.log("ERROR CON EL SERVIDOR", _error5);
             resolve(_error5['sCode']);
           });
@@ -2251,7 +2257,7 @@ let UserService = class UserService {
   }
   guardarToken(token) {
     var _this4 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this4.token = token;
       yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.set({
         key: 'token',
@@ -2266,7 +2272,7 @@ let UserService = class UserService {
   }
   cargarToken() {
     var _this5 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const {
         value
       } = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.get({
@@ -2277,7 +2283,7 @@ let UserService = class UserService {
   }
   validaToken() {
     var _this6 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       yield _this6.cargarToken();
       if (!_this6.token) {
         _this6.navCtrl.navigateRoot('/login');
@@ -2319,7 +2325,7 @@ let UserService = class UserService {
   }
   getUser(userX) {
     var _this7 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (!_this7.usuario?.personId) {}
       return new Promise((resolve, reject) => {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this7.token);
@@ -2327,7 +2333,7 @@ let UserService = class UserService {
           headers
         }).subscribe({
           next: function () {
-            var _ref11 = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
+            var _ref11 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
               if (resp['sCode'] == 2) {
                 let usr = resp['sData'];
                 _this7.usuario = usr;
@@ -2371,14 +2377,14 @@ let UserService = class UserService {
   }
   getUserBasic(userX) {
     var _this8 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return new Promise((resolve, reject) => {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this8.token);
         _this8.http.get(`${URL}/discover/get-profile`, {
           headers
         }).subscribe({
           next: function () {
-            var _ref12 = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
+            var _ref12 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
               if (resp['sCode'] == 2) {
                 console.log('USER BASIC', resp['sData']);
                 resolve(resp['sData']);
@@ -2402,14 +2408,14 @@ let UserService = class UserService {
   }
   getUserBasic2(userX) {
     var _this9 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return new Promise((resolve, reject) => {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this9.token);
         _this9.http.get(`${URL}/discover/get-profile`, {
           headers
         }).subscribe({
           next: function () {
-            var _ref13 = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
+            var _ref13 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
               if (resp['sCode'] == 2) {
                 console.log('USER BASIC', resp['sData']);
                 resolve(resp['sData']);
@@ -2433,7 +2439,7 @@ let UserService = class UserService {
   }
   getCatalogo3(catalogueId, lang, birth, gender, mail) {
     var _this10 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         "catalogueId": catalogueId,
         "lang": lang,
@@ -2470,7 +2476,7 @@ let UserService = class UserService {
   }
   getCatalogo2(catalogueId, lang, birth, gender, mail) {
     var _this11 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         "catalogueId": catalogueId,
         "lang": lang,
@@ -2508,7 +2514,7 @@ let UserService = class UserService {
   }
   getCatalogo(catalogueId, lang) {
     var _this12 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         catalogueId,
         lang
@@ -2543,7 +2549,7 @@ let UserService = class UserService {
   }
   getCatalogoImLookingFor2(catalogueId, lang, iAmId, email) {
     var _this13 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         "catalogueId": catalogueId,
         "lang": lang,
@@ -2579,7 +2585,7 @@ let UserService = class UserService {
   }
   getCatalogoImLookingFor(catalogueId, lang, iAmId, email) {
     var _this14 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         "catalogueId": catalogueId,
         "lang": lang,
@@ -2615,7 +2621,7 @@ let UserService = class UserService {
   }
   setCatalogo(id) {
     var _this15 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log('id', id);
       const tVal = yield _this15.validaToken();
       if (!tVal) {
@@ -2643,7 +2649,7 @@ let UserService = class UserService {
   }
   setCatalogoMultiple(id_catalogo, opCat) {
     var _this16 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const tVal = yield _this16.validaToken();
       if (!tVal) {
         return;
@@ -2685,7 +2691,7 @@ let UserService = class UserService {
   }
   getXCatalogo(idCatalogo) {
     var _this17 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this17.token);
       return new Promise(resolve => {
         _this17.http.get(`${URL}/catalogue/get-item-xperson/${idCatalogo}`, {
@@ -2717,7 +2723,7 @@ let UserService = class UserService {
   }
   logout() {
     var _this18 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this18.token = null;
       _this18.usuario = null;
       yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({
@@ -2730,7 +2736,7 @@ let UserService = class UserService {
   }
   getCountries() {
     var _this19 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       //.set('Authorization', this.token);
       return new Promise(resolve => {
@@ -2751,7 +2757,7 @@ let UserService = class UserService {
   }
   getStates(country) {
     var _this20 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         country
       };
@@ -2773,7 +2779,7 @@ let UserService = class UserService {
   }
   getCities(country, state) {
     var _this21 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       let data = {
         country,
         state
@@ -2799,7 +2805,7 @@ let UserService = class UserService {
   }
   getParametros(paramTerminos) {
     var _this22 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         paramTerminos
       };
@@ -2822,7 +2828,7 @@ let UserService = class UserService {
   }
   setUserRS(email, password, rs) {
     var _this23 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this23.dataStorageService.set('email', email);
       _this23.dataStorageService.set('password', password);
       _this23.dataStorageService.set('rs', rs);
@@ -2830,7 +2836,7 @@ let UserService = class UserService {
   }
   getUserRS() {
     var _this24 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       let email = yield _this24.dataStorageService.get('email');
       let password = yield _this24.dataStorageService.get('password');
       let rs = yield _this24.dataStorageService.get('rs');
@@ -2843,7 +2849,7 @@ let UserService = class UserService {
   }
   removeUserRS() {
     var _this25 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       yield _this25.dataStorageService.remove('email');
       yield _this25.dataStorageService.remove('password');
       yield _this25.dataStorageService.remove('rs');
@@ -2851,7 +2857,7 @@ let UserService = class UserService {
   }
   deleteAccount() {
     var _this26 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const tVal = yield _this26.validaToken();
       if (!tVal) {
         return;
@@ -2877,7 +2883,7 @@ let UserService = class UserService {
   }
   existI(email) {
     var _this27 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
         _this27.http.get(`${URL}/discover/existEmail/${email}`, {
@@ -2896,7 +2902,7 @@ let UserService = class UserService {
   }
   upPas(email, password) {
     var _this28 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         email,
         password
@@ -2919,7 +2925,7 @@ let UserService = class UserService {
   }
   getCodeEmail(email, lang) {
     var _this29 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
         _this29.http.get(`${URL}/passwoord/verifyCodeEmail/${email}/${lang}`, {
@@ -2938,7 +2944,7 @@ let UserService = class UserService {
   }
   validaCodeEmail(email, code) {
     var _this30 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
         _this30.http.get(`${URL}/passwoord/verifyCode/${email}/${code}`, {
@@ -2963,7 +2969,7 @@ let UserService = class UserService {
   }
   loginWithEmail() {
     var _this31 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const {
         email,
         password
@@ -2977,7 +2983,7 @@ let UserService = class UserService {
   }
   loginWithGoogle() {
     var _this32 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return yield _this32.loginWithEmail();
       try {
         const idToken = yield _this32.googleSignInService.refreshToken();
@@ -2992,7 +2998,7 @@ let UserService = class UserService {
   }
   loginWithApple() {
     var _this33 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return yield _this33.loginWithEmail();
       try {
         const idToken = yield _this33.getFirebaseAuthService().getIdToken({
@@ -3493,7 +3499,7 @@ ion-content .toptit {
 ion-content ion-label {
   font-size: 18px;
   font-weight: bold;
-}`, "",{"version":3,"sources":["webpack://./src/app/pages/selectlang/selectlang.page.scss"],"names":[],"mappings":"AACA;EACQ,eAAA;EACJ,eAAA;EACA,SAAA;EACA,iBAAA;EACA,YAAA;EACA,WAAA;EACA,UAAA;EACA,YAAA;EACA,kBAAA;EACA,WAAA;AAAJ;AAGI;EACA,kBAAA;EACA,SAAA;EACA,iBAAA;EACA,YAAA;EACA,WAAA;EACA,kBAAA;EACA,eAAA;EACA,YAAA;AADJ;AAGI;EACA,SAAA;EACA,WAAA;EACA,kBAAA;EACA,YAAA;EACA,eAAA;EACA,iBAAA;AADJ;AAGI;EACA,eAAA;EACA,iBAAA;AADJ","sourcesContent":["ion-content{\n.scroll{\n        font-size: 20px;\n    position: fixed;\n    right: 5%;\n    background: black;\n    color: white;\n    padding: 2%;\n    bottom: 4%;\n    margin: auto;\n    border-radius: 50%;\n    z-index: 55;\n}\n\n    .close{\n    position: absolute;\n    right: 5%;\n    background: black;\n    color: white;\n    padding: 1%;\n    border-radius: 50%;\n    font-size: 25px;\n    z-index: 555;\n    }\n    .toptit{\n    margin: 0;\n    padding: 5%;\n    text-align: center;\n    color: black;\n    font-size: 18px;\n    font-weight: bold;\n    }\n    ion-label{\n    font-size: 18px;\n    font-weight: bold;\n    }\n}\n\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/app/pages/selectlang/selectlang.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/selectlang/selectlang.page.scss"],"names":[],"mappings":"AACA;EACQ,eAAA;EACJ,eAAA;EACA,SAAA;EACA,iBAAA;EACA,YAAA;EACA,WAAA;EACA,UAAA;EACA,YAAA;EACA,kBAAA;EACA,WAAA;ACAJ;ADGI;EACA,kBAAA;EACA,SAAA;EACA,iBAAA;EACA,YAAA;EACA,WAAA;EACA,kBAAA;EACA,eAAA;EACA,YAAA;ACDJ;ADGI;EACA,SAAA;EACA,WAAA;EACA,kBAAA;EACA,YAAA;EACA,eAAA;EACA,iBAAA;ACDJ;ADGI;EACA,eAAA;EACA,iBAAA;ACDJ","sourcesContent":["ion-content{\n.scroll{\n        font-size: 20px;\n    position: fixed;\n    right: 5%;\n    background: black;\n    color: white;\n    padding: 2%;\n    bottom: 4%;\n    margin: auto;\n    border-radius: 50%;\n    z-index: 55;\n}\n\n    .close{\n    position: absolute;\n    right: 5%;\n    background: black;\n    color: white;\n    padding: 1%;\n    border-radius: 50%;\n    font-size: 25px;\n    z-index: 555;\n    }\n    .toptit{\n    margin: 0;\n    padding: 5%;\n    text-align: center;\n    color: black;\n    font-size: 18px;\n    font-weight: bold;\n    }\n    ion-label{\n    font-size: 18px;\n    font-weight: bold;\n    }\n}\n\n","ion-content .scroll {\n  font-size: 20px;\n  position: fixed;\n  right: 5%;\n  background: black;\n  color: white;\n  padding: 2%;\n  bottom: 4%;\n  margin: auto;\n  border-radius: 50%;\n  z-index: 55;\n}\nion-content .close {\n  position: absolute;\n  right: 5%;\n  background: black;\n  color: white;\n  padding: 1%;\n  border-radius: 50%;\n  font-size: 25px;\n  z-index: 555;\n}\nion-content .toptit {\n  margin: 0;\n  padding: 5%;\n  text-align: center;\n  color: black;\n  font-size: 18px;\n  font-weight: bold;\n}\nion-content ion-label {\n  font-size: 18px;\n  font-weight: bold;\n}"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 

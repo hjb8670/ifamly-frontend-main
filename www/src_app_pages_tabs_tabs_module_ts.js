@@ -103,7 +103,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   TabsPage: () => (/* binding */ TabsPage)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _tabs_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.page.html?ngResource */ 60600);
 /* harmony import */ var _tabs_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tabs.page.scss?ngResource */ 84920);
@@ -138,7 +138,7 @@ let TabsPage = class TabsPage {
   }
   ngOnInit() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this.user = yield _this.userService.getUserBasic('');
       _this.session = yield _this.talkService.createCurrentSession(_this.user.personId, _this.user.firstName.concat(" ", _this.user.lastName));
       _this.escucharTalkJS();
@@ -146,7 +146,7 @@ let TabsPage = class TabsPage {
   }
   changeIcon(page) {
     var _this2 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (page == 'discover') {
         _this2.activeExperience = false;
         _this2.activeDiscover = true;
@@ -182,7 +182,7 @@ let TabsPage = class TabsPage {
   }
   escucharTalkJS() {
     var _this3 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this3.session.unreads.onChange(conversations => {
         _this3.unreadMessages = 0;
         conversations.forEach(conver => {
@@ -251,7 +251,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `ion-img {
   color: white;
   font-size: 12px;
   font-weight: bold;
-}`, "",{"version":3,"sources":["webpack://./src/app/pages/tabs/tabs.page.scss"],"names":[],"mappings":"AAAA;EACI,WAAA;AACJ;;AAEA;EACI,2CAAA;EACA,qBAAA;EACA,uBAAA;AACJ;;AAEA;EACI,eAAA;EACA,kBAAA;EACA,WAAA;EACA,YAAA;EACA,kBAAA;EACA,UAAA;EACA,QAAA;EAEA,aAAA;EACA,mBAAA;EACA,uBAAA;EACA,YAAA;EACA,eAAA;EACA,iBAAA;AAAJ","sourcesContent":["ion-img {\n    width: 25px;\n}\n\n.border-tab {\n    border-top-color: var(--ion-color-primary1);\n    border-top-width: 2px;\n    border-top-style: solid;\n}\n\n.numeroUnread {\n    background: red;\n    border-radius: 50%;\n    width: 20px;\n    height: 20px;\n    position: absolute;\n    right: 15%;\n    top: 15%;\n\n    display: flex; \n    align-items: center; \n    justify-content: center; \n    color: white; \n    font-size: 12px; \n    font-weight: bold;\n}\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/app/pages/tabs/tabs.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/tabs/tabs.page.scss"],"names":[],"mappings":"AAAA;EACI,WAAA;ACCJ;;ADEA;EACI,2CAAA;EACA,qBAAA;EACA,uBAAA;ACCJ;;ADEA;EACI,eAAA;EACA,kBAAA;EACA,WAAA;EACA,YAAA;EACA,kBAAA;EACA,UAAA;EACA,QAAA;EAEA,aAAA;EACA,mBAAA;EACA,uBAAA;EACA,YAAA;EACA,eAAA;EACA,iBAAA;ACAJ","sourcesContent":["ion-img {\n    width: 25px;\n}\n\n.border-tab {\n    border-top-color: var(--ion-color-primary1);\n    border-top-width: 2px;\n    border-top-style: solid;\n}\n\n.numeroUnread {\n    background: red;\n    border-radius: 50%;\n    width: 20px;\n    height: 20px;\n    position: absolute;\n    right: 15%;\n    top: 15%;\n\n    display: flex; \n    align-items: center; \n    justify-content: center; \n    color: white; \n    font-size: 12px; \n    font-weight: bold;\n}\n","ion-img {\n  width: 25px;\n}\n\n.border-tab {\n  border-top-color: var(--ion-color-primary1);\n  border-top-width: 2px;\n  border-top-style: solid;\n}\n\n.numeroUnread {\n  background: red;\n  border-radius: 50%;\n  width: 20px;\n  height: 20px;\n  position: absolute;\n  right: 15%;\n  top: 15%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: white;\n  font-size: 12px;\n  font-weight: bold;\n}"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 

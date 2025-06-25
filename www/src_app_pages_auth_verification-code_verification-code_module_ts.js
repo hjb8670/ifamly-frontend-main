@@ -79,7 +79,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   VerificationCodePage: () => (/* binding */ VerificationCodePage)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _verification_code_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./verification-code.page.html?ngResource */ 49808);
 /* harmony import */ var _verification_code_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./verification-code.page.scss?ngResource */ 95912);
@@ -140,7 +140,7 @@ let VerificationCodePage = class VerificationCodePage {
       'c5': [ { type: 'required', message: 'msgErrReqMobile'} ]*/
     };
     this.activatedRoute.queryParams.subscribe( /*#__PURE__*/function () {
-      var _ref = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (params) {
+      var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (params) {
         if (_this.router.getCurrentNavigation().extras.state) {
           _this.email = _this.router.getCurrentNavigation().extras.state.email;
           _this.password = _this.router.getCurrentNavigation().extras.state.password;
@@ -167,7 +167,7 @@ let VerificationCodePage = class VerificationCodePage {
       this.lang = src_environments_constants__WEBPACK_IMPORTED_MODULE_5__.constants.languages.en;
     }
     this.firebaseAuthService.phoneCodeSent$.subscribe( /*#__PURE__*/function () {
-      var _ref2 = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (event) {
+      var _ref2 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (event) {
         try {
           _this2.verifID = event.verificationId;
         } catch (error) {
@@ -231,7 +231,7 @@ let VerificationCodePage = class VerificationCodePage {
   }
   calculaTimeOTP() {
     var _this3 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       while (_this3.tOTP > 0) {
         yield _this3.timeOTP(1000);
       }
@@ -239,7 +239,7 @@ let VerificationCodePage = class VerificationCodePage {
   }
   sendAgain() {
     var _this4 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log('SEND AGAIN');
       console.log(_this4.verifID !== '');
       _this4.VCodeForm.reset();
@@ -263,7 +263,7 @@ let VerificationCodePage = class VerificationCodePage {
   }
   sendCodeEmail() {
     var _this5 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log('SEND CODE EMAIL');
       _this5.isMailCode = true;
       _this5.metodCode = _this5.translate.instant('VC.Email');
@@ -280,7 +280,7 @@ let VerificationCodePage = class VerificationCodePage {
   }
   next() {
     var _this6 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log('NEXT');
       var patt = new RegExp('^[0-9]{6}$');
       if (_this6.VCodeForm.invalid) {
@@ -460,7 +460,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `ion-back-button {
   --border-radius: 10px;
   --box-shadow: none;
   margin-top: 30px;
-}`, "",{"version":3,"sources":["webpack://./src/app/pages/auth/verification-code/verification-code.page.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;EACA,iBAAA;EACA,mBAAA;EACA,gBAAA;AACJ;;AAEA;EACI,aAAA;EACA,uBAAA;EACA,gCAAA;EACA,eAAA;EACA,gBAAA;EACA,kBAAA;AACJ;;AAEA;EACI,aAAA;EACA,uBAAA;EACA,mCAAA;EACA,eAAA;EACA,kBAAA;EACA,gBAAA;EACA,iBAAA;EACA,kBAAA;EACA,mBAAA;AACJ;;AAEA;EACI,qCAAA;EACA,+BAAA;EACA,uCAAA;EACA,8BAAA;EACA,qBAAA;EACA,sCAAA;EAEA,qBAAA;EACA,+BAAA;EACA,6BAAA;EACA,0CAAA;EACA,WAAA;AAAJ;;AAGA;EACI,uCAAA;EACA,gCAAA;EACA,uCAAA;EACA,8BAAA;EACA,qBAAA;EACA,yCAAA;EAEA,qBAAA;EACA,+BAAA;EACA,6BAAA;EACA,0CAAA;EACA,WAAA;AADJ;;AAIA;EACI,gCAAA;EACA,eAAA;AADJ;;AAKA;EACI,cAAA;EACA,gCAAA;EACA,eAAA;EACA,kBAAA;EACA,gBAAA;EACA,iBAAA;EACA,kBAAA;EACA,yCAAA;AAFJ;;AAKA;EACI,iBAAA;EACA,qCAAA;EACA,eAAA;AAFJ;;AAKA;EACI,6BAAA;AAFJ;;AAKA;EACI,cAAA;EACA,gCAAA;EACA,eAAA;EACA,oBAAA;EACA,WAAA;EACA,YAAA;EACA,qBAAA;EACA,kBAAA;EACA,gBAAA;AAFJ","sourcesContent":["ion-back-button {\n    border-style: solid;\n    border-width: 1px;\n    border-radius: 15px;\n    margin-top: 20px;\n}\n\n.time-h1 {\n    display: flex;\n    justify-content: center;\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 36px;\n    margin-top: 30px;\n    margin-bottom: 0px;\n}\n\n.text-h1 {\n    display: flex;\n    justify-content: center;\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 18px;\n    text-align: center;\n    margin-top: 10px;\n    margin-left: 50px;\n    margin-right: 50px;\n    margin-bottom: 40px;\n}\n\n.ion-itemW {\n    --background: var(--ion-color-blanco);\n    --color: var(--ion-color-negro);\n    --color-focused: var(--ion-color-negro);\n    --border-width: 1px !important;\n    --border-radius: 15px;\n    --border-color: var(--ion-color-negro);\n    //--padding-bottom: 0px; \n    --padding-start: 15px;\n    --highlight-color-invalid: none;\n    --highlight-color-valid: none;\n    --highlight-color-focused: none !important;\n    width: 45px;\n}\n\n.ion-itemO {\n    --background: var(--ion-color-primary1);\n    --color: var(--ion-color-blanco);\n    --color-focused: var(--ion-color-negro);\n    --border-width: 1px !important;\n    --border-radius: 15px;\n    --border-color: var(--ion-color-primary1);\n    //--padding-bottom: 0px; \n    --padding-start: 15px;\n    --highlight-color-invalid: none;\n    --highlight-color-valid: none;\n    --highlight-color-focused: none !important;\n    width: 45px;\n}\n\n.input-CItem {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 22px;\n    //height: 20px !important;\n}\n\n.SendAgain-P {\n    display: block;\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    text-align: center;\n    margin-top: 20px;\n    margin-left: auto;\n    margin-right: auto;\n    background-color: var(--ion-color-blanco);\n}\n\n.link {\n    display: contents;\n    color: var(--ion-color-primary1-tint);\n    cursor: pointer;\n}\n\n.a_sa {\n    color: var(--ion-color-negro);\n}\n\n.next-Bt {\n    display: block;\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 15px;\n    text-transform: none;\n    width: 100%;\n    height: 40px;\n    --border-radius: 10px;\n    --box-shadow: none;\n    margin-top: 30px;\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/app/pages/auth/verification-code/verification-code.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/auth/verification-code/verification-code.page.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;EACA,iBAAA;EACA,mBAAA;EACA,gBAAA;ACCJ;;ADEA;EACI,aAAA;EACA,uBAAA;EACA,gCAAA;EACA,eAAA;EACA,gBAAA;EACA,kBAAA;ACCJ;;ADEA;EACI,aAAA;EACA,uBAAA;EACA,mCAAA;EACA,eAAA;EACA,kBAAA;EACA,gBAAA;EACA,iBAAA;EACA,kBAAA;EACA,mBAAA;ACCJ;;ADEA;EACI,qCAAA;EACA,+BAAA;EACA,uCAAA;EACA,8BAAA;EACA,qBAAA;EACA,sCAAA;EAEA,qBAAA;EACA,+BAAA;EACA,6BAAA;EACA,0CAAA;EACA,WAAA;ACAJ;;ADGA;EACI,uCAAA;EACA,gCAAA;EACA,uCAAA;EACA,8BAAA;EACA,qBAAA;EACA,yCAAA;EAEA,qBAAA;EACA,+BAAA;EACA,6BAAA;EACA,0CAAA;EACA,WAAA;ACDJ;;ADIA;EACI,gCAAA;EACA,eAAA;ACDJ;;ADKA;EACI,cAAA;EACA,gCAAA;EACA,eAAA;EACA,kBAAA;EACA,gBAAA;EACA,iBAAA;EACA,kBAAA;EACA,yCAAA;ACFJ;;ADKA;EACI,iBAAA;EACA,qCAAA;EACA,eAAA;ACFJ;;ADKA;EACI,6BAAA;ACFJ;;ADKA;EACI,cAAA;EACA,gCAAA;EACA,eAAA;EACA,oBAAA;EACA,WAAA;EACA,YAAA;EACA,qBAAA;EACA,kBAAA;EACA,gBAAA;ACFJ","sourcesContent":["ion-back-button {\n    border-style: solid;\n    border-width: 1px;\n    border-radius: 15px;\n    margin-top: 20px;\n}\n\n.time-h1 {\n    display: flex;\n    justify-content: center;\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 36px;\n    margin-top: 30px;\n    margin-bottom: 0px;\n}\n\n.text-h1 {\n    display: flex;\n    justify-content: center;\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 18px;\n    text-align: center;\n    margin-top: 10px;\n    margin-left: 50px;\n    margin-right: 50px;\n    margin-bottom: 40px;\n}\n\n.ion-itemW {\n    --background: var(--ion-color-blanco);\n    --color: var(--ion-color-negro);\n    --color-focused: var(--ion-color-negro);\n    --border-width: 1px !important;\n    --border-radius: 15px;\n    --border-color: var(--ion-color-negro);\n    //--padding-bottom: 0px; \n    --padding-start: 15px;\n    --highlight-color-invalid: none;\n    --highlight-color-valid: none;\n    --highlight-color-focused: none !important;\n    width: 45px;\n}\n\n.ion-itemO {\n    --background: var(--ion-color-primary1);\n    --color: var(--ion-color-blanco);\n    --color-focused: var(--ion-color-negro);\n    --border-width: 1px !important;\n    --border-radius: 15px;\n    --border-color: var(--ion-color-primary1);\n    //--padding-bottom: 0px; \n    --padding-start: 15px;\n    --highlight-color-invalid: none;\n    --highlight-color-valid: none;\n    --highlight-color-focused: none !important;\n    width: 45px;\n}\n\n.input-CItem {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 22px;\n    //height: 20px !important;\n}\n\n.SendAgain-P {\n    display: block;\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    text-align: center;\n    margin-top: 20px;\n    margin-left: auto;\n    margin-right: auto;\n    background-color: var(--ion-color-blanco);\n}\n\n.link {\n    display: contents;\n    color: var(--ion-color-primary1-tint);\n    cursor: pointer;\n}\n\n.a_sa {\n    color: var(--ion-color-negro);\n}\n\n.next-Bt {\n    display: block;\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 15px;\n    text-transform: none;\n    width: 100%;\n    height: 40px;\n    --border-radius: 10px;\n    --box-shadow: none;\n    margin-top: 30px;\n}","ion-back-button {\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 15px;\n  margin-top: 20px;\n}\n\n.time-h1 {\n  display: flex;\n  justify-content: center;\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 36px;\n  margin-top: 30px;\n  margin-bottom: 0px;\n}\n\n.text-h1 {\n  display: flex;\n  justify-content: center;\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 18px;\n  text-align: center;\n  margin-top: 10px;\n  margin-left: 50px;\n  margin-right: 50px;\n  margin-bottom: 40px;\n}\n\n.ion-itemW {\n  --background: var(--ion-color-blanco);\n  --color: var(--ion-color-negro);\n  --color-focused: var(--ion-color-negro);\n  --border-width: 1px !important;\n  --border-radius: 15px;\n  --border-color: var(--ion-color-negro);\n  --padding-start: 15px;\n  --highlight-color-invalid: none;\n  --highlight-color-valid: none;\n  --highlight-color-focused: none !important;\n  width: 45px;\n}\n\n.ion-itemO {\n  --background: var(--ion-color-primary1);\n  --color: var(--ion-color-blanco);\n  --color-focused: var(--ion-color-negro);\n  --border-width: 1px !important;\n  --border-radius: 15px;\n  --border-color: var(--ion-color-primary1);\n  --padding-start: 15px;\n  --highlight-color-invalid: none;\n  --highlight-color-valid: none;\n  --highlight-color-focused: none !important;\n  width: 45px;\n}\n\n.input-CItem {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 22px;\n}\n\n.SendAgain-P {\n  display: block;\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 16px;\n  text-align: center;\n  margin-top: 20px;\n  margin-left: auto;\n  margin-right: auto;\n  background-color: var(--ion-color-blanco);\n}\n\n.link {\n  display: contents;\n  color: var(--ion-color-primary1-tint);\n  cursor: pointer;\n}\n\n.a_sa {\n  color: var(--ion-color-negro);\n}\n\n.next-Bt {\n  display: block;\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 15px;\n  text-transform: none;\n  width: 100%;\n  height: 40px;\n  --border-radius: 10px;\n  --box-shadow: none;\n  margin-top: 30px;\n}"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 

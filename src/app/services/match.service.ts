@@ -48,21 +48,28 @@ export class MatchService {
     // console.log('MATCH TODAY: ', this.todayMatchPerson);
     // console.log('MATCH YESTERADY: ', this.yesterdayMatchPerson);
     // console.log('MATCH OLD: ', this.oldMatchPerson);
-    if(this.todayMatchPerson.length > 0){
+    if (this.todayMatchPerson.length > 0) {
       this.todayMatchPerson.forEach(x => {
-        this.matchPerson.push(x);
-      })
+        if (!this.matchPerson.some(m => m.matchId === x.matchId)) {
+          this.matchPerson.push(x);
+        }
+      });
     }
     this.todayMatchPerson.length > 1 ? this.newMatch = true : this.newMatch = false;
-    if(this.yesterdayMatchPerson.length > 0){
+    if (this.yesterdayMatchPerson.length > 0) {
       this.yesterdayMatchPerson.forEach(x => {
-        this.matchPerson.push(x);
-      })
+        if (!this.matchPerson.some(m => m.matchId === x.matchId)) {
+          this.matchPerson.push(x);
+        }
+      });
     }
-    if(this.oldMatchPerson.length > 0){
+
+    if (this.oldMatchPerson.length > 0) {
       this.oldMatchPerson.forEach(x => {
-        this.matchPerson.push(x);
-      })
+        if (!this.matchPerson.some(m => m.matchId === x.matchId)) {
+          this.matchPerson.push(x);
+        }
+      });
     }
     this.uiService.loader ? this.uiService.hideLoader : null;
     

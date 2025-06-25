@@ -79,7 +79,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   SettingsAccountPage: () => (/* binding */ SettingsAccountPage)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _settings_account_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./settings-account.page.html?ngResource */ 24344);
 /* harmony import */ var _settings_account_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./settings-account.page.scss?ngResource */ 18468);
@@ -119,7 +119,7 @@ let SettingsAccountPage = class SettingsAccountPage {
   ngOnInit() {}
   logout() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       let res = yield _this.uiService.alertOK_CANCEL(_this.translate.instant('SETTINGS-ACOUNT.ConfirmLogout'));
       if (!res) {
         return;
@@ -140,7 +140,7 @@ let SettingsAccountPage = class SettingsAccountPage {
   }
   langchange() {
     var _this2 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const modal = yield _this2.modalController.create({
         component: _selectlang_selectlang_page__WEBPACK_IMPORTED_MODULE_7__.SelectlangPage,
         cssClass: 'popupclass2',
@@ -150,7 +150,7 @@ let SettingsAccountPage = class SettingsAccountPage {
         }
       });
       modal.onDidDismiss().then( /*#__PURE__*/function () {
-        var _ref = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dataReturned) {});
+        var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (dataReturned) {});
         return function (_x) {
           return _ref.apply(this, arguments);
         };
@@ -160,7 +160,7 @@ let SettingsAccountPage = class SettingsAccountPage {
   }
   params(parameters) {
     var _this3 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       let navegationExtras = {
         state: {
           parameters: parameters,
@@ -175,7 +175,7 @@ let SettingsAccountPage = class SettingsAccountPage {
   }
   deleteAccount() {
     var _this4 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       let res = yield _this4.uiService.alertOK_CANCEL(_this4.translate.instant('SETTINGS-ACOUNT.ConfirmDelete'));
       if (res) {
         _this4.uiService.showLoader();
@@ -253,7 +253,7 @@ ion-item {
 .logoImg {
   max-width: 50% !important;
   padding-top: 4px;
-}`, "",{"version":3,"sources":["webpack://./src/app/pages/account/settings-account/settings-account.page.scss"],"names":[],"mappings":"AAAA;EACI,yCAAA;EACA,oBAAA;AACJ;;AAEA;EACI,gCAAA;EACA,eAAA;AACJ;;AAEA;EACI,gCAAA;EACA,eAAA;EACA,8CAAA;AACJ;;AAEA;EACI,kBAAA;EACA,iBAAA;AACJ;;AACA;EACI,yBAAA;EACA,gBAAA;AAEJ","sourcesContent":["ion-header {\n    background-color: var(--ion-color-blanco);\n    margin-bottom: -30px;\n}\n\n.title_txt {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 18px;\n}\n\nion-item {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    --detail-icon-color: var(--ion-color-primary1);\n}\n\n.list-item-delete{\n    text-align: center;\n    font-weight: bold;\n}\n.logoImg{\n    max-width: 50% !important;\n    padding-top: 4px;\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/app/pages/account/settings-account/settings-account.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/account/settings-account/settings-account.page.scss"],"names":[],"mappings":"AAAA;EACI,yCAAA;EACA,oBAAA;ACCJ;;ADEA;EACI,gCAAA;EACA,eAAA;ACCJ;;ADEA;EACI,gCAAA;EACA,eAAA;EACA,8CAAA;ACCJ;;ADEA;EACI,kBAAA;EACA,iBAAA;ACCJ;;ADCA;EACI,yBAAA;EACA,gBAAA;ACEJ","sourcesContent":["ion-header {\n    background-color: var(--ion-color-blanco);\n    margin-bottom: -30px;\n}\n\n.title_txt {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 18px;\n}\n\nion-item {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    --detail-icon-color: var(--ion-color-primary1);\n}\n\n.list-item-delete{\n    text-align: center;\n    font-weight: bold;\n}\n.logoImg{\n    max-width: 50% !important;\n    padding-top: 4px;\n}","ion-header {\n  background-color: var(--ion-color-blanco);\n  margin-bottom: -30px;\n}\n\n.title_txt {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 18px;\n}\n\nion-item {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 16px;\n  --detail-icon-color: var(--ion-color-primary1);\n}\n\n.list-item-delete {\n  text-align: center;\n  font-weight: bold;\n}\n\n.logoImg {\n  max-width: 50% !important;\n  padding-top: 4px;\n}"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 

@@ -11,7 +11,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   DetailMatchMenuPopoverPage: () => (/* binding */ DetailMatchMenuPopoverPage)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _detail_match_menu_popover_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./detail-match-menu-popover.page.html?ngResource */ 8688);
 /* harmony import */ var _detail_match_menu_popover_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./detail-match-menu-popover.page.scss?ngResource */ 2100);
@@ -56,7 +56,7 @@ let DetailMatchMenuPopoverPage = class DetailMatchMenuPopoverPage {
   }
   selectOp(op, ev) {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log('report');
       if (op == 0) {
         yield _this.popoverCtrl.dismiss();
@@ -91,7 +91,7 @@ let DetailMatchMenuPopoverPage = class DetailMatchMenuPopoverPage {
   }
   blockPerson(personId, routeStr) {
     var _this2 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this2.uiService.showLoader();
       let res;
       if (_this2.typeBlock == 0) {
@@ -164,7 +164,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   ReportPopoverPage: () => (/* binding */ ReportPopoverPage)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _report_popover_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./report-popover.page.html?ngResource */ 62944);
 /* harmony import */ var _report_popover_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./report-popover.page.scss?ngResource */ 59232);
@@ -198,7 +198,7 @@ let ReportPopoverPage = class ReportPopoverPage {
   ngOnInit() {}
   sendReport() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log(_this.description);
       if (_this.description === undefined || _this.description === "") {
         _this.uiService.alertOK(_this.translate.instant('MATCH-DETAIL.requiredPOReport'));
@@ -223,7 +223,7 @@ let ReportPopoverPage = class ReportPopoverPage {
   }
   blockMatch() {
     var _this2 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this2.uiService.showLoader();
       let resp = yield _this2.matchService.blockMatch(_this2.matchId, _this2.description);
       _this2.uiService.hideLoader();
@@ -239,7 +239,7 @@ let ReportPopoverPage = class ReportPopoverPage {
   }
   blockExperiencie() {
     var _this3 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this3.uiService.showLoader();
       let res = yield _this3.matchService.doMatchProfiles(_this3.personId.toString(), src_environments_constants__WEBPACK_IMPORTED_MODULE_5__.constants.statusUsrMatch.block.toString(), 'false', 'false', null);
       _this3.uiService.hideLoader();
@@ -255,7 +255,7 @@ let ReportPopoverPage = class ReportPopoverPage {
   }
   blockDiscover() {
     var _this4 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this4.uiService.showLoader();
       let res = yield _this4.matchService.doMatchProfiles(_this4.personId.toString(), src_environments_constants__WEBPACK_IMPORTED_MODULE_5__.constants.statusUsrMatch.block.toString(), 'false', 'false', null);
       _this4.uiService.hideLoader();
@@ -329,7 +329,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `ion-item {
   font-family: "Sk-Modernist-Bold";
   font-size: 16px;
   margin-top: 0;
-}`, "",{"version":3,"sources":["webpack://./src/app/pages/match/detail-match-menu-popover/detail-match-menu-popover.page.scss"],"names":[],"mappings":"AAAA;EACI,YAAA;AACJ;;AAEA;EACI,gCAAA;EACA,eAAA;EACA,aAAA;AACJ","sourcesContent":["ion-item {\n    height: 30px;\n}\n\n.label_op{\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    margin-top: 0;\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/app/pages/match/detail-match-menu-popover/detail-match-menu-popover.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/match/detail-match-menu-popover/detail-match-menu-popover.page.scss"],"names":[],"mappings":"AAAA;EACI,YAAA;ACCJ;;ADEA;EACI,gCAAA;EACA,eAAA;EACA,aAAA;ACCJ","sourcesContent":["ion-item {\n    height: 30px;\n}\n\n.label_op{\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    margin-top: 0;\n}","ion-item {\n  height: 30px;\n}\n\n.label_op {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 16px;\n  margin-top: 0;\n}"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
@@ -367,7 +367,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.input-CItem {
   font-family: "Sk-Modernist-Bold";
   font-size: 16px;
   margin-top: -10px;
-}`, "",{"version":3,"sources":["webpack://./src/app/pages/match/report-popover/report-popover.page.scss"],"names":[],"mappings":"AAAA;EACI,mCAAA;EACA,eAAA;EACA,eAAA;EACA,2CAAA;EACA,mBAAA;AACJ;;AAEA;EACI,gCAAA;EACA,eAAA;EACA,gCAAA;EACA,oBAAA;EACA,WAAA;AACJ;;AAEA;EACI,gCAAA;EACA,eAAA;EACA,iBAAA;AACJ","sourcesContent":[".input-CItem {\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 19px;\n    margin-top: 5px;\n    border: 1px solid var(--ion-color-primary1);\n    border-radius: 10px;\n}\n\n.save-Bt {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 18px;\n    color: var(--ion-color-primary1);\n    text-transform: none;\n    width: 100%;\n}\n\n.label_op{\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    margin-top: -10px;\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/app/pages/match/report-popover/report-popover.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/match/report-popover/report-popover.page.scss"],"names":[],"mappings":"AAAA;EACI,mCAAA;EACA,eAAA;EACA,eAAA;EACA,2CAAA;EACA,mBAAA;ACCJ;;ADEA;EACI,gCAAA;EACA,eAAA;EACA,gCAAA;EACA,oBAAA;EACA,WAAA;ACCJ;;ADEA;EACI,gCAAA;EACA,eAAA;EACA,iBAAA;ACCJ","sourcesContent":[".input-CItem {\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 19px;\n    margin-top: 5px;\n    border: 1px solid var(--ion-color-primary1);\n    border-radius: 10px;\n}\n\n.save-Bt {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 18px;\n    color: var(--ion-color-primary1);\n    text-transform: none;\n    width: 100%;\n}\n\n.label_op{\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    margin-top: -10px;\n}",".input-CItem {\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 19px;\n  margin-top: 5px;\n  border: 1px solid var(--ion-color-primary1);\n  border-radius: 10px;\n}\n\n.save-Bt {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 18px;\n  color: var(--ion-color-primary1);\n  text-transform: none;\n  width: 100%;\n}\n\n.label_op {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 16px;\n  margin-top: -10px;\n}"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 

@@ -79,7 +79,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   PhotosViewPage: () => (/* binding */ PhotosViewPage)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _photos_view_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./photos-view.page.html?ngResource */ 66636);
 /* harmony import */ var _photos_view_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./photos-view.page.scss?ngResource */ 38276);
@@ -134,7 +134,7 @@ let PhotosViewPage = class PhotosViewPage {
   }
   ngOnInit() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       yield _this.principal();
       _this.checkDeleteEligibility();
     })();
@@ -144,14 +144,14 @@ let PhotosViewPage = class PhotosViewPage {
   }
   testup(event) {
     var _this2 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const files = event.target.files;
       _this2.arr = []; // clear previous entries
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const reader = new FileReader();
         reader.onload = /*#__PURE__*/function () {
-          var _ref = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (e) {
+          var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (e) {
             const result = e.target.result;
             const base64Data = result.split(',')[1];
             // Compress base64 image before pushing
@@ -210,7 +210,7 @@ let PhotosViewPage = class PhotosViewPage {
   }
   principal() {
     var _this3 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this3.uiService.showLoader();
       _this3.imgsChecked = []; // ← empty array for storing selected image IDs
       _this3.galleryImgs = yield _this3.matchService.getIMGS('');
@@ -222,7 +222,7 @@ let PhotosViewPage = class PhotosViewPage {
   }
   save() {
     var _this4 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (_this4.imgsChecked.length === 0) {
         _this4.uiService.alertOK(_this4.translate.instant('PHOTO-VIEW.notSelected'));
         return;
@@ -250,7 +250,7 @@ let PhotosViewPage = class PhotosViewPage {
   }
   openPhoto(url) {
     var _this5 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const img = [{
         url: url
       }];
@@ -286,7 +286,7 @@ let PhotosViewPage = class PhotosViewPage {
   }
   delete() {
     var _this6 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log(_this6.imgsChecked);
       if (_this6.imgsChecked.length === 0) {
         yield _this6.uiService.alertOK(_this6.translate.instant('PHOTO-VIEW.notSelected'));
@@ -348,7 +348,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   UtilitiesService: () => (/* binding */ UtilitiesService)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ 33712);
@@ -370,7 +370,7 @@ let UtilitiesService = class UtilitiesService {
   }
   getCountryISO() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return new Promise(resolve => {
         _this.http.get(`${urlIPInfo}?token=${tokenIPInfo}`).subscribe({
           next: resp => {
@@ -393,7 +393,7 @@ let UtilitiesService = class UtilitiesService {
     })();
   }
   static compressBase64Image(base64, maxWidth = 800, maxHeight = 800, quality = 0.7) {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return new Promise(resolve => {
         const img = new Image();
         img.onload = () => {
@@ -495,7 +495,7 @@ ion-header {
   z-index: 1; /* Para asegurar que esté encima de la imagen */
   --checkbox-background-checked: var(--ion-color-primary1);
   --border-color-checked: var(--ion-color-primary1);
-}`, "",{"version":3,"sources":["webpack://./src/app/pages/extras/photos-view/photos-view.page.scss"],"names":[],"mappings":"AAAA,gBAAgB;AAAhB;EACI,yCAAA;EACA,oBAAA;AAEJ;;AACA;EACI,gCAAA;EACA,eAAA;AAEJ;;AAAA;EACI,eAAA;AAGJ;;AAAA;EACI,gCAAA;EACA,eAAA;EACA,gCAAA;EACA,oBAAA;AAGJ;;AAAA;EACI,gCAAA;EACA,eAAA;EACA,6BAAA;EACA,gBAAA;AAGJ;;AAEA;EACI,iBAAA;EACA,gBAAA;EACA,eAAA;EACA,mBAAA;AACJ;;AAEA;EACI,2CAAA;AACJ;;AAEA;EACI,kBAAA;EACA,SAAA;EACA,WAAA;EACA,UAAA,EAAA,+CAAA;EACA,wDAAA;EACA,iDAAA;AACJ","sourcesContent":["ion-header {\n    background-color: var(--ion-color-blanco);\n    margin-bottom: -30px;\n}\n\n.title_txt {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 18px;\n}\n.addphoto{\n    margin-top: 20%;\n}\n\n.save-Bt {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 15px;\n    color: var(--ion-color-primary1);\n    text-transform: none;\n}\n\n.txtTitle {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    color: var(--ion-color-negro);\n    margin-bottom: 0;\n}\n\n\n\n.imgGallery1 {\n    object-fit: cover;\n    max-height: 100%;\n    max-width: 100%;\n    border-radius: 10px;\n}\n\n.imgSelected{\n    border: 2px solid var(--ion-color-primary1);\n}\n\n.checklist {\n    position: absolute;\n    top: 20px;\n    right: 20px;\n    z-index: 1; /* Para asegurar que esté encima de la imagen */\n    --checkbox-background-checked: var(--ion-color-primary1);\n    --border-color-checked: var(--ion-color-primary1);\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/extras/photos-view/photos-view.page.scss","webpack://./src/app/pages/extras/photos-view/photos-view.page.scss"],"names":[],"mappings":"AAAA,gBAAgB;ACAhB;EACI,yCAAA;EACA,oBAAA;ADEJ;;ACCA;EACI,gCAAA;EACA,eAAA;ADEJ;;ACAA;EACI,eAAA;ADGJ;;ACAA;EACI,gCAAA;EACA,eAAA;EACA,gCAAA;EACA,oBAAA;ADGJ;;ACAA;EACI,gCAAA;EACA,eAAA;EACA,6BAAA;EACA,gBAAA;ADGJ;;ACEA;EACI,iBAAA;EACA,gBAAA;EACA,eAAA;EACA,mBAAA;ADCJ;;ACEA;EACI,2CAAA;ADCJ;;ACEA;EACI,kBAAA;EACA,SAAA;EACA,WAAA;EACA,UAAA,EAAA,+CAAA;EACA,wDAAA;EACA,iDAAA;ADCJ","sourcesContent":["@charset \"UTF-8\";\nion-header {\n  background-color: var(--ion-color-blanco);\n  margin-bottom: -30px;\n}\n\n.title_txt {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 18px;\n}\n\n.addphoto {\n  margin-top: 20%;\n}\n\n.save-Bt {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 15px;\n  color: var(--ion-color-primary1);\n  text-transform: none;\n}\n\n.txtTitle {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 16px;\n  color: var(--ion-color-negro);\n  margin-bottom: 0;\n}\n\n.imgGallery1 {\n  object-fit: cover;\n  max-height: 100%;\n  max-width: 100%;\n  border-radius: 10px;\n}\n\n.imgSelected {\n  border: 2px solid var(--ion-color-primary1);\n}\n\n.checklist {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  z-index: 1; /* Para asegurar que esté encima de la imagen */\n  --checkbox-background-checked: var(--ion-color-primary1);\n  --border-color-checked: var(--ion-color-primary1);\n}","ion-header {\n    background-color: var(--ion-color-blanco);\n    margin-bottom: -30px;\n}\n\n.title_txt {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 18px;\n}\n.addphoto{\n    margin-top: 20%;\n}\n\n.save-Bt {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 15px;\n    color: var(--ion-color-primary1);\n    text-transform: none;\n}\n\n.txtTitle {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    color: var(--ion-color-negro);\n    margin-bottom: 0;\n}\n\n\n\n.imgGallery1 {\n    object-fit: cover;\n    max-height: 100%;\n    max-width: 100%;\n    border-radius: 10px;\n}\n\n.imgSelected{\n    border: 2px solid var(--ion-color-primary1);\n}\n\n.checklist {\n    position: absolute;\n    top: 20px;\n    right: 20px;\n    z-index: 1; /* Para asegurar que esté encima de la imagen */\n    --checkbox-background-checked: var(--ion-color-primary1);\n    --border-color-checked: var(--ion-color-primary1);\n}"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 

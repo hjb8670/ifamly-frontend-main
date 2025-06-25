@@ -79,7 +79,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   TabMessagePage: () => (/* binding */ TabMessagePage)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _tabMessage_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabMessage.page.html?ngResource */ 320);
 /* harmony import */ var _tabMessage_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tabMessage.page.scss?ngResource */ 10976);
@@ -124,7 +124,7 @@ let TabMessagePage = class TabMessagePage {
   ngOnInit() {}
   createInbox() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this.mostrarNoExiste = false;
       _this.mostrarChat = false;
       _this.uiService.showLoader();
@@ -239,7 +239,7 @@ ion-toolbar {
 /* Hide chat when !mostrarChat */
 .ocultar {
   display: none;
-}`, "",{"version":3,"sources":["webpack://./src/app/pages/tabMessage/tabMessage.page.scss"],"names":[],"mappings":"AAAA;EACI,mCAAA;EACA,mBAAA;EACA,mBAAA;AACJ;;AACA;EACI,mBAAA;AAEJ;;AAAA;EACI,gCAAA;EACA,eAAA;AAGJ;;AAAA;EACI,aAAA;AAGJ;;AADA;EACI,gCAAA;EACA,eAAA;EACA,6BAAA;EACA,gBAAA;EACA,kBAAA;AAIJ;;AACA;EACE,YAAA;EACA,WAAA;EACA,aAAA;EACA,uBAAA;EACA,mBAAA;AAEF;;AACA,gCAAA;AACA;EACE,aAAA;AAEF","sourcesContent":[".hdExperience {\n    background: var(--ion-color-blanco);\n    padding-bottom: 0px;\n    margin-bottom: 20px;\n}\nion-toolbar{\n    --background: white;\n}\n.titleExperience {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 24px;\n}\n\n.ocultar{\n    display: none;\n}\n.txtTitle {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    color: var(--ion-color-negro);\n    margin-bottom: 0;\n    text-align: center;\n}\n\n\n\n.talkjs-container {\n  height: 100%;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n/* Hide chat when !mostrarChat */\n.ocultar {\n  display: none;\n}\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/app/pages/tabMessage/tabMessage.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/tabMessage/tabMessage.page.scss"],"names":[],"mappings":"AAAA;EACI,mCAAA;EACA,mBAAA;EACA,mBAAA;ACCJ;;ADCA;EACI,mBAAA;ACEJ;;ADAA;EACI,gCAAA;EACA,eAAA;ACGJ;;ADAA;EACI,aAAA;ACGJ;;ADDA;EACI,gCAAA;EACA,eAAA;EACA,6BAAA;EACA,gBAAA;EACA,kBAAA;ACIJ;;ADCA;EACE,YAAA;EACA,WAAA;EACA,aAAA;EACA,uBAAA;EACA,mBAAA;ACEF;;ADCA,gCAAA;AACA;EACE,aAAA;ACEF","sourcesContent":[".hdExperience {\n    background: var(--ion-color-blanco);\n    padding-bottom: 0px;\n    margin-bottom: 20px;\n}\nion-toolbar{\n    --background: white;\n}\n.titleExperience {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 24px;\n}\n\n.ocultar{\n    display: none;\n}\n.txtTitle {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    color: var(--ion-color-negro);\n    margin-bottom: 0;\n    text-align: center;\n}\n\n\n\n.talkjs-container {\n  height: 100%;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n/* Hide chat when !mostrarChat */\n.ocultar {\n  display: none;\n}\n",".hdExperience {\n  background: var(--ion-color-blanco);\n  padding-bottom: 0px;\n  margin-bottom: 20px;\n}\n\nion-toolbar {\n  --background: white;\n}\n\n.titleExperience {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 24px;\n}\n\n.ocultar {\n  display: none;\n}\n\n.txtTitle {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 16px;\n  color: var(--ion-color-negro);\n  margin-bottom: 0;\n  text-align: center;\n}\n\n.talkjs-container {\n  height: 100%;\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n/* Hide chat when !mostrarChat */\n.ocultar {\n  display: none;\n}"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 

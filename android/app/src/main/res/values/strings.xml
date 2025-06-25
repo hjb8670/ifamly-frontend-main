@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">iFamily</string>
-    <string name="title_activity_main">iFamily</string>
-    <string name="package_name">com.hit2b.iFamily</string>
-    <string name="custom_url_scheme">com.hit2b.iFamily</string>
-    <string name="server_client_id">1008524938992-tesl4nq07h550n063b9p28kenopd0ule.apps.googleusercontent.com</string>
-</resources>

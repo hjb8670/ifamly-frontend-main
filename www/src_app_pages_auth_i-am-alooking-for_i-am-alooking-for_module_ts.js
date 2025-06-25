@@ -79,7 +79,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   IAmALookingForPage: () => (/* binding */ IAmALookingForPage)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _i_am_alooking_for_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./i-am-alooking-for.page.html?ngResource */ 30748);
 /* harmony import */ var _i_am_alooking_for_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./i-am-alooking-for.page.scss?ngResource */ 85524);
@@ -155,7 +155,7 @@ let IAmALookingForPage = class IAmALookingForPage {
   }
   ionViewDidEnter() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (_this.translate.currentLang == 'es') {
         _this.lanCatalogo = src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.languages.es;
       } else {
@@ -176,7 +176,7 @@ let IAmALookingForPage = class IAmALookingForPage {
   }
   next(op) {
     var _this2 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (_this2.iamForm.invalid) {
         _this2.uiService.alertOK(_this2.translate.instant('I-AM.allfieldreq'));
         return;
@@ -238,7 +238,7 @@ let IAmALookingForPage = class IAmALookingForPage {
                 //this.navCtrl.navigateRoot( '/main/tabs/discover', { animated: true } );
                 _this2.userService.setUserRS(_this2.useremail, _this2.pass, 'email');
                 _this2.router.navigate(['/main/tabs/discover']);
-                _this2.uiService.alertOK(_this2.translate.instant('LOCATION.SuccessMsg2'));
+                // this.uiService.alertOK(this.translate.instant('LOCATION.SuccessMsg2'));
               }
             } else {
               _this2.uiService.alertOK(_this2.translate.instant('ACCOUNT.imageError'));
@@ -246,7 +246,7 @@ let IAmALookingForPage = class IAmALookingForPage {
             }
           }
         } else {
-          _this2.uiService.alertOK(_this2.translate.instant('ABOUT-ME.ErrorMsg2'));
+          // this.uiService.alertOK(this.translate.instant('ABOUT-ME.ErrorMsg2'));
           _this2.router.navigate(['/registry']);
         }
       }
@@ -254,7 +254,7 @@ let IAmALookingForPage = class IAmALookingForPage {
   }
   seleccionarIam() {
     var _this3 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const selectedId = _this3.iamForm.get('iam_a')?.value;
       const selectedObj = _this3.iams.find(obj => obj.id === selectedId);
       _this3.selectedIamName = selectedObj?.name || '';
@@ -268,7 +268,7 @@ let IAmALookingForPage = class IAmALookingForPage {
   }
   seleccionarIamlooking() {
     var _this4 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const selectedId = _this4.iamForm.get('iam_looking')?.value;
       const selectedObj = _this4.iamlookings.find(obj => obj.id === selectedId);
       _this4.selectedIamllookingName = selectedObj?.name || '';
@@ -315,7 +315,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   UtilitiesService: () => (/* binding */ UtilitiesService)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ 33712);
@@ -337,7 +337,7 @@ let UtilitiesService = class UtilitiesService {
   }
   getCountryISO() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return new Promise(resolve => {
         _this.http.get(`${urlIPInfo}?token=${tokenIPInfo}`).subscribe({
           next: resp => {
@@ -360,7 +360,7 @@ let UtilitiesService = class UtilitiesService {
     })();
   }
   static compressBase64Image(base64, maxWidth = 800, maxHeight = 800, quality = 0.7) {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return new Promise(resolve => {
         const img = new Image();
         img.onload = () => {
@@ -475,7 +475,7 @@ ion-select::part(icon) {
 .select-disabled {
   cursor: no-drop !important;
   opacity: 0.5;
-}`, "",{"version":3,"sources":["webpack://./src/app/pages/auth/i-am-alooking-for/i-am-alooking-for.page.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;EACA,iBAAA;EACA,mBAAA;EACA,gBAAA;AACJ;;AAEA;EACI,gCAAA;EACA,eAAA;EACA,oBAAA;AACJ;;AAGA;EACI,gCAAA;EACA,eAAA;EACA,iBAAA;EACA,kBAAA;AAAJ;;AAGA;EACI,qCAAA;EACA,+BAAA;EACA,uCAAA;EACA,8BAAA;EACA,qBAAA;EACA,sCAAA;EAEA,qBAAA;EACA,+BAAA;EACA,6BAAA;EACA,0CAAA;EACA,gBAAA;EACA,mBAAA;AADJ;;AAIA;EACI,mCAAA;EACA,eAAA;EACA,kBAAA;AADJ;;AAIA;EACI,wBAAA;AADJ;;AAIA;EACI,cAAA;EACA,gCAAA;EACA,eAAA;EACA,oBAAA;EACA,WAAA;EACA,YAAA;EACA,qBAAA;EACA,iBAAA;EACA,iBAAA;AADJ;;AAIA;EACI,0BAAA;EACA,YAAA;AADJ","sourcesContent":["ion-back-button {\n    border-style: solid;\n    border-width: 1px;\n    border-radius: 15px;\n    margin-top: 20px;\n}\n\n.skip-Bt {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 15px;\n    text-transform: none;\n    //margin-top: 160px;\n}\n\n.text-h1 {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 36px;\n    margin-top: -10px;\n    margin-bottom: 0px;\n}\n\nion-item {\n    --background: var(--ion-color-blanco);\n    --color: var(--ion-color-negro);\n    --color-focused: var(--ion-color-negro);\n    --border-width: 1px !important;\n    --border-radius: 15px;\n    --border-color: var(--ion-color-negro);\n    //--padding-bottom: 0px; \n    --padding-start: 15px;\n    --highlight-color-invalid: none;\n    --highlight-color-valid: none;\n    --highlight-color-focused: none !important;\n    margin-top: 30px;\n    margin-bottom: 70px;\n}\n\nion-select {\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 16px;\n    --padding-end: 0px;\n}\n\nion-select::part(icon) {\n    display: none !important;\n}\n\n.next-Bt {\n    display: block;\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 15px;\n    text-transform: none;\n    width: 100%;\n    height: 40px;\n    --border-radius: 10px;\n    --box-shadow:none;\n    margin-top: 200px;\n}\n\n.select-disabled {\n    cursor: no-drop !important;\n    opacity: 0.5;\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/app/pages/auth/i-am-alooking-for/i-am-alooking-for.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/auth/i-am-alooking-for/i-am-alooking-for.page.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;EACA,iBAAA;EACA,mBAAA;EACA,gBAAA;ACCJ;;ADEA;EACI,gCAAA;EACA,eAAA;EACA,oBAAA;ACCJ;;ADGA;EACI,gCAAA;EACA,eAAA;EACA,iBAAA;EACA,kBAAA;ACAJ;;ADGA;EACI,qCAAA;EACA,+BAAA;EACA,uCAAA;EACA,8BAAA;EACA,qBAAA;EACA,sCAAA;EAEA,qBAAA;EACA,+BAAA;EACA,6BAAA;EACA,0CAAA;EACA,gBAAA;EACA,mBAAA;ACDJ;;ADIA;EACI,mCAAA;EACA,eAAA;EACA,kBAAA;ACDJ;;ADIA;EACI,wBAAA;ACDJ;;ADIA;EACI,cAAA;EACA,gCAAA;EACA,eAAA;EACA,oBAAA;EACA,WAAA;EACA,YAAA;EACA,qBAAA;EACA,iBAAA;EACA,iBAAA;ACDJ;;ADIA;EACI,0BAAA;EACA,YAAA;ACDJ","sourcesContent":["ion-back-button {\n    border-style: solid;\n    border-width: 1px;\n    border-radius: 15px;\n    margin-top: 20px;\n}\n\n.skip-Bt {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 15px;\n    text-transform: none;\n    //margin-top: 160px;\n}\n\n.text-h1 {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 36px;\n    margin-top: -10px;\n    margin-bottom: 0px;\n}\n\nion-item {\n    --background: var(--ion-color-blanco);\n    --color: var(--ion-color-negro);\n    --color-focused: var(--ion-color-negro);\n    --border-width: 1px !important;\n    --border-radius: 15px;\n    --border-color: var(--ion-color-negro);\n    //--padding-bottom: 0px; \n    --padding-start: 15px;\n    --highlight-color-invalid: none;\n    --highlight-color-valid: none;\n    --highlight-color-focused: none !important;\n    margin-top: 30px;\n    margin-bottom: 70px;\n}\n\nion-select {\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 16px;\n    --padding-end: 0px;\n}\n\nion-select::part(icon) {\n    display: none !important;\n}\n\n.next-Bt {\n    display: block;\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 15px;\n    text-transform: none;\n    width: 100%;\n    height: 40px;\n    --border-radius: 10px;\n    --box-shadow:none;\n    margin-top: 200px;\n}\n\n.select-disabled {\n    cursor: no-drop !important;\n    opacity: 0.5;\n}","ion-back-button {\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 15px;\n  margin-top: 20px;\n}\n\n.skip-Bt {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 15px;\n  text-transform: none;\n}\n\n.text-h1 {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 36px;\n  margin-top: -10px;\n  margin-bottom: 0px;\n}\n\nion-item {\n  --background: var(--ion-color-blanco);\n  --color: var(--ion-color-negro);\n  --color-focused: var(--ion-color-negro);\n  --border-width: 1px !important;\n  --border-radius: 15px;\n  --border-color: var(--ion-color-negro);\n  --padding-start: 15px;\n  --highlight-color-invalid: none;\n  --highlight-color-valid: none;\n  --highlight-color-focused: none !important;\n  margin-top: 30px;\n  margin-bottom: 70px;\n}\n\nion-select {\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 16px;\n  --padding-end: 0px;\n}\n\nion-select::part(icon) {\n  display: none !important;\n}\n\n.next-Bt {\n  display: block;\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 15px;\n  text-transform: none;\n  width: 100%;\n  height: 40px;\n  --border-radius: 10px;\n  --box-shadow:none;\n  margin-top: 200px;\n}\n\n.select-disabled {\n  cursor: no-drop !important;\n  opacity: 0.5;\n}"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 

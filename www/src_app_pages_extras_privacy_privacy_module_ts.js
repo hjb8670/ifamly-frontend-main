@@ -79,7 +79,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   PrivacyPage: () => (/* binding */ PrivacyPage)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _privacy_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./privacy.page.html?ngResource */ 60708);
 /* harmony import */ var _privacy_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./privacy.page.scss?ngResource */ 29840);
@@ -147,7 +147,7 @@ let PrivacyPage = class PrivacyPage {
   }
   ngOnInit() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this.uiserve.showLoader();
       //await this.userService.getUser('');//Este es para que el token no venga vacio
       if (_this.translate.currentLang == 'es') {
@@ -210,7 +210,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `ion-header {
 .title_txt {
   font-family: "Sk-Modernist-Bold";
   font-size: 18px;
-}`, "",{"version":3,"sources":["webpack://./src/app/pages/extras/privacy/privacy.page.scss"],"names":[],"mappings":"AAAA;EACI,yCAAA;EACA,oBAAA;AACJ;;AAEA;EACI,gCAAA;EACA,eAAA;AACJ","sourcesContent":["ion-header {\n    background-color: var(--ion-color-blanco);\n    margin-bottom: -30px;\n}\n\n.title_txt {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 18px;\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/app/pages/extras/privacy/privacy.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/extras/privacy/privacy.page.scss"],"names":[],"mappings":"AAAA;EACI,yCAAA;EACA,oBAAA;ACCJ;;ADEA;EACI,gCAAA;EACA,eAAA;ACCJ","sourcesContent":["ion-header {\n    background-color: var(--ion-color-blanco);\n    margin-bottom: -30px;\n}\n\n.title_txt {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 18px;\n}","ion-header {\n  background-color: var(--ion-color-blanco);\n  margin-bottom: -30px;\n}\n\n.title_txt {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 18px;\n}"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 

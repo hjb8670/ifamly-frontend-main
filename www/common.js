@@ -11,7 +11,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   ExperienceMenuPopoverPage: () => (/* binding */ ExperienceMenuPopoverPage)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _experience_menu_popover_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./experience-menu-popover.page.html?ngResource */ 11596);
 /* harmony import */ var _experience_menu_popover_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./experience-menu-popover.page.scss?ngResource */ 81248);
@@ -41,7 +41,7 @@ let ExperienceMenuPopoverPage = class ExperienceMenuPopoverPage {
   ngOnInit() {}
   ionViewWillEnter() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this.op1Selected = false;
       _this.op2Selected = false;
     })();
@@ -142,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   TalkService: () => (/* binding */ TalkService)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var talkjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! talkjs */ 54020);
@@ -163,14 +163,14 @@ let TalkService = class TalkService {
     this.http = http;
   }
   getUser(userId) {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       yield talkjs__WEBPACK_IMPORTED_MODULE_1__["default"].ready;
       return new talkjs__WEBPACK_IMPORTED_MODULE_1__["default"].User(userId);
     })();
   }
   createCurrentSession(idUsuario, nombre) {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       yield talkjs__WEBPACK_IMPORTED_MODULE_1__["default"].ready;
       _this.currentUser = yield _this.getUser(idUsuario);
       //Traer el appId desde BD 
@@ -183,7 +183,7 @@ let TalkService = class TalkService {
   }
   getOrCreateConversation(idConversation) {
     var _this2 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       //const otherUser = await this.createUser(otherApplicationUser);
       if (idConversation === undefined || idConversation === '') {
         return null;
@@ -196,7 +196,7 @@ let TalkService = class TalkService {
   }
   createInbox(idConversation) {
     var _this3 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const conversation = yield _this3.getOrCreateConversation(idConversation);
       let options = {
         theme: 'ifamily'
@@ -209,7 +209,7 @@ let TalkService = class TalkService {
   }
   updateConversation(matchId) {
     var _this4 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const tVal = yield _this4.userService.validaToken();
       if (!tVal) {
         return;
@@ -865,7 +865,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   r: () => (/* binding */ resetContentScrollY),
 /* harmony export */   s: () => (/* binding */ scrollToTop)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var _helpers_be245865_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers-be245865.js */ 66256);
 /* harmony import */ var _index_9b0d46f4_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index-9b0d46f4.js */ 69852);
 
@@ -897,7 +897,7 @@ const isIonContent = el => el.tagName === ION_CONTENT_TAG_NAME;
  * or a selector within the host, if supplied through `scrollTarget`.
  */
 const getScrollElement = /*#__PURE__*/function () {
-  var _ref = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (el) {
+  var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (el) {
     if (isIonContent(el)) {
       yield new Promise(resolve => (0,_helpers_be245865_js__WEBPACK_IMPORTED_MODULE_1__.c)(el, resolve));
       return el.getScrollElement();
@@ -1337,7 +1337,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   c: () => (/* binding */ createKeyboardController)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var _index_a5d50daf_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index-a5d50daf.js */ 17168);
 /* harmony import */ var _keyboard_73175e24_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./keyboard-73175e24.js */ 20464);
 
@@ -1388,7 +1388,7 @@ const getResizeContainerHeight = resizeMode => {
  * @param keyboardChangeCallback A function to call when the keyboard opens or closes.
  */
 const createKeyboardController = /*#__PURE__*/function () {
-  var _ref = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (keyboardChangeCallback) {
+  var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (keyboardChangeCallback) {
     let keyboardWillShowHandler;
     let keyboardWillHideHandler;
     let keyboardVisible;
@@ -1398,7 +1398,7 @@ const createKeyboardController = /*#__PURE__*/function () {
      */
     let initialResizeContainerHeight;
     const init = /*#__PURE__*/function () {
-      var _ref2 = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      var _ref2 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
         const resizeOptions = yield _keyboard_73175e24_js__WEBPACK_IMPORTED_MODULE_2__.K.getResizeMode();
         const resizeMode = resizeOptions === undefined ? undefined : resizeOptions.mode;
         keyboardWillShowHandler = () => {
@@ -1533,7 +1533,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   c: () => (/* binding */ createLockController)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 
 /*!
  * (C) Ionic http://ionicframework.com - MIT License
@@ -1559,7 +1559,7 @@ const createLockController = () => {
    * ```
    */
   const lock = /*#__PURE__*/function () {
-    var _ref = (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const p = waitPromise;
       let resolve;
       waitPromise = new Promise(r => resolve = r);
@@ -1975,7 +1975,7 @@ ion-label {
 .labelselected {
   font-family: "Sk-Modernist-Bold";
   color: var(--ion-color-blanco);
-}`, "",{"version":3,"sources":["webpack://./src/app/pages/experience/experience-menu-popover/experience-menu-popover.page.scss"],"names":[],"mappings":"AAAA;EACI,YAAA;EACA,eAAA;EAEA;;IAAA;AAEJ;;AAGA;EACI,uCAAA;EACA,mBAAA;EACA,uCAAA;EACA,mBAAA;AAAJ;;AAGA;EACI,iBAAA;AAAJ;;AAGA;EACI,gCAAA;EACA,8BAAA;AAAJ","sourcesContent":["ion-item {\n    height: 30px;\n    font-size: 15px;\n    //margin-bottom: 10px;\n    /*.ios {\n        font-size: 15px;\n    }*///Si solo se quiere para ios\n}\n\n.itemSelected {\n    --background: var(--ion-color-primary1);\n    border-style: solid;\n    border-color: var(--ion-color-primary1);\n    border-radius: 15px;\n}\n\nion-label{\n    margin-top: -10px;\n}\n\n.labelselected {\n    font-family: 'Sk-Modernist-Bold';\n    color: var(--ion-color-blanco);\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/app/pages/experience/experience-menu-popover/experience-menu-popover.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/experience/experience-menu-popover/experience-menu-popover.page.scss"],"names":[],"mappings":"AAAA;EACI,YAAA;EACA,eAAA;EAEA;;IAAA;ACEJ;;ADGA;EACI,uCAAA;EACA,mBAAA;EACA,uCAAA;EACA,mBAAA;ACAJ;;ADGA;EACI,iBAAA;ACAJ;;ADGA;EACI,gCAAA;EACA,8BAAA;ACAJ","sourcesContent":["ion-item {\n    height: 30px;\n    font-size: 15px;\n    //margin-bottom: 10px;\n    /*.ios {\n        font-size: 15px;\n    }*///Si solo se quiere para ios\n}\n\n.itemSelected {\n    --background: var(--ion-color-primary1);\n    border-style: solid;\n    border-color: var(--ion-color-primary1);\n    border-radius: 15px;\n}\n\nion-label{\n    margin-top: -10px;\n}\n\n.labelselected {\n    font-family: 'Sk-Modernist-Bold';\n    color: var(--ion-color-blanco);\n}","ion-item {\n  height: 30px;\n  font-size: 15px;\n  /*.ios {\n      font-size: 15px;\n  }*/\n}\n\n.itemSelected {\n  --background: var(--ion-color-primary1);\n  border-style: solid;\n  border-color: var(--ion-color-primary1);\n  border-radius: 15px;\n}\n\nion-label {\n  margin-top: -10px;\n}\n\n.labelselected {\n  font-family: \"Sk-Modernist-Bold\";\n  color: var(--ion-color-blanco);\n}"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 

@@ -79,7 +79,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   TabAccountPage: () => (/* binding */ TabAccountPage)
 /* harmony export */ });
-/* harmony import */ var C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _tabAccount_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabAccount.page.html?ngResource */ 39856);
 /* harmony import */ var _tabAccount_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tabAccount.page.scss?ngResource */ 82520);
@@ -148,11 +148,11 @@ let TabAccountPage = class TabAccountPage {
     });
   }
   ionViewDidEnter() {
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {})();
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {})();
   }
   iniUsr() {
     var _this = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log('Ini User');
       _this.uiService.showLoader();
       _this.usrApp = yield _this.userService.getUserBasic('');
@@ -165,7 +165,7 @@ let TabAccountPage = class TabAccountPage {
   }
   getAvatarImg() {
     var _this2 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this2.galleryImgs = [];
       _this2.galImgs = [];
       _this2.galleryImgs = yield _this2.matchService.getIMGS('');
@@ -190,7 +190,7 @@ let TabAccountPage = class TabAccountPage {
   }
   setting() {
     var _this3 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log('SETTING');
       let navegationExtras = {
         state: {
@@ -210,7 +210,7 @@ let TabAccountPage = class TabAccountPage {
   }
   openPhoto(index) {
     var _this4 = this;
-    return (0,C_Users_DELL_Downloads_ifamily_client_main_ifamily_client_main_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const img = [{
         url: _this4.galImgs[index]
       }];
@@ -348,7 +348,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.img-acc {
   max-width: 100%;
   max-height: 100%;
   border-radius: 10px;
-}`, "",{"version":3,"sources":["webpack://./src/app/pages/tabAccount/tabAccount.page.scss"],"names":[],"mappings":"AAAA;EACI,gBAAA;EACA,iBAAA;EACA,mBAAA;AACJ;;AAEA;EACI,gCAAA;EACA,eAAA;EACA,SAAA;AACJ;;AAEA;EACI,mBAAA;EACA,kBAAA;EACA,gBAAA;EACA,iBAAA;EACA,gBAAA;AACJ;;AAEA;EACI,WAAA;EACA,YAAA;AACJ;;AAEA;EACI,WAAA;EACA,YAAA;AACJ;;AAEA;EACI,mCAAA;EACA,eAAA;EACA,WAAA;AACJ;;AAEA;EACI,gCAAA;EACA,eAAA;EACA,6BAAA;EACA,gBAAA;EACA,gBAAA;AACJ;;AAEA;EACI,mCAAA;EACA,eAAA;EACA,6BAAA;EACA,eAAA;EACA,gBAAA;AACJ;;AAEA;EACI,gCAAA;EACA,eAAA;EACA,gCAAA;EACA,eAAA;AACJ;;AAEA;EACI,kBAAA;EACA,qBAAA;AACJ;;AAEA;EACI,iBAAA;EACA,eAAA;EACA,gBAAA;EACA,mBAAA;AACJ","sourcesContent":[".img-acc {\n    max-width: 150px;\n    max-height: 150px;\n    border-radius: 10px;\n}\n\n.p-name {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 26px;\n    margin: 0;\n}\n\n.row-btn {\n    align-items: center;\n    text-align: center;\n    padding-left: 8%;\n    padding-right: 8%;\n    margin-top: 20px;\n}\n\n.btn-lat {\n    width: 60px;\n    height: 60px;\n}\n\n.btn-center {\n    width: 90px;\n    height: 90px;\n}\n\n.btn-title {\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 14px;\n    margin: 5px;\n}\n\n.txtTitle {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    color: var(--ion-color-negro);\n    margin-top: 30px;\n    margin-bottom: 0;\n}\n\n.txtBody {\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 14px;\n    color: var(--ion-color-gris1);\n    margin-top: 8px;\n    margin-bottom: 0;\n}\n\n.DesA {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 14px;\n    color: var(--ion-color-primary1);\n    margin-top: 5px;\n}\n\n.img-col {\n    text-align: center;\n    align-content: center;\n}\n\n.imgGallery1 {\n    object-fit: cover;\n    max-width: 100%;\n    max-height: 100%;\n    border-radius: 10px;\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/app/pages/tabAccount/tabAccount.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/tabAccount/tabAccount.page.scss"],"names":[],"mappings":"AAAA;EACI,gBAAA;EACA,iBAAA;EACA,mBAAA;ACCJ;;ADEA;EACI,gCAAA;EACA,eAAA;EACA,SAAA;ACCJ;;ADEA;EACI,mBAAA;EACA,kBAAA;EACA,gBAAA;EACA,iBAAA;EACA,gBAAA;ACCJ;;ADEA;EACI,WAAA;EACA,YAAA;ACCJ;;ADEA;EACI,WAAA;EACA,YAAA;ACCJ;;ADEA;EACI,mCAAA;EACA,eAAA;EACA,WAAA;ACCJ;;ADEA;EACI,gCAAA;EACA,eAAA;EACA,6BAAA;EACA,gBAAA;EACA,gBAAA;ACCJ;;ADEA;EACI,mCAAA;EACA,eAAA;EACA,6BAAA;EACA,eAAA;EACA,gBAAA;ACCJ;;ADEA;EACI,gCAAA;EACA,eAAA;EACA,gCAAA;EACA,eAAA;ACCJ;;ADEA;EACI,kBAAA;EACA,qBAAA;ACCJ;;ADEA;EACI,iBAAA;EACA,eAAA;EACA,gBAAA;EACA,mBAAA;ACCJ","sourcesContent":[".img-acc {\n    max-width: 150px;\n    max-height: 150px;\n    border-radius: 10px;\n}\n\n.p-name {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 26px;\n    margin: 0;\n}\n\n.row-btn {\n    align-items: center;\n    text-align: center;\n    padding-left: 8%;\n    padding-right: 8%;\n    margin-top: 20px;\n}\n\n.btn-lat {\n    width: 60px;\n    height: 60px;\n}\n\n.btn-center {\n    width: 90px;\n    height: 90px;\n}\n\n.btn-title {\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 14px;\n    margin: 5px;\n}\n\n.txtTitle {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    color: var(--ion-color-negro);\n    margin-top: 30px;\n    margin-bottom: 0;\n}\n\n.txtBody {\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 14px;\n    color: var(--ion-color-gris1);\n    margin-top: 8px;\n    margin-bottom: 0;\n}\n\n.DesA {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 14px;\n    color: var(--ion-color-primary1);\n    margin-top: 5px;\n}\n\n.img-col {\n    text-align: center;\n    align-content: center;\n}\n\n.imgGallery1 {\n    object-fit: cover;\n    max-width: 100%;\n    max-height: 100%;\n    border-radius: 10px;\n}",".img-acc {\n  max-width: 150px;\n  max-height: 150px;\n  border-radius: 10px;\n}\n\n.p-name {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 26px;\n  margin: 0;\n}\n\n.row-btn {\n  align-items: center;\n  text-align: center;\n  padding-left: 8%;\n  padding-right: 8%;\n  margin-top: 20px;\n}\n\n.btn-lat {\n  width: 60px;\n  height: 60px;\n}\n\n.btn-center {\n  width: 90px;\n  height: 90px;\n}\n\n.btn-title {\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 14px;\n  margin: 5px;\n}\n\n.txtTitle {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 16px;\n  color: var(--ion-color-negro);\n  margin-top: 30px;\n  margin-bottom: 0;\n}\n\n.txtBody {\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 14px;\n  color: var(--ion-color-gris1);\n  margin-top: 8px;\n  margin-bottom: 0;\n}\n\n.DesA {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 14px;\n  color: var(--ion-color-primary1);\n  margin-top: 5px;\n}\n\n.img-col {\n  text-align: center;\n  align-content: center;\n}\n\n.imgGallery1 {\n  object-fit: cover;\n  max-width: 100%;\n  max-height: 100%;\n  border-radius: 10px;\n}"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 

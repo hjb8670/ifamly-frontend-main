@@ -62,7 +62,7 @@ export class LoginPage implements OnInit {
 
   async ionViewDidEnter() {
     if(this.userService.sesionFin) {
-     // this.uiService.alertOK(this.translate.instant('LOGIN.FinSesionMsg'));
+      this.uiService.alertOK(this.translate.instant('LOGIN.FinSesionMsg'));
     }
 
     /* const { rs } = await this.userService.getUserRS();

@@ -1,3 +1,7 @@
+export interface CatalogItem {
+  item_id: number;
+}
+
 export interface User {
     personId?: string,
     firstName?: string,
@@ -20,13 +24,13 @@ export interface User {
     height?: string,
     gender?: string,
     pronoun?: string,
-    languajes?: string,
-    exercise?: string,
+    languajes?: CatalogItem[];
+    exercise?: any;
     sings?: string,
-    hobbies?: string,
+    hobbies?: CatalogItem[],
     education?: string,
-    pets?: string,
-    valTraits?: string,
+    pets?: CatalogItem[],
+    valTraits?: CatalogItem[],
     drinking?: string,
     smoking?: string,
     drugs?: string,

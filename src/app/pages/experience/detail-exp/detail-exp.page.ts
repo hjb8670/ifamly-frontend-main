@@ -348,7 +348,7 @@ openMap(lat: any, long: any) {
 
   openRatingExperiences() {
     if(this.ownerExp.rateExperiences == null || this.ownerExp.rateExperiences == 0) {
-     // this.uiService.alertOK(this.translate.instant('EXP-DETAIL.noRate'));
+      this.uiService.alertOK(this.translate.instant('EXP-DETAIL.noRate'));
       return;
     }
 
@@ -380,7 +380,7 @@ openMap(lat: any, long: any) {
 
   openRatingUser(idAssistant: number, nameAssistant: string, rateAssistant: number, imageAssistant: string) {
     if(rateAssistant == null || rateAssistant == 0) {
-     // this.uiService.alertOK(this.translate.instant('EXP-DETAIL.noRate'));
+      this.uiService.alertOK(this.translate.instant('EXP-DETAIL.noRate'));
       return;
     }
 

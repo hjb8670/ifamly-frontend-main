@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserService } from '../../../services/user.service';
 import { Catalog, User } from '../../../interfaces/interfaces';
 import { UiService } from 'src/app/services/ui.service';
-
+import { Geolocation } from '@capacitor/geolocation';
 @Component({
   selector: 'app-edit-account',
   templateUrl: './edit-account.page.html',
@@ -98,6 +98,13 @@ export class EditAccountPage implements OnInit {
   };
   user: User;
   email: string;
+  newlocapiresp: any;
+  lati: number;
+  longi: number;
+  address: any;
+  country: any;
+  state: any;
+  city: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -121,6 +128,9 @@ export class EditAccountPage implements OnInit {
     this.user = this.usrApp;
   
     console.log('USR-APP: ', this.usrApp);
+    this.country=this.usrApp.location.country;
+    this.state=this.usrApp.location.state;
+    this.city=this.usrApp.location.city;
     this.email=this.usrApp.email;
   
     this.userService.getCatalogo2(
@@ -138,6 +148,29 @@ export class EditAccountPage implements OnInit {
     this.fillForm();
   
     this.uiService.hideLoader();
+  } 
+  async getCurrentPosition() {
+    console.log(this.locGPSToggle.value);
+    if(this.locGPSToggle.value == false){
+
+    
+    const coordinates = await Geolocation.getCurrentPosition();
+    console.log('Current position:', coordinates.coords);
+  
+    const latitude = coordinates.coords.latitude;
+    const longitude = coordinates.coords.longitude;
+   
+    const res = await this.userService.locationnewapi(latitude,longitude); 
+   // console.log(res); 
+    this.newlocapiresp=res;
+    console.log(this.newlocapiresp);
+    this.country=this.newlocapiresp.country;
+    this.state=this.newlocapiresp.state;
+    this.city=this.newlocapiresp.city;
+    this.lati=latitude;
+    this.longi=longitude;
+    this.address=this.newlocapiresp.address;
+    }
   }
   
 
@@ -191,15 +224,15 @@ export class EditAccountPage implements OnInit {
   get workCo() {
     return this.editAccountForm.get('workCo');
   }
-  get country() {
-    return this.editAccountForm.get('country');
-  }
-  get state() {
-    return this.editAccountForm.get('state');
-  }
-  get city() {
-    return this.editAccountForm.get('city');
-  }
+  // get country() {
+  //   return this.editAccountForm.get('country');
+  // }
+  // get state() {
+  //   return this.editAccountForm.get('state');
+  // }
+  // get city() {
+  //   return this.editAccountForm.get('city');
+  // }
 
   get hometown() {
     return this.editAccountForm.get('hometown');

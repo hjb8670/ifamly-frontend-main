@@ -89,13 +89,12 @@ export class TabExperiencePage {
     };
     
     // Usage
-    this.experiences = (<Experience[]> await this.getExperiences())
-      .sort((a, b) => {
-        const now = new Date().getTime();
-        const aDiff = new Date(a.dateTime).getTime() - now;
-        const bDiff = new Date(b.dateTime).getTime() - now;
-        return aDiff - bDiff;
-      });
+    this.experiences = (
+      <Experience[]>await this.getExperiences()
+    )
+      .filter(exp => new Date(exp.dateTime).getTime() >= Date.now()) // filter out past events
+      .sort((a, b) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()); // sort soonest to latest
+    
     
     await preloadImages(this.experiences);
     // Now, images should be cached, and blinking should be minimized

@@ -2375,12 +2375,12 @@ let UserService = class UserService {
       //return { ...this.usuario };
     })();
   }
-  getUserBasic(userX) {
+  getUserBasic3(userX) {
     var _this8 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return new Promise((resolve, reject) => {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this8.token);
-        _this8.http.get(`${URL}/discover/get-profile`, {
+        _this8.http.get(`${URL}/discover/get-profile/` + userX, {
           headers
         }).subscribe({
           next: function () {
@@ -2406,7 +2406,7 @@ let UserService = class UserService {
       });
     })();
   }
-  getUserBasic2(userX) {
+  getUserBasic(userX) {
     var _this9 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return new Promise((resolve, reject) => {
@@ -2437,44 +2437,38 @@ let UserService = class UserService {
       });
     })();
   }
-  getCatalogo3(catalogueId, lang, birth, gender, mail) {
+  getUserBasic2(userX) {
     var _this10 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const data = {
-        "catalogueId": catalogueId,
-        "lang": lang,
-        "email": mail,
-        "gender": gender,
-        "birthDay": birth
-      };
-      console.log('dataa', data);
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this10.token);
-      return new Promise(resolve => {
-        _this10.http.post(`${URL}/catalogue/get-items`, data, {
+      return new Promise((resolve, reject) => {
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this10.token);
+        _this10.http.get(`${URL}/discover/get-profile`, {
           headers
         }).subscribe({
-          next: resp => {
-            console.log('catalogue res', resp);
-            if (resp['sCode'] == 2) {
-              let arreglo = [];
-              //ordenarlos por orden que defina el usuario
-              if (resp['sData'] !== null) {
-                arreglo = resp['sData'].sort((a, b) => a.orderRow > b.orderRow ? 1 : -1);
+          next: function () {
+            var _ref14 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
+              if (resp['sCode'] == 2) {
+                console.log('USER BASIC', resp['sData']);
+                resolve(resp['sData']);
+              } else {
+                resolve({});
               }
-              resolve(arreglo);
-            } else {
-              resolve([]);
-            }
-          },
+            });
+            return function next(_x14) {
+              return _ref14.apply(this, arguments);
+            };
+          }(),
           error: err => {
-            console.log('ERR GET CATALOGO', err);
-            resolve([]);
+            console.log('ERRO VALIDA-TOKEN: ', err);
+            _this10.sesionFin = true;
+            _this10.navCtrl.navigateRoot('/login');
+            resolve({});
           }
         });
       });
     })();
   }
-  getCatalogo2(catalogueId, lang, birth, gender, mail) {
+  getCatalogo3(catalogueId, lang, birth, gender, mail) {
     var _this11 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
@@ -2485,8 +2479,7 @@ let UserService = class UserService {
         "birthDay": birth
       };
       console.log('dataa', data);
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
-      // .set('Authorization', this.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this11.token);
       return new Promise(resolve => {
         _this11.http.post(`${URL}/catalogue/get-items`, data, {
           headers
@@ -2512,16 +2505,19 @@ let UserService = class UserService {
       });
     })();
   }
-  getCatalogo(catalogueId, lang) {
+  getCatalogo2(catalogueId, lang, birth, gender, mail) {
     var _this12 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
-        catalogueId,
-        lang
+        "catalogueId": catalogueId,
+        "lang": lang,
+        "email": mail,
+        "gender": gender,
+        "birthDay": birth
       };
-      console.log('catalogue id', catalogueId);
+      console.log('dataa', data);
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
-      //  .set('Authorization', this.token);
+      // .set('Authorization', this.token);
       return new Promise(resolve => {
         _this12.http.post(`${URL}/catalogue/get-items`, data, {
           headers
@@ -2547,23 +2543,22 @@ let UserService = class UserService {
       });
     })();
   }
-  getCatalogoImLookingFor2(catalogueId, lang, iAmId, email) {
+  getCatalogo(catalogueId, lang) {
     var _this13 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
-        "catalogueId": catalogueId,
-        "lang": lang,
-        "imId": iAmId,
-        "email": email
+        catalogueId,
+        lang
       };
-      console.log(data);
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this13.token);
+      console.log('catalogue id', catalogueId);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
+      //  .set('Authorization', this.token);
       return new Promise(resolve => {
         _this13.http.post(`${URL}/catalogue/get-items`, data, {
           headers
         }).subscribe({
           next: resp => {
-            console.log("looking for", resp);
+            console.log('catalogue res', resp);
             if (resp['sCode'] == 2) {
               let arreglo = [];
               //ordenarlos por orden que defina el usuario
@@ -2583,7 +2578,7 @@ let UserService = class UserService {
       });
     })();
   }
-  getCatalogoImLookingFor(catalogueId, lang, iAmId, email) {
+  getCatalogoImLookingFor2(catalogueId, lang, iAmId, email) {
     var _this14 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
@@ -2593,7 +2588,7 @@ let UserService = class UserService {
         "email": email
       };
       console.log(data);
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this14.token);
       return new Promise(resolve => {
         _this14.http.post(`${URL}/catalogue/get-items`, data, {
           headers
@@ -2619,18 +2614,54 @@ let UserService = class UserService {
       });
     })();
   }
-  setCatalogo(id) {
+  getCatalogoImLookingFor(catalogueId, lang, iAmId, email) {
     var _this15 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const data = {
+        "catalogueId": catalogueId,
+        "lang": lang,
+        "imId": iAmId,
+        "email": email
+      };
+      console.log(data);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
+      return new Promise(resolve => {
+        _this15.http.post(`${URL}/catalogue/get-items`, data, {
+          headers
+        }).subscribe({
+          next: resp => {
+            console.log("looking for", resp);
+            if (resp['sCode'] == 2) {
+              let arreglo = [];
+              //ordenarlos por orden que defina el usuario
+              if (resp['sData'] !== null) {
+                arreglo = resp['sData'].sort((a, b) => a.orderRow > b.orderRow ? 1 : -1);
+              }
+              resolve(arreglo);
+            } else {
+              resolve([]);
+            }
+          },
+          error: err => {
+            console.log('ERR GET CATALOGO', err);
+            resolve([]);
+          }
+        });
+      });
+    })();
+  }
+  setCatalogo(id) {
+    var _this16 = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log('id', id);
-      const tVal = yield _this15.validaToken();
+      const tVal = yield _this16.validaToken();
       if (!tVal) {
         return;
       }
       console.log('ID SET CATALOGO', id);
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this15.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this16.token);
       return new Promise(resolve => {
-        _this15.http.get(`${URL}/catalogue/set-item-xperson/${id}`, {
+        _this16.http.get(`${URL}/catalogue/set-item-xperson/${id}`, {
           headers
         }).subscribe({
           next: resp => {
@@ -2648,9 +2679,9 @@ let UserService = class UserService {
     })();
   }
   setCatalogoMultiple(id_catalogo, opCat) {
-    var _this16 = this;
+    var _this17 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const tVal = yield _this16.validaToken();
+      const tVal = yield _this17.validaToken();
       if (!tVal) {
         return;
       }
@@ -2670,9 +2701,9 @@ let UserService = class UserService {
         id_catalogo,
         elementos
       };
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this16.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this17.token);
       return new Promise(resolve => {
-        _this16.http.post(`${URL}/catalogue/update-items`, data, {
+        _this17.http.post(`${URL}/catalogue/update-items`, data, {
           headers
         }).subscribe({
           next: resp => {
@@ -2690,11 +2721,11 @@ let UserService = class UserService {
     })();
   }
   getXCatalogo(idCatalogo) {
-    var _this17 = this;
+    var _this18 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this17.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this18.token);
       return new Promise(resolve => {
-        _this17.http.get(`${URL}/catalogue/get-item-xperson/${idCatalogo}`, {
+        _this18.http.get(`${URL}/catalogue/get-item-xperson/${idCatalogo}`, {
           headers
         }).subscribe({
           next: resp => {
@@ -2722,25 +2753,25 @@ let UserService = class UserService {
     })();
   }
   logout() {
-    var _this18 = this;
+    var _this19 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this18.token = null;
-      _this18.usuario = null;
+      _this19.token = null;
+      _this19.usuario = null;
       yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({
         key: 'token'
       });
-      _this18.navCtrl.navigateRoot('/login', {
+      _this19.navCtrl.navigateRoot('/login', {
         animated: true
       });
     })();
   }
   getCountries() {
-    var _this19 = this;
+    var _this20 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       //.set('Authorization', this.token);
       return new Promise(resolve => {
-        _this19.http.get(`${URL}/catalogue/countries`, {
+        _this20.http.get(`${URL}/catalogue/countries`, {
           headers
         }).subscribe({
           next: resp => {
@@ -2756,14 +2787,14 @@ let UserService = class UserService {
     })();
   }
   getStates(country) {
-    var _this20 = this;
+    var _this21 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         country
       };
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
-        _this20.http.post(`${URL}/catalogue/state`, data, {
+        _this21.http.post(`${URL}/catalogue/state`, data, {
           headers
         }).subscribe({
           next: resp => {
@@ -2778,7 +2809,7 @@ let UserService = class UserService {
     })();
   }
   getCities(country, state) {
-    var _this21 = this;
+    var _this22 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       let data = {
         country,
@@ -2786,7 +2817,7 @@ let UserService = class UserService {
       };
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
-        _this21.http.post(`${URL}/catalogue/city`, data, {
+        _this22.http.post(`${URL}/catalogue/city`, data, {
           headers
         }).subscribe({
           next: resp => {
@@ -2804,7 +2835,7 @@ let UserService = class UserService {
     return this.usuario?.personId || null;
   }
   getParametros(paramTerminos) {
-    var _this22 = this;
+    var _this23 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         paramTerminos
@@ -2812,7 +2843,7 @@ let UserService = class UserService {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       //.set('Authorization', this.token);
       return new Promise(resolve => {
-        _this22.http.post(`${URL}/catalogue/terminos`, data, {
+        _this23.http.post(`${URL}/catalogue/terminos`, data, {
           headers
         }).subscribe({
           next: resp => {
@@ -2827,19 +2858,19 @@ let UserService = class UserService {
     })();
   }
   setUserRS(email, password, rs) {
-    var _this23 = this;
+    var _this24 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this23.dataStorageService.set('email', email);
-      _this23.dataStorageService.set('password', password);
-      _this23.dataStorageService.set('rs', rs);
+      _this24.dataStorageService.set('email', email);
+      _this24.dataStorageService.set('password', password);
+      _this24.dataStorageService.set('rs', rs);
     })();
   }
   getUserRS() {
-    var _this24 = this;
+    var _this25 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      let email = yield _this24.dataStorageService.get('email');
-      let password = yield _this24.dataStorageService.get('password');
-      let rs = yield _this24.dataStorageService.get('rs');
+      let email = yield _this25.dataStorageService.get('email');
+      let password = yield _this25.dataStorageService.get('password');
+      let rs = yield _this25.dataStorageService.get('rs');
       return {
         email,
         password,
@@ -2848,23 +2879,23 @@ let UserService = class UserService {
     })();
   }
   removeUserRS() {
-    var _this25 = this;
+    var _this26 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      yield _this25.dataStorageService.remove('email');
-      yield _this25.dataStorageService.remove('password');
-      yield _this25.dataStorageService.remove('rs');
+      yield _this26.dataStorageService.remove('email');
+      yield _this26.dataStorageService.remove('password');
+      yield _this26.dataStorageService.remove('rs');
     })();
   }
   deleteAccount() {
-    var _this26 = this;
+    var _this27 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const tVal = yield _this26.validaToken();
+      const tVal = yield _this27.validaToken();
       if (!tVal) {
         return;
       }
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this26.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this27.token);
       return new Promise(resolve => {
-        _this26.http.delete(`${URL}/discover/delete`, {
+        _this27.http.delete(`${URL}/discover/delete`, {
           headers
         }).subscribe({
           next: resp => {
@@ -2882,11 +2913,11 @@ let UserService = class UserService {
     })();
   }
   existI(email) {
-    var _this27 = this;
+    var _this28 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
-        _this27.http.get(`${URL}/discover/existEmail/${email}`, {
+        _this28.http.get(`${URL}/discover/existEmail/${email}`, {
           headers
         }).subscribe({
           next: resp => {
@@ -2901,7 +2932,7 @@ let UserService = class UserService {
     })();
   }
   upPas(email, password) {
-    var _this28 = this;
+    var _this29 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         email,
@@ -2909,7 +2940,7 @@ let UserService = class UserService {
       };
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
-        _this28.http.post(`${URL}/discover/updatePassword`, data, {
+        _this29.http.post(`${URL}/discover/updatePassword`, data, {
           headers
         }).subscribe({
           next: resp => {
@@ -2924,11 +2955,11 @@ let UserService = class UserService {
     })();
   }
   getCodeEmail(email, lang) {
-    var _this29 = this;
+    var _this30 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
-        _this29.http.get(`${URL}/passwoord/verifyCodeEmail/${email}/${lang}`, {
+        _this30.http.get(`${URL}/passwoord/verifyCodeEmail/${email}/${lang}`, {
           headers
         }).subscribe({
           next: resp => {
@@ -2943,11 +2974,11 @@ let UserService = class UserService {
     })();
   }
   validaCodeEmail(email, code) {
-    var _this30 = this;
+    var _this31 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
-        _this30.http.get(`${URL}/passwoord/verifyCode/${email}/${code}`, {
+        _this31.http.get(`${URL}/passwoord/verifyCode/${email}/${code}`, {
           headers
         }).subscribe({
           next: resp => {
@@ -2968,28 +2999,28 @@ let UserService = class UserService {
     return this.firebaseAuthService;
   }
   loginWithEmail() {
-    var _this31 = this;
+    var _this32 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const {
         email,
         password
-      } = yield _this31.getUserRS();
+      } = yield _this32.getUserRS();
       if (email && password) {
-        const valido = yield _this31.login(email, password);
+        const valido = yield _this32.login(email, password);
         return valido['ok'];
       }
       return false;
     })();
   }
   loginWithGoogle() {
-    var _this32 = this;
+    var _this33 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      return yield _this32.loginWithEmail();
+      return yield _this33.loginWithEmail();
       try {
-        const idToken = yield _this32.googleSignInService.refreshToken();
+        const idToken = yield _this33.googleSignInService.refreshToken();
         console.log('idToken', idToken);
         if (idToken) {
-          return yield _this32.loginWithEmail();
+          return yield _this33.loginWithEmail();
         }
       } catch (error) {
         console.error('Error en loginWithGoogle:', error);
@@ -2997,15 +3028,15 @@ let UserService = class UserService {
     })();
   }
   loginWithApple() {
-    var _this33 = this;
+    var _this34 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      return yield _this33.loginWithEmail();
+      return yield _this34.loginWithEmail();
       try {
-        const idToken = yield _this33.getFirebaseAuthService().getIdToken({
+        const idToken = yield _this34.getFirebaseAuthService().getIdToken({
           forceRefresh: true
         });
         if (idToken) {
-          return yield _this33.loginWithEmail();
+          return yield _this34.loginWithEmail();
         }
       } catch (error) {
         console.error('Error al obtener ID Token de Apple:', error);

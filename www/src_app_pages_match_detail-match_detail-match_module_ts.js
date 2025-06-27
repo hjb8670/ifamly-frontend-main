@@ -172,8 +172,10 @@ let DetailMatchPage = class DetailMatchPage {
         this.matchId = this.router.getCurrentNavigation().extras.state.matchId;
         this.otherPerson = this.router.getCurrentNavigation().extras.state.otherPerson;
         this.imgCover = this.router.getCurrentNavigation().extras.state.image;
+        this.imgCover = JSON.parse(this.imgCover);
+        this.imgCover = this.imgCover.multimediaUrl;
         console.log('TYPE-PERSON: ', this.typePerson);
-        console.log('MATCH-ID: ', this.matchId);
+        console.log('MATCH-ID: ', this.otherPerson);
         console.log('IMAGE: ', this.imgCover);
       }
     });
@@ -188,7 +190,8 @@ let DetailMatchPage = class DetailMatchPage {
         _this.uniDistancia = 'mi';
       }
       _this.uiService.showLoader();
-      _this.usrMatch = yield _this.userService.getUserBasic(_this.otherPerson); //<User> await this.matchService.getMatchUser(Number(this.matchId));
+      console.log(_this.otherPerson);
+      _this.usrMatch = yield _this.userService.getUserBasic3(_this.otherPerson); //<User> await this.matchService.getMatchUser(Number(this.matchId));
       yield _this.setAvatarImg();
       console.log('USR-MATCH: ', _this.usrMatch);
       _this.uiService.hideLoader();
@@ -290,7 +293,8 @@ let DetailMatchPage = class DetailMatchPage {
   setAvatarImg() {
     var _this3 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this3.galleryImgs = yield _this3.matchService.getIMGS(_this3.otherPerson);
+      _this3.galleryImgs = yield _this3.matchService.getIMGSOfPerson(_this3.otherPerson);
+      console.log(_this3.galleryImgs);
       let i = 0;
       for (const img of _this3.galleryImgs) {
         if (!img.avatar) {

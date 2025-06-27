@@ -338,6 +338,32 @@ export class UserService {
     //return { ...this.usuario };
   }
 
+  async getUserBasic3(userX: string) {
+
+    return new Promise<User>((resolve, reject) => {
+      const headers = new HttpHeaders()
+          .set('Content-Type', 'application/json')
+          .set('Authorization', this.token);
+      
+      this.http.get(`${ URL }/discover/get-profile/`+userX, { headers }).subscribe({
+        next: async resp => {
+          if (resp['sCode'] == 2) {
+            console.log('USER BASIC',resp['sData']);
+            resolve(resp['sData']);
+          } else {
+            resolve({});
+          }
+        }, 
+        error: err => {
+          console.log('ERRO VALIDA-TOKEN: ', err);
+          this.sesionFin = true;
+          this.navCtrl.navigateRoot('/login');
+          resolve({});
+        }  
+      });
+    })
+  }
+
   async getUserBasic(userX: string) {
 
     return new Promise<User>((resolve, reject) => {

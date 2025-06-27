@@ -231,7 +231,8 @@ let AboutMePage = class AboutMePage {
       smok_S: [''],
       drug_S: [''],
       religion_S: [''],
-      political_S: ['']
+      political_S: [''],
+      kid_S: ['']
     });
     this.activatedRoute.queryParams.subscribe(params => {
       const nav = this.router.getCurrentNavigation();
@@ -547,40 +548,73 @@ let AboutMePage = class AboutMePage {
           res13 = true,
           res14 = true,
           res15 = true;
-        res0 = yield _this4.userService.update({
-          height: _this4.selectedHeight ?? ''
-        });
-        res2 = yield _this4.userService.setCatalogo(_this4.pronoun_S.value ?? '');
-        res3 = yield _this4.userService.setCatalogoMultiple(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Lenguage, _this4.languaje_S.value ?? []);
-        res4 = yield _this4.userService.setCatalogoMultiple(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Ejercicio, _this4.exercise_S.value ?? []);
-        res5 = yield _this4.userService.setCatalogo(_this4.sing_S.value ?? '');
-        res6 = yield _this4.userService.setCatalogoMultiple(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Hobbies, _this4.hobby_S.value ?? []);
-        res7 = yield _this4.userService.setCatalogo(_this4.education_S.value ?? '');
-        res8 = yield _this4.userService.setCatalogoMultiple(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Pets, _this4.pet_S.value ?? []);
-        res9 = yield _this4.userService.setCatalogoMultiple(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Values_Traits, _this4.valTrait_S.value ?? []);
-        res10 = yield _this4.userService.setCatalogo(_this4.drink_S.value ?? '');
-        res11 = yield _this4.userService.setCatalogo(_this4.smok_S.value ?? '');
-        res12 = yield _this4.userService.setCatalogo(_this4.kid_S.value ?? '');
-        res13 = yield _this4.userService.setCatalogo(_this4.drug_S.value ?? '');
-        res14 = yield _this4.userService.setCatalogo(_this4.religion_S.value ?? '');
-        res15 = yield _this4.userService.setCatalogo(_this4.political_S.value ?? '');
-        _this4.uiService.hideLoader();
-        if (!res0 || !res2 || !res3 || !res4 || !res5 || !res6 || !res7 || !res8 || !res9 || !res10 || !res11 || !res12 || !res13 || !res14) {
-          //this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
-          return;
+        // res0 = <boolean>await this.userService.update({ height: this.selectedHeight ?? '' });
+        if (_this4.pronoun_S.value !== null && _this4.pronoun_S.value !== undefined && _this4.pronoun_S.value !== '') {
+          res2 = yield _this4.userService.setCatalogo(_this4.pronoun_S.value);
         }
+        if (_this4.languaje_S.value !== null && _this4.languaje_S.value !== undefined && _this4.languaje_S.value.length > 0) {
+          res3 = yield _this4.userService.setCatalogoMultiple(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Lenguage, _this4.languaje_S.value);
+        }
+        if (_this4.exercise_S.value?.length > 0) {
+          res4 = yield _this4.userService.setCatalogoMultiple(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Ejercicio, _this4.exercise_S.value);
+        }
+        if (_this4.sing_S.value !== null && _this4.sing_S.value !== undefined && _this4.sing_S.value !== '') {
+          res5 = yield _this4.userService.setCatalogo(_this4.sing_S.value);
+        }
+        if (_this4.hobby_S.value?.length > 0) {
+          res6 = yield _this4.userService.setCatalogoMultiple(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Hobbies, _this4.hobby_S.value);
+        }
+        if (_this4.education_S.value) {
+          res7 = yield _this4.userService.setCatalogo(_this4.education_S.value);
+        }
+        if (_this4.pet_S.value?.length > 0) {
+          res8 = yield _this4.userService.setCatalogoMultiple(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Pets, _this4.pet_S.value);
+        }
+        if (_this4.valTrait_S.value?.length > 0) {
+          res9 = yield _this4.userService.setCatalogoMultiple(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Values_Traits, _this4.valTrait_S.value);
+        }
+        if (_this4.drink_S.value) {
+          res10 = yield _this4.userService.setCatalogo(_this4.drink_S.value);
+        }
+        if (_this4.smok_S.value) {
+          res11 = yield _this4.userService.setCatalogo(_this4.smok_S.value);
+        }
+        if (_this4.kid_S.value) {
+          res12 = yield _this4.userService.setCatalogo(_this4.kid_S.value);
+        }
+        if (_this4.drug_S.value) {
+          res13 = yield _this4.userService.setCatalogo(_this4.drug_S.value);
+        }
+        if (_this4.religion_S.value) {
+          res14 = yield _this4.userService.setCatalogo(_this4.religion_S.value);
+        }
+        if (_this4.political_S.value) {
+          res15 = yield _this4.userService.setCatalogo(_this4.political_S.value);
+        }
+        _this4.uiService.hideLoader();
+        // if (!res0 || !res2 || !res3 || !res4 || !res5 || !res6 || !res7 || !res8 || !res9 || !res10 || !res11 || !res12 || !res13 || !res14) {
+        //    //this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
+        //   return;
+        // }
       } else {
         // this.router.navigate(['location'], this.userService.navegationExtras);
+        const mapToCatalogItems = array => {
+          if (!Array.isArray(array)) return [];
+          return array.filter(item => typeof item === 'number') // ensure only numbers are mapped
+          .map(item => ({
+            item_id: item
+          }));
+        };
         const user = {
           height: _this4.selectedHeight,
           pronoun: _this4.pronoun_S.value,
-          languajes: _this4.languaje_S.value,
-          exercise: _this4.exercise_S.value,
+          languajes: mapToCatalogItems(_this4.languaje_S.value),
+          exercise: mapToCatalogItems(_this4.exercise_S.value),
           sings: _this4.sing_S.value,
-          hobbies: _this4.hobby_S.value,
+          hobbies: mapToCatalogItems(_this4.hobby_S.value),
           education: _this4.education_S.value,
-          pets: _this4.pet_S.value,
-          valTraits: _this4.valTrait_S.value,
+          pets: mapToCatalogItems(_this4.pet_S.value),
+          valTraits: mapToCatalogItems(_this4.valTrait_S.value),
           drinking: _this4.drink_S.value,
           smoking: _this4.smok_S.value,
           drugs: _this4.drug_S.value,

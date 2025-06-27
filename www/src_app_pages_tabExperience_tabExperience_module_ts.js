@@ -179,12 +179,8 @@ let TabExperiencePage = class TabExperiencePage {
         };
       }();
       // Usage
-      _this2.experiences = (yield _this2.getExperiences()).sort((a, b) => {
-        const now = new Date().getTime();
-        const aDiff = new Date(a.dateTime).getTime() - now;
-        const bDiff = new Date(b.dateTime).getTime() - now;
-        return aDiff - bDiff;
-      });
+      _this2.experiences = (yield _this2.getExperiences()).filter(exp => new Date(exp.dateTime).getTime() >= Date.now()) // filter out past events
+      .sort((a, b) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()); // sort soonest to latest
       yield preloadImages(_this2.experiences);
       // Now, images should be cached, and blinking should be minimized
       console.log('EXPERIENCIES: ', _this2.experiences);

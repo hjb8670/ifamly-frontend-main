@@ -768,7 +768,7 @@ let TabDiscoverPage = class TabDiscoverPage {
         otherPerson: user.personId,
         //(match.personLiked.toString() == this.user.personId ? match.personLikes : match.personLiked),
         //matchId: ustInt.personId, 
-        image: user.image
+        image: JSON.stringify(user.image)
       }
     };
     this.router.navigate(['detail-match'], navegationExtras);

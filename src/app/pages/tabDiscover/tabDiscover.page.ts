@@ -730,7 +730,7 @@ export class TabDiscoverPage implements AfterViewInit{
           typePerson: 1,
           otherPerson: user.personId, //(match.personLiked.toString() == this.user.personId ? match.personLikes : match.personLiked),
           //matchId: ustInt.personId, 
-          image: user.image
+          image: JSON.stringify(user.image)
         }
       }
       

@@ -22,7 +22,7 @@ export class DetailMatchPage implements OnInit {
   public typePerson = 0; //0: match, 1: profile
   private matchId = '';
   private otherPerson = '';
-  public imgCover = '../../../assets/icon/30-Default_no-image.jpeg';
+  public imgCover:any = '../../../assets/icon/30-Default_no-image.jpeg';
   public uniDistancia = 'mi';
   public usrMatch: User;
   public galleryImgs:  ImagesUser[];
@@ -67,8 +67,10 @@ export class DetailMatchPage implements OnInit {
         this.matchId = this.router.getCurrentNavigation().extras.state.matchId;
         this.otherPerson = this.router.getCurrentNavigation().extras.state.otherPerson;
         this.imgCover = this.router.getCurrentNavigation().extras.state.image;
+        this.imgCover = JSON.parse(this.imgCover);
+        this.imgCover = this.imgCover.multimediaUrl;
         console.log('TYPE-PERSON: ', this.typePerson);
-        console.log('MATCH-ID: ', this.matchId);
+        console.log('MATCH-ID: ', this.otherPerson);
         console.log('IMAGE: ', this.imgCover);
       }
     });
@@ -83,7 +85,8 @@ export class DetailMatchPage implements OnInit {
       this.uniDistancia = 'mi';
     }
     this.uiService.showLoader();
-    this.usrMatch = <User> await this.userService.getUserBasic(this.otherPerson); //<User> await this.matchService.getMatchUser(Number(this.matchId));
+    console.log(this.otherPerson);
+    this.usrMatch = <User> await this.userService.getUserBasic3(this.otherPerson); //<User> await this.matchService.getMatchUser(Number(this.matchId));
     await this.setAvatarImg();
     console.log('USR-MATCH: ', this.usrMatch);
     this.uiService.hideLoader();
@@ -196,7 +199,8 @@ export class DetailMatchPage implements OnInit {
   }
 
   async setAvatarImg() {
-    this.galleryImgs =  <ImagesUser[]> await this.matchService.getIMGS(this.otherPerson);
+    this.galleryImgs =  <ImagesUser[]> await this.matchService.getIMGSOfPerson(this.otherPerson);
+    console.log(this.galleryImgs);
     let i = 0;
     for (const img of this.galleryImgs) {
       if(!img.avatar) {

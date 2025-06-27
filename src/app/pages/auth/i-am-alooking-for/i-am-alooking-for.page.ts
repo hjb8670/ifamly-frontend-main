@@ -175,7 +175,7 @@ export class IAmALookingForPage implements OnInit {
                //this.navCtrl.navigateRoot( '/main/tabs/discover', { animated: true } );
                this.userService.setUserRS(this.useremail, this.pass, 'email');
                this.router.navigate(['/main/tabs/discover']);
-               this.uiService.alertOK(this.translate.instant('LOCATION.SuccessMsg2'));
+              // this.uiService.alertOK(this.translate.instant('LOCATION.SuccessMsg2'));
        
              }
              
@@ -189,7 +189,7 @@ export class IAmALookingForPage implements OnInit {
        
        
     } else{
-      this.uiService.alertOK(this.translate.instant('ABOUT-ME.ErrorMsg2'));
+     // this.uiService.alertOK(this.translate.instant('ABOUT-ME.ErrorMsg2'));
       this.router.navigate(['/registry']);
     }
     

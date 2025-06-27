@@ -71,7 +71,6 @@ export class MatchService {
         }
       });
     }
-    // console.log('MATCH PERSON: ', this.matchPerson);
     this.uiService.loader ? this.uiService.hideLoader : null;
     
   }

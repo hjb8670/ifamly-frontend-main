@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder,Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { Catalog, User } from '../../../interfaces/interfaces';
+import { Catalog, CatalogItem, User } from '../../../interfaces/interfaces';
 import { constants } from 'src/environments/constants';
 import { PickerColumnOption, PickerController } from '@ionic/angular';
 import { UiService } from '../../../services/ui.service';
@@ -163,7 +163,8 @@ export class AboutMePage implements OnInit {
     smok_S: [''],
     drug_S: [''],
     religion_S: [''],
-    political_S: ['']
+    political_S: [''],
+    kid_S: [''],
   });
   
   pageid: any;
@@ -492,52 +493,94 @@ export class AboutMePage implements OnInit {
         res6 = true, res7 = true, res8 = true, res9 = true, res10 = true, res11 = true,
         res12 = true, res13 = true, res14 = true, res15 = true;
 
-      res0 = <boolean>await this.userService.update({ height: this.selectedHeight ?? '' });
+      // res0 = <boolean>await this.userService.update({ height: this.selectedHeight ?? '' });
+      if (this.pronoun_S.value !== null && this.pronoun_S.value !== undefined && this.pronoun_S.value !== '') {
+        res2 = <boolean>await this.userService.setCatalogo(this.pronoun_S.value);
+      }
+      if (this.languaje_S.value !== null && this.languaje_S.value !== undefined && this.languaje_S.value.length > 0) {
+        res3 = <boolean>await this.userService.setCatalogoMultiple(constants.catalogs.Lenguage, this.languaje_S.value);
+      }
+      if (this.exercise_S.value?.length > 0) {
+        res4 = <boolean>await this.userService.setCatalogoMultiple(constants.catalogs.Ejercicio, this.exercise_S.value);
+      }
 
-      
-      res2 = <boolean>await this.userService.setCatalogo(this.pronoun_S.value ?? '');
-      res3 = <boolean>await this.userService.setCatalogoMultiple(constants.catalogs.Lenguage, this.languaje_S.value ?? []);
-      res4 = <boolean>await this.userService.setCatalogoMultiple(constants.catalogs.Ejercicio, this.exercise_S.value ?? []);
-      res5 = <boolean>await this.userService.setCatalogo(this.sing_S.value ?? '');
-      res6 = <boolean>await this.userService.setCatalogoMultiple(constants.catalogs.Hobbies, this.hobby_S.value ?? []);
-      res7 = <boolean>await this.userService.setCatalogo(this.education_S.value ?? '');
-      res8 = <boolean>await this.userService.setCatalogoMultiple(constants.catalogs.Pets, this.pet_S.value ?? []);
-      res9 = <boolean>await this.userService.setCatalogoMultiple(constants.catalogs.Values_Traits, this.valTrait_S.value ?? []);
-      res10 = <boolean>await this.userService.setCatalogo(this.drink_S.value ?? '');
-      res11 = <boolean>await this.userService.setCatalogo(this.smok_S.value ?? '');
-      res12 = <boolean>await this.userService.setCatalogo(this.kid_S.value ?? '');
-      res13 = <boolean>await this.userService.setCatalogo(this.drug_S.value ?? '');
-      res14 = <boolean>await this.userService.setCatalogo(this.religion_S.value ?? '');
-      res15 = <boolean>await this.userService.setCatalogo(this.political_S.value ?? '');
+      if (this.sing_S.value !== null && this.sing_S.value !== undefined && this.sing_S.value !== '') {
+        res5 = <boolean>await this.userService.setCatalogo(this.sing_S.value);
+      }
+
+      if (this.hobby_S.value?.length > 0) {
+        res6 = <boolean>await this.userService.setCatalogoMultiple(constants.catalogs.Hobbies, this.hobby_S.value);
+      }
+
+      if (this.education_S.value) {
+        res7 = <boolean>await this.userService.setCatalogo(this.education_S.value);
+      }
+
+      if (this.pet_S.value?.length > 0) {
+        res8 = <boolean>await this.userService.setCatalogoMultiple(constants.catalogs.Pets, this.pet_S.value);
+      }
+
+      if (this.valTrait_S.value?.length > 0) {
+        res9 = <boolean>await this.userService.setCatalogoMultiple(constants.catalogs.Values_Traits, this.valTrait_S.value);
+      }
+
+      if (this.drink_S.value) {
+        res10 = <boolean>await this.userService.setCatalogo(this.drink_S.value);
+      }
+
+      if (this.smok_S.value) {
+        res11 = <boolean>await this.userService.setCatalogo(this.smok_S.value);
+      }
+
+      if (this.kid_S.value) {
+        res12 = <boolean>await this.userService.setCatalogo(this.kid_S.value);
+      }
+
+      if (this.drug_S.value) {
+        res13 = <boolean>await this.userService.setCatalogo(this.drug_S.value);
+      }
+
+      if (this.religion_S.value) {
+        res14 = <boolean>await this.userService.setCatalogo(this.religion_S.value);
+      }
+
+      if (this.political_S.value) {
+        res15 = <boolean>await this.userService.setCatalogo(this.political_S.value);
+      }
 
       this.uiService.hideLoader();
-      if (!res0 || !res2 || !res3 || !res4 || !res5 || !res6 || !res7 || !res8 || !res9 || !res10 || !res11 || !res12 || !res13 || !res14) {
+      // if (!res0 || !res2 || !res3 || !res4 || !res5 || !res6 || !res7 || !res8 || !res9 || !res10 || !res11 || !res12 || !res13 || !res14) {
        
-         //this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
+      //    //this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
         
        
-        return;
-      }
+      //   return;
+      // }
     }
      else {
       // this.router.navigate(['location'], this.userService.navegationExtras);
-     
+      const mapToCatalogItems = (array: any): CatalogItem[] => {
+        if (!Array.isArray(array)) return [];
+        return array
+          .filter(item => typeof item === 'number') // ensure only numbers are mapped
+          .map((item: number) => ({ item_id: item }));
+      };
+
       const user: User = {
         height: this.selectedHeight,
         pronoun: this.pronoun_S.value,
-        languajes: this.languaje_S.value,
-        exercise: this.exercise_S.value,
+        languajes: mapToCatalogItems(this.languaje_S.value),
+        exercise: mapToCatalogItems(this.exercise_S.value),
         sings: this.sing_S.value,
-        hobbies: this.hobby_S.value,
+        hobbies: mapToCatalogItems(this.hobby_S.value),
         education: this.education_S.value,
-        pets: this.pet_S.value,
-        valTraits:  this.valTrait_S.value,
+        pets: mapToCatalogItems(this.pet_S.value),
+        valTraits: mapToCatalogItems(this.valTrait_S.value),
         drinking: this.drink_S.value,
         smoking: this.smok_S.value,
         drugs: this.drug_S.value,
         religion: this.religion_S.value,
         political: this.political_S.value,
-        
       };
       
       // Save it somewhere accessible (like a service or localStorage)

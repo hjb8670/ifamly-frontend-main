@@ -80,17 +80,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   EditAccountPage: () => (/* binding */ EditAccountPage)
 /* harmony export */ });
 /* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _edit_account_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit-account.page.html?ngResource */ 24452);
 /* harmony import */ var _edit_account_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit-account.page.scss?ngResource */ 20716);
 /* harmony import */ var _edit_account_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_edit_account_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 94280);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ 71904);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 24040);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ 71904);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 24040);
 /* harmony import */ var src_environments_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/environments/constants */ 57724);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/user.service */ 90628);
 /* harmony import */ var src_app_services_ui_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/ui.service */ 44136);
+/* harmony import */ var _capacitor_geolocation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @capacitor/geolocation */ 60416);
+
 
 
 
@@ -116,16 +118,16 @@ let EditAccountPage = class EditAccountPage {
     this.newLocation = null;
     this.editAccountForm = this.formBuilder.group({
       locGPSToggle: false,
-      location: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]],
-      fname: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]],
-      lname: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]],
-      gender_S: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]],
+      location: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.required]],
+      fname: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.required]],
+      lname: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.required]],
+      gender_S: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.required]],
       bday: ['', [/*Validators.required */]],
-      bio: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]],
-      iam_a: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]],
-      iam_looking: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required]],
+      bio: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.required]],
+      iam_a: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.required]],
+      iam_looking: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.required]],
       school: '',
-      yearSchool: [0, [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.min(1900), _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.max(2101)]],
+      yearSchool: [0, [_angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.min(1900), _angular_forms__WEBPACK_IMPORTED_MODULE_7__.Validators.max(2101)]],
       workTitle: '',
       workCo: '',
       hometown: '',
@@ -209,6 +211,9 @@ let EditAccountPage = class EditAccountPage {
       _this.usrApp = yield _this.userService.getUserBasic('');
       _this.user = _this.usrApp;
       console.log('USR-APP: ', _this.usrApp);
+      _this.country = _this.usrApp.location.country;
+      _this.state = _this.usrApp.location.state;
+      _this.city = _this.usrApp.location.city;
       _this.email = _this.usrApp.email;
       _this.userService.getCatalogo2(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Gender.toString(), _this.lanCatalogo, _this.user.birthDay, _this.user.gender, _this.user.email).then(value => {
         _this.genders = value;
@@ -216,6 +221,28 @@ let EditAccountPage = class EditAccountPage {
       _this.countries = yield _this.userService.getCountries();
       _this.fillForm();
       _this.uiService.hideLoader();
+    })();
+  }
+  getCurrentPosition() {
+    var _this2 = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      console.log(_this2.locGPSToggle.value);
+      if (_this2.locGPSToggle.value == false) {
+        const coordinates = yield _capacitor_geolocation__WEBPACK_IMPORTED_MODULE_6__.Geolocation.getCurrentPosition();
+        console.log('Current position:', coordinates.coords);
+        const latitude = coordinates.coords.latitude;
+        const longitude = coordinates.coords.longitude;
+        const res = yield _this2.userService.locationnewapi(latitude, longitude);
+        // console.log(res); 
+        _this2.newlocapiresp = res;
+        console.log(_this2.newlocapiresp);
+        _this2.country = _this2.newlocapiresp.country;
+        _this2.state = _this2.newlocapiresp.state;
+        _this2.city = _this2.newlocapiresp.city;
+        _this2.lati = latitude;
+        _this2.longi = longitude;
+        _this2.address = _this2.newlocapiresp.address;
+      }
     })();
   }
   get locGPSToggle() {
@@ -257,15 +284,15 @@ let EditAccountPage = class EditAccountPage {
   get workCo() {
     return this.editAccountForm.get('workCo');
   }
-  get country() {
-    return this.editAccountForm.get('country');
-  }
-  get state() {
-    return this.editAccountForm.get('state');
-  }
-  get city() {
-    return this.editAccountForm.get('city');
-  }
+  // get country() {
+  //   return this.editAccountForm.get('country');
+  // }
+  // get state() {
+  //   return this.editAccountForm.get('state');
+  // }
+  // get city() {
+  //   return this.editAccountForm.get('city');
+  // }
   get hometown() {
     return this.editAccountForm.get('hometown');
   }
@@ -274,88 +301,88 @@ let EditAccountPage = class EditAccountPage {
   }
   ngOnInit() {}
   ionViewDidEnter() {
-    var _this2 = this;
+    var _this3 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      if (_this2.translate.currentLang == 'es') {
-        _this2.lanCatalogo = src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.languages.es;
+      if (_this3.translate.currentLang == 'es') {
+        _this3.lanCatalogo = src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.languages.es;
       } else {
-        _this2.lanCatalogo = src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.languages.en;
+        _this3.lanCatalogo = src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.languages.en;
       }
     })();
   }
   fillForm() {
-    var _this3 = this;
+    var _this4 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this3.iams = yield _this3.userService.getCatalogo3(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.IamA.toString(), _this3.lanCatalogo, _this3.usrApp.birthDay, _this3.user.gender, _this3.usrApp.email);
+      _this4.iams = yield _this4.userService.getCatalogo3(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.IamA.toString(), _this4.lanCatalogo, _this4.usrApp.birthDay, _this4.user.gender, _this4.usrApp.email);
       setTimeout(() => {
-        _this3.editAccountForm.get('iam_a')?.valueChanges.subscribe( /*#__PURE__*/function () {
+        _this4.editAccountForm.get('iam_a')?.valueChanges.subscribe( /*#__PURE__*/function () {
           var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (selectedValue) {
             console.log('iam_a selected:', selectedValue);
             if (!selectedValue) return; // ⛔ Guard clause
-            _this3.iam_looking.setValue(_this3.usrApp.iam_looking_4_id);
-            _this3.iamlookings = yield _this3.userService.getCatalogoImLookingFor2(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.IamLooking.toString(), _this3.lanCatalogo, selectedValue, _this3.email);
+            _this4.iam_looking.setValue(_this4.usrApp.iam_looking_4_id);
+            _this4.iamlookings = yield _this4.userService.getCatalogoImLookingFor2(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.IamLooking.toString(), _this4.lanCatalogo, selectedValue, _this4.email);
           });
           return function (_x) {
             return _ref.apply(this, arguments);
           };
         }());
-        _this3.iam_looking.setValue(_this3.usrApp.iam_looking_4_id);
+        _this4.iam_looking.setValue(_this4.usrApp.iam_looking_4_id);
       });
       // this.iam_looking.setValue(this.iamlookings);
-      _this3.location.setValue(`${_this3.usrApp.location.city}, ${_this3.usrApp.location.state}, ${_this3.usrApp.location.country}`);
-      _this3.fname.setValue(_this3.usrApp.firstName);
-      _this3.lname.setValue(_this3.usrApp.lastName);
-      _this3.setBirthdayVal(_this3.usrApp.birthDay);
-      _this3.bday.setValue(_this3.usrApp.birthDay);
-      _this3.bio.setValue(_this3.usrApp.aboutMe);
-      _this3.school.setValue(_this3.usrApp.educationName);
-      _this3.yearSchool.setValue(_this3.usrApp.educationYear);
-      _this3.workTitle.setValue(_this3.usrApp.title);
-      _this3.workCo.setValue(_this3.usrApp.company);
-      _this3.hometown.setValue(_this3.usrApp.dondeSoy);
-      _this3.ethnicity.setValue(_this3.usrApp.queSoy);
-      const iam_a_val = yield _this3.userService.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.IamA);
-      _this3.iam_a.setValue(iam_a_val);
-      _this3.iam_a.setValue(_this3.usrApp.iam_a_id);
+      _this4.location.setValue(`${_this4.usrApp.location.city}, ${_this4.usrApp.location.state}, ${_this4.usrApp.location.country}`);
+      _this4.fname.setValue(_this4.usrApp.firstName);
+      _this4.lname.setValue(_this4.usrApp.lastName);
+      _this4.setBirthdayVal(_this4.usrApp.birthDay);
+      _this4.bday.setValue(_this4.usrApp.birthDay);
+      _this4.bio.setValue(_this4.usrApp.aboutMe);
+      _this4.school.setValue(_this4.usrApp.educationName);
+      _this4.yearSchool.setValue(_this4.usrApp.educationYear);
+      _this4.workTitle.setValue(_this4.usrApp.title);
+      _this4.workCo.setValue(_this4.usrApp.company);
+      _this4.hometown.setValue(_this4.usrApp.dondeSoy);
+      _this4.ethnicity.setValue(_this4.usrApp.queSoy);
+      const iam_a_val = yield _this4.userService.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.IamA);
+      _this4.iam_a.setValue(iam_a_val);
+      _this4.iam_a.setValue(_this4.usrApp.iam_a_id);
     })();
   }
   save() {
-    var _this4 = this;
+    var _this5 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      if (_this4.iam_a.invalid || !_this4.iam_a.value || _this4.iam_looking.invalid || !_this4.iam_looking.value) {
-        _this4.uiService.alertOK(_this4.translate.instant('ABOUT-ME.missingfiled'));
-        _this4.iam_a.markAsTouched();
-        _this4.iam_looking.markAsTouched();
+      if (_this5.iam_a.invalid || !_this5.iam_a.value || _this5.iam_looking.invalid || !_this5.iam_looking.value) {
+        _this5.uiService.alertOK(_this5.translate.instant('ABOUT-ME.missingfiled'));
+        _this5.iam_a.markAsTouched();
+        _this5.iam_looking.markAsTouched();
         return;
       } else {
-        _this4.uiService.showLoader();
+        _this5.uiService.showLoader();
         let usr = {
           //usr.location = this.location.value,//Dato especial necesitamos cambiarlo.
-          firstName: _this4.fname.value === undefined ? null : _this4.fname.value,
-          lastName: _this4.lname.value === undefined ? null : _this4.lname.value,
-          aboutMe: _this4.bio.value === undefined ? null : _this4.bio.value,
-          educationName: _this4.school.value === undefined ? null : _this4.school.value,
-          educationYear: _this4.yearSchool.value === undefined ? null : _this4.yearSchool.value,
-          title: _this4.workTitle.value === undefined ? null : _this4.workTitle.value,
-          company: _this4.workCo.value === undefined ? null : _this4.workCo.value,
-          dondeSoy: _this4.hometown.value === undefined ? null : _this4.hometown.value,
-          queSoy: _this4.ethnicity.value === undefined ? null : _this4.ethnicity.value,
-          location: _this4.newLocation,
-          iam_a: _this4.iam_a.value,
-          gender: _this4.gender_S.value
+          firstName: _this5.fname.value === undefined ? null : _this5.fname.value,
+          lastName: _this5.lname.value === undefined ? null : _this5.lname.value,
+          aboutMe: _this5.bio.value === undefined ? null : _this5.bio.value,
+          educationName: _this5.school.value === undefined ? null : _this5.school.value,
+          educationYear: _this5.yearSchool.value === undefined ? null : _this5.yearSchool.value,
+          title: _this5.workTitle.value === undefined ? null : _this5.workTitle.value,
+          company: _this5.workCo.value === undefined ? null : _this5.workCo.value,
+          dondeSoy: _this5.hometown.value === undefined ? null : _this5.hometown.value,
+          queSoy: _this5.ethnicity.value === undefined ? null : _this5.ethnicity.value,
+          location: _this5.newLocation,
+          iam_a: _this5.iam_a.value,
+          gender: _this5.gender_S.value
         };
-        console.log('i am', _this4.iam_a);
-        let res1 = yield _this4.userService.setCatalogo(_this4.iam_a.value);
-        let res0 = yield _this4.userService.update(usr);
+        console.log('i am', _this5.iam_a);
+        let res1 = yield _this5.userService.setCatalogo(_this5.iam_a.value);
+        let res0 = yield _this5.userService.update(usr);
         // debugger;
         // let res2 = <boolean> await this.userService.setCatalogo(this.iam_looking.value);
-        _this4.uiService.hideLoader();
+        _this5.uiService.hideLoader();
         if (!res0 && !res1) {
           // this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
-          _this4.router.navigate(['main/tabs/account']);
+          _this5.router.navigate(['main/tabs/account']);
           return;
         }
-        _this4.router.navigate(['main/tabs/account']);
+        _this5.router.navigate(['main/tabs/account']);
       }
     })();
   }
@@ -432,49 +459,49 @@ let EditAccountPage = class EditAccountPage {
     this.modalLoc.dismiss();
   }
   selectCountry() {
-    var _this5 = this;
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this5.uiService.showLoader();
-      _this5.state.setValue('');
-      _this5.city.setValue('');
-      _this5.cities = [];
-      _this5.states = [];
-      _this5.states = yield _this5.userService.getStates(_this5.country.value);
-      _this5.uiService.hideLoader();
-    })();
-  }
-  selectState() {
     var _this6 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this6.uiService.showLoader();
-      _this6.cities = [];
+      _this6.state.setValue('');
       _this6.city.setValue('');
-      _this6.cities = yield _this6.userService.getCities(_this6.country.value, _this6.state.value);
-      console.log(_this6.cities);
+      _this6.cities = [];
+      _this6.states = [];
+      _this6.states = yield _this6.userService.getStates(_this6.country.value);
       _this6.uiService.hideLoader();
     })();
   }
-  selectlooking() {
+  selectState() {
     var _this7 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this7.iamlookings = [];
-      _this7.iam_looking.setValue('');
-      _this7.iam_looking.enable();
-      console.log(_this7.iam_a.value);
-      _this7.iamlookings = yield _this7.userService.getCatalogoImLookingFor(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.IamLooking.toString(), _this7.lanCatalogo, _this7.iam_a.value, '');
+      _this7.uiService.showLoader();
+      _this7.cities = [];
+      _this7.city.setValue('');
+      _this7.cities = yield _this7.userService.getCities(_this7.country.value, _this7.state.value);
+      console.log(_this7.cities);
+      _this7.uiService.hideLoader();
+    })();
+  }
+  selectlooking() {
+    var _this8 = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      _this8.iamlookings = [];
+      _this8.iam_looking.setValue('');
+      _this8.iam_looking.enable();
+      console.log(_this8.iam_a.value);
+      _this8.iamlookings = yield _this8.userService.getCatalogoImLookingFor(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.IamLooking.toString(), _this8.lanCatalogo, _this8.iam_a.value, '');
     })();
   }
   static {
     this.ctorParameters = () => [{
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_6__.FormBuilder
+      type: _angular_forms__WEBPACK_IMPORTED_MODULE_7__.FormBuilder
     }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.ActivatedRoute
+      type: _angular_router__WEBPACK_IMPORTED_MODULE_8__.ActivatedRoute
     }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.Router
+      type: _angular_router__WEBPACK_IMPORTED_MODULE_8__.Router
     }, {
       type: _services_user_service__WEBPACK_IMPORTED_MODULE_4__.UserService
     }, {
-      type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__.TranslateService
+      type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_9__.TranslateService
     }, {
       type: src_app_services_ui_service__WEBPACK_IMPORTED_MODULE_5__.UiService
     }];
@@ -482,13 +509,13 @@ let EditAccountPage = class EditAccountPage {
   static {
     this.propDecorators = {
       modalLoc: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_9__.ViewChild,
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_10__.ViewChild,
         args: ['modalLoc']
       }]
     };
   }
 };
-EditAccountPage = (0,tslib__WEBPACK_IMPORTED_MODULE_10__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
+EditAccountPage = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
   selector: 'app-edit-account',
   template: _edit_account_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   styles: [(_edit_account_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]
@@ -740,7 +767,7 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-header class=\"ion-no-border ion-padding\" color=\"blanco\" >\n  <ion-toolbar color=\"blanco\" >\n    <ion-buttons slot=\"start\">\n      <ion-icon name=\"chevron-back-outline\"  (click)=\"save()\"></ion-icon>\n    </ion-buttons>\n    <ion-title class=\"title_txt\" mode=\"ios\">{{ 'EDIT-ACCOUNT.TitleTxt' | translate }}</ion-title>\n    <ion-buttons slot=\"end\">\n      <!-- <ion-button class=\"save-Bt\" (click)=\"save()\">{{ 'EDIT-ACCOUNT.SaveTxt' | translate }}</ion-button> -->\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content color=\"blanco ion-padding\" fullscreen>\n  <form [formGroup]=\"editAccountForm\">\n    <ion-grid>\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitlePhoto' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-item lines=\"none\" detail (click)=\"setPhotoPrfile()\">\n        <ion-label text-wrap>{{ 'EDIT-ACCOUNT.PhotoText' | translate }}</ion-label>\n        <ion-label class=\"detailText\" slot=\"end\" text-wrap>{{ 'EDIT-ACCOUNT.ChangeText' | translate }}</ion-label>\n      </ion-item>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleLocation' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-item lines=\"none\">\n        <ion-label class=\"label\">{{ 'EDIT-ACCOUNT.LabelLocGPS' | translate }}</ion-label>\n        <ion-toggle class=\"toggleChk\" formControlName=\"locGPSToggle\"></ion-toggle>\n      </ion-item>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.LocationField' | translate }}</ion-label> \n            <ion-input id=\"loc-trigger\" class=\"input-CItem\" [value]=\"location.value\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <ion-modal #modalLoc class=\"modal-loc\" [initialBreakpoint]=\"0.6\" [breakpoints]=\"[0.6, 0.6, 0.75]\" trigger=\"loc-trigger\">\n        <ng-template>\n          <ion-content class=\"content-cal\">\n            <ion-row class=\"contenedorLoc\">\n              <ion-col>\n                <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.country' | translate }}</p>\n              </ion-col>\n            </ion-row>\n            <ion-item class=\"ion-item-select contenedorLoc\" lines=\"none\" detail>\n              <ion-select formControlName=\"country\" [interfaceOptions]=\"customCountryOptions\" interface=\"action-sheet\" cancelText=\"Cancel\" (ionChange)=\"selectCountry()\">\n                <li *ngFor=\"let obj of countries\">\n                  <ion-select-option [value]=\"obj.id\">{{ obj.country }}</ion-select-option>\n                </li>\n              </ion-select>\n            </ion-item>\n            <ion-row class=\"contenedorLoc\">\n              <ion-col>\n                <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.state' | translate }}</p>\n              </ion-col>\n            </ion-row>\n            <ion-item class=\"ion-item-select contenedorLoc\" lines=\"none\" detail>\n              <ion-select formControlName=\"state\" [interfaceOptions]=\"customStateOptions\" interface=\"action-sheet\" cancelText=\"Cancel\" (ionChange)=\"selectState()\">\n                <li *ngFor=\"let obj of states\">\n                  <ion-select-option [value]=\"obj.id\">{{ obj.state }}</ion-select-option>\n                </li>\n              </ion-select>\n            </ion-item>\n            <ion-row class=\"contenedorLoc\">\n              <ion-col>\n                <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.city' | translate }}</p>\n              </ion-col>\n            </ion-row>\n            <ion-item class=\"ion-item-select contenedorLoc\" lines=\"none\" detail>\n              <ion-select formControlName=\"city\" [interfaceOptions]=\"customCityOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n                <li *ngFor=\"let obj of cities\">\n                  <ion-select-option [value]=\"obj.id\">{{ obj.city }}</ion-select-option>\n                </li>\n              </ion-select>\n            </ion-item>\n            <ion-button class=\"calInter-Bt\" color=\"blanco\"  color=\"primary1\" (click)=\"locationChange()\">{{ 'EDIT-ACCOUNT.btnSave' | translate }}</ion-button>\n          </ion-content>\n        </ng-template>\n      </ion-modal>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleProfile' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.FName' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"fname\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.LName' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"lname\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n       <!-- <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'ABOUT-ME.Gender' | translate }}*</p>\n        </ion-col>\n      </ion-row>\n         <ion-item detail class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n               \n              <ion-select formControlName=\"gender_S\" [interfaceOptions]=\"customGenderOptions\" interface=\"action-sheet\"\n                placeholder=\"{{ 'ABOUT-ME.Gral_ph' | translate }}\" cancelText=\"Cancel\">\n                  <ion-select-option  *ngFor=\"let obj of genders\" [value]=\"obj.id\">{{ obj.name }}</ion-select-option>\n              </ion-select>\n            </ion-item> -->\n     \n      <ion-row> \n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.Title_iam' | translate }}*</p>\n        </ion-col>\n      </ion-row>\n      <ion-item class=\"ion-item-select\" lines=\"none\" detail>\n        <ion-select formControlName=\"iam_a\" [interfaceOptions]=\"customIamOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n          <li *ngFor=\"let obj of iams\">\n            <ion-select-option [value]=\"obj.id\">{{ obj.name.slice(1) }}</ion-select-option>\n          </li>\n        </ion-select>\n      </ion-item>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.Title_iam_a_looking_for' | translate }}*</p>\n        </ion-col>\n      </ion-row>\n      <ion-item class=\"ion-item-select\" lines=\"none\" detail>\n        <ion-select formControlName=\"iam_looking\"  [interfaceOptions]=\"customiam_lookingOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n          <li *ngFor=\"let obj of iamlookings\">\n            <ion-select-option [value]=\"obj.id\">{{ obj.name.slice(1) }}</ion-select-option>\n          </li>\n        </ion-select>\n      </ion-item>\n      \n      <!-- <ion-row>\n        <ion-col>\n          <ion-button id=\"cal-trigger\" class=\"cal-Bt\"  color=\"primary1\">\n            <ion-img class=\"img-cal\" slot=\"start\" src=\"../../../../assets/icon/11-Calendar_white.png\"></ion-img>\n            <p class=\"text-cal\">{{ 'EDIT-ACCOUNT.TextCalBtn' | translate }}</p>\n            <p class=\"date-cal\">{{txtBirthDay}}</p>\n          </ion-button>\n        </ion-col>\n      </ion-row>\n      <ion-modal #modalC class=\"modal-cal\" [initialBreakpoint]=\"0.6\" [breakpoints]=\"[0.6, 0.6, 0.75]\" trigger=\"cal-trigger\">\n        <ng-template>\n          <ion-content class=\"content-cal\">\n            <ion-datetime\n              presentation=\"date\"\n              formControlName=\"bday\"\n              locale=\"{{ 'EDIT-ACCOUNT.lanCal' | translate }}\"\n              color=\"primary1\"\n              mode=\"ios\"\n            >\n              <span class=\"title-cal\" slot=\"title\">{{ 'EDIT-ACCOUNT.TitleCal' | translate }}</span>\n            </ion-datetime>\n            <ion-button class=\"calInter-Bt\" color=\"blanco\"  color=\"primary1\" (click)=\"setBirthday()\">{{ 'EDIT-ACCOUNT.btnSave' | translate }}</ion-button>\n          </ion-content>\n        </ng-template>\n      </ion-modal> -->\n      \n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleBio' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-item class=\"ion-item-long\" shape=\"round\" lines=\"none\" mode=\"md\">\n        <ion-textarea class=\"input-CItem\" formControlName=\"bio\" inputmode=\"text\" maxlength=\"500\" rows=\"6\" ></ion-textarea>\n      </ion-item>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleEducation' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col size=\"9\">\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.School' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"school\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n        <ion-col size=\"3\">\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.YearSchool' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"yearSchool\" type=\"number\" inputmode=\"numeric\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleWork' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.WorkTitle' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"workTitle\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.WorkCo' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"workCo\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleMore' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-item lines=\"none\" detail (click)=\"aboutMe()\">\n        <ion-label text-wrap>{{ 'EDIT-ACCOUNT.AboutMeText' | translate }}</ion-label>\n        <ion-label class=\"detailText\" slot=\"end\" text-wrap>{{ 'EDIT-ACCOUNT.ChangeText' | translate }}</ion-label>\n      </ion-item>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.Hometown' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"hometown\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.Ethnicity' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"ethnicity\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n\n    </ion-grid>\n  </form>\n</ion-content>\n";
+module.exports = "<ion-header class=\"ion-no-border ion-padding\" color=\"blanco\" >\n  <ion-toolbar color=\"blanco\" >\n    <ion-buttons slot=\"start\">\n      <ion-icon name=\"chevron-back-outline\"  (click)=\"save()\"></ion-icon>\n    </ion-buttons>\n    <ion-title class=\"title_txt\" mode=\"ios\">{{ 'EDIT-ACCOUNT.TitleTxt' | translate }}</ion-title>\n    <ion-buttons slot=\"end\">\n      <!-- <ion-button class=\"save-Bt\" (click)=\"save()\">{{ 'EDIT-ACCOUNT.SaveTxt' | translate }}</ion-button> -->\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content color=\"blanco ion-padding\" fullscreen>\n  <form [formGroup]=\"editAccountForm\">\n    <ion-grid>\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitlePhoto' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-item lines=\"none\" detail (click)=\"setPhotoPrfile()\">\n        <ion-label text-wrap>{{ 'EDIT-ACCOUNT.PhotoText' | translate }}</ion-label>\n        <ion-label class=\"detailText\" slot=\"end\" text-wrap>{{ 'EDIT-ACCOUNT.ChangeText' | translate }}</ion-label>\n      </ion-item>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleLocation' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-item lines=\"none\" >\n        <ion-label class=\"label\">{{ 'EDIT-ACCOUNT.LabelLocGPS' | translate }}</ion-label>\n        <ion-toggle (click)=\"getCurrentPosition()\" class=\"toggleChk\" formControlName=\"locGPSToggle\"></ion-toggle>\n      </ion-item>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <!-- <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.LocationField' | translate }}</ion-label>  -->\n            <p>{{city}}, {{state}}, {{country}}</p>\n            <!-- <ion-input id=\"loc-trigger\" class=\"input-CItem\" [value]=\"location.value\" type=\"text\" inputmode=\"text\" ></ion-input> -->\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <!-- <ion-modal #modalLoc class=\"modal-loc\" [initialBreakpoint]=\"0.6\" [breakpoints]=\"[0.6, 0.6, 0.75]\" trigger=\"loc-trigger\">\n        <ng-template>\n          <ion-content class=\"content-cal\">\n            <ion-row class=\"contenedorLoc\">\n              <ion-col>\n                <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.country' | translate }}</p>\n              </ion-col>\n            </ion-row>\n            <ion-item class=\"ion-item-select contenedorLoc\" lines=\"none\" detail>\n              <ion-select formControlName=\"country\" [interfaceOptions]=\"customCountryOptions\" interface=\"action-sheet\" cancelText=\"Cancel\" (ionChange)=\"selectCountry()\">\n                <li *ngFor=\"let obj of countries\">\n                  <ion-select-option [value]=\"obj.id\">{{ obj.country }}</ion-select-option>\n                </li>\n              </ion-select>\n            </ion-item>\n            <ion-row class=\"contenedorLoc\">\n              <ion-col>\n                <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.state' | translate }}</p>\n              </ion-col>\n            </ion-row>\n            <ion-item class=\"ion-item-select contenedorLoc\" lines=\"none\" detail>\n              <ion-select formControlName=\"state\" [interfaceOptions]=\"customStateOptions\" interface=\"action-sheet\" cancelText=\"Cancel\" (ionChange)=\"selectState()\">\n                <li *ngFor=\"let obj of states\">\n                  <ion-select-option [value]=\"obj.id\">{{ obj.state }}</ion-select-option>\n                </li>\n              </ion-select>\n            </ion-item>\n            <ion-row class=\"contenedorLoc\">\n              <ion-col>\n                <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.city' | translate }}</p>\n              </ion-col>\n            </ion-row>\n            <ion-item class=\"ion-item-select contenedorLoc\" lines=\"none\" detail>\n              <ion-select formControlName=\"city\" [interfaceOptions]=\"customCityOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n                <li *ngFor=\"let obj of cities\">\n                  <ion-select-option [value]=\"obj.id\">{{ obj.city }}</ion-select-option>\n                </li>\n              </ion-select>\n            </ion-item>\n            <ion-button class=\"calInter-Bt\" color=\"blanco\"  color=\"primary1\" (click)=\"locationChange()\">{{ 'EDIT-ACCOUNT.btnSave' | translate }}</ion-button>\n          </ion-content>\n        </ng-template>\n      </ion-modal> -->\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleProfile' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.FName' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"fname\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.LName' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"lname\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n       <!-- <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'ABOUT-ME.Gender' | translate }}*</p>\n        </ion-col>\n      </ion-row>\n         <ion-item detail class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n               \n              <ion-select formControlName=\"gender_S\" [interfaceOptions]=\"customGenderOptions\" interface=\"action-sheet\"\n                placeholder=\"{{ 'ABOUT-ME.Gral_ph' | translate }}\" cancelText=\"Cancel\">\n                  <ion-select-option  *ngFor=\"let obj of genders\" [value]=\"obj.id\">{{ obj.name }}</ion-select-option>\n              </ion-select>\n            </ion-item> -->\n     \n      <ion-row> \n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.Title_iam' | translate }}*</p>\n        </ion-col>\n      </ion-row>\n      <ion-item class=\"ion-item-select\" lines=\"none\" detail>\n        <ion-select formControlName=\"iam_a\" [interfaceOptions]=\"customIamOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n          <li *ngFor=\"let obj of iams\">\n            <ion-select-option [value]=\"obj.id\">{{ obj.name.slice(1) }}</ion-select-option>\n          </li>\n        </ion-select>\n      </ion-item>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.Title_iam_a_looking_for' | translate }}*</p>\n        </ion-col>\n      </ion-row>\n      <ion-item class=\"ion-item-select\" lines=\"none\" detail>\n        <ion-select formControlName=\"iam_looking\"  [interfaceOptions]=\"customiam_lookingOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n          <li *ngFor=\"let obj of iamlookings\">\n            <ion-select-option [value]=\"obj.id\">{{ obj.name.slice(1) }}</ion-select-option>\n          </li>\n        </ion-select>\n      </ion-item>\n      \n      <!-- <ion-row>\n        <ion-col>\n          <ion-button id=\"cal-trigger\" class=\"cal-Bt\"  color=\"primary1\">\n            <ion-img class=\"img-cal\" slot=\"start\" src=\"../../../../assets/icon/11-Calendar_white.png\"></ion-img>\n            <p class=\"text-cal\">{{ 'EDIT-ACCOUNT.TextCalBtn' | translate }}</p>\n            <p class=\"date-cal\">{{txtBirthDay}}</p>\n          </ion-button>\n        </ion-col>\n      </ion-row>\n      <ion-modal #modalC class=\"modal-cal\" [initialBreakpoint]=\"0.6\" [breakpoints]=\"[0.6, 0.6, 0.75]\" trigger=\"cal-trigger\">\n        <ng-template>\n          <ion-content class=\"content-cal\">\n            <ion-datetime\n              presentation=\"date\"\n              formControlName=\"bday\"\n              locale=\"{{ 'EDIT-ACCOUNT.lanCal' | translate }}\"\n              color=\"primary1\"\n              mode=\"ios\"\n            >\n              <span class=\"title-cal\" slot=\"title\">{{ 'EDIT-ACCOUNT.TitleCal' | translate }}</span>\n            </ion-datetime>\n            <ion-button class=\"calInter-Bt\" color=\"blanco\"  color=\"primary1\" (click)=\"setBirthday()\">{{ 'EDIT-ACCOUNT.btnSave' | translate }}</ion-button>\n          </ion-content>\n        </ng-template>\n      </ion-modal> -->\n      \n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleBio' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-item class=\"ion-item-long\" shape=\"round\" lines=\"none\" mode=\"md\">\n        <ion-textarea class=\"input-CItem\" formControlName=\"bio\" inputmode=\"text\" maxlength=\"500\" rows=\"6\" ></ion-textarea>\n      </ion-item>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleEducation' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col size=\"9\">\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.School' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"school\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n        <ion-col size=\"3\">\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.YearSchool' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"yearSchool\" type=\"number\" inputmode=\"numeric\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleWork' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.WorkTitle' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"workTitle\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.WorkCo' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"workCo\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleMore' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-item lines=\"none\" detail (click)=\"aboutMe()\">\n        <ion-label text-wrap>{{ 'EDIT-ACCOUNT.AboutMeText' | translate }}</ion-label>\n        <ion-label class=\"detailText\" slot=\"end\" text-wrap>{{ 'EDIT-ACCOUNT.ChangeText' | translate }}</ion-label>\n      </ion-item>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.Hometown' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"hometown\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.Ethnicity' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"ethnicity\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n\n    </ion-grid>\n  </form>\n</ion-content>\n";
 
 /***/ })
 

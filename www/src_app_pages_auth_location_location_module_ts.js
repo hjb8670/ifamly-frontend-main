@@ -393,43 +393,6 @@ PipesModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(0,_angular_cor
 
 /***/ }),
 
-/***/ 60744:
-/*!*********************************************************************!*\
-  !*** ./node_modules/@capacitor/geolocation/dist/esm/definitions.js ***!
-  \*********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-
-
-/***/ }),
-
-/***/ 60416:
-/*!***************************************************************!*\
-  !*** ./node_modules/@capacitor/geolocation/dist/esm/index.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Geolocation: () => (/* binding */ Geolocation)
-/* harmony export */ });
-/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/core */ 3536);
-/* harmony import */ var _capacitor_synapse__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/synapse */ 88504);
-/* harmony import */ var _definitions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./definitions */ 60744);
-
-
-const Geolocation = (0,_capacitor_core__WEBPACK_IMPORTED_MODULE_0__.registerPlugin)('Geolocation', {
-  web: () => __webpack_require__.e(/*! import() */ "node_modules_capacitor_geolocation_dist_esm_web_js").then(__webpack_require__.bind(__webpack_require__, /*! ./web */ 25424)).then(m => new m.GeolocationWeb())
-});
-(0,_capacitor_synapse__WEBPACK_IMPORTED_MODULE_1__.exposeSynapse)();
-
-
-
-/***/ }),
-
 /***/ 34192:
 /*!*******************************************************************!*\
   !*** ./src/app/pages/auth/location/location.page.scss?ngResource ***!
@@ -505,62 +468,6 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 
 "use strict";
 module.exports = "<ion-header class=\"ion-no-border ion-padding\" color=\"blanco\" >\n  <ion-toolbar color=\"blanco\" >\n    <ion-buttons slot=\"start\">\n      <ion-back-button icon=\"chevron-back\" defaultHref=\"profile-details\" mode=\"md\"></ion-back-button>\n    </ion-buttons>\n    <!-- <ion-buttons slot=\"end\">\n      <ion-button class=\"skip-Bt\" (click)=\"next('skip')\" defaultHref=\"profile-details\">Skip</ion-button>\n    </ion-buttons> -->\n  </ion-toolbar>\n</ion-header>\n\n<ion-content color=\"blanco ion-padding\" fullscreen>\n  <!-- <form [formGroup]=\"locationForm\" (ngSubmit)=\"next('next')\"> -->\n    <ion-grid>\n      <ion-row>\n        <ion-col>\n          <h1 class=\"text-h1\">{{ 'LOCATION.Title' | translate }}</h1>\n        </ion-col>\n      </ion-row>\n    \n\n      <ion-row>\n        <ion-col>\n          <ion-item id=\"open-country\" class=\"campoItem\"  lines=\"none\" detail>\n            <ion-label>{{country}}</ion-label>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <!-- <ion-modal #mCountry trigger=\"open-country\" [initialBreakpoint]=\"0.25\" [breakpoints]=\"[0, 0.25, 0.5, 0.75]\">\n        <ng-template>\n          <ion-content>\n            <ion-searchbar placeholder=\"{{ 'LOCATION.SearchC' | translate }}\" (click)=\"mCountry.setCurrentBreakpoint(0.75)\" (ionChange)=\"searchCountry($event)\"></ion-searchbar>\n            <ion-list>\n              <ion-item *ngFor=\"let obj of countries | filterSearch:countryBuscar:'country'\" (click)=\"selectCountry(obj.id, obj.country)\">\n                <ion-label>{{obj.country}}</ion-label>\n              </ion-item>\n            </ion-list>\n          </ion-content>\n        </ng-template>\n      </ion-modal> -->\n\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"campoItem\"  lines=\"none\" detail>\n            <ion-label>{{state}}</ion-label>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <!-- <ion-modal #mState [initialBreakpoint]=\"0.25\" [breakpoints]=\"[0, 0.25, 0.5, 0.75]\">\n        <ng-template>\n          <ion-content>\n            <ion-searchbar placeholder=\"{{ 'LOCATION.SearchS' | translate }}\" (click)=\"mState.setCurrentBreakpoint(0.75)\" (ionChange)=\"searchState($event)\"></ion-searchbar>\n            <ion-list>\n              <ion-item *ngFor=\"let obj of states | filterSearch:stateBuscar:'state'\" (click)=\"selectState(obj)\">\n                <ion-label>{{obj.state}}</ion-label>\n              </ion-item>\n            </ion-list>\n          </ion-content>\n        </ng-template>\n      </ion-modal> -->\n\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"campoItem\"  lines=\"none\" detail>\n            <ion-label>{{city}}</ion-label>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <!-- <div *ngIf=\"idState != ''\"> -->\n      <!-- <ion-modal #mCity [initialBreakpoint]=\"0.25\" [breakpoints]=\"[0, 0.25, 0.5, 0.75]\">\n        <ng-template>\n          <ion-content>\n            <ion-searchbar placeholder=\"{{ 'LOCATION.SearchCt' | translate }}\" (click)=\"mCity.setCurrentBreakpoint(0.75)\" (ionChange)=\"searchCity($event)\"></ion-searchbar>\n            <ion-list>\n              <ion-item *ngFor=\"let obj of cities | filterSearch:cityBuscar:'city'\" (click)=\"selectCity(obj.id, obj.city)\">\n                <ion-label>{{obj.city}}</ion-label>\n              </ion-item>\n            </ion-list>\n          </ion-content>\n        </ng-template>\n      </ion-modal> -->\n      <!-- </div> -->\n\n      <ion-row>\n        <ion-button class=\"next-Bt\" color=\"primary1\" (click)=\"next('next')\">\n          {{ 'LOCATION.btnNext' | translate }}\n        </ion-button>\n      </ion-row>\n\n    </ion-grid>\n  <!-- </form> -->\n\n</ion-content>";
-
-/***/ }),
-
-/***/ 88504:
-/*!**********************************************************!*\
-  !*** ./node_modules/@capacitor/synapse/dist/synapse.mjs ***!
-  \**********************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   exposeSynapse: () => (/* binding */ y)
-/* harmony export */ });
-/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
-
-function s(t) {
-  t.CapacitorUtils.Synapse = new Proxy({}, {
-    get(e, o) {
-      return new Proxy({}, {
-        get(w, r) {
-          return (c, p, n) => {
-            const i = t.Capacitor.Plugins[o];
-            if (i === void 0) {
-              n(new Error(`Capacitor plugin ${o} not found`));
-              return;
-            }
-            if (typeof i[r] != "function") {
-              n(new Error(`Method ${r} not found in Capacitor plugin ${o}`));
-              return;
-            }
-            (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-              try {
-                const a = yield i[r](c);
-                p(a);
-              } catch (a) {
-                n(a);
-              }
-            })();
-          };
-        }
-      });
-    }
-  });
-}
-function u(t) {
-  t.CapacitorUtils.Synapse = new Proxy({}, {
-    get(e, o) {
-      return t.cordova.plugins[o];
-    }
-  });
-}
-function y(t = !1) {
-  window.CapacitorUtils = window.CapacitorUtils || {}, window.Capacitor !== void 0 && !t ? s(window) : window.cordova !== void 0 && u(window);
-}
-
 
 /***/ })
 

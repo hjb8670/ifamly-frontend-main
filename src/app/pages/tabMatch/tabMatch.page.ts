@@ -9,6 +9,7 @@ import { UiService } from '../../services/ui.service';
 import { TalkService } from '../../services/talk.service';
 import { DataStorageService } from 'src/app/services/data-storage.service';
 import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
+import { TabService } from 'src/app/services/tab.service';
 
 @Component({
   selector: 'app-tabMatch',
@@ -30,7 +31,8 @@ export class TabMatchPage implements OnInit {
     private talkService: TalkService,
     private activatedRoute: ActivatedRoute,
     private authService: FirebaseAuthService,
-    public dataHelper: DataStorageService
+    public dataHelper: DataStorageService,
+    private tabService: TabService
   ) {}
 
   ngOnInit() {
@@ -128,7 +130,12 @@ export class TabMatchPage implements OnInit {
         idConversation: resp["idConversation"]
       }
     };
-    this.router.navigate(['main/tabs/message'], navExtras);
+    
+    // Navigate to message tab and trigger the tab change
+    this.router.navigate(['main/tabs/message'], navExtras).then(() => {
+      // Update tab state using the tab service
+      this.tabService.setActiveTab('message');
+    });
   }
 
 }

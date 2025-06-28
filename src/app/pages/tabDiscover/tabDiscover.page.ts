@@ -511,6 +511,11 @@ export class TabDiscoverPage implements AfterViewInit{
         return;
       } */
 
+    // Store the current user before removing it for potential rollback
+    if(this.discoverUsrs.length > 0) {
+      this.antDiscoverUsrs = {...this.discoverUsrs[this.posCardGlobal]};
+    }
+
     this.discoverUsrs.pop();
     this.posCardGlobal--;
     
@@ -575,7 +580,20 @@ export class TabDiscoverPage implements AfterViewInit{
       this.uiService.hideLoader();
       // this.uiService.alertOK(this.translate.instant('DISCOVER.rollbackTrue'));
       this.idAntDiscover = 0;
-      await this.reLoadDiscover();
+      
+      // Instead of reloading all profiles, just add the previous user back to the stack
+      if(this.antDiscoverUsrs) {
+        this.discoverUsrs.push(this.antDiscoverUsrs);
+        this.posCardGlobal++;
+        
+        // Re-enable gestures for the new card
+        setTimeout(() => {
+          const cardArray = this.cards.toArray();
+          this.useSwipe(cardArray);
+        }, 100);
+        
+        this.antDiscoverUsrs = null; // Clear the stored user
+      }
     }else{
       this.uiService.hideLoader();
       this.uiService.alertOK(this.translate.instant('DISCOVER.rollbackFalse'));

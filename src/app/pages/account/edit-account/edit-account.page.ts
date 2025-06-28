@@ -334,9 +334,8 @@ this.uiService.showLoader();
     // let res2 = <boolean> await this.userService.setCatalogo(this.iam_looking.value);
 
     this.uiService.hideLoader();
-    if(!res0 && !res1){
-     // this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
-      this.router.navigate(['main/tabs/account']);
+    if(!res0 || !res1){
+      this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
       return;
     }
     this.router.navigate(['main/tabs/account']);

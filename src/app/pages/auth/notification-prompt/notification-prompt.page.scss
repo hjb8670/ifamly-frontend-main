@@ -1,0 +1,41 @@
+.notification-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .notification-content {
+    text-align: center;
+    width: 100%;
+    max-width: 320px;
+    margin: auto;
+  }
+
+  .bell-icon {
+    width: 200px;
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: #000;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 30px;
+  }
+
+  .allow-btn {
+    --background: #000;
+    --color: #fff;
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  .skip-btn {
+    color: #000;
+    text-transform: none;
+  }
+}

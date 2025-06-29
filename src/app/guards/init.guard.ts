@@ -45,6 +45,14 @@ export class InitGuard implements CanActivate {
   }
 
   async goDiscovers() {
+  // Check if notifications are allowed before navigating
+  const isNotifAllowed = this.userService.getNotificationsAllowed();
+  if (!isNotifAllowed) {
+    await this.router.navigate(['/notification-prompt']);
+    return;
+  }
+
+
     const discoverUsrs = await this.preLoadDis();
     console.log('GO DISCOVER USRS: ', discoverUsrs);
     

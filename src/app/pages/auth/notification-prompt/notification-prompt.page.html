@@ -1,0 +1,16 @@
+<ion-content class="ion-padding notification-page">
+  <div class="notification-content">
+    <img src="assets/notification-bell.png" alt="Notification Bell" class="bell-icon" />
+
+    <h2 class="title">Don’t miss a message or match!</h2>
+    <p class="subtitle">
+      Turn on your notifications so we can let you know when you have new matches, likes, or messages.
+    </p>
+
+    <ion-button expand="block" class="allow-btn" (click)="allowNotifications()">
+      Allow notifications
+    </ion-button>
+
+    <ion-button fill="clear" class="skip-btn" (click)="skip()">Skip</ion-button>
+  </div>
+</ion-content>

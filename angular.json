@@ -28,7 +28,8 @@
                 "glob": "**/*.svg",
                 "input": "node_modules/ionicons/dist/ionicons/svg",
                 "output": "./svg"
-              }
+              },
+              "src/firebase-messaging-sw.js"
             ],
             "styles": ["src/theme/variables.scss", "src/global.scss", "node_modules/flag-icons/css/flag-icons.min.css", "node_modules/swiper/swiper-bundle.min.css"],
             "scripts": [],

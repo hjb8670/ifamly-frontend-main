@@ -136,6 +136,12 @@ export class MyMobilePage implements OnInit {
 
     // Save it somewhere accessible (like a service or localStorage)
     this.userService.setUserr(user);
+    
+    // Store OAuth provider info if available
+    if (this.rs && (this.rs === 'google' || this.rs === 'apple')) {
+      this.userService.setOAuthProvider(this.rs);
+    }
+    
     this.router.navigate(['profile-details'], navegationExtras);
    
 

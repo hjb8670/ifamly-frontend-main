@@ -4,6 +4,7 @@ import Talk from 'talkjs';
 import { TalkService } from '../../services/talk.service';
 import { User } from 'src/app/interfaces/interfaces';
 import { MatchService } from 'src/app/services/match.service';
+import { TabService } from 'src/app/services/tab.service';
 
 @Component({
   selector: 'app-tabs',
@@ -25,10 +26,15 @@ export class TabsPage {
   constructor(private userService: UserService, 
     private talkService: TalkService,
     public matchService:MatchService,
-    private cdr: ChangeDetectorRef // Inyectamos ChangeDetectorRef
+    private cdr: ChangeDetectorRef, // Inyectamos ChangeDetectorRef
+    private tabService: TabService
   ) {
     this.activeDiscover = true;
 
+    // Subscribe to tab changes
+    this.tabService.currentTab$.subscribe(tab => {
+      this.changeIcon(tab);
+    });
   }
 
   async ngOnInit(){
@@ -69,6 +75,9 @@ export class TabsPage {
       this.activeMessage = false;
       this.activeAccount = true;
     }
+    
+    // Update the tab service
+    this.tabService.setActiveTab(page);
   }
 
   async escucharTalkJS(){

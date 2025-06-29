@@ -34,11 +34,19 @@ export class UserService {
    /*  private utilitiesService: UtilitiesService, */
   ) { }
   private user: User = {};
+  private oauthProvider: string = '';
 
   setUserr(user: Partial<User>) {
     this.user = { ...this.user, ...user };
   }
   
+  setOAuthProvider(provider: string) {
+    this.oauthProvider = provider;
+  }
+  
+  getOAuthProvider(): string {
+    return this.oauthProvider;
+  }
 
   getUserr(): User {
     return this.user;
@@ -129,6 +137,28 @@ export class UserService {
         },
         error: async error => {
           console.log("ERROR CON EL SERVIDOR", error);
+          this.token = null;
+          await Storage.remove( {key: 'token'} );
+          resolve(error);
+        }
+      });
+    });
+  }
+
+  registerOAuth(usuario: User) {
+   
+    const headers = new HttpHeaders()
+          .set('Content-Type', 'application/json');
+          
+    return new Promise(resolve => {
+      this.http.post(`${URL}/register-oauth`, usuario, { headers }).subscribe({
+
+        next: async resp => {
+          console.log('OAuth Registration Response:', resp);
+          resolve(resp);
+        },
+        error: async error => {
+          console.log("ERROR OAuth REGISTRATION", error);
           this.token = null;
           await Storage.remove( {key: 'token'} );
           resolve(error);
@@ -645,10 +675,13 @@ export class UserService {
     return new Promise(resolve => {
       this.http.get(`${URL}/catalogue/set-item-xperson/${id}`, { headers }).subscribe({ 
         next: resp => {
-          if (resp['sCode'] != 200) {
+          console.log('SET CATALOGO RESPONSE:', resp);
+          if (resp['sCode'] && resp['sCode'] == 200) {
+            resolve(true);
+          } else {
+            console.log('Catalog set failed with code:', resp['sCode']);
             resolve(false);
           }
-          resolve(true);
         },
         error:err => {
           console.log('ERR SET CATALOGO', err);
@@ -682,10 +715,14 @@ export class UserService {
     return new Promise(resolve => {
       this.http.post(`${URL}/catalogue/update-items`,  data, { headers }).subscribe({ 
         next: resp => {
-          if (resp['sCode'] != 70) {
+          console.log('SET CATALOGO MULTIPLE RESPONSE:', resp);
+          // Accept multiple success codes: 70, 200, or any positive response
+          if (resp['sCode'] && (resp['sCode'] == 70 || resp['sCode'] == 200 || resp['sCode'] > 0)) {
+            resolve(true);
+          } else {
+            console.log('Catalog update failed with code:', resp['sCode']);
             resolve(false);
           }
-          resolve(true);
         },
         error:err => {
           console.log('ERR SET CATALOGO', err);

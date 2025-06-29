@@ -7,14 +7,14 @@ export const environment = {
 
   // urlSrv: 'http://3.129.84.172:8081', //UAT
   // urlSrv: 'http://18.116.89.191:8081', //UAT Miami
-  //urlSrv: 'http://localhost:8081',
+  // urlSrv: 'http://localhost:8081',
   urlSrv: 'https://ifmly.com', //PROD
 
   //IPInfo.io para obtener CountryISO del Device
   urlSrvIPInfo: 'https://ipinfo.io',
   tokenIPInfo: 'a6dba9b2952bf5',
 
-  //Firebase configuration
+  // Firebase configuration
   firebaseConfig: {
     apiKey: "AIzaSyCczSqPLOZOvONTX32f8_02tydFMrojPX8",
     authDomain: "ifamily-180d6.firebaseapp.com",

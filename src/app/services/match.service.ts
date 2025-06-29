@@ -39,11 +39,11 @@ export class MatchService {
     console.log("Basic prince");
 
     this.todayMatchPerson = <MatchPerson[]> await this.getMatches(constants.matcheOlder.today, this.user.personId);
-    this.setAvatarImg(this.todayMatchPerson);
+    // this.setAvatarImg(this.todayMatchPerson);
     this.yesterdayMatchPerson = <MatchPerson[]> await this.getMatches(constants.matcheOlder.yesterday, this.user.personId);
-    this.setAvatarImg(this.yesterdayMatchPerson);
+    // this.setAvatarImg(this.yesterdayMatchPerson);
     this.oldMatchPerson = <MatchPerson[]> await this.getMatches(constants.matcheOlder.old, this.user.personId);
-    this.setAvatarImg(this.oldMatchPerson);
+    // this.setAvatarImg(this.oldMatchPerson);
     this.uiService.hideLoader();
     // console.log('MATCH TODAY: ', this.todayMatchPerson);
     // console.log('MATCH YESTERADY: ', this.yesterdayMatchPerson);
@@ -75,23 +75,23 @@ export class MatchService {
     
   }
 
-  async setAvatarImg(matchP: MatchPerson[]) {
+  // async setAvatarImg(matchP: MatchPerson[]) {
  
-    for (const usr of matchP) {
-      usr.image = '../../../assets/icon/30-Default_no-image.jpeg';
-      // validación para tomar el otro usuario del match
-      let personId = (usr.personLiked.toString() == this.user.personId ? usr.personLikes : usr.personLiked);
-      let res_imgs =  <ImagesUser[]> await this.getIMGSOfPerson(personId.toString());
-      res_imgs = res_imgs.filter(res => res.avatar);
-      usr.image = res_imgs[0]?.multimediaUrl;
-      /*for (const img of res_imgs) {
-        if(img.avatar) {
-          usr.image = img.multimediaUrl;
-        }
-      }*/
-    }
+  //   for (const usr of matchP) {
+  //     usr.image = '../../../assets/icon/30-Default_no-image.jpeg';
+  //     // validación para tomar el otro usuario del match
+  //     let personId = (usr.personLiked.toString() == this.user.personId ? usr.personLikes : usr.personLiked);
+  //     let res_imgs =  <ImagesUser[]> await this.getIMGSOfPerson(personId.toString());
+  //     res_imgs = res_imgs.filter(res => res.avatar);
+  //     usr.image = res_imgs[0]?.multimediaUrl;
+  //     /*for (const img of res_imgs) {
+  //       if(img.avatar) {
+  //         usr.image = img.multimediaUrl;
+  //       }
+  //     }*/
+  //   }
 
-  }
+  // }
 
   async getDiscoverProfiles( pagNextId: string, pagRecordLimit: string, filter: {} ) {
      
@@ -201,10 +201,11 @@ export class MatchService {
           let usrMatchPerson = <MatchPerson[]> resp['sData']
           for (const usr of usrMatchPerson) {
             let personId = (usr.personLiked.toString() == personIdOwner ? usr.personLikes : usr.personLiked);
-            let dataUsr = <User> await this.userService.getUser(personId.toString());
+            let dataUsr = <User> await this.userService.getUserOnly(personId.toString());
             usr.name = dataUsr.firstName;
             usr.lastName =  dataUsr.lastName;
             usr.age = dataUsr.age
+            usr.image = dataUsr.image.multimediaUrl;
           }
 
           console.log('RES - Matches: ', usrMatchPerson);

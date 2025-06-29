@@ -6,7 +6,7 @@ export interface User {
     personId?: string,
     firstName?: string,
     lastName?: string,
-    image?: string,
+    image?: ImagesUser,
     email?: string,
     password?: string,
     phone?: string,

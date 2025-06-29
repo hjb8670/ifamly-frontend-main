@@ -9,6 +9,7 @@ import { UiService } from '../../services/ui.service';
 import { TalkService } from '../../services/talk.service';
 import { DataStorageService } from 'src/app/services/data-storage.service';
 import { FirebaseAuthService } from 'src/app/services/firebase-auth.service';
+import { TabService } from 'src/app/services/tab.service';
 
 @Component({
   selector: 'app-tabMatch',
@@ -30,7 +31,8 @@ export class TabMatchPage implements OnInit {
     private talkService: TalkService,
     private activatedRoute: ActivatedRoute,
     private authService: FirebaseAuthService,
-    public dataHelper: DataStorageService
+    public dataHelper: DataStorageService,
+    private tabService: TabService
   ) {}
 
   ngOnInit() {
@@ -74,15 +76,15 @@ export class TabMatchPage implements OnInit {
       : constants.languages.en.toString();
   }
 
-  async setAvatarImg(matchP: MatchPerson[]) {
-    for (const usr of matchP) {
-      usr.image = '../../../assets/icon/30-Default_no-image.jpeg';
-      const personId = (usr.personLiked.toString() === this.user.personId ? usr.personLikes : usr.personLiked);
-      let res_imgs = <ImagesUser[]>await this.matchService.getIMGS(personId.toString());
-      res_imgs = res_imgs.filter(res => res.avatar);
-      usr.image = res_imgs[0]?.multimediaUrl;
-    }
-  }
+  // async setAvatarImg(matchP: MatchPerson[]) {
+  //   for (const usr of matchP) {
+  //     usr.image = '../../../assets/icon/30-Default_no-image.jpeg';
+  //     const personId = (usr.personLiked.toString() === this.user.personId ? usr.personLikes : usr.personLiked);
+  //     let res_imgs = <ImagesUser[]>await this.matchService.getIMGS(personId.toString());
+  //     res_imgs = res_imgs.filter(res => res.avatar);
+  //     usr.image = res_imgs[0]?.multimediaUrl;
+  //   }
+  // }
 
   selectMatch(match: MatchPerson) {
     const otherPerson = (match.personLiked.toString() === this.user.personId ? match.personLikes : match.personLiked);
@@ -128,7 +130,12 @@ export class TabMatchPage implements OnInit {
         idConversation: resp["idConversation"]
       }
     };
-    this.router.navigate(['main/tabs/message'], navExtras);
+    
+    // Navigate to message tab and trigger the tab change
+    this.router.navigate(['main/tabs/message'], navExtras).then(() => {
+      // Update tab state using the tab service
+      this.tabService.setActiveTab('message');
+    });
   }
 
 }

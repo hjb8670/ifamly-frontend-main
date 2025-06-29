@@ -60,7 +60,7 @@ export class TabAccountPage implements OnInit {
     
     await this.getAvatarImg();
   
-    this.imgProfile = this.usrApp.image;
+    this.imgProfile = this.usrApp.image.multimediaUrl;
   console.log(this.imgProfile);
     this.textAboutMe = this.usrApp?.aboutMe  || '';
     this.uiService.hideLoader();
@@ -81,7 +81,7 @@ export class TabAccountPage implements OnInit {
         this.galImgs[i] = '../../../assets/icon/30-Default_no-image.jpeg';
         this.galImgs[i++] = img.multimediaUrl;
       } else {
-        this.usrApp.image = img.multimediaUrl;
+        this.usrApp.image.multimediaUrl = img.multimediaUrl;
       }
     }
   }

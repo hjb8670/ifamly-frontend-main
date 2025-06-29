@@ -466,10 +466,10 @@ export class AboutMePage implements OnInit {
 
   async next(op: string) {
     
-     if(this.aboutMeForm.invalid) {
-    this.uiService.alertOK(this.translate.instant('EXP-DETAIL.PleaseFill'));
-    return; // Don't proceed with save
-  }
+  //    if(this.aboutMeForm.invalid) {
+  //   this.uiService.alertOK(this.translate.instant('EXP-DETAIL.PleaseFill'));
+  //   return; // Don't proceed with save
+  // }
     if (op == 'next') {
       this.router.navigate(['edit-account']);
       let usr: User = { height: this.selectedHeight };

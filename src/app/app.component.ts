@@ -9,6 +9,7 @@ import { FirebaseAuthService } from './services/firebase-auth.service';
 import { GoogleSignInService } from './services/google-sign-in.service';
 import { ModalController, NavController } from '@ionic/angular';
 import { SelectlangPage } from './pages/selectlang/selectlang.page';
+import { NotificationService } from './services/notification.service';
 
 registerLocaleData(mx);
 registerLocaleData(localeMx, 'es');
@@ -25,7 +26,8 @@ export class AppComponent {
     private firebaseAuthService: FirebaseAuthService,
     public modalController: ModalController,
      private navCtrl: NavController,
-    private googleSingInService: GoogleSignInService
+    private googleSingInService: GoogleSignInService,
+    private notificationService: NotificationService
   ) {
     
     this.initializeApp();
@@ -63,6 +65,8 @@ async initializeApp() {
       return await modal.present();
      
     }
+
+    this.notificationService.listenToMessages();
   } catch (error) {
     console.log('Failed to initialize LANGUAGE: ', error);
     // Fallback to the language selection page in case of an error

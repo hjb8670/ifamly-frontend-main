@@ -55,6 +55,7 @@ export interface User {
     queSoy?: string,
     rateExperiences?: number,
     rateUserExperiences?: number,
+    notificationEnabled?: boolean,
 }
 
 export interface ImagesUser {

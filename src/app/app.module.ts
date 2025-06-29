@@ -18,6 +18,9 @@ import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { GoogleTranslateLoader } from './services/google-translate.loader';
 import { register } from 'swiper/element/bundle';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideMessaging, getMessaging } from '@angular/fire/messaging';
+
 register();
 
 export function createTranslateLoader(http: HttpClient) {

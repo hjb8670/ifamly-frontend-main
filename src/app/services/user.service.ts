@@ -23,6 +23,7 @@ export class UserService {
   public sesionFin: boolean = false;
   private firebaseAuthService: any;
   public navegationExtras:NavigationExtras;
+  private notificationsAllowed: boolean = false;
 
   constructor(  
     private http: HttpClient,
@@ -43,6 +44,17 @@ export class UserService {
   getUserr(): User {
     return this.user;
   }
+
+  setNotificationsAllowed(value: boolean) {
+    this.notificationsAllowed = value;
+    localStorage.setItem('notificationsAllowed', value.toString());
+  }
+
+  getNotificationsAllowed(): boolean {
+    const stored = localStorage.getItem('notificationsAllowed');
+    return this.notificationsAllowed || stored === 'true';
+  }
+
   login(username: string, password: string) {
     const data = { username, password };
 
@@ -972,6 +984,24 @@ export class UserService {
       console.error('Error al obtener ID Token de Apple:', error);
     }
     return false;
+  }
+
+  async sendDeviceToken(token: String): Promise<boolean> {
+    const headers = new HttpHeaders()
+          .set('Content-Type', 'application/json')
+          .set('Authorization', this.token);
+    return new Promise(resolve => {
+      this.http.post(`${URL}/notification`, {"notificationEnabled": true, "deviceToken": token}, { headers }).subscribe({
+        next: resp => {
+          console.log('Device token sent successfully:', resp);
+          resolve(true);
+        },
+        error: err => {
+          console.error('Error sending device token:', err);
+          resolve(false);
+        }
+      });
+    });
   }
 
 }

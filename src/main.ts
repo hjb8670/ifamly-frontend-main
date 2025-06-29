@@ -8,5 +8,10 @@ if (environment.production) {
   enableProdMode();
 }
 
+
+  navigator.serviceWorker.register('firebase-messaging-sw.js')
+    .then(reg => console.log('Service Worker Registered', reg));
+
+
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.log(err));

@@ -55,6 +55,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/auth/location/location.module').then( m => m.LocationPageModule)
   },
   {
+    path: 'notification-prompt',
+    loadChildren: () => import('./pages/auth/notification-prompt/notification-prompt.module').then( m => m.NotificationPromptPageModule)
+  },
+  {
     path: 'detail-exp',
     loadChildren: () => import('./pages/experience/detail-exp/detail-exp.module').then( m => m.DetailExpPageModule),
     canLoad: [ UserGuard ]

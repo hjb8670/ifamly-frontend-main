@@ -22,6 +22,8 @@ import { DetailMatchMenuPopoverPage } from '../match/detail-match-menu-popover/d
 export class TabDiscoverPage implements AfterViewInit{
   @ViewChildren(IonCard, {read: ElementRef}) cards: QueryList<ElementRef>;
   @ViewChild(IonModal) modal: IonModal;
+  @ViewChild('swiperEl', { static: false }) swiperElRef!: ElementRef;
+
   isLoading = true;
 
   private limToLoadProfiles = 3;//se actualizo a 0 por que no actualizaba el final 
@@ -252,8 +254,15 @@ export class TabDiscoverPage implements AfterViewInit{
 
   }
 
+  // async ngAfterViewInit() {
+  //   //await this.reLoadDiscover();
+  // }
+
   async ngAfterViewInit() {
-    //await this.reLoadDiscover();
+    const swiper = this.swiperElRef.nativeElement;
+    if (swiper && swiper.initialize) {
+      swiper.initialize();
+    }
   }
 
   iniSizeContenedorCard(){
@@ -598,6 +607,11 @@ export class TabDiscoverPage implements AfterViewInit{
     await this.setStatusDiscover(this.discoverUsrs[this.posCardGlobal].personId, this.statusUsrDicover.like);
     this.likeBtn = false;
     this.uiService.hideLoader();
+  }
+
+  getNames(items?: { name: string }[]): string {
+    if (!items || items.length === 0) return '';
+    return items.slice(0, 3).map(i => i.name).join(', ');
   }
 
   async doSuperLike() {

@@ -338,6 +338,39 @@ export class UserService {
     //return { ...this.usuario };
   }
 
+  async getUserOnly(userX: string) {
+    if( !this.usuario?.personId ) {
+       
+    }
+
+    return new Promise<User>((resolve, reject) => {
+      const headers = new HttpHeaders()
+          .set('Content-Type', 'application/json')
+          .set('Authorization', this.token);
+      
+      this.http.get(`${ URL }/discover/get-profile/${userX}`, { headers }).subscribe({
+        next: async resp => {
+          if (resp['sCode'] == 2) {
+            let usr: User = resp['sData'];
+            this.usuario = usr;
+            resolve(usr);
+          } else {
+            resolve({});
+          }
+
+        }, 
+        error: err => {
+          console.log('ERRO VALIDA-TOKEN: ', err);
+          this.sesionFin = true;
+          this.navCtrl.navigateRoot('/login');
+          resolve({});
+        }  
+      });
+    })
+
+    //return { ...this.usuario };
+  }
+
   async getUserBasic3(userX: string) {
 
     return new Promise<User>((resolve, reject) => {

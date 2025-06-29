@@ -74,15 +74,15 @@ export class TabMatchPage implements OnInit {
       : constants.languages.en.toString();
   }
 
-  async setAvatarImg(matchP: MatchPerson[]) {
-    for (const usr of matchP) {
-      usr.image = '../../../assets/icon/30-Default_no-image.jpeg';
-      const personId = (usr.personLiked.toString() === this.user.personId ? usr.personLikes : usr.personLiked);
-      let res_imgs = <ImagesUser[]>await this.matchService.getIMGS(personId.toString());
-      res_imgs = res_imgs.filter(res => res.avatar);
-      usr.image = res_imgs[0]?.multimediaUrl;
-    }
-  }
+  // async setAvatarImg(matchP: MatchPerson[]) {
+  //   for (const usr of matchP) {
+  //     usr.image = '../../../assets/icon/30-Default_no-image.jpeg';
+  //     const personId = (usr.personLiked.toString() === this.user.personId ? usr.personLikes : usr.personLiked);
+  //     let res_imgs = <ImagesUser[]>await this.matchService.getIMGS(personId.toString());
+  //     res_imgs = res_imgs.filter(res => res.avatar);
+  //     usr.image = res_imgs[0]?.multimediaUrl;
+  //   }
+  // }
 
   selectMatch(match: MatchPerson) {
     const otherPerson = (match.personLiked.toString() === this.user.personId ? match.personLikes : match.personLiked);

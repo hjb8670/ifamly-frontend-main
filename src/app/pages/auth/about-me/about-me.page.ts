@@ -466,10 +466,10 @@ export class AboutMePage implements OnInit {
 
   async next(op: string) {
     
-     if(this.aboutMeForm.invalid) {
-    this.uiService.alertOK(this.translate.instant('EXP-DETAIL.PleaseFill'));
-    return; // Don't proceed with save
-  }
+  //    if(this.aboutMeForm.invalid) {
+  //   this.uiService.alertOK(this.translate.instant('EXP-DETAIL.PleaseFill'));
+  //   return; // Don't proceed with save
+  // }
     if (op == 'next') {
       this.router.navigate(['edit-account']);
       let usr: User = { height: this.selectedHeight };
@@ -549,13 +549,12 @@ export class AboutMePage implements OnInit {
       }
 
       this.uiService.hideLoader();
-      // if (!res0 || !res2 || !res3 || !res4 || !res5 || !res6 || !res7 || !res8 || !res9 || !res10 || !res11 || !res12 || !res13 || !res14) {
-       
-      //    //this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
-        
-       
-      //   return;
-      // }
+      
+      // Check if any catalog updates failed
+      if (!res2 || !res3 || !res4 || !res5 || !res6 || !res7 || !res8 || !res9 || !res10 || !res11 || !res12 || !res13 || !res14 || !res15) {
+        this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
+        return;
+      }
     }
      else {
       // this.router.navigate(['location'], this.userService.navegationExtras);

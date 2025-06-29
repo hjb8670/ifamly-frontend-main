@@ -140,7 +140,18 @@ export class IAmALookingForPage implements OnInit {
      console.log(this.usr);
      this.useremail=this.usr.email;
      this.pass=this.usr.password;
-     const res = await this.userService.register(this.usr); 
+     
+     // Check if this is an OAuth user (stored provider info)
+     const oauthProvider = this.userService.getOAuthProvider();
+     const isOAuthUser = oauthProvider === 'google' || oauthProvider === 'apple';
+     
+     let res;
+     if (isOAuthUser) {
+       console.log('Using OAuth registration for user:', this.usr.email, 'Provider:', oauthProvider);
+       res = await this.userService.registerOAuth(this.usr);
+     } else {
+       res = await this.userService.register(this.usr);
+     } 
      console.log(res); 
       if(res['sCode'] == '1') {
         this.tokensaved = res['sData']['token'];
@@ -173,7 +184,8 @@ export class IAmALookingForPage implements OnInit {
       
              if(valido['ok']){
                //this.navCtrl.navigateRoot( '/main/tabs/discover', { animated: true } );
-               this.userService.setUserRS(this.useremail, this.pass, 'email');
+               const provider = isOAuthUser ? oauthProvider : 'email';
+               this.userService.setUserRS(this.useremail, this.pass, provider);
                this.router.navigate(['/main/tabs/discover']);
               // this.uiService.alertOK(this.translate.instant('LOCATION.SuccessMsg2'));
        

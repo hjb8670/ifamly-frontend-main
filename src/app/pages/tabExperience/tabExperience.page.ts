@@ -9,6 +9,8 @@ import { UserService } from '../../services/user.service';
 import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 import { UiService } from 'src/app/services/ui.service';
 import { set } from 'date-fns';
+import { formatDate } from '@angular/common';
+
 
 @Component({
   selector: 'app-tabExperience',
@@ -24,11 +26,14 @@ export class TabExperiencePage {
   private user: User = {};
   public experienceCat: Catalog[] = [];
   public experiences: Experience[] = [];
+  searchTerm: string = '';
+  filteredExperiences: any[] = [];
   private iniExp = 0;
   private deltaExp = 10;
   private cateExp = null;
   public lanDate = 'en_US';
   public mostrarLoginFinito = true;
+  showfilter: boolean = false;
 
   constructor(
     private router: Router,
@@ -59,6 +64,41 @@ export class TabExperiencePage {
       this.lanDate = 'en_US'
     }
   }
+
+  filterexp(){
+    if(this.showfilter == false){
+    this.showfilter=true;
+    }else{
+      this.showfilter=false;
+    }
+  }
+
+  filterExperiences() {
+    const term = this.searchTerm.trim().toLowerCase();
+  
+    if (term.length < 2) {
+      this.filteredExperiences = [...this.experiences]; // Or empty if you prefer
+      return;
+    }
+  
+    this.filteredExperiences = this.experiences.filter(exp => {
+      const title = exp.title;
+       // Format both short and full month version
+       const formattedShort = formatDate(exp.dateTime, 'LLL, dd, hh:mm aa', this.lanDate || 'en-US').toLowerCase();
+       const formattedFull = formatDate(exp.dateTime, 'LLLL, dd, hh:mm aa', this.lanDate || 'en-US').toLowerCase(); 
+      const loc = exp.location || {};
+      return (
+        
+        title.toLowerCase().includes(term) ||
+        loc.country?.toLowerCase().includes(term) ||
+        loc.state?.toLowerCase().includes(term) ||
+        formattedShort.includes(term) ||
+        formattedFull.includes(term) ||
+        loc.city?.toLowerCase().includes(term)
+      );
+    });
+  }
+  
 
   async principal(){
     // const tVal = await this.userService.validaToken();
@@ -95,7 +135,7 @@ export class TabExperiencePage {
       .filter(exp => new Date(exp.dateTime).getTime() >= Date.now()) // filter out past events
       .sort((a, b) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()); // sort soonest to latest
     
-    
+    this.filteredExperiences = [...this.experiences];
     await preloadImages(this.experiences);
     // Now, images should be cached, and blinking should be minimized
     console.log('EXPERIENCIES: ', this.experiences);
@@ -137,8 +177,8 @@ export class TabExperiencePage {
 
   async optionSelected(ev: any) {
     this.cateExp = Number(ev.detail.value);
-    this.experiences = <Experience[]> await this.getExperiences();
-    console.log('EXPERIENCIES: ', this.experiences);
+    this.filteredExperiences = <Experience[]> await this.getExperiences();
+    console.log('EXPERIENCIES: ', this.filteredExperiences);
   }
 
   async loadExp(ev: any){

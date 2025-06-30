@@ -23,6 +23,7 @@ export class UserService {
   public sesionFin: boolean = false;
   private firebaseAuthService: any;
   public navegationExtras:NavigationExtras;
+  private oauthUserData: User = {};
 
   constructor(  
     private http: HttpClient,
@@ -976,6 +977,38 @@ export class UserService {
       console.error('Error al obtener ID Token de Apple:', error);
     }
     return false;
+  }
+
+  setOAuthUserData(userData: User) {
+    this.oauthUserData = { ...this.oauthUserData, ...userData };
+    // Also store in localStorage for persistence
+    localStorage.setItem('oauth_user_data', JSON.stringify(this.oauthUserData));
+  }
+
+  getOAuthUserData(): User {
+    // First try to get from service
+    if (Object.keys(this.oauthUserData).length > 0) {
+      return this.oauthUserData;
+    }
+    
+    // Fallback to localStorage
+    const storedData = localStorage.getItem('oauth_user_data');
+    if (storedData) {
+      try {
+        this.oauthUserData = JSON.parse(storedData);
+        return this.oauthUserData;
+      } catch (e) {
+        console.error('Error parsing stored OAuth data:', e);
+      }
+    }
+    
+    return {};
+  }
+
+  clearOAuthUserData() {
+    this.oauthUserData = {};
+    localStorage.removeItem('oauth_user_data');
+    localStorage.removeItem('oauth_provider');
   }
 
 }

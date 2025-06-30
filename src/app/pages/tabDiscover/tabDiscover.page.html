@@ -22,7 +22,7 @@
   </div>
 
   <div class="contenedorCard" *ngIf="!noDiscoverFound"> <!-- [style.height]="heightImg"> -->
-    <ion-card *ngFor="let usr of discoverUsrs" (click)="viewProfile(usr)">
+    <ion-card *ngFor="let usr of discoverUsrs; let i = index" (click)="viewProfile(usr, i)">
       <!-- <img id="cardIm" class="card-img" [src]="usr.image"> -->
       <img id="cardIm" class="card-img" *ngIf="usr.image?.multimediaUrl" [src]="usr.image.multimediaUrl"
         [style.height]="heightImg" />

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AbstractControl, FormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 import { Catalog, User } from '../../../interfaces/interfaces';
 import { UtilitiesService } from '../../../services/utilities.service';
 import { UiService } from '../../../services/ui.service';
@@ -21,6 +22,8 @@ export class RegistryPage implements OnInit {
   public view = false;
   public isLegal = false;
   public isTerms = false;
+  public isMobile = false;
+  public isWeb = false;
 
   registryForm = this.formBuilder.group( {
     email: ['', [
@@ -61,11 +64,35 @@ export class RegistryPage implements OnInit {
     private utilities: UtilitiesService,
     private googleSingInService: GoogleSignInService,
     private firebaseAuthService: FirebaseAuthService,
-     private userService: UserService,
+    private userService: UserService,
+    private platform: Platform,
   ) { }
 
   ngOnInit() {
     this.isLegal = false;
+    
+    // Detect platform
+    this.isMobile = this.platform.is('mobile') || this.platform.is('capacitor');
+    this.isWeb = this.platform.is('desktop') || this.platform.is('pwa');
+    
+    console.log('Platform detection:', {
+      isMobile: this.isMobile,
+      isWeb: this.isWeb,
+      platform: this.platform.platforms(),
+      userAgent: navigator.userAgent
+    });
+    
+    // Initialize OAuth services for web platform
+    if (this.isWeb) {
+      console.log('Initializing OAuth services for web platform');
+      try {
+        this.googleSingInService.initialize();
+        this.firebaseAuthService.initialize();
+        console.log('OAuth services initialized successfully');
+      } catch (error) {
+        console.error('Failed to initialize OAuth services:', error);
+      }
+    }
   }
 
   regexValidator(regex: RegExp, error: ValidationErrors): ValidatorFn {
@@ -115,28 +142,49 @@ export class RegistryPage implements OnInit {
 
   async singUpGoogle() {
     console.log("SING UP WITH GOOGLE");
-    // if(!this.isLegal){
-    //   this.uiService.alertOK(this.translate.instant('REGISTRY.errorLegal'));
-    //   return;
-    // }
-    // if(!this.isTerms){
-    //   this.uiService.alertOK(this.translate.instant('REGISTRY.errorTerms'));
-    //   return;
-    // }
+    
+    // Check if OAuth is available for current platform
+    if (!this.isMobile && !this.isWeb) {
+      this.uiService.alertOK('Google Sign-In is not available on this platform');
+      return;
+    }
 
     try {
       const usr = await this.googleSingInService.loginViaGoogle();
       console.log('USER GOOGLE: ', usr);
 
-      this.goMobile(usr.email, this.generateRandomPassword(), '', 'google');
+      if (!usr || !usr.email) {
+        throw new Error('Failed to get user data from Google');
+      }
+
+      // Store complete OAuth user data
+      const oauthUserData: User = {
+        email: usr.email,
+        password: this.generateRandomPassword(),
+        firstName: usr.givenName || '',
+        lastName: usr.familyName || '',
+        image: usr.imageUrl || null
+      };
+      
+      this.userService.setOAuthUserData(oauthUserData);
+      this.userService.setOAuthProvider('google');
+
+      this.goMobile(usr.email, oauthUserData.password, `${usr.givenName} ${usr.familyName}`, 'google');
     } catch (error) {
       console.log("Google Sign Up Error", error);
-      this.uiService.alertOK(this.translate.instant('REGISTRY.msgErrGoogle'));
+      this.uiService.alertOK(this.translate.instant('REGISTRY.msgErrGoogle') || 'Google Sign-In failed. Please try again.');
     }
   }
 
   async singUpApple() {
     console.log("SING UP WITH APPLE");
+    
+    // Check if OAuth is available for current platform
+    if (!this.isMobile && !this.isWeb) {
+      this.uiService.alertOK('Apple Sign-In is not available on this platform');
+      return;
+    }
+
     if(!this.isLegal){
       this.uiService.alertOK(this.translate.instant('REGISTRY.errorLegal'));
       return;
@@ -150,12 +198,28 @@ export class RegistryPage implements OnInit {
       const usr = await this.firebaseAuthService.signInWithApple();
       console.log("USER APPLE", usr);
 
-      this.goMobile(usr.email, this.generateRandomPassword(), usr.displayName, 'apple');
+      if (!usr || !usr.email) {
+        throw new Error('Failed to get user data from Apple');
+      }
+
+      // Store complete OAuth user data
+      const oauthUserData: User = {
+        email: usr.email,
+        password: this.generateRandomPassword(),
+        firstName: usr.displayName ? usr.displayName.split(' ')[0] : '',
+        lastName: usr.displayName ? usr.displayName.split(' ').slice(1).join(' ') : '',
+        image: usr.photoURL || null
+      };
+      
+      this.userService.setOAuthUserData(oauthUserData);
+      this.userService.setOAuthProvider('apple');
+
+      this.goMobile(usr.email, oauthUserData.password, usr.displayName, 'apple');
       
       
     } catch (error) {
       console.log("Apple Sign Up Error", error);
-      this.uiService.alertOK(this.translate.instant('REGISTRY.msgErrApple'));
+      this.uiService.alertOK(this.translate.instant('REGISTRY.msgErrApple') || 'Apple Sign-In failed. Please try again.');
     }
 
 

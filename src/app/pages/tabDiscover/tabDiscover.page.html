@@ -13,6 +13,30 @@
     <p class="pNoFoundRegular" *ngIf="discoverUsrs === null">{{ 'DISCOVER.txtToLimit2' | translate }}</p>
   </div>
 
+<!--   <div class="contenedorCard" *ngIf="!noDiscoverFound">  -->
+  <!-- [style.height]="heightImg"> -->
+<!--     <ion-card *ngFor="let usr of discoverUsrs; let i = index" (click)="viewProfile(usr, i)"> -->
+      <!-- <img id="cardIm" class="card-img" [src]="usr.image"> -->
+<!--       <img id="cardIm" class="card-img" *ngIf="usr.image?.multimediaUrl" [src]="usr.image.multimediaUrl" -->
+<!--         [style.height]="heightImg" /> -->
+<!--       <img id="cardIm" class="card-img" *ngIf="!usr.image?.multimediaUrl" src="../../../assets/icon/30-Default_no-image.jpeg" -->
+<!--         [style.height]="heightImg" /> -->
+<!--       <div class="card-gradient"></div> -->
+<!--       <div class="card-boton"> -->
+<!--         <ion-buttons class="menuBtn" slot="end" (click)="openMenuPopoverBlock( $event, usr.image.personId )"> -->
+<!--           <ion-icon class="menuIcon" name="ellipsis-vertical"></ion-icon> -->
+<!--         </ion-buttons> -->
+<!--       </div> -->
+<!--       <div class="card-title">{{usr.firstName}} {{usr.lastName}}, {{usr.age}}</div> -->
+<!--       <div class="card-subtitle">{{usr.iam_a.slice(1)}}</div> -->
+      <!-- <div *ngFor="let itm of createTempArray(usr.rate); let i = index">
+        <img class="card-start" src="../../../assets/icon/17-Star_yellow.png" [style.right]="setPositionStart(i)">
+      </div> -->
+      <!-- <div class="card-ratings">({{usr.rates}} {{ 'DISCOVER.RatingTxt' | translate }})</div> -->
+<!--       <img class="card-like-dis" src="../../../assets/icon/18-Dislike.png" *ngIf="usr.status == statusUsrDicover.dislike || disLikeBtn"> -->
+<!--       <img class="card-like-dis" src="../../../assets/icon/20-like_button_white.png" *ngIf="usr.status == statusUsrDicover.like || likeBtn"> -->
+<!--     </ion-card> -->
+<!--   </div> -->
   <swiper-container
   #swiperEl
   slides-per-view="1"
@@ -63,7 +87,6 @@
       </ion-card>
     </swiper-slide>
   </swiper-container>
-
 
   <ion-grid fixed *ngIf="!noDiscoverFound">
     <ion-row class="row-btn ion-no-margin ion-no-padding">

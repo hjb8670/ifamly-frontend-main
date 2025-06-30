@@ -126,31 +126,52 @@ export class IAmALookingForPage implements OnInit {
 
     if( op == 'next' ) {
      
-     // this.usr.iam_a = this.iam_a.value;
-    //  this.usr.iam_looking = this.iam_looking.value;
-      const user: User = {
-        profileIam: this.selectedIamName,
-        profileLookingFor: this.selectedIamllookingName
-        
-      };
-
-      // Save it somewhere accessible (like a service or localStorage)
-      this.userService.setUserr(user);
-      this.usr = this.userService.getUserr();
-     console.log(this.usr);
-     this.useremail=this.usr.email;
-     this.pass=this.usr.password;
-     
      // Check if this is an OAuth user (stored provider info)
      const oauthProvider = this.userService.getOAuthProvider();
      const isOAuthUser = oauthProvider === 'google' || oauthProvider === 'apple';
      
+     // Get the complete user data
+     let completeUserData: User;
+     
+     if (isOAuthUser) {
+       // Merge OAuth data with collected profile data
+       const oauthData = this.userService.getOAuthUserData();
+       const collectedData = this.userService.getUserr();
+       
+       // Validate that we have the required OAuth data
+       if (!oauthData.email || !oauthData.password || !oauthData.firstName || !oauthData.lastName) {
+         console.error('Incomplete OAuth data:', oauthData);
+         this.uiService.alertOK(this.translate.instant('I-AM.oauthDataError') || 'OAuth registration data is incomplete. Please try again.');
+         this.router.navigate(['/registry']);
+         return;
+       }
+       
+       completeUserData = {
+         ...oauthData, // Base OAuth data (email, password, firstName, lastName, image)
+         ...collectedData, // Collected profile data (location, preferences, etc.)
+         profileIam: this.selectedIamName,
+         profileLookingFor: this.selectedIamllookingName
+       };
+       
+       console.log('Complete OAuth user data:', completeUserData);
+     } else {
+       // Regular email registration
+       completeUserData = {
+         ...this.userService.getUserr(),
+         profileIam: this.selectedIamName,
+         profileLookingFor: this.selectedIamllookingName
+       };
+     }
+     
+     this.useremail = completeUserData.email;
+     this.pass = completeUserData.password;
+     
      let res;
      if (isOAuthUser) {
-       console.log('Using OAuth registration for user:', this.usr.email, 'Provider:', oauthProvider);
-       res = await this.userService.registerOAuth(this.usr);
+       console.log('Using OAuth registration for user:', completeUserData.email, 'Provider:', oauthProvider);
+       res = await this.userService.registerOAuth(completeUserData);
      } else {
-       res = await this.userService.register(this.usr);
+       res = await this.userService.register(completeUserData);
      } 
      console.log(res); 
       if(res['sCode'] == '1') {
@@ -186,6 +207,12 @@ export class IAmALookingForPage implements OnInit {
                //this.navCtrl.navigateRoot( '/main/tabs/discover', { animated: true } );
                const provider = isOAuthUser ? oauthProvider : 'email';
                this.userService.setUserRS(this.useremail, this.pass, provider);
+               
+               // Clear OAuth data after successful registration
+               if (isOAuthUser) {
+                 this.userService.clearOAuthUserData();
+               }
+               
                this.router.navigate(['/main/tabs/discover']);
               // this.uiService.alertOK(this.translate.instant('LOCATION.SuccessMsg2'));
        

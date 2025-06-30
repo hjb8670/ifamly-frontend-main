@@ -377,8 +377,8 @@ let EditAccountPage = class EditAccountPage {
         // debugger;
         // let res2 = <boolean> await this.userService.setCatalogo(this.iam_looking.value);
         _this5.uiService.hideLoader();
-        if (!res0 && !res1) {
-          // this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
+        if (!res0 || !res1) {
+          _this5.uiService.alertOK(_this5.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
           _this5.router.navigate(['main/tabs/account']);
           return;
         }

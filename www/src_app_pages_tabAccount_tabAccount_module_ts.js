@@ -157,7 +157,7 @@ let TabAccountPage = class TabAccountPage {
       _this.uiService.showLoader();
       _this.usrApp = yield _this.userService.getUserBasic('');
       yield _this.getAvatarImg();
-      _this.imgProfile = _this.usrApp.image;
+      _this.imgProfile = _this.usrApp.image.multimediaUrl;
       console.log(_this.imgProfile);
       _this.textAboutMe = _this.usrApp?.aboutMe || '';
       _this.uiService.hideLoader();
@@ -180,7 +180,7 @@ let TabAccountPage = class TabAccountPage {
           _this2.galImgs[i] = '../../../assets/icon/30-Default_no-image.jpeg';
           _this2.galImgs[i++] = img.multimediaUrl;
         } else {
-          _this2.usrApp.image = img.multimediaUrl;
+          _this2.usrApp.image.multimediaUrl = img.multimediaUrl;
         }
       }
     })();

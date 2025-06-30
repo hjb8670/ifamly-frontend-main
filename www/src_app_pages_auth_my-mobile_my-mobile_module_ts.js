@@ -171,7 +171,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 24040);
-/* harmony import */ var _my_mobile_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./my-mobile.page */ 14508);
+/* harmony import */ var _my_mobile_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./my-mobile.page */ 92128);
 
 
 
@@ -206,7 +206,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ 71904);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 78848);
 /* harmony import */ var _my_mobile_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./my-mobile-routing.module */ 25948);
-/* harmony import */ var _my_mobile_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./my-mobile.page */ 14508);
+/* harmony import */ var _my_mobile_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./my-mobile.page */ 92128);
 /* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
 /* harmony import */ var src_app_components_components_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/components/components.module */ 7604);
 
@@ -227,7 +227,7 @@ MyMobilePageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([(0,_angu
 
 /***/ }),
 
-/***/ 14508:
+/***/ 92128:
 /*!********************************************************!*\
   !*** ./src/app/pages/auth/my-mobile/my-mobile.page.ts ***!
   \********************************************************/
@@ -362,6 +362,10 @@ let MyMobilePage = class MyMobilePage {
     };
     // Save it somewhere accessible (like a service or localStorage)
     this.userService.setUserr(user);
+    // Store OAuth provider info if available
+    if (this.rs && (this.rs === 'google' || this.rs === 'apple')) {
+      this.userService.setOAuthProvider(this.rs);
+    }
     this.router.navigate(['profile-details'], navegationExtras);
   }
   phoneNumberValidator(phoneNumber) {

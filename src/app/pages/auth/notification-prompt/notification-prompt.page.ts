@@ -16,12 +16,20 @@ export class NotificationPromptPage {
         private notificationService: NotificationService
   ) {}
 
-  async allowNotifications() {
+async allowNotifications() {
+  try {
     const token = await this.notificationService.requestPermission();
+    this.notificationService.listenToMessages(); // Start listening
     await this.userService.sendDeviceToken(token);
     this.userService.setNotificationsAllowed(true);
     this.router.navigate(['/main/tabs/discover']);
+  } catch (err) {
+    console.error('Notification permission denied or failed:', err);
+    this.userService.setNotificationsAllowed(false);
+    this.router.navigate(['/main/tabs/discover']);
   }
+}
+
 
   skip() {
     this.userService.setNotificationsAllowed(false);

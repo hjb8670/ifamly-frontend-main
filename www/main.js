@@ -61,6 +61,9 @@ const routes = [{
   path: 'location',
   loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_pages_auth_location_location_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/auth/location/location.module */ 94139)).then(m => m.LocationPageModule)
 }, {
+  path: 'notification-prompt',
+  loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_pages_auth_notification-prompt_notification-prompt_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/auth/notification-prompt/notification-prompt.module */ 78220)).then(m => m.NotificationPromptPageModule)
+}, {
   path: 'detail-exp',
   loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_experience_service_ts"), __webpack_require__.e("default-src_app_pages_match_detail-match-menu-popover_detail-match-menu-popover_page_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_pages_experience_detail-exp_detail-exp_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/experience/detail-exp/detail-exp.module */ 52436)).then(m => m.DetailExpPageModule),
   canLoad: [_guards_user_guard__WEBPACK_IMPORTED_MODULE_0__.UserGuard]
@@ -143,19 +146,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   AppComponent: () => (/* binding */ AppComponent)
 /* harmony export */ });
 /* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _app_component_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.html?ngResource */ 10440);
 /* harmony import */ var _app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component.scss?ngResource */ 25004);
 /* harmony import */ var _app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/core */ 94280);
-/* harmony import */ var _angular_common_locales_es_MX__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/locales/es-MX */ 10932);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ 65056);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _angular_common_locales_es_MX__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/locales/es-MX */ 10932);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common */ 65056);
 /* harmony import */ var _services_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/language.service */ 42608);
 /* harmony import */ var _services_firebase_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services/firebase-auth.service */ 26372);
 /* harmony import */ var _services_google_sign_in_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./services/google-sign-in.service */ 24572);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 78848);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/angular */ 27832);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular */ 78848);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic/angular */ 27832);
 /* harmony import */ var _pages_selectlang_selectlang_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/selectlang/selectlang.page */ 49036);
+/* harmony import */ var _services_notification_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/notification.service */ 44244);
+/* harmony import */ var _capacitor_local_notifications__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @capacitor/local-notifications */ 16248);
 
 
 
@@ -169,35 +174,42 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_angular_common__WEBPACK_IMPORTED_MODULE_7__.registerLocaleData)(_angular_common_locales_es_MX__WEBPACK_IMPORTED_MODULE_8__["default"]);
-(0,_angular_common__WEBPACK_IMPORTED_MODULE_7__.registerLocaleData)(_angular_common_locales_es_MX__WEBPACK_IMPORTED_MODULE_8__["default"], 'es');
+
+
+(0,_angular_common__WEBPACK_IMPORTED_MODULE_9__.registerLocaleData)(_angular_common_locales_es_MX__WEBPACK_IMPORTED_MODULE_10__["default"]);
+(0,_angular_common__WEBPACK_IMPORTED_MODULE_9__.registerLocaleData)(_angular_common_locales_es_MX__WEBPACK_IMPORTED_MODULE_10__["default"], 'es');
 let AppComponent = class AppComponent {
-  constructor(languageService, firebaseAuthService, modalController, navCtrl, googleSingInService) {
+  constructor(languageService, firebaseAuthService, modalController, navCtrl, googleSingInService, notificationService) {
     this.languageService = languageService;
     this.firebaseAuthService = firebaseAuthService;
     this.modalController = modalController;
     this.navCtrl = navCtrl;
     this.googleSingInService = googleSingInService;
+    this.notificationService = notificationService;
     this.initializeApp();
   }
   ngOnInit() {
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {})();
+    var _this = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      yield _capacitor_local_notifications__WEBPACK_IMPORTED_MODULE_8__.LocalNotifications.requestPermissions();
+      _this.notificationService.listenToMessages();
+    })();
   }
   initializeApp() {
-    var _this = this;
+    var _this2 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         // Initialize Language Service
-        const lang = yield _this.languageService.getSavedLanguage();
+        const lang = yield _this2.languageService.getSavedLanguage();
         if (lang) {
           // If language is saved, set the language and navigate to the login screen
           console.log(lang);
-          _this.languageService.setLanguage(lang);
-          _this.navCtrl.navigateRoot('/registry'); // Navigate to login page
+          _this2.languageService.setLanguage(lang);
+          _this2.navCtrl.navigateRoot('/registry'); // Navigate to login page
         } else {
           // If no language is saved, navigate to language selection page
-          _this.languageService.setInitialAppLanguage(); // Initialize the app language
-          const modal = yield _this.modalController.create({
+          _this2.languageService.setInitialAppLanguage(); // Initialize the app language
+          const modal = yield _this2.modalController.create({
             component: _pages_selectlang_selectlang_page__WEBPACK_IMPORTED_MODULE_6__.SelectlangPage,
             backdropDismiss: false,
             cssClass: 'popupclass'
@@ -210,10 +222,11 @@ let AppComponent = class AppComponent {
           }());
           return yield modal.present();
         }
+        _this2.notificationService.listenToMessages();
       } catch (error) {
         console.log('Failed to initialize LANGUAGE: ', error);
         // Fallback to the language selection page in case of an error
-        const modal = yield _this.modalController.create({
+        const modal = yield _this2.modalController.create({
           component: _pages_selectlang_selectlang_page__WEBPACK_IMPORTED_MODULE_6__.SelectlangPage,
           backdropDismiss: false,
           cssClass: 'popupclass'
@@ -228,13 +241,13 @@ let AppComponent = class AppComponent {
       }
       try {
         // Initialize Firebase Auth Service
-        yield _this.firebaseAuthService.initialize();
+        yield _this2.firebaseAuthService.initialize();
       } catch (error) {
         console.log('Failed to initialize FIREBASE SERVICES: ', error);
       }
       try {
         // Initialize Google SignIn Service
-        _this.googleSingInService.initialize();
+        _this2.googleSingInService.initialize();
       } catch (error) {
         console.log('Failed to initialize GOOGLE SERVICES: ', error);
       }
@@ -246,19 +259,21 @@ let AppComponent = class AppComponent {
     }, {
       type: _services_firebase_auth_service__WEBPACK_IMPORTED_MODULE_4__.FirebaseAuthService
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.ModalController
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_11__.ModalController
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.NavController
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_12__.NavController
     }, {
       type: _services_google_sign_in_service__WEBPACK_IMPORTED_MODULE_5__.GoogleSignInService
+    }, {
+      type: _services_notification_service__WEBPACK_IMPORTED_MODULE_7__.NotificationService
     }];
   }
 };
-AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_12__.Component)({
+AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_13__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_14__.Component)({
   selector: 'app-root',
   template: _app_component_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   providers: [{
-    provide: _angular_core__WEBPACK_IMPORTED_MODULE_12__.LOCALE_ID,
+    provide: _angular_core__WEBPACK_IMPORTED_MODULE_14__.LOCALE_ID,
     useValue: 'es-MX'
   }],
   styles: [(_app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]
@@ -279,20 +294,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   AppModule: () => (/* binding */ AppModule),
 /* harmony export */   createTranslateLoader: () => (/* binding */ createTranslateLoader)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 21124);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 94280);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser */ 50168);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/router */ 24040);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic/angular */ 78848);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ionic/angular */ 27832);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/platform-browser */ 50168);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/router */ 24040);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 78848);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic/angular */ 27832);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app-routing.module */ 80484);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component */ 86108);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ 33712);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
-/* harmony import */ var _angular_fire_compat__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/fire/compat */ 36724);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ 33712);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
+/* harmony import */ var _angular_fire_compat__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/fire/compat */ 36724);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/environments/environment */ 36716);
-/* harmony import */ var _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/fire/compat/auth */ 16088);
+/* harmony import */ var _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/fire/compat/auth */ 16088);
 /* harmony import */ var _services_google_translate_loader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/google-translate.loader */ 47944);
+/* harmony import */ var swiper_element_bundle__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! swiper/element/bundle */ 14508);
 
 
 
@@ -307,24 +323,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+(0,swiper_element_bundle__WEBPACK_IMPORTED_MODULE_4__.register)();
 function createTranslateLoader(http) {
   return new _services_google_translate_loader__WEBPACK_IMPORTED_MODULE_3__.GoogleTranslateLoader(http);
 }
 let AppModule = class AppModule {};
-AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.NgModule)({
+AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.NgModule)({
   declarations: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent],
-  imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__.BrowserModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_7__.IonicModule.forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HttpClientModule, _ngx_translate_core__WEBPACK_IMPORTED_MODULE_9__.TranslateModule.forRoot({
+  imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__.BrowserModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.IonicModule.forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpClientModule, _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__.TranslateModule.forRoot({
     loader: {
-      provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_9__.TranslateLoader,
+      provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__.TranslateLoader,
       useFactory: createTranslateLoader,
-      deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HttpClient]
+      deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpClient]
     }
-  }), _angular_fire_compat__WEBPACK_IMPORTED_MODULE_10__.AngularFireModule.initializeApp(src_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.firebaseConfig), _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_11__.AngularFireAuthModule],
+  }), _angular_fire_compat__WEBPACK_IMPORTED_MODULE_11__.AngularFireModule.initializeApp(src_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.firebaseConfig), _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_12__.AngularFireAuthModule],
   providers: [{
-    provide: _angular_router__WEBPACK_IMPORTED_MODULE_12__.RouteReuseStrategy,
-    useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_13__.IonicRouteStrategy
+    provide: _angular_router__WEBPACK_IMPORTED_MODULE_13__.RouteReuseStrategy,
+    useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_14__.IonicRouteStrategy
   }],
-  bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent]
+  bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent],
+  schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_6__.CUSTOM_ELEMENTS_SCHEMA]
 })], AppModule);
 
 
@@ -392,6 +411,12 @@ let InitGuard = class InitGuard {
   goDiscovers() {
     var _this2 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      // Check if notifications are allowed before navigating
+      const isNotifAllowed = _this2.userService.getNotificationsAllowed();
+      if (!isNotifAllowed) {
+        yield _this2.router.navigate(['/notification-prompt']);
+        return;
+      }
       const discoverUsrs = yield _this2.preLoadDis();
       console.log('GO DISCOVER USRS: ', discoverUsrs);
       let navegationExtras = {
@@ -1425,11 +1450,11 @@ let MatchService = class MatchService {
       _this.user = yield _this.userService.getUserBasic('');
       console.log("Basic prince");
       _this.todayMatchPerson = yield _this.getMatches(src_environments_constants__WEBPACK_IMPORTED_MODULE_4__.constants.matcheOlder.today, _this.user.personId);
-      _this.setAvatarImg(_this.todayMatchPerson);
+      // this.setAvatarImg(this.todayMatchPerson);
       _this.yesterdayMatchPerson = yield _this.getMatches(src_environments_constants__WEBPACK_IMPORTED_MODULE_4__.constants.matcheOlder.yesterday, _this.user.personId);
-      _this.setAvatarImg(_this.yesterdayMatchPerson);
+      // this.setAvatarImg(this.yesterdayMatchPerson);
       _this.oldMatchPerson = yield _this.getMatches(src_environments_constants__WEBPACK_IMPORTED_MODULE_4__.constants.matcheOlder.old, _this.user.personId);
-      _this.setAvatarImg(_this.oldMatchPerson);
+      // this.setAvatarImg(this.oldMatchPerson);
       _this.uiService.hideLoader();
       // console.log('MATCH TODAY: ', this.todayMatchPerson);
       // console.log('MATCH YESTERADY: ', this.yesterdayMatchPerson);
@@ -1459,35 +1484,32 @@ let MatchService = class MatchService {
       _this.uiService.loader ? _this.uiService.hideLoader : null;
     })();
   }
-  setAvatarImg(matchP) {
-    var _this2 = this;
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      for (const usr of matchP) {
-        usr.image = '../../../assets/icon/30-Default_no-image.jpeg';
-        // validación para tomar el otro usuario del match
-        let personId = usr.personLiked.toString() == _this2.user.personId ? usr.personLikes : usr.personLiked;
-        let res_imgs = yield _this2.getIMGSOfPerson(personId.toString());
-        res_imgs = res_imgs.filter(res => res.avatar);
-        usr.image = res_imgs[0]?.multimediaUrl;
-        /*for (const img of res_imgs) {
-          if(img.avatar) {
-            usr.image = img.multimediaUrl;
-          }
-        }*/
-      }
-    })();
-  }
+  // async setAvatarImg(matchP: MatchPerson[]) {
+  //   for (const usr of matchP) {
+  //     usr.image = '../../../assets/icon/30-Default_no-image.jpeg';
+  //     // validación para tomar el otro usuario del match
+  //     let personId = (usr.personLiked.toString() == this.user.personId ? usr.personLikes : usr.personLiked);
+  //     let res_imgs =  <ImagesUser[]> await this.getIMGSOfPerson(personId.toString());
+  //     res_imgs = res_imgs.filter(res => res.avatar);
+  //     usr.image = res_imgs[0]?.multimediaUrl;
+  //     /*for (const img of res_imgs) {
+  //       if(img.avatar) {
+  //         usr.image = img.multimediaUrl;
+  //       }
+  //     }*/
+  //   }
+  // }
   getDiscoverProfiles(pagNextId, pagRecordLimit, filter) {
-    var _this3 = this;
+    var _this2 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = '';
       // { pagNextId, pagRecordLimit, ...filter };
       // if(Array.isArray(data["selfRole"])){data["selfRole"] = Number(data["selfRole"][0])}
       // if(Array.isArray(data["targetRole"])){data["targetRole"] = Number(data["targetRole"][0])}
       // console.log('DATA (find-profile): ', data);
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this3.userService.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this2.userService.token);
       return new Promise(resolve => {
-        _this3.http.post(`${URL}/discover/find-profile`, data, {
+        _this2.http.post(`${URL}/discover/find-profile`, data, {
           headers
         }).subscribe({
           next: function () {
@@ -1519,11 +1541,11 @@ let MatchService = class MatchService {
     })();
   }
   getCatalogueXUsr(idDiscover, idCatalogue) {
-    var _this4 = this;
+    var _this3 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this4.userService.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this3.userService.token);
       return new Promise(resolve => {
-        _this4.http.get(`${URL}/catalogue/person/${idDiscover}/catalogue/${idCatalogue}`, {
+        _this3.http.get(`${URL}/catalogue/person/${idDiscover}/catalogue/${idCatalogue}`, {
           headers
         }).subscribe({
           next: resp => {
@@ -1543,7 +1565,7 @@ let MatchService = class MatchService {
     })();
   }
   doMatchProfiles(personLiked, accionId, isLike, isSuperLike, matchId) {
-    var _this5 = this;
+    var _this4 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         personLiked,
@@ -1553,9 +1575,9 @@ let MatchService = class MatchService {
         matchId
       };
       console.log('DATA (crear-like): ', data);
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this5.userService.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this4.userService.token);
       return new Promise(resolve => {
-        _this5.http.post(`${URL}/match/crear-like`, data, {
+        _this4.http.post(`${URL}/match/crear-like`, data, {
           headers
         }).subscribe({
           next: resp => {
@@ -1574,11 +1596,11 @@ let MatchService = class MatchService {
     })();
   }
   getMatches(fecha, personIdOwner) {
-    var _this6 = this;
+    var _this5 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this6.userService.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this5.userService.token);
       return new Promise(resolve => {
-        _this6.http.get(`${URL}/match/matches/${fecha}`, {
+        _this5.http.get(`${URL}/match/matches/${fecha}`, {
           headers
         }).subscribe({
           next: function () {
@@ -1586,10 +1608,11 @@ let MatchService = class MatchService {
               let usrMatchPerson = resp['sData'];
               for (const usr of usrMatchPerson) {
                 let personId = usr.personLiked.toString() == personIdOwner ? usr.personLikes : usr.personLiked;
-                let dataUsr = yield _this6.userService.getUser(personId.toString());
+                let dataUsr = yield _this5.userService.getUserOnly(personId.toString());
                 usr.name = dataUsr.firstName;
                 usr.lastName = dataUsr.lastName;
                 usr.age = dataUsr.age;
+                usr.image = dataUsr.image.multimediaUrl;
               }
               console.log('RES - Matches: ', usrMatchPerson);
               resolve(usrMatchPerson);
@@ -1625,17 +1648,17 @@ let MatchService = class MatchService {
     });
   } */
   setFeedback(targetProfile, rate, comment) {
-    var _this7 = this;
+    var _this6 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
-        selfProfile: (yield _this7.userService.getUser('')).personId,
+        selfProfile: (yield _this6.userService.getUser('')).personId,
         targetProfile,
         rate,
         comment
       };
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this7.userService.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this6.userService.token);
       return new Promise(resolve => {
-        _this7.http.post(`${URL}/discover/feedback`, data, {
+        _this6.http.post(`${URL}/discover/feedback`, data, {
           headers
         }).subscribe({
           next: resp => {
@@ -1651,11 +1674,11 @@ let MatchService = class MatchService {
     })();
   }
   getRates(idMatch) {
-    var _this8 = this;
+    var _this7 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this8.userService.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this7.userService.token);
       return new Promise(resolve => {
-        _this8.http.get(`${URL}/discover/feedback/${idMatch}`, {
+        _this7.http.get(`${URL}/discover/feedback/${idMatch}`, {
           headers
         }).subscribe({
           next: resp => {
@@ -1671,11 +1694,41 @@ let MatchService = class MatchService {
     })();
   }
   uploadIMG(imagesArray) {
-    var _this9 = this;
+    var _this8 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       // Homologar tamaño de imagenes
       console.log(imagesArray);
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this9.userService.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this8.userService.token);
+      return new Promise(resolve => {
+        _this8.http.post(`${URL}/discover/image`, imagesArray, {
+          headers
+        }).subscribe({
+          //this.http.post(`https://ifmly.com/discover/image`, data, { headers }).subscribe({ 
+          next: resp => {
+            if (resp['sCode'] == 3) {
+              resolve(true);
+            } else resolve(false);
+          },
+          error: err => {
+            console.log('ERR CATALOGO', err);
+            resolve(false);
+          }
+        });
+      });
+    })();
+  }
+  uploadIMG2(imagesArray) {
+    var _this9 = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      // Homologar tamaño de imagenes
+      const {
+        value
+      } = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_5__.Storage.get({
+        key: 'token'
+      });
+      _this9.token = value;
+      console.log(imagesArray);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this9.token);
       return new Promise(resolve => {
         _this9.http.post(`${URL}/discover/image`, imagesArray, {
           headers
@@ -1694,43 +1747,13 @@ let MatchService = class MatchService {
       });
     })();
   }
-  uploadIMG2(imagesArray) {
+  getIMGS(personId) {
     var _this10 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      // Homologar tamaño de imagenes
-      const {
-        value
-      } = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_5__.Storage.get({
-        key: 'token'
-      });
-      _this10.token = value;
-      console.log(imagesArray);
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this10.token);
-      return new Promise(resolve => {
-        _this10.http.post(`${URL}/discover/image`, imagesArray, {
-          headers
-        }).subscribe({
-          //this.http.post(`https://ifmly.com/discover/image`, data, { headers }).subscribe({ 
-          next: resp => {
-            if (resp['sCode'] == 3) {
-              resolve(true);
-            } else resolve(false);
-          },
-          error: err => {
-            console.log('ERR CATALOGO', err);
-            resolve(false);
-          }
-        });
-      });
-    })();
-  }
-  getIMGS(personId) {
-    var _this11 = this;
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log("GetImags: ", personId);
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this11.userService.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this10.userService.token);
       return new Promise(resolve => {
-        _this11.http.get(`${URL}/discover/image`, {
+        _this10.http.get(`${URL}/discover/image`, {
           headers
         }).subscribe({
           next: resp => {
@@ -1748,11 +1771,11 @@ let MatchService = class MatchService {
     })();
   }
   getIMGSOfPerson(personId) {
-    var _this12 = this;
+    var _this11 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this12.userService.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this11.userService.token);
       return new Promise(resolve => {
-        _this12.http.get(`${URL}/discover/image/${personId}`, {
+        _this11.http.get(`${URL}/discover/image/${personId}`, {
           headers
         }).subscribe({
           next: resp => {
@@ -1770,11 +1793,11 @@ let MatchService = class MatchService {
     })();
   }
   setAvatarIMG(imageId) {
-    var _this13 = this;
+    var _this12 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this13.userService.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this12.userService.token);
       return new Promise(resolve => {
-        _this13.http.get(`${URL}/discover/image/set-avatar/${imageId}`, {
+        _this12.http.get(`${URL}/discover/image/set-avatar/${imageId}`, {
           headers
         }).subscribe({
           next: resp => {
@@ -1791,11 +1814,11 @@ let MatchService = class MatchService {
     })();
   }
   deleteIMG(imageIds) {
-    var _this14 = this;
+    var _this13 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this14.userService.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this13.userService.token);
       return new Promise(resolve => {
-        _this14.http.request('delete', `${URL}/discover/image`, {
+        _this13.http.request('delete', `${URL}/discover/image`, {
           headers,
           body: imageIds // 👈 Important: sending array in body
         }).subscribe({
@@ -1811,11 +1834,11 @@ let MatchService = class MatchService {
     })();
   }
   rollbackLike(personaId) {
-    var _this15 = this;
+    var _this14 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this15.userService.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this14.userService.token);
       return new Promise(resolve => {
-        _this15.http.get(`${URL}/match/rollback/${personaId}`, {
+        _this14.http.get(`${URL}/match/rollback/${personaId}`, {
           headers
         }).subscribe({
           next: resp => {
@@ -1832,16 +1855,16 @@ let MatchService = class MatchService {
     })();
   }
   blockMatch(matchId, report) {
-    var _this16 = this;
+    var _this15 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         matchId,
         report
       };
       console.log('DATA (/block-like-match): ', data);
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this16.userService.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this15.userService.token);
       return new Promise(resolve => {
-        _this16.http.post(`${URL}/match/block-like-match`, data, {
+        _this15.http.post(`${URL}/match/block-like-match`, data, {
           headers
         }).subscribe({
           next: resp => {
@@ -1861,11 +1884,11 @@ let MatchService = class MatchService {
     })();
   }
   getConversationXUsr(personId) {
-    var _this17 = this;
+    var _this16 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this17.userService.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this16.userService.token);
       return new Promise(resolve => {
-        _this17.http.get(`${URL}/match/conversation/${personId}`, {
+        _this16.http.get(`${URL}/match/conversation/${personId}`, {
           headers
         }).subscribe({
           next: resp => {
@@ -1896,6 +1919,100 @@ let MatchService = class MatchService {
 MatchService = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.Injectable)({
   providedIn: 'root'
 })], MatchService);
+
+
+/***/ }),
+
+/***/ 44244:
+/*!**************************************************!*\
+  !*** ./src/app/services/notification.service.ts ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NotificationService: () => (/* binding */ NotificationService)
+/* harmony export */ });
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/core */ 3536);
+/* harmony import */ var _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @capacitor/push-notifications */ 29064);
+/* harmony import */ var _capacitor_local_notifications__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @capacitor/local-notifications */ 16248);
+
+
+
+
+
+
+let NotificationService = class NotificationService {
+  constructor() {}
+  requestPermission() {
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      return new Promise((resolve, reject) => {
+        if (_capacitor_core__WEBPACK_IMPORTED_MODULE_1__.Capacitor.isNativePlatform()) {
+          _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_2__.PushNotifications.requestPermissions().then(permission => {
+            if (permission.receive === 'granted') {
+              _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_2__.PushNotifications.register();
+              _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_2__.PushNotifications.addListener('registration', token => {
+                console.log('✅ Push token:', token.value);
+                resolve(token.value); // <-- Send this to your backend
+              });
+              _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_2__.PushNotifications.addListener('registrationError', err => {
+                console.error('❌ Registration error:', err);
+                reject(err);
+              });
+            } else {
+              reject('Push permission not granted');
+            }
+          });
+        } else {
+          reject('Only supported on native platforms (Android/iOS)');
+        }
+      });
+    })();
+  }
+  listenToMessages() {
+    if (_capacitor_core__WEBPACK_IMPORTED_MODULE_1__.Capacitor.isNativePlatform()) {
+      _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_2__.PushNotifications.addListener('pushNotificationReceived', /*#__PURE__*/function () {
+        var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (notification) {
+          console.log('📨 Push Received (foreground):', notification);
+          const data = notification.data;
+          const randomInt = Math.floor(Math.random() * 100000); // always < Java int max
+          yield _capacitor_local_notifications__WEBPACK_IMPORTED_MODULE_3__.LocalNotifications.schedule({
+            notifications: [{
+              title: data.title || 'New Message',
+              body: data.body || '',
+              id: randomInt,
+              sound: 'default',
+              smallIcon: 'ic_stat_icon_config',
+              // optional
+              attachments: data.senderImageUrl ? [{
+                id: 'image',
+                url: data.senderImageUrl
+              }] : [],
+              extra: data
+            }]
+          });
+        });
+        return function (_x) {
+          return _ref.apply(this, arguments);
+        };
+      }());
+      _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_2__.PushNotifications.addListener('pushNotificationActionPerformed', action => {
+        console.log('👆 Notification tapped:', action);
+        alert('Match screen will show here...');
+      });
+    }
+  }
+  static {
+    this.ctorParameters = () => [];
+  }
+};
+NotificationService = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Injectable)({
+  providedIn: 'root'
+})], NotificationService);
 
 
 /***/ }),
@@ -2039,7 +2156,9 @@ let UserService = class UserService {
     this.token = '';
     this.usuario = {};
     this.sesionFin = false;
+    this.notificationsAllowed = false;
     this.user = {};
+    this.oauthProvider = '';
   }
   setUserr(user) {
     this.user = {
@@ -2047,8 +2166,22 @@ let UserService = class UserService {
       ...user
     };
   }
+  setOAuthProvider(provider) {
+    this.oauthProvider = provider;
+  }
+  getOAuthProvider() {
+    return this.oauthProvider;
+  }
   getUserr() {
     return this.user;
+  }
+  setNotificationsAllowed(value) {
+    this.notificationsAllowed = value;
+    localStorage.setItem('notificationsAllowed', value.toString());
+  }
+  getNotificationsAllowed() {
+    const stored = localStorage.getItem('notificationsAllowed');
+    return this.notificationsAllowed || stored === 'true';
   }
   login(username, password) {
     var _this = this;
@@ -2165,21 +2298,17 @@ let UserService = class UserService {
       });
     });
   }
-  update(usuario) {
-    console.log("editing save on backup : ", usuario);
-    const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+  registerOAuth(usuario) {
+    var _this4 = this;
+    const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
     return new Promise(resolve => {
-      this.http.post(`${URL}/discover/update`, usuario, {
+      this.http.post(`${URL}/register-oauth`, usuario, {
         headers
       }).subscribe({
         next: function () {
           var _ref5 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
-            if (resp['sCode'] != 1) {
-              resolve(false);
-              return;
-            }
-            resolve(true);
-            return;
+            console.log('OAuth Registration Response:', resp);
+            resolve(resp);
           });
           return function next(_x5) {
             return _ref5.apply(this, arguments);
@@ -2187,8 +2316,12 @@ let UserService = class UserService {
         }(),
         error: function () {
           var _ref6 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (_error3) {
-            console.log("ERROR CON EL SERVIDOR", _error3);
-            resolve(false);
+            console.log("ERROR OAuth REGISTRATION", _error3);
+            _this4.token = null;
+            yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({
+              key: 'token'
+            });
+            resolve(_error3);
           });
           return function error(_x6) {
             return _ref6.apply(this, arguments);
@@ -2197,20 +2330,21 @@ let UserService = class UserService {
       });
     });
   }
-  locationnewapi(lat, lon) {
-    const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
-    const locationapi = {
-      lat: lat,
-      lon: lon
-    };
+  update(usuario) {
+    console.log("editing save on backup : ", usuario);
+    const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
     return new Promise(resolve => {
-      this.http.post(`${URL}/catalogue/location`, locationapi, {
+      this.http.post(`${URL}/discover/update`, usuario, {
         headers
       }).subscribe({
         next: function () {
           var _ref7 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
-            console.log(resp);
-            resolve(resp);
+            if (resp['sCode'] != 1) {
+              resolve(false);
+              return;
+            }
+            resolve(true);
+            return;
           });
           return function next(_x7) {
             return _ref7.apply(this, arguments);
@@ -2228,16 +2362,20 @@ let UserService = class UserService {
       });
     });
   }
-  changePassword(change) {
-    const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+  locationnewapi(lat, lon) {
+    const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
+    const locationapi = {
+      lat: lat,
+      lon: lon
+    };
     return new Promise(resolve => {
-      this.http.post(`${URL}/discover/changePassword`, change, {
+      this.http.post(`${URL}/catalogue/location`, locationapi, {
         headers
       }).subscribe({
         next: function () {
           var _ref9 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
-            resolve(resp['sCode']);
-            return;
+            console.log(resp);
+            resolve(resp);
           });
           return function next(_x9) {
             return _ref9.apply(this, arguments);
@@ -2246,7 +2384,7 @@ let UserService = class UserService {
         error: function () {
           var _ref10 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (_error5) {
             console.log("ERROR CON EL SERVIDOR", _error5);
-            resolve(_error5['sCode']);
+            resolve(false);
           });
           return function error(_x10) {
             return _ref10.apply(this, arguments);
@@ -2255,15 +2393,42 @@ let UserService = class UserService {
       });
     });
   }
+  changePassword(change) {
+    const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+    return new Promise(resolve => {
+      this.http.post(`${URL}/discover/changePassword`, change, {
+        headers
+      }).subscribe({
+        next: function () {
+          var _ref11 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
+            resolve(resp['sCode']);
+            return;
+          });
+          return function next(_x11) {
+            return _ref11.apply(this, arguments);
+          };
+        }(),
+        error: function () {
+          var _ref12 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (_error6) {
+            console.log("ERROR CON EL SERVIDOR", _error6);
+            resolve(_error6['sCode']);
+          });
+          return function error(_x12) {
+            return _ref12.apply(this, arguments);
+          };
+        }()
+      });
+    });
+  }
   guardarToken(token) {
-    var _this4 = this;
+    var _this5 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this4.token = token;
+      _this5.token = token;
       yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.set({
         key: 'token',
         value: token
       });
-      const tokenValido = yield _this4.validaToken();
+      const tokenValido = yield _this5.validaToken();
       if (!tokenValido) {
         return false;
       }
@@ -2271,28 +2436,28 @@ let UserService = class UserService {
     })();
   }
   cargarToken() {
-    var _this5 = this;
+    var _this6 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const {
         value
       } = yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.get({
         key: 'token'
       });
-      _this5.token = value;
+      _this6.token = value;
     })();
   }
   validaToken() {
-    var _this6 = this;
+    var _this7 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      yield _this6.cargarToken();
-      if (!_this6.token) {
-        _this6.navCtrl.navigateRoot('/login');
+      yield _this7.cargarToken();
+      if (!_this7.token) {
+        _this7.navCtrl.navigateRoot('/login');
         return Promise.resolve(false);
       }
       return new Promise((resolve, reject) => {
-        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this6.token);
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this7.token);
         try {
-          _this6.http.get(`${URL}/validaToken`, {
+          _this7.http.get(`${URL}/validaToken`, {
             headers
           }).subscribe({
             next: resp => {
@@ -2301,22 +2466,22 @@ let UserService = class UserService {
                 //this.usuario = resp;
                 resolve(true);
               } else {
-                _this6.sesionFin = true;
-                _this6.navCtrl.navigateRoot('/login');
+                _this7.sesionFin = true;
+                _this7.navCtrl.navigateRoot('/login');
                 resolve(false);
               }
             },
             error: err => {
               console.log('ERRO VALIDA-TOKEN: ', err);
-              _this6.sesionFin = true;
-              _this6.navCtrl.navigateRoot('/login');
+              _this7.sesionFin = true;
+              _this7.navCtrl.navigateRoot('/login');
               resolve(false);
             }
           });
         } catch (err) {
           console.log('ERROR LOGIN: ', err);
-          _this6.sesionFin = true;
-          _this6.navCtrl.navigateRoot('/login');
+          _this7.sesionFin = true;
+          _this7.navCtrl.navigateRoot('/login');
           reject(err);
           ;
         }
@@ -2324,101 +2489,38 @@ let UserService = class UserService {
     })();
   }
   getUser(userX) {
-    var _this7 = this;
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      if (!_this7.usuario?.personId) {}
-      return new Promise((resolve, reject) => {
-        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this7.token);
-        _this7.http.get(`${URL}/discover/get-profile/${userX}`, {
-          headers
-        }).subscribe({
-          next: function () {
-            var _ref11 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
-              if (resp['sCode'] == 2) {
-                let usr = resp['sData'];
-                _this7.usuario = usr;
-                let res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.IamA), usr.iam_a = res == '' ? null : res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.IamLooking), usr.iam_looking = res == '' ? null : res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Ejercicio), usr.exercise = res == '' ? null : res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Sing), usr.sings = res == '' ? null : res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Educacion), usr.education = res == '' ? null : res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Bebe), usr.drinking = res == '' ? null : res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Fuma), usr.smoking = res == '' ? null : res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Hijos), usr.kids = res == '' ? null : res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Religion), usr.religion = res == '' ? null : res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Gender), usr.gender = res == '' ? null : res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Pronoun), usr.pronoun = res == '' ? null : res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Lenguage), usr.languajes = res == '' ? null : res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Hobbies), usr.hobbies = res == '' ? null : res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Pets), usr.pets = res == '' ? null : res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Values_Traits), usr.valTraits = res == '' ? null : res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Drugs), usr.drugs = res == '' ? null : res;
-                res = yield _this7.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Political), usr.political = res == '' ? null : res;
-                resolve(usr);
-              } else {
-                resolve({});
-              }
-            });
-            return function next(_x11) {
-              return _ref11.apply(this, arguments);
-            };
-          }(),
-          error: err => {
-            console.log('ERRO VALIDA-TOKEN: ', err);
-            _this7.sesionFin = true;
-            _this7.navCtrl.navigateRoot('/login');
-            resolve({});
-          }
-        });
-      });
-      //return { ...this.usuario };
-    })();
-  }
-  getUserBasic3(userX) {
     var _this8 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      if (!_this8.usuario?.personId) {}
       return new Promise((resolve, reject) => {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this8.token);
-        _this8.http.get(`${URL}/discover/get-profile/` + userX, {
-          headers
-        }).subscribe({
-          next: function () {
-            var _ref12 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
-              if (resp['sCode'] == 2) {
-                console.log('USER BASIC', resp['sData']);
-                resolve(resp['sData']);
-              } else {
-                resolve({});
-              }
-            });
-            return function next(_x12) {
-              return _ref12.apply(this, arguments);
-            };
-          }(),
-          error: err => {
-            console.log('ERRO VALIDA-TOKEN: ', err);
-            _this8.sesionFin = true;
-            _this8.navCtrl.navigateRoot('/login');
-            resolve({});
-          }
-        });
-      });
-    })();
-  }
-  getUserBasic(userX) {
-    var _this9 = this;
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      return new Promise((resolve, reject) => {
-        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this9.token);
-        _this9.http.get(`${URL}/discover/get-profile`, {
+        _this8.http.get(`${URL}/discover/get-profile/${userX}`, {
           headers
         }).subscribe({
           next: function () {
             var _ref13 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
               if (resp['sCode'] == 2) {
-                console.log('USER BASIC', resp['sData']);
-                resolve(resp['sData']);
+                let usr = resp['sData'];
+                _this8.usuario = usr;
+                let res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.IamA), usr.iam_a = res == '' ? null : res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.IamLooking), usr.iam_looking = res == '' ? null : res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Ejercicio), usr.exercise = res == '' ? null : res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Sing), usr.sings = res == '' ? null : res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Educacion), usr.education = res == '' ? null : res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Bebe), usr.drinking = res == '' ? null : res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Fuma), usr.smoking = res == '' ? null : res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Hijos), usr.kids = res == '' ? null : res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Religion), usr.religion = res == '' ? null : res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Gender), usr.gender = res == '' ? null : res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Pronoun), usr.pronoun = res == '' ? null : res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Lenguage), usr.languajes = res == '' ? null : res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Hobbies), usr.hobbies = res == '' ? null : res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Pets), usr.pets = res == '' ? null : res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Values_Traits), usr.valTraits = res == '' ? null : res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Drugs), usr.drugs = res == '' ? null : res;
+                res = yield _this8.getXCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.catalogs.Political), usr.political = res == '' ? null : res;
+                resolve(usr);
               } else {
                 resolve({});
               }
@@ -2429,24 +2531,59 @@ let UserService = class UserService {
           }(),
           error: err => {
             console.log('ERRO VALIDA-TOKEN: ', err);
+            _this8.sesionFin = true;
+            _this8.navCtrl.navigateRoot('/login');
+            resolve({});
+          }
+        });
+      });
+      //return { ...this.usuario };
+    })();
+  }
+  getUserOnly(userX) {
+    var _this9 = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      if (!_this9.usuario?.personId) {}
+      return new Promise((resolve, reject) => {
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this9.token);
+        _this9.http.get(`${URL}/discover/get-profile/${userX}`, {
+          headers
+        }).subscribe({
+          next: function () {
+            var _ref14 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
+              if (resp['sCode'] == 2) {
+                let usr = resp['sData'];
+                _this9.usuario = usr;
+                resolve(usr);
+              } else {
+                resolve({});
+              }
+            });
+            return function next(_x14) {
+              return _ref14.apply(this, arguments);
+            };
+          }(),
+          error: err => {
+            console.log('ERRO VALIDA-TOKEN: ', err);
             _this9.sesionFin = true;
             _this9.navCtrl.navigateRoot('/login');
             resolve({});
           }
         });
       });
+      //return { ...this.usuario };
     })();
   }
-  getUserBasic2(userX) {
+  getUserBasic3(userX) {
     var _this10 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       return new Promise((resolve, reject) => {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this10.token);
-        _this10.http.get(`${URL}/discover/get-profile`, {
+        _this10.http.get(`${URL}/discover/get-profile/` + userX, {
           headers
         }).subscribe({
           next: function () {
-            var _ref14 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
+            var _ref15 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
               if (resp['sCode'] == 2) {
                 console.log('USER BASIC', resp['sData']);
                 resolve(resp['sData']);
@@ -2454,8 +2591,8 @@ let UserService = class UserService {
                 resolve({});
               }
             });
-            return function next(_x14) {
-              return _ref14.apply(this, arguments);
+            return function next(_x15) {
+              return _ref15.apply(this, arguments);
             };
           }(),
           error: err => {
@@ -2468,91 +2605,80 @@ let UserService = class UserService {
       });
     })();
   }
-  getCatalogo3(catalogueId, lang, birth, gender, mail) {
+  getUserBasic(userX) {
     var _this11 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const data = {
-        "catalogueId": catalogueId,
-        "lang": lang,
-        "email": mail,
-        "gender": gender,
-        "birthDay": birth
-      };
-      console.log('dataa', data);
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this11.token);
-      return new Promise(resolve => {
-        _this11.http.post(`${URL}/catalogue/get-items`, data, {
+      return new Promise((resolve, reject) => {
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this11.token);
+        _this11.http.get(`${URL}/discover/get-profile`, {
           headers
         }).subscribe({
-          next: resp => {
-            console.log('catalogue res', resp);
-            if (resp['sCode'] == 2) {
-              let arreglo = [];
-              //ordenarlos por orden que defina el usuario
-              if (resp['sData'] !== null) {
-                arreglo = resp['sData'].sort((a, b) => a.orderRow > b.orderRow ? 1 : -1);
+          next: function () {
+            var _ref16 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
+              if (resp['sCode'] == 2) {
+                console.log('USER BASIC', resp['sData']);
+                resolve(resp['sData']);
+              } else {
+                resolve({});
               }
-              resolve(arreglo);
-            } else {
-              resolve([]);
-            }
-          },
+            });
+            return function next(_x16) {
+              return _ref16.apply(this, arguments);
+            };
+          }(),
           error: err => {
-            console.log('ERR GET CATALOGO', err);
-            resolve([]);
+            console.log('ERRO VALIDA-TOKEN: ', err);
+            _this11.sesionFin = true;
+            _this11.navCtrl.navigateRoot('/login');
+            resolve({});
           }
         });
       });
     })();
   }
-  getCatalogo2(catalogueId, lang, birth, gender, mail) {
+  getUserBasic2(userX) {
     var _this12 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const data = {
-        "catalogueId": catalogueId,
-        "lang": lang,
-        "email": mail,
-        "gender": gender,
-        "birthDay": birth
-      };
-      console.log('dataa', data);
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
-      // .set('Authorization', this.token);
-      return new Promise(resolve => {
-        _this12.http.post(`${URL}/catalogue/get-items`, data, {
+      return new Promise((resolve, reject) => {
+        const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this12.token);
+        _this12.http.get(`${URL}/discover/get-profile`, {
           headers
         }).subscribe({
-          next: resp => {
-            console.log('catalogue res', resp);
-            if (resp['sCode'] == 2) {
-              let arreglo = [];
-              //ordenarlos por orden que defina el usuario
-              if (resp['sData'] !== null) {
-                arreglo = resp['sData'].sort((a, b) => a.orderRow > b.orderRow ? 1 : -1);
+          next: function () {
+            var _ref17 = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (resp) {
+              if (resp['sCode'] == 2) {
+                console.log('USER BASIC', resp['sData']);
+                resolve(resp['sData']);
+              } else {
+                resolve({});
               }
-              resolve(arreglo);
-            } else {
-              resolve([]);
-            }
-          },
+            });
+            return function next(_x17) {
+              return _ref17.apply(this, arguments);
+            };
+          }(),
           error: err => {
-            console.log('ERR GET CATALOGO', err);
-            resolve([]);
+            console.log('ERRO VALIDA-TOKEN: ', err);
+            _this12.sesionFin = true;
+            _this12.navCtrl.navigateRoot('/login');
+            resolve({});
           }
         });
       });
     })();
   }
-  getCatalogo(catalogueId, lang) {
+  getCatalogo3(catalogueId, lang, birth, gender, mail) {
     var _this13 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
-        catalogueId,
-        lang
+        "catalogueId": catalogueId,
+        "lang": lang,
+        "email": mail,
+        "gender": gender,
+        "birthDay": birth
       };
-      console.log('catalogue id', catalogueId);
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
-      //  .set('Authorization', this.token);
+      console.log('dataa', data);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this13.token);
       return new Promise(resolve => {
         _this13.http.post(`${URL}/catalogue/get-items`, data, {
           headers
@@ -2578,8 +2704,81 @@ let UserService = class UserService {
       });
     })();
   }
-  getCatalogoImLookingFor2(catalogueId, lang, iAmId, email) {
+  getCatalogo2(catalogueId, lang, birth, gender, mail) {
     var _this14 = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const data = {
+        "catalogueId": catalogueId,
+        "lang": lang,
+        "email": mail,
+        "gender": gender,
+        "birthDay": birth
+      };
+      console.log('dataa', data);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
+      // .set('Authorization', this.token);
+      return new Promise(resolve => {
+        _this14.http.post(`${URL}/catalogue/get-items`, data, {
+          headers
+        }).subscribe({
+          next: resp => {
+            console.log('catalogue res', resp);
+            if (resp['sCode'] == 2) {
+              let arreglo = [];
+              //ordenarlos por orden que defina el usuario
+              if (resp['sData'] !== null) {
+                arreglo = resp['sData'].sort((a, b) => a.orderRow > b.orderRow ? 1 : -1);
+              }
+              resolve(arreglo);
+            } else {
+              resolve([]);
+            }
+          },
+          error: err => {
+            console.log('ERR GET CATALOGO', err);
+            resolve([]);
+          }
+        });
+      });
+    })();
+  }
+  getCatalogo(catalogueId, lang) {
+    var _this15 = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const data = {
+        catalogueId,
+        lang
+      };
+      console.log('catalogue id', catalogueId);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
+      //  .set('Authorization', this.token);
+      return new Promise(resolve => {
+        _this15.http.post(`${URL}/catalogue/get-items`, data, {
+          headers
+        }).subscribe({
+          next: resp => {
+            console.log('catalogue res', resp);
+            if (resp['sCode'] == 2) {
+              let arreglo = [];
+              //ordenarlos por orden que defina el usuario
+              if (resp['sData'] !== null) {
+                arreglo = resp['sData'].sort((a, b) => a.orderRow > b.orderRow ? 1 : -1);
+              }
+              resolve(arreglo);
+            } else {
+              resolve([]);
+            }
+          },
+          error: err => {
+            console.log('ERR GET CATALOGO', err);
+            resolve([]);
+          }
+        });
+      });
+    })();
+  }
+  getCatalogoImLookingFor2(catalogueId, lang, iAmId, email) {
+    var _this16 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         "catalogueId": catalogueId,
@@ -2588,9 +2787,9 @@ let UserService = class UserService {
         "email": email
       };
       console.log(data);
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this14.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this16.token);
       return new Promise(resolve => {
-        _this14.http.post(`${URL}/catalogue/get-items`, data, {
+        _this16.http.post(`${URL}/catalogue/get-items`, data, {
           headers
         }).subscribe({
           next: resp => {
@@ -2615,7 +2814,7 @@ let UserService = class UserService {
     })();
   }
   getCatalogoImLookingFor(catalogueId, lang, iAmId, email) {
-    var _this15 = this;
+    var _this17 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         "catalogueId": catalogueId,
@@ -2626,7 +2825,7 @@ let UserService = class UserService {
       console.log(data);
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
-        _this15.http.post(`${URL}/catalogue/get-items`, data, {
+        _this17.http.post(`${URL}/catalogue/get-items`, data, {
           headers
         }).subscribe({
           next: resp => {
@@ -2651,24 +2850,27 @@ let UserService = class UserService {
     })();
   }
   setCatalogo(id) {
-    var _this16 = this;
+    var _this18 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log('id', id);
-      const tVal = yield _this16.validaToken();
+      const tVal = yield _this18.validaToken();
       if (!tVal) {
         return;
       }
       console.log('ID SET CATALOGO', id);
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this16.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this18.token);
       return new Promise(resolve => {
-        _this16.http.get(`${URL}/catalogue/set-item-xperson/${id}`, {
+        _this18.http.get(`${URL}/catalogue/set-item-xperson/${id}`, {
           headers
         }).subscribe({
           next: resp => {
-            if (resp['sCode'] != 200) {
+            console.log('SET CATALOGO RESPONSE:', resp);
+            if (resp['sCode'] && resp['sCode'] == 200) {
+              resolve(true);
+            } else {
+              console.log('Catalog set failed with code:', resp['sCode']);
               resolve(false);
             }
-            resolve(true);
           },
           error: err => {
             console.log('ERR SET CATALOGO', err);
@@ -2679,9 +2881,9 @@ let UserService = class UserService {
     })();
   }
   setCatalogoMultiple(id_catalogo, opCat) {
-    var _this17 = this;
+    var _this19 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const tVal = yield _this17.validaToken();
+      const tVal = yield _this19.validaToken();
       if (!tVal) {
         return;
       }
@@ -2701,16 +2903,20 @@ let UserService = class UserService {
         id_catalogo,
         elementos
       };
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this17.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this19.token);
       return new Promise(resolve => {
-        _this17.http.post(`${URL}/catalogue/update-items`, data, {
+        _this19.http.post(`${URL}/catalogue/update-items`, data, {
           headers
         }).subscribe({
           next: resp => {
-            if (resp['sCode'] != 70) {
+            console.log('SET CATALOGO MULTIPLE RESPONSE:', resp);
+            // Accept multiple success codes: 70, 200, or any positive response
+            if (resp['sCode'] && (resp['sCode'] == 70 || resp['sCode'] == 200 || resp['sCode'] > 0)) {
+              resolve(true);
+            } else {
+              console.log('Catalog update failed with code:', resp['sCode']);
               resolve(false);
             }
-            resolve(true);
           },
           error: err => {
             console.log('ERR SET CATALOGO', err);
@@ -2721,11 +2927,11 @@ let UserService = class UserService {
     })();
   }
   getXCatalogo(idCatalogo) {
-    var _this18 = this;
+    var _this20 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this18.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this20.token);
       return new Promise(resolve => {
-        _this18.http.get(`${URL}/catalogue/get-item-xperson/${idCatalogo}`, {
+        _this20.http.get(`${URL}/catalogue/get-item-xperson/${idCatalogo}`, {
           headers
         }).subscribe({
           next: resp => {
@@ -2753,25 +2959,25 @@ let UserService = class UserService {
     })();
   }
   logout() {
-    var _this19 = this;
+    var _this21 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this19.token = null;
-      _this19.usuario = null;
+      _this21.token = null;
+      _this21.usuario = null;
       yield _capacitor_storage__WEBPACK_IMPORTED_MODULE_1__.Storage.remove({
         key: 'token'
       });
-      _this19.navCtrl.navigateRoot('/login', {
+      _this21.navCtrl.navigateRoot('/login', {
         animated: true
       });
     })();
   }
   getCountries() {
-    var _this20 = this;
+    var _this22 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       //.set('Authorization', this.token);
       return new Promise(resolve => {
-        _this20.http.get(`${URL}/catalogue/countries`, {
+        _this22.http.get(`${URL}/catalogue/countries`, {
           headers
         }).subscribe({
           next: resp => {
@@ -2787,14 +2993,14 @@ let UserService = class UserService {
     })();
   }
   getStates(country) {
-    var _this21 = this;
+    var _this23 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         country
       };
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
-        _this21.http.post(`${URL}/catalogue/state`, data, {
+        _this23.http.post(`${URL}/catalogue/state`, data, {
           headers
         }).subscribe({
           next: resp => {
@@ -2809,7 +3015,7 @@ let UserService = class UserService {
     })();
   }
   getCities(country, state) {
-    var _this22 = this;
+    var _this24 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       let data = {
         country,
@@ -2817,7 +3023,7 @@ let UserService = class UserService {
       };
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
-        _this22.http.post(`${URL}/catalogue/city`, data, {
+        _this24.http.post(`${URL}/catalogue/city`, data, {
           headers
         }).subscribe({
           next: resp => {
@@ -2835,7 +3041,7 @@ let UserService = class UserService {
     return this.usuario?.personId || null;
   }
   getParametros(paramTerminos) {
-    var _this23 = this;
+    var _this25 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         paramTerminos
@@ -2843,7 +3049,7 @@ let UserService = class UserService {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       //.set('Authorization', this.token);
       return new Promise(resolve => {
-        _this23.http.post(`${URL}/catalogue/terminos`, data, {
+        _this25.http.post(`${URL}/catalogue/terminos`, data, {
           headers
         }).subscribe({
           next: resp => {
@@ -2858,19 +3064,19 @@ let UserService = class UserService {
     })();
   }
   setUserRS(email, password, rs) {
-    var _this24 = this;
+    var _this26 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this24.dataStorageService.set('email', email);
-      _this24.dataStorageService.set('password', password);
-      _this24.dataStorageService.set('rs', rs);
+      _this26.dataStorageService.set('email', email);
+      _this26.dataStorageService.set('password', password);
+      _this26.dataStorageService.set('rs', rs);
     })();
   }
   getUserRS() {
-    var _this25 = this;
+    var _this27 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      let email = yield _this25.dataStorageService.get('email');
-      let password = yield _this25.dataStorageService.get('password');
-      let rs = yield _this25.dataStorageService.get('rs');
+      let email = yield _this27.dataStorageService.get('email');
+      let password = yield _this27.dataStorageService.get('password');
+      let rs = yield _this27.dataStorageService.get('rs');
       return {
         email,
         password,
@@ -2879,23 +3085,23 @@ let UserService = class UserService {
     })();
   }
   removeUserRS() {
-    var _this26 = this;
+    var _this28 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      yield _this26.dataStorageService.remove('email');
-      yield _this26.dataStorageService.remove('password');
-      yield _this26.dataStorageService.remove('rs');
+      yield _this28.dataStorageService.remove('email');
+      yield _this28.dataStorageService.remove('password');
+      yield _this28.dataStorageService.remove('rs');
     })();
   }
   deleteAccount() {
-    var _this27 = this;
+    var _this29 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const tVal = yield _this27.validaToken();
+      const tVal = yield _this29.validaToken();
       if (!tVal) {
         return;
       }
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this27.token);
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this29.token);
       return new Promise(resolve => {
-        _this27.http.delete(`${URL}/discover/delete`, {
+        _this29.http.delete(`${URL}/discover/delete`, {
           headers
         }).subscribe({
           next: resp => {
@@ -2913,11 +3119,11 @@ let UserService = class UserService {
     })();
   }
   existI(email) {
-    var _this28 = this;
+    var _this30 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
-        _this28.http.get(`${URL}/discover/existEmail/${email}`, {
+        _this30.http.get(`${URL}/discover/existEmail/${email}`, {
           headers
         }).subscribe({
           next: resp => {
@@ -2932,7 +3138,7 @@ let UserService = class UserService {
     })();
   }
   upPas(email, password) {
-    var _this29 = this;
+    var _this31 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const data = {
         email,
@@ -2940,7 +3146,7 @@ let UserService = class UserService {
       };
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
-        _this29.http.post(`${URL}/discover/updatePassword`, data, {
+        _this31.http.post(`${URL}/discover/updatePassword`, data, {
           headers
         }).subscribe({
           next: resp => {
@@ -2955,11 +3161,11 @@ let UserService = class UserService {
     })();
   }
   getCodeEmail(email, lang) {
-    var _this30 = this;
+    var _this32 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
-        _this30.http.get(`${URL}/passwoord/verifyCodeEmail/${email}/${lang}`, {
+        _this32.http.get(`${URL}/passwoord/verifyCodeEmail/${email}/${lang}`, {
           headers
         }).subscribe({
           next: resp => {
@@ -2974,11 +3180,11 @@ let UserService = class UserService {
     })();
   }
   validaCodeEmail(email, code) {
-    var _this31 = this;
+    var _this33 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
-        _this31.http.get(`${URL}/passwoord/verifyCode/${email}/${code}`, {
+        _this33.http.get(`${URL}/passwoord/verifyCode/${email}/${code}`, {
           headers
         }).subscribe({
           next: resp => {
@@ -2999,28 +3205,28 @@ let UserService = class UserService {
     return this.firebaseAuthService;
   }
   loginWithEmail() {
-    var _this32 = this;
+    var _this34 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const {
         email,
         password
-      } = yield _this32.getUserRS();
+      } = yield _this34.getUserRS();
       if (email && password) {
-        const valido = yield _this32.login(email, password);
+        const valido = yield _this34.login(email, password);
         return valido['ok'];
       }
       return false;
     })();
   }
   loginWithGoogle() {
-    var _this33 = this;
+    var _this35 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      return yield _this33.loginWithEmail();
+      return yield _this35.loginWithEmail();
       try {
-        const idToken = yield _this33.googleSignInService.refreshToken();
+        const idToken = yield _this35.googleSignInService.refreshToken();
         console.log('idToken', idToken);
         if (idToken) {
-          return yield _this33.loginWithEmail();
+          return yield _this35.loginWithEmail();
         }
       } catch (error) {
         console.error('Error en loginWithGoogle:', error);
@@ -3028,20 +3234,43 @@ let UserService = class UserService {
     })();
   }
   loginWithApple() {
-    var _this34 = this;
+    var _this36 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      return yield _this34.loginWithEmail();
+      return yield _this36.loginWithEmail();
       try {
-        const idToken = yield _this34.getFirebaseAuthService().getIdToken({
+        const idToken = yield _this36.getFirebaseAuthService().getIdToken({
           forceRefresh: true
         });
         if (idToken) {
-          return yield _this34.loginWithEmail();
+          return yield _this36.loginWithEmail();
         }
       } catch (error) {
         console.error('Error al obtener ID Token de Apple:', error);
       }
       return false;
+    })();
+  }
+  sendDeviceToken(token) {
+    var _this37 = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this37.token);
+      return new Promise(resolve => {
+        _this37.http.post(`${URL}/notification`, {
+          "notificationEnabled": true,
+          "deviceToken": token
+        }, {
+          headers
+        }).subscribe({
+          next: resp => {
+            console.log('Device token sent successfully:', resp);
+            resolve(true);
+          },
+          error: err => {
+            console.error('Error sending device token:', err);
+            resolve(false);
+          }
+        });
+      });
     })();
   }
   static {
@@ -3151,21 +3380,22 @@ const environment = {
   production: false,
   // urlSrv: 'http://3.129.84.172:8081', //UAT
   // urlSrv: 'http://18.116.89.191:8081', //UAT Miami
-  //urlSrv: 'http://localhost:8081',
+  // urlSrv: 'http://localhost:8081',
   urlSrv: 'https://ifmly.com',
   //PROD
   //IPInfo.io para obtener CountryISO del Device
   urlSrvIPInfo: 'https://ipinfo.io',
   tokenIPInfo: 'a6dba9b2952bf5',
-  //Firebase configuration
+  // Firebase configuration
   firebaseConfig: {
     apiKey: "AIzaSyCczSqPLOZOvONTX32f8_02tydFMrojPX8",
     authDomain: "ifamily-180d6.firebaseapp.com",
     projectId: "ifamily-180d6",
-    storageBucket: "ifamily-180d6.appspot.com",
+    storageBucket: "ifamily-180d6.firebasestorage.app",
     messagingSenderId: "1008524938992",
     appId: "1:1008524938992:web:c8ffed03da5f32bab13c35",
-    measurementId: "G-S1F6DMDELP"
+    measurementId: "G-S1F6DMDELP",
+    vapidKey: 'BG-zbPt8nqeh9HiHiFzgdZRshH08fBPTjD_R__JwVM2fAbrPPpCJeFGh_WAyiNAbjBFCAm45L6EDeoNhAeAFD2A' // required for web push
   }
 };
 /*
@@ -3198,6 +3428,7 @@ __webpack_require__.r(__webpack_exports__);
 if (_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.production) {
   (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.enableProdMode)();
 }
+navigator.serviceWorker.register('firebase-messaging-sw.js').then(reg => console.log('Service Worker Registered', reg));
 (0,_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__.platformBrowserDynamic)().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_0__.AppModule).catch(err => console.log(err));
 
 /***/ }),

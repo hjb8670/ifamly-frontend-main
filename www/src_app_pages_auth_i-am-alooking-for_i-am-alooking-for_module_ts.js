@@ -204,7 +204,16 @@ let IAmALookingForPage = class IAmALookingForPage {
         console.log(_this2.usr);
         _this2.useremail = _this2.usr.email;
         _this2.pass = _this2.usr.password;
-        const res = yield _this2.userService.register(_this2.usr);
+        // Check if this is an OAuth user (stored provider info)
+        const oauthProvider = _this2.userService.getOAuthProvider();
+        const isOAuthUser = oauthProvider === 'google' || oauthProvider === 'apple';
+        let res;
+        if (isOAuthUser) {
+          console.log('Using OAuth registration for user:', _this2.usr.email, 'Provider:', oauthProvider);
+          res = yield _this2.userService.registerOAuth(_this2.usr);
+        } else {
+          res = yield _this2.userService.register(_this2.usr);
+        }
         console.log(res);
         if (res['sCode'] == '1') {
           _this2.tokensaved = res['sData']['token'];
@@ -236,7 +245,8 @@ let IAmALookingForPage = class IAmALookingForPage {
               const valido = yield _this2.userService.login(_this2.useremail, _this2.pass);
               if (valido['ok']) {
                 //this.navCtrl.navigateRoot( '/main/tabs/discover', { animated: true } );
-                _this2.userService.setUserRS(_this2.useremail, _this2.pass, 'email');
+                const provider = isOAuthUser ? oauthProvider : 'email';
+                _this2.userService.setUserRS(_this2.useremail, _this2.pass, provider);
                 _this2.router.navigate(['/main/tabs/discover']);
                 // this.uiService.alertOK(this.translate.instant('LOCATION.SuccessMsg2'));
               }

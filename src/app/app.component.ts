@@ -10,6 +10,7 @@ import { GoogleSignInService } from './services/google-sign-in.service';
 import { ModalController, NavController } from '@ionic/angular';
 import { SelectlangPage } from './pages/selectlang/selectlang.page';
 import { NotificationService } from './services/notification.service';
+import { LocalNotifications } from '@capacitor/local-notifications';
 
 registerLocaleData(mx);
 registerLocaleData(localeMx, 'es');
@@ -34,7 +35,9 @@ export class AppComponent {
   }
 
   async ngOnInit() {
-
+   
+  await LocalNotifications.requestPermissions();
+  this.notificationService.listenToMessages(); 
   }
 
 

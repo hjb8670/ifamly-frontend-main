@@ -592,10 +592,11 @@ let AboutMePage = class AboutMePage {
           res15 = yield _this4.userService.setCatalogo(_this4.political_S.value);
         }
         _this4.uiService.hideLoader();
-        // if (!res0 || !res2 || !res3 || !res4 || !res5 || !res6 || !res7 || !res8 || !res9 || !res10 || !res11 || !res12 || !res13 || !res14) {
-        //    //this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
-        //   return;
-        // }
+        // Check if any catalog updates failed
+        if (!res2 || !res3 || !res4 || !res5 || !res6 || !res7 || !res8 || !res9 || !res10 || !res11 || !res12 || !res13 || !res14 || !res15) {
+          _this4.uiService.alertOK(_this4.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
+          return;
+        }
       } else {
         // this.router.navigate(['location'], this.userService.navegationExtras);
         const mapToCatalogItems = array => {

@@ -80,13 +80,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   TabMatchPage: () => (/* binding */ TabMatchPage)
 /* harmony export */ });
 /* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _tabMatch_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabMatch.page.html?ngResource */ 97368);
 /* harmony import */ var _tabMatch_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tabMatch.page.scss?ngResource */ 67016);
 /* harmony import */ var _tabMatch_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_tabMatch_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/core */ 94280);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 24040);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ 24040);
 /* harmony import */ var src_environments_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/environments/constants */ 57724);
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/user.service */ 90628);
 /* harmony import */ var _services_match_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/match.service */ 5876);
@@ -94,6 +94,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_talk_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../services/talk.service */ 68648);
 /* harmony import */ var src_app_services_data_storage_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/services/data-storage.service */ 92288);
 /* harmony import */ var src_app_services_firebase_auth_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/services/firebase-auth.service */ 26372);
+/* harmony import */ var src_app_services_tab_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/services/tab.service */ 87548);
+
 
 
 
@@ -109,7 +111,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let TabMatchPage = class TabMatchPage {
-  constructor(router, translate, userService, matchService, uiService, talkService, activatedRoute, authService, dataHelper) {
+  constructor(router, translate, userService, matchService, uiService, talkService, activatedRoute, authService, dataHelper, tabService) {
     this.router = router;
     this.translate = translate;
     this.userService = userService;
@@ -119,6 +121,7 @@ let TabMatchPage = class TabMatchPage {
     this.activatedRoute = activatedRoute;
     this.authService = authService;
     this.dataHelper = dataHelper;
+    this.tabService = tabService;
     this.lanCatalogo = '1';
     this.isLoading = false;
   }
@@ -162,18 +165,15 @@ let TabMatchPage = class TabMatchPage {
       _this3.lanCatalogo = _this3.translate.currentLang === 'es' ? src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.languages.es.toString() : src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.languages.en.toString();
     })();
   }
-  setAvatarImg(matchP) {
-    var _this4 = this;
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      for (const usr of matchP) {
-        usr.image = '../../../assets/icon/30-Default_no-image.jpeg';
-        const personId = usr.personLiked.toString() === _this4.user.personId ? usr.personLikes : usr.personLiked;
-        let res_imgs = yield _this4.matchService.getIMGS(personId.toString());
-        res_imgs = res_imgs.filter(res => res.avatar);
-        usr.image = res_imgs[0]?.multimediaUrl;
-      }
-    })();
-  }
+  // async setAvatarImg(matchP: MatchPerson[]) {
+  //   for (const usr of matchP) {
+  //     usr.image = '../../../assets/icon/30-Default_no-image.jpeg';
+  //     const personId = (usr.personLiked.toString() === this.user.personId ? usr.personLikes : usr.personLiked);
+  //     let res_imgs = <ImagesUser[]>await this.matchService.getIMGS(personId.toString());
+  //     res_imgs = res_imgs.filter(res => res.avatar);
+  //     usr.image = res_imgs[0]?.multimediaUrl;
+  //   }
+  // }
   selectMatch(match) {
     const otherPerson = match.personLiked.toString() === this.user.personId ? match.personLikes : match.personLiked;
     const navExtras = {
@@ -187,18 +187,18 @@ let TabMatchPage = class TabMatchPage {
     this.router.navigate(['detail-match'], navExtras);
   }
   cancelMatch(matchP) {
-    var _this5 = this;
+    var _this4 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const resCancel = yield _this5.uiService.alertOK_CANCEL(_this5.translate.instant('MATCH.ConfirmDelete'));
+      const resCancel = yield _this4.uiService.alertOK_CANCEL(_this4.translate.instant('MATCH.ConfirmDelete'));
       if (!resCancel) return;
-      const id = matchP.personLiked.toString() === _this5.user.personId ? matchP.personLikes : matchP.personLiked;
-      _this5.uiService.showLoader();
-      const res = yield _this5.matchService.doMatchProfiles(id.toString(), src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.statusUsrMatch.block.toString(), 'false', 'false', matchP.matchId);
-      _this5.uiService.hideLoader();
+      const id = matchP.personLiked.toString() === _this4.user.personId ? matchP.personLikes : matchP.personLiked;
+      _this4.uiService.showLoader();
+      const res = yield _this4.matchService.doMatchProfiles(id.toString(), src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.statusUsrMatch.block.toString(), 'false', 'false', matchP.matchId);
+      _this4.uiService.hideLoader();
       if (res) {
         // Navigate back with random param to force list reload
         const randomParam = Math.random().toString(36).substring(2);
-        _this5.router.navigate(['main/tabs/match'], {
+        _this4.router.navigate(['main/tabs/match'], {
           queryParams: {
             random: randomParam
           }
@@ -207,11 +207,11 @@ let TabMatchPage = class TabMatchPage {
     })();
   }
   chatMatch(matchId) {
-    var _this6 = this;
+    var _this5 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this6.uiService.showLoader();
-      const resp = yield _this6.talkService.updateConversation(matchId.toString());
-      _this6.uiService.hideLoader();
+      _this5.uiService.showLoader();
+      const resp = yield _this5.talkService.updateConversation(matchId.toString());
+      _this5.uiService.hideLoader();
       if (Object.keys(resp).length === 0) {
         console.log("Chat registration issue");
         return;
@@ -221,14 +221,18 @@ let TabMatchPage = class TabMatchPage {
           idConversation: resp["idConversation"]
         }
       };
-      _this6.router.navigate(['main/tabs/message'], navExtras);
+      // Navigate to message tab and trigger the tab change
+      _this5.router.navigate(['main/tabs/message'], navExtras).then(() => {
+        // Update tab state using the tab service
+        _this5.tabService.setActiveTab('message');
+      });
     })();
   }
   static {
     this.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_10__.Router
+      type: _angular_router__WEBPACK_IMPORTED_MODULE_11__.Router
     }, {
-      type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_11__.TranslateService
+      type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_12__.TranslateService
     }, {
       type: _services_user_service__WEBPACK_IMPORTED_MODULE_4__.UserService
     }, {
@@ -238,15 +242,17 @@ let TabMatchPage = class TabMatchPage {
     }, {
       type: _services_talk_service__WEBPACK_IMPORTED_MODULE_7__.TalkService
     }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_10__.ActivatedRoute
+      type: _angular_router__WEBPACK_IMPORTED_MODULE_11__.ActivatedRoute
     }, {
       type: src_app_services_firebase_auth_service__WEBPACK_IMPORTED_MODULE_9__.FirebaseAuthService
     }, {
       type: src_app_services_data_storage_service__WEBPACK_IMPORTED_MODULE_8__.DataStorageService
+    }, {
+      type: src_app_services_tab_service__WEBPACK_IMPORTED_MODULE_10__.TabService
     }];
   }
 };
-TabMatchPage = (0,tslib__WEBPACK_IMPORTED_MODULE_12__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_13__.Component)({
+TabMatchPage = (0,tslib__WEBPACK_IMPORTED_MODULE_13__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_14__.Component)({
   selector: 'app-tabMatch',
   template: _tabMatch_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   styles: [(_tabMatch_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]

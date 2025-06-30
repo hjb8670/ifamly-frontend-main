@@ -104,14 +104,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   TabsPage: () => (/* binding */ TabsPage)
 /* harmony export */ });
 /* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _tabs_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabs.page.html?ngResource */ 60600);
 /* harmony import */ var _tabs_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tabs.page.scss?ngResource */ 84920);
 /* harmony import */ var _tabs_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_tabs_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/user.service */ 90628);
 /* harmony import */ var _services_talk_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/talk.service */ 68648);
 /* harmony import */ var src_app_services_match_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/match.service */ 5876);
+/* harmony import */ var src_app_services_tab_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/services/tab.service */ 87548);
+
 
 
 
@@ -121,12 +123,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let TabsPage = class TabsPage {
-  constructor(userService, talkService, matchService, cdr // Inyectamos ChangeDetectorRef
-  ) {
+  constructor(userService, talkService, matchService, cdr,
+  // Inyectamos ChangeDetectorRef
+  tabService) {
     this.userService = userService;
     this.talkService = talkService;
     this.matchService = matchService;
     this.cdr = cdr;
+    this.tabService = tabService;
     this.activeExperience = false;
     this.activeDiscover = false;
     this.activeMatch = false;
@@ -135,6 +139,10 @@ let TabsPage = class TabsPage {
     //Talkjs
     this.unreadMessages = 0; // Contador de mensajes no leídos
     this.activeDiscover = true;
+    // Subscribe to tab changes
+    this.tabService.currentTab$.subscribe(tab => {
+      this.changeIcon(tab);
+    });
   }
   ngOnInit() {
     var _this = this;
@@ -178,6 +186,8 @@ let TabsPage = class TabsPage {
         _this2.activeMessage = false;
         _this2.activeAccount = true;
       }
+      // Update the tab service
+      _this2.tabService.setActiveTab(page);
     })();
   }
   escucharTalkJS() {
@@ -203,15 +213,56 @@ let TabsPage = class TabsPage {
     }, {
       type: src_app_services_match_service__WEBPACK_IMPORTED_MODULE_5__.MatchService
     }, {
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.ChangeDetectorRef
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.ChangeDetectorRef
+    }, {
+      type: src_app_services_tab_service__WEBPACK_IMPORTED_MODULE_6__.TabService
     }];
   }
 };
-TabsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+TabsPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
   selector: 'app-tabs',
   template: _tabs_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   styles: [(_tabs_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]
 })], TabsPage);
+
+
+/***/ }),
+
+/***/ 87548:
+/*!*****************************************!*\
+  !*** ./src/app/services/tab.service.ts ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   TabService: () => (/* binding */ TabService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 54844);
+
+
+
+let TabService = class TabService {
+  constructor() {
+    this.currentTabSubject = new rxjs__WEBPACK_IMPORTED_MODULE_0__.BehaviorSubject('discover');
+    this.currentTab$ = this.currentTabSubject.asObservable();
+  }
+  setActiveTab(tab) {
+    this.currentTabSubject.next(tab);
+  }
+  getCurrentTab() {
+    return this.currentTabSubject.value;
+  }
+  static {
+    this.ctorParameters = () => [];
+  }
+};
+TabService = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
+  providedIn: 'root'
+})], TabService);
 
 
 /***/ }),

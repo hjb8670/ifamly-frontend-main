@@ -80,14 +80,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   RegistryPage: () => (/* binding */ RegistryPage)
 /* harmony export */ });
 /* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _registry_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./registry.page.html?ngResource */ 73596);
 /* harmony import */ var _registry_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./registry.page.scss?ngResource */ 14424);
 /* harmony import */ var _registry_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_registry_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ 71904);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 24040);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular */ 27832);
 /* harmony import */ var _services_utilities_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/utilities.service */ 61412);
 /* harmony import */ var _services_ui_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/ui.service */ 44136);
 /* harmony import */ var src_app_services_google_sign_in_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/google-sign-in.service */ 24572);
@@ -106,8 +107,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 let RegistryPage = class RegistryPage {
-  constructor(formBuilder, translate, router, uiService, utilities, googleSingInService, firebaseAuthService, userService) {
+  constructor(formBuilder, translate, router, uiService, utilities, googleSingInService, firebaseAuthService, userService, platform) {
     this.formBuilder = formBuilder;
     this.translate = translate;
     this.router = router;
@@ -116,12 +118,15 @@ let RegistryPage = class RegistryPage {
     this.googleSingInService = googleSingInService;
     this.firebaseAuthService = firebaseAuthService;
     this.userService = userService;
+    this.platform = platform;
     this.presentarErroresCampos = true;
     this.contryISO = 'us';
     this.idToken = '';
     this.view = false;
     this.isLegal = false;
     this.isTerms = false;
+    this.isMobile = false;
+    this.isWeb = false;
     this.registryForm = this.formBuilder.group({
       email: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_8__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
       password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_8__.Validators.required, this.regexValidator(new RegExp('(?=.*[a-z]).*$'), {
@@ -160,6 +165,26 @@ let RegistryPage = class RegistryPage {
   }
   ngOnInit() {
     this.isLegal = false;
+    // Detect platform
+    this.isMobile = this.platform.is('mobile') || this.platform.is('capacitor');
+    this.isWeb = this.platform.is('desktop') || this.platform.is('pwa');
+    console.log('Platform detection:', {
+      isMobile: this.isMobile,
+      isWeb: this.isWeb,
+      platform: this.platform.platforms(),
+      userAgent: navigator.userAgent
+    });
+    // Initialize OAuth services for web platform
+    if (this.isWeb) {
+      console.log('Initializing OAuth services for web platform');
+      try {
+        this.googleSingInService.initialize();
+        this.firebaseAuthService.initialize();
+        console.log('OAuth services initialized successfully');
+      } catch (error) {
+        console.error('Failed to initialize OAuth services:', error);
+      }
+    }
   }
   regexValidator(regex, error) {
     return control => {
@@ -205,21 +230,31 @@ let RegistryPage = class RegistryPage {
     var _this = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log("SING UP WITH GOOGLE");
-      // if(!this.isLegal){
-      //   this.uiService.alertOK(this.translate.instant('REGISTRY.errorLegal'));
-      //   return;
-      // }
-      // if(!this.isTerms){
-      //   this.uiService.alertOK(this.translate.instant('REGISTRY.errorTerms'));
-      //   return;
-      // }
+      // Check if OAuth is available for current platform
+      if (!_this.isMobile && !_this.isWeb) {
+        _this.uiService.alertOK('Google Sign-In is not available on this platform');
+        return;
+      }
       try {
         const usr = yield _this.googleSingInService.loginViaGoogle();
         console.log('USER GOOGLE: ', usr);
-        _this.goMobile(usr.email, _this.generateRandomPassword(), '', 'google');
+        if (!usr || !usr.email) {
+          throw new Error('Failed to get user data from Google');
+        }
+        // Store complete OAuth user data
+        const oauthUserData = {
+          email: usr.email,
+          password: _this.generateRandomPassword(),
+          firstName: usr.givenName || '',
+          lastName: usr.familyName || '',
+          image: usr.imageUrl || null
+        };
+        _this.userService.setOAuthUserData(oauthUserData);
+        _this.userService.setOAuthProvider('google');
+        _this.goMobile(usr.email, oauthUserData.password, `${usr.givenName} ${usr.familyName}`, 'google');
       } catch (error) {
         console.log("Google Sign Up Error", error);
-        _this.uiService.alertOK(_this.translate.instant('REGISTRY.msgErrGoogle'));
+        _this.uiService.alertOK(_this.translate.instant('REGISTRY.msgErrGoogle') || 'Google Sign-In failed. Please try again.');
       }
     })();
   }
@@ -227,6 +262,11 @@ let RegistryPage = class RegistryPage {
     var _this2 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log("SING UP WITH APPLE");
+      // Check if OAuth is available for current platform
+      if (!_this2.isMobile && !_this2.isWeb) {
+        _this2.uiService.alertOK('Apple Sign-In is not available on this platform');
+        return;
+      }
       if (!_this2.isLegal) {
         _this2.uiService.alertOK(_this2.translate.instant('REGISTRY.errorLegal'));
         return;
@@ -238,10 +278,23 @@ let RegistryPage = class RegistryPage {
       try {
         const usr = yield _this2.firebaseAuthService.signInWithApple();
         console.log("USER APPLE", usr);
-        _this2.goMobile(usr.email, _this2.generateRandomPassword(), usr.displayName, 'apple');
+        if (!usr || !usr.email) {
+          throw new Error('Failed to get user data from Apple');
+        }
+        // Store complete OAuth user data
+        const oauthUserData = {
+          email: usr.email,
+          password: _this2.generateRandomPassword(),
+          firstName: usr.displayName ? usr.displayName.split(' ')[0] : '',
+          lastName: usr.displayName ? usr.displayName.split(' ').slice(1).join(' ') : '',
+          image: usr.photoURL || null
+        };
+        _this2.userService.setOAuthUserData(oauthUserData);
+        _this2.userService.setOAuthProvider('apple');
+        _this2.goMobile(usr.email, oauthUserData.password, usr.displayName, 'apple');
       } catch (error) {
         console.log("Apple Sign Up Error", error);
-        _this2.uiService.alertOK(_this2.translate.instant('REGISTRY.msgErrApple'));
+        _this2.uiService.alertOK(_this2.translate.instant('REGISTRY.msgErrApple') || 'Apple Sign-In failed. Please try again.');
       }
     })();
   }
@@ -347,10 +400,12 @@ let RegistryPage = class RegistryPage {
       type: src_app_services_firebase_auth_service__WEBPACK_IMPORTED_MODULE_6__.FirebaseAuthService
     }, {
       type: src_app_services_user_service__WEBPACK_IMPORTED_MODULE_7__.UserService
+    }, {
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_11__.Platform
     }];
   }
 };
-RegistryPage = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_12__.Component)({
+RegistryPage = (0,tslib__WEBPACK_IMPORTED_MODULE_12__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_13__.Component)({
   selector: 'app-registry',
   template: _registry_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   styles: [(_registry_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]
@@ -667,7 +722,7 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-content color=\"blanco\" fullscreen>\n\n  <form [formGroup]=\"registryForm\" (ngSubmit)=\"create()\">\n    <ion-grid>\n      <ion-row>\n        <ion-button class=\"singIn-Bt\" color=\"blanco\" [routerLink]=\"['/login']\">\n          {{ 'REGISTRY.btnSingIn' | translate }}\n        </ion-button>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <div><img class=\"logoImg\" src=\"../../../../assets/logoApp.jpg\"></div>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <h1 class=\"welcome-h11\">{{ 'REGISTRY.WelcomeTxt1' | translate }}</h1>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <h1 class=\"welcome-h12\">{{ 'REGISTRY.WelcomeTxt2' | translate }}</h1>\n        </ion-col>\n      </ion-row>\n\n      <ion-row style=\"margin-top: 20px;\">\n        <ion-col>\n          <ion-item fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'REGISTRY.EmailLabel' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"email\" type=\"email\" inputmode=\"email\" required></ion-input>\n          </ion-item>\n          <div class=\"validation-errors\" style=\"margin-top: 8px; margin-bottom: 5px;\" *ngIf = presentarErroresCampos>\n            <ng-container *ngFor=\"let validation of validation_messages.email\">\n              <div class=\"error-message\" *ngIf=\"email.hasError(validation.type) && (email.dirty || email.touched)\">\n                <small class=\"error-message\">{{ 'REGISTRY.'+validation.message | translate }}</small>\n              </div>\n            </ng-container>\n          </div>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <ion-item fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'REGISTRY.PasswordLabel' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"password\" type=\"{{!view ? 'password' : 'text'}}\" required></ion-input>\n            <ion-img class=\"img-view\" slot=\"end\" src=\"../../../../assets/icon/view.png\" (click)=\"verContra()\"></ion-img>\n          </ion-item>\n          <div class=\"validation-errors\" style=\"margin-top: 8px;\" *ngIf = presentarErroresCampos>\n            <ng-container *ngFor=\"let validation of validation_messages.password\">\n              <div class=\"error-message\" *ngIf=\"password.hasError(validation.type) && (password.dirty || password.touched)\">\n                <small class=\"error-message\">{{ 'REGISTRY.'+validation.message | translate }}</small>\n              </div>\n            </ng-container>\n          </div>\n          <!-- <ion-item >\n            <ion-label >{{ 'REGISTRY.checkLegal' | translate }}</ion-label> \n            <ion-checkbox [value]=\"isLegal\"  (ionChange)=\"isChecked('legal')\"></ion-checkbox>\n          </ion-item>\n          <ion-item >\n            <ion-label >\n              {{ 'REGISTRY.checkTerms' | translate }} \n              <a class=\"a_ft\" (click)=\"params('terms-complete')\">{{ 'REGISTRY.terminosCondiciones' | translate }}</a>\n            </ion-label> \n            <ion-checkbox [value]=\"isTerms\"  (ionChange)=\"isChecked('terms')\"></ion-checkbox>\n          </ion-item> -->\n        </ion-col>\n      </ion-row>\n\n      <!-- <ion-row>\n        <ion-col>\n          <hr>\n          <p class=\"OrSingIn-P\">{{ 'REGISTRY.OrSingIn' | translate }}</p>\n        </ion-col>\n      </ion-row> -->\n\n      <!-- <ion-row>\n        \n        <ion-col size=\"6\">\n          <img class=\"singInG-Bt\" src=\"../../../../assets/icon/02-Boton_Google.png\" (click)=\"singUpGoogle()\">\n        </ion-col>\n        <ion-col size=\"6\">\n          <img class=\"singInA-Bt\" src=\"../../../../assets/icon/03-Boton_Apple.png\" (click)=\"singUpApple()\">\n        </ion-col>\n      </ion-row> -->\n\n      <ion-row>\n        <ion-col>\n          <p class=\"TermTxt-P\">{{ 'LOGIN.TermsText2' | translate }} <a class=\"a_ft\" (click)=\"params('terms-complete')\">{{ 'REGISTRY.terminosCondiciones' | translate }}</a></p>\n        </ion-col>\n      </ion-row>\n\n      <!-- <ion-row>\n        <ion-col>\n          <p class=\"TermTxtLink-P\"><a class=\"a_ft\" (click)=\"params('terms-complete')\">{{ 'REGISTRY.terminosCondiciones' | translate }}</a></p>\n        </ion-col>\n      </ion-row> -->\n\n      <ion-row>\n        <ion-button class=\"create-Bt\" color=\"primary1\" type=\"submit\">\n          {{ 'REGISTRY.btnCreate' | translate }}\n        </ion-button>\n      </ion-row>\n\n    </ion-grid>\n  </form>\n</ion-content>\n";
+module.exports = "<ion-content color=\"blanco\" fullscreen>\n\n  <form [formGroup]=\"registryForm\" (ngSubmit)=\"create()\">\n    <ion-grid>\n      <ion-row>\n        <ion-button class=\"singIn-Bt\" color=\"blanco\" [routerLink]=\"['/login']\">\n          {{ 'REGISTRY.btnSingIn' | translate }}\n        </ion-button>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <div><img class=\"logoImg\" src=\"../../../../assets/logoApp.jpg\"></div>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <h1 class=\"welcome-h11\">{{ 'REGISTRY.WelcomeTxt1' | translate }}</h1>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <h1 class=\"welcome-h12\">{{ 'REGISTRY.WelcomeTxt2' | translate }}</h1>\n        </ion-col>\n      </ion-row>\n\n      <ion-row style=\"margin-top: 20px;\">\n        <ion-col>\n          <ion-item fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'REGISTRY.EmailLabel' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"email\" type=\"email\" inputmode=\"email\" required></ion-input>\n          </ion-item>\n          <div class=\"validation-errors\" style=\"margin-top: 8px; margin-bottom: 5px;\" *ngIf = presentarErroresCampos>\n            <ng-container *ngFor=\"let validation of validation_messages.email\">\n              <div class=\"error-message\" *ngIf=\"email.hasError(validation.type) && (email.dirty || email.touched)\">\n                <small class=\"error-message\">{{ 'REGISTRY.'+validation.message | translate }}</small>\n              </div>\n            </ng-container>\n          </div>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <ion-item fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'REGISTRY.PasswordLabel' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"password\" type=\"{{!view ? 'password' : 'text'}}\" required></ion-input>\n            <ion-img class=\"img-view\" slot=\"end\" src=\"../../../../assets/icon/view.png\" (click)=\"verContra()\"></ion-img>\n          </ion-item>\n          <div class=\"validation-errors\" style=\"margin-top: 8px;\" *ngIf = presentarErroresCampos>\n            <ng-container *ngFor=\"let validation of validation_messages.password\">\n              <div class=\"error-message\" *ngIf=\"password.hasError(validation.type) && (password.dirty || password.touched)\">\n                <small class=\"error-message\">{{ 'REGISTRY.'+validation.message | translate }}</small>\n              </div>\n            </ng-container>\n          </div>\n          <!-- <ion-item >\n            <ion-label >{{ 'REGISTRY.checkLegal' | translate }}</ion-label> \n            <ion-checkbox [value]=\"isLegal\"  (ionChange)=\"isChecked('legal')\"></ion-checkbox>\n          </ion-item>\n          <ion-item >\n            <ion-label >\n              {{ 'REGISTRY.checkTerms' | translate }} \n              <a class=\"a_ft\" (click)=\"params('terms-complete')\">{{ 'REGISTRY.terminosCondiciones' | translate }}</a>\n            </ion-label> \n            <ion-checkbox [value]=\"isTerms\"  (ionChange)=\"isChecked('terms')\"></ion-checkbox>\n          </ion-item> -->\n        </ion-col>\n      </ion-row>\n\n      <ion-row *ngIf=\"isMobile || isWeb\">\n        <ion-col>\n          <hr>\n          <p class=\"OrSingIn-P\">{{ 'REGISTRY.OrSingIn' | translate }}</p>\n        </ion-col>\n      </ion-row>\n\n      <ion-row *ngIf=\"isMobile || isWeb\">\n        \n        <ion-col size=\"6\">\n          <img class=\"singInG-Bt\" src=\"../../../../assets/icon/02-Boton_Google.png\" (click)=\"singUpGoogle()\">\n        </ion-col>\n        <ion-col size=\"6\">\n          <img class=\"singInA-Bt\" src=\"../../../../assets/icon/03-Boton_Apple.png\" (click)=\"singUpApple()\">\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"TermTxt-P\">{{ 'LOGIN.TermsText2' | translate }} <a class=\"a_ft\" (click)=\"params('terms-complete')\">{{ 'REGISTRY.terminosCondiciones' | translate }}</a></p>\n        </ion-col>\n      </ion-row>\n\n      <!-- <ion-row>\n        <ion-col>\n          <p class=\"TermTxtLink-P\"><a class=\"a_ft\" (click)=\"params('terms-complete')\">{{ 'REGISTRY.terminosCondiciones' | translate }}</a></p>\n        </ion-col>\n      </ion-row> -->\n\n      <ion-row>\n        <ion-button class=\"create-Bt\" color=\"primary1\" type=\"submit\">\n          {{ 'REGISTRY.btnCreate' | translate }}\n        </ion-button>\n      </ion-row>\n\n    </ion-grid>\n  </form>\n</ion-content>\n";
 
 /***/ })
 

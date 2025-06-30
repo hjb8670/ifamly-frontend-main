@@ -32,6 +32,10 @@ PODS:
     - Capacitor
   - CapacitorKeyboard (5.0.8):
     - Capacitor
+  - CapacitorLocalNotifications (6.0.0):
+    - Capacitor
+  - CapacitorPushNotifications (6.0.0):
+    - Capacitor
   - CapacitorStorage (1.2.5):
     - Capacitor
   - CodetrixStudioCapacitorGoogleAuth (0.0.1):
@@ -93,6 +97,8 @@ DEPENDENCIES:
   - "CapacitorGeolocation (from `../../node_modules/@capacitor/geolocation`)"
   - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
+  - "CapacitorLocalNotifications (from `../../node_modules/@capacitor/local-notifications`)"
+  - "CapacitorPushNotifications (from `../../node_modules/@capacitor/push-notifications`)"
   - "CapacitorStorage (from `../../node_modules/@capacitor/storage`)"
   - "CodetrixStudioCapacitorGoogleAuth (from `../../node_modules/@codetrix-studio/capacitor-google-auth`)"
 
@@ -134,6 +140,10 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/haptics"
   CapacitorKeyboard:
     :path: "../../node_modules/@capacitor/keyboard"
+  CapacitorLocalNotifications:
+    :path: "../../node_modules/@capacitor/local-notifications"
+  CapacitorPushNotifications:
+    :path: "../../node_modules/@capacitor/push-notifications"
   CapacitorStorage:
     :path: "../../node_modules/@capacitor/storage"
   CodetrixStudioCapacitorGoogleAuth:
@@ -151,6 +161,8 @@ SPEC CHECKSUMS:
   CapacitorGeolocation: b005744861676af9abd19a0682f0b1af32cc2c99
   CapacitorHaptics: 85a1ecd1d3026089642518d789f0fb81fe93cf80
   CapacitorKeyboard: d878396bca6a0fefb313b1546c169648b5ae812a
+  CapacitorLocalNotifications: d051c73ec8bf38807214f5b905ee6426e13756f8
+  CapacitorPushNotifications: 8fd92b3f47e05646fbe78f6bf4d09d041e8ef91a
   CapacitorStorage: 5525ad0c4925b07029da1d2724bb479449e218d9
   CodetrixStudioCapacitorGoogleAuth: 9dcfabfb7dd804ad6231a1513bc6e81e620cbec6
   FirebaseAppCheckInterop: c87f1d5421c852413dd936b2b2340b21e62501a0
@@ -167,6 +179,6 @@ SPEC CHECKSUMS:
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   SDWebImage: fc8f2d48bbfd72ef39d70e981bd24a3f3be53fec
 
-PODFILE CHECKSUM: 4c7d49c33549242b2541e96eaf313a126eb583d7
+PODFILE CHECKSUM: 54c29aac73507b3111941bb563c70d35ca64288b
 
 COCOAPODS: 1.16.2

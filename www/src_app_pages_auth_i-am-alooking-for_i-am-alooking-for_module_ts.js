@@ -192,27 +192,47 @@ let IAmALookingForPage = class IAmALookingForPage {
         return;
       }
       if (op == 'next') {
-        // this.usr.iam_a = this.iam_a.value;
-        //  this.usr.iam_looking = this.iam_looking.value;
-        const user = {
-          profileIam: _this2.selectedIamName,
-          profileLookingFor: _this2.selectedIamllookingName
-        };
-        // Save it somewhere accessible (like a service or localStorage)
-        _this2.userService.setUserr(user);
-        _this2.usr = _this2.userService.getUserr();
-        console.log(_this2.usr);
-        _this2.useremail = _this2.usr.email;
-        _this2.pass = _this2.usr.password;
         // Check if this is an OAuth user (stored provider info)
         const oauthProvider = _this2.userService.getOAuthProvider();
         const isOAuthUser = oauthProvider === 'google' || oauthProvider === 'apple';
+        // Get the complete user data
+        let completeUserData;
+        if (isOAuthUser) {
+          // Merge OAuth data with collected profile data
+          const oauthData = _this2.userService.getOAuthUserData();
+          const collectedData = _this2.userService.getUserr();
+          // Validate that we have the required OAuth data
+          if (!oauthData.email || !oauthData.password || !oauthData.firstName || !oauthData.lastName) {
+            console.error('Incomplete OAuth data:', oauthData);
+            _this2.uiService.alertOK(_this2.translate.instant('I-AM.oauthDataError') || 'OAuth registration data is incomplete. Please try again.');
+            _this2.router.navigate(['/registry']);
+            return;
+          }
+          completeUserData = {
+            ...oauthData,
+            // Base OAuth data (email, password, firstName, lastName, image)
+            ...collectedData,
+            // Collected profile data (location, preferences, etc.)
+            profileIam: _this2.selectedIamName,
+            profileLookingFor: _this2.selectedIamllookingName
+          };
+          console.log('Complete OAuth user data:', completeUserData);
+        } else {
+          // Regular email registration
+          completeUserData = {
+            ..._this2.userService.getUserr(),
+            profileIam: _this2.selectedIamName,
+            profileLookingFor: _this2.selectedIamllookingName
+          };
+        }
+        _this2.useremail = completeUserData.email;
+        _this2.pass = completeUserData.password;
         let res;
         if (isOAuthUser) {
-          console.log('Using OAuth registration for user:', _this2.usr.email, 'Provider:', oauthProvider);
-          res = yield _this2.userService.registerOAuth(_this2.usr);
+          console.log('Using OAuth registration for user:', completeUserData.email, 'Provider:', oauthProvider);
+          res = yield _this2.userService.registerOAuth(completeUserData);
         } else {
-          res = yield _this2.userService.register(_this2.usr);
+          res = yield _this2.userService.register(completeUserData);
         }
         console.log(res);
         if (res['sCode'] == '1') {
@@ -247,6 +267,10 @@ let IAmALookingForPage = class IAmALookingForPage {
                 //this.navCtrl.navigateRoot( '/main/tabs/discover', { animated: true } );
                 const provider = isOAuthUser ? oauthProvider : 'email';
                 _this2.userService.setUserRS(_this2.useremail, _this2.pass, provider);
+                // Clear OAuth data after successful registration
+                if (isOAuthUser) {
+                  _this2.userService.clearOAuthUserData();
+                }
                 _this2.router.navigate(['/main/tabs/discover']);
                 // this.uiService.alertOK(this.translate.instant('LOCATION.SuccessMsg2'));
               }

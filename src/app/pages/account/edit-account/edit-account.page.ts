@@ -303,7 +303,7 @@ export class EditAccountPage implements OnInit {
 
   async save() {
      if (this.iam_a.invalid || !this.iam_a.value || this.iam_looking.invalid || !this.iam_looking.value ) {
-    this.uiService.alertOK(this.translate.instant('ABOUT-ME.missingfiled'));
+   // this.uiService.alertOK(this.translate.instant('ABOUT-ME.missingfiled'));
     this.iam_a.markAsTouched();
     this.iam_looking.markAsTouched();
    

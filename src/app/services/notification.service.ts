@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Capacitor } from '@capacitor/core';
 import { PushNotifications, Token } from '@capacitor/push-notifications';
 import { environment } from 'src/environments/environment';
-import { LocalNotifications } from '@capacitor/local-notifications';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -41,21 +41,21 @@ listenToMessages() {
       console.log('📨 Push Received (foreground):', notification);
 
       const data = notification.data;
-const randomInt = Math.floor(Math.random() * 100000); // always < Java int max
+      const randomInt = Math.floor(Math.random() * 100000); // always < Java int max
 
-      await LocalNotifications.schedule({
-        notifications: [
-          {
-            title: data.title || 'New Message',
-            body: data.body || '',
-            id: randomInt,
-            sound: 'default',
-            smallIcon: 'ic_stat_icon_config', // optional
-            attachments: data.senderImageUrl ? [{ id: 'image', url: data.senderImageUrl }] : [],
-            extra: data,
-          },
-        ],
-      });
+      // await LocalNotifications.schedule({
+      //   notifications: [
+      //     {
+      //       title: data.title || 'New Message',
+      //       body: data.body || '',
+      //       id: randomInt,
+      //       sound: 'default',
+      //       smallIcon: 'ic_stat_icon_config', // optional
+      //       attachments: data.senderImageUrl ? [{ id: 'image', url: data.senderImageUrl }] : [],
+      //       extra: data,
+      //     },
+      //   ],
+      // });
     });
 
     PushNotifications.addListener('pushNotificationActionPerformed', (action) => {

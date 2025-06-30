@@ -146,21 +146,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   AppComponent: () => (/* binding */ AppComponent)
 /* harmony export */ });
 /* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _app_component_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component.html?ngResource */ 10440);
 /* harmony import */ var _app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component.scss?ngResource */ 25004);
 /* harmony import */ var _app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/core */ 94280);
-/* harmony import */ var _angular_common_locales_es_MX__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/locales/es-MX */ 10932);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common */ 65056);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _angular_common_locales_es_MX__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/locales/es-MX */ 10932);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common */ 65056);
 /* harmony import */ var _services_language_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/language.service */ 42608);
 /* harmony import */ var _services_firebase_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services/firebase-auth.service */ 26372);
 /* harmony import */ var _services_google_sign_in_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./services/google-sign-in.service */ 24572);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular */ 78848);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic/angular */ 27832);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/angular */ 78848);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/angular */ 27832);
 /* harmony import */ var _pages_selectlang_selectlang_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/selectlang/selectlang.page */ 49036);
 /* harmony import */ var _services_notification_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/notification.service */ 44244);
-/* harmony import */ var _capacitor_local_notifications__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @capacitor/local-notifications */ 16248);
 
 
 
@@ -175,9 +174,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-(0,_angular_common__WEBPACK_IMPORTED_MODULE_9__.registerLocaleData)(_angular_common_locales_es_MX__WEBPACK_IMPORTED_MODULE_10__["default"]);
-(0,_angular_common__WEBPACK_IMPORTED_MODULE_9__.registerLocaleData)(_angular_common_locales_es_MX__WEBPACK_IMPORTED_MODULE_10__["default"], 'es');
+//import { LocalNotifications } from '@capacitor/local-notifications';
+(0,_angular_common__WEBPACK_IMPORTED_MODULE_8__.registerLocaleData)(_angular_common_locales_es_MX__WEBPACK_IMPORTED_MODULE_9__["default"]);
+(0,_angular_common__WEBPACK_IMPORTED_MODULE_8__.registerLocaleData)(_angular_common_locales_es_MX__WEBPACK_IMPORTED_MODULE_9__["default"], 'es');
 let AppComponent = class AppComponent {
   constructor(languageService, firebaseAuthService, modalController, navCtrl, googleSingInService, notificationService) {
     this.languageService = languageService;
@@ -191,7 +190,7 @@ let AppComponent = class AppComponent {
   ngOnInit() {
     var _this = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      yield _capacitor_local_notifications__WEBPACK_IMPORTED_MODULE_8__.LocalNotifications.requestPermissions();
+      //  await LocalNotifications.requestPermissions();
       _this.notificationService.listenToMessages();
     })();
   }
@@ -259,9 +258,9 @@ let AppComponent = class AppComponent {
     }, {
       type: _services_firebase_auth_service__WEBPACK_IMPORTED_MODULE_4__.FirebaseAuthService
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_11__.ModalController
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.ModalController
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_12__.NavController
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_11__.NavController
     }, {
       type: _services_google_sign_in_service__WEBPACK_IMPORTED_MODULE_5__.GoogleSignInService
     }, {
@@ -269,11 +268,11 @@ let AppComponent = class AppComponent {
     }];
   }
 };
-AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_13__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_14__.Component)({
+AppComponent = (0,tslib__WEBPACK_IMPORTED_MODULE_12__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_13__.Component)({
   selector: 'app-root',
   template: _app_component_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   providers: [{
-    provide: _angular_core__WEBPACK_IMPORTED_MODULE_14__.LOCALE_ID,
+    provide: _angular_core__WEBPACK_IMPORTED_MODULE_13__.LOCALE_ID,
     useValue: 'es-MX'
   }],
   styles: [(_app_component_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]
@@ -589,8 +588,9 @@ let GalleryPage = class GalleryPage {
     this.images = [];
     this.startIndex = 0;
   }
-  ngOnInit() {
-    console.log('GalleryPage initialized with images:', this.images);
+  ionViewDidEnter() {
+    console.log('GalleryPage: images =', this.images);
+    console.log('GalleryPage: startIndex =', this.startIndex);
   }
   closeModal() {
     this.modalCtrl.dismiss();
@@ -2029,12 +2029,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   NotificationService: () => (/* binding */ NotificationService)
 /* harmony export */ });
 /* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 21124);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/core */ 3536);
 /* harmony import */ var _capacitor_push_notifications__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @capacitor/push-notifications */ 29064);
-/* harmony import */ var _capacitor_local_notifications__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @capacitor/local-notifications */ 16248);
-
 
 
 
@@ -2074,21 +2072,19 @@ let NotificationService = class NotificationService {
           console.log('📨 Push Received (foreground):', notification);
           const data = notification.data;
           const randomInt = Math.floor(Math.random() * 100000); // always < Java int max
-          yield _capacitor_local_notifications__WEBPACK_IMPORTED_MODULE_3__.LocalNotifications.schedule({
-            notifications: [{
-              title: data.title || 'New Message',
-              body: data.body || '',
-              id: randomInt,
-              sound: 'default',
-              smallIcon: 'ic_stat_icon_config',
-              // optional
-              attachments: data.senderImageUrl ? [{
-                id: 'image',
-                url: data.senderImageUrl
-              }] : [],
-              extra: data
-            }]
-          });
+          // await LocalNotifications.schedule({
+          //   notifications: [
+          //     {
+          //       title: data.title || 'New Message',
+          //       body: data.body || '',
+          //       id: randomInt,
+          //       sound: 'default',
+          //       smallIcon: 'ic_stat_icon_config', // optional
+          //       attachments: data.senderImageUrl ? [{ id: 'image', url: data.senderImageUrl }] : [],
+          //       extra: data,
+          //     },
+          //   ],
+          // });
         });
         return function (_x) {
           return _ref.apply(this, arguments);
@@ -2104,7 +2100,7 @@ let NotificationService = class NotificationService {
     this.ctorParameters = () => [];
   }
 };
-NotificationService = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Injectable)({
+NotificationService = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)({
   providedIn: 'root'
 })], NotificationService);
 
@@ -3533,7 +3529,8 @@ __webpack_require__.r(__webpack_exports__);
 if (_environments_environment__WEBPACK_IMPORTED_MODULE_1__.environment.production) {
   (0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.enableProdMode)();
 }
-navigator.serviceWorker.register('firebase-messaging-sw.js').then(reg => console.log('Service Worker Registered', reg));
+// navigator.serviceWorker.register('firebase-messaging-sw.js')
+//   .then(reg => console.log('Service Worker Registered', reg));
 (0,_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__.platformBrowserDynamic)().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_0__.AppModule).catch(err => console.log(err));
 
 /***/ }),
@@ -3831,22 +3828,15 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 // Imports
 var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 19728);
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 67804);
-var ___CSS_LOADER_AT_RULE_IMPORT_0___ = __webpack_require__(/*! -!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].rules[0].oneOf[1].use[0]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].rules[0].oneOf[1].use[1]!../../../../node_modules/swiper/swiper-bundle.css */ 66860);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
-___CSS_LOADER_EXPORT___.i(___CSS_LOADER_AT_RULE_IMPORT_0___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `.slide-image-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.slide-image {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}`, "",{"version":3,"sources":["webpack://./src/app/pages/gallery/gallery.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/gallery/gallery.page.scss"],"names":[],"mappings":"AAEA;EACE,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,YAAA;ACAF;;ADGA;EACE,eAAA;EACA,gBAAA;EACA,mBAAA;ACAF","sourcesContent":["@import 'swiper/swiper-bundle.css';\n\n.slide-image-wrapper {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 100%;\n}\n\n.slide-image {\n  max-width: 100%;\n  max-height: 100%;\n  object-fit: contain;\n}\n","@import 'swiper/swiper-bundle.css';\n.slide-image-wrapper {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 100%;\n}\n\n.slide-image {\n  max-width: 100%;\n  max-height: 100%;\n  object-fit: contain;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.grid-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}`, "",{"version":3,"sources":["webpack://./src/app/pages/gallery/gallery.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/gallery/gallery.page.scss"],"names":[],"mappings":"AAAA;EACE,WAAA;EACA,aAAA;EACA,iBAAA;EACA,kBAAA;EACA,wCAAA;ACCF","sourcesContent":[".grid-image {\n  width: 100%;\n  height: 180px;\n  object-fit: cover;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0,0,0,0.1);\n}\n",".grid-image {\n  width: 100%;\n  height: 180px;\n  object-fit: cover;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);\n}"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 
@@ -3922,7 +3912,7 @@ module.exports = "<ion-app>\n  <ion-router-outlet [swipeGesture]=\"false\"></ion
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-header translucent>\n  <ion-toolbar color=\"light\">\n    <ion-buttons slot=\"start\">\n      <ion-button (click)=\"closeModal()\">\n        <ion-icon name=\"close-outline\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>Gallery</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen>\n  <ion-slides [initialSlide]=\"selectedIndex\" pager=\"true\">\n    <ion-slide *ngFor=\"let img of images\">\n      <div class=\"slide-image-wrapper\">\n        <img [src]=\"img\" class=\"slide-image\" />\n      </div>\n    </ion-slide>\n  </ion-slides>\n</ion-content>\n";
+module.exports = "<ion-header translucent>\n  <ion-toolbar color=\"light\">\n    <ion-buttons slot=\"start\">\n      <ion-button (click)=\"closeModal()\">\n        <ion-icon name=\"close-outline\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>Gallery</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen>\n  <ion-grid>\n    <ion-row>\n      <ion-col size=\"6\" sizeMd=\"4\" sizeLg=\"3\" *ngFor=\"let img of images\">\n        <ion-img [src]=\"img\" class=\"grid-image\"></ion-img>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n";
 
 /***/ }),
 

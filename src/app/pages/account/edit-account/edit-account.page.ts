@@ -336,7 +336,7 @@ this.uiService.showLoader();
 
     this.uiService.hideLoader();
     if(!res0 || !res1){
-      this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
+     // this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
       this.router.navigate(['main/tabs/account']);
       return;
       

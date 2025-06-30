@@ -2158,7 +2158,8 @@ let UserService = class UserService {
     this.sesionFin = false;
     this.notificationsAllowed = false;
     this.user = {};
-    this.oauthProvider = '';
+    this.oAuthUserData = null;
+    this.oAuthProvider = null;
   }
   setUserr(user) {
     this.user = {
@@ -2166,11 +2167,21 @@ let UserService = class UserService {
       ...user
     };
   }
+  clearOAuthUserData() {
+    this.oAuthUserData = null;
+    this.oAuthProvider = null;
+  }
+  setOAuthUserData(user) {
+    this.oAuthUserData = user;
+  }
+  getOAuthUserData() {
+    return this.oAuthUserData;
+  }
   setOAuthProvider(provider) {
-    this.oauthProvider = provider;
+    this.oAuthProvider = provider;
   }
   getOAuthProvider() {
-    return this.oauthProvider;
+    return this.oAuthProvider;
   }
   getUserr() {
     return this.user;

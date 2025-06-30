@@ -17,6 +17,8 @@ import { ModalController, NavController } from '@ionic/angular';
 import { Share } from '@capacitor/share';
 import { MatchModalPage } from 'src/app/match-modal/match-modal.page';
 import { Capacitor } from '@capacitor/core';
+import { TalkService } from 'src/app/services/talk.service';
+import { TabService } from 'src/app/services/tab.service';
 
 
 
@@ -156,7 +158,9 @@ export class TabDiscoverPage implements AfterViewInit{
     private router: Router,
     private modalController: ModalController,
     private navCtrl: NavController,
-    private platform: Platform
+    private platform: Platform,
+    private talkService: TalkService,
+    private tabService: TabService
   ) {
     this.activatedRoute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
@@ -545,9 +549,8 @@ async openGallery(usr: any) {
       resSuperLike = 'false'
     }
     
-    let res = await this.matchService.doMatchProfiles(idDiscover.toString(), accionId.toString(), resLike, resSuperLike, null);
-    if(res){
-
+    let matchId = await this.matchService.doMatchProfiles(idDiscover.toString(), accionId.toString(), resLike, resSuperLike, null);
+    if(matchId!=null){
       const modal = await this.modalController.create({
         component: MatchModalPage,
         componentProps: {
@@ -563,7 +566,24 @@ async openGallery(usr: any) {
 
         if (data?.action === 'message') {
           // Navigate to messages tab
-          this.router.navigateByUrl('/main/tabs/message');
+              this.uiService.showLoader();
+              const resp = await this.talkService.updateConversation(matchId.toString());
+              this.uiService.hideLoader();
+              if (Object.keys(resp).length === 0) {
+                console.log("Chat registration issue");
+                return;
+              }
+              const navExtras: NavigationExtras = {
+                state: {
+                  idConversation: resp["idConversation"]
+                }
+              };
+              
+              // Navigate to message tab and trigger the tab change
+              this.router.navigate(['main/tabs/message'], navExtras).then(() => {
+                // Update tab state using the tab service
+                this.tabService.setActiveTab('message');
+              });
         } else if (data?.action === 'swipe') {
           // Navigate to discover tab
           this.router.navigateByUrl('/main/tabs/discover');

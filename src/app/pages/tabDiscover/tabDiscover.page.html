@@ -29,30 +29,30 @@
         <h2 class="profile-name">{{ usr.firstName }} {{ usr.lastName }}, {{ usr.age }}</h2>
         <p class="profile-description">  {{ usr.aboutMe }} </p>
 
-        <div class="profile-info-block" *ngIf="usr.hobbies?.length > 0">
-          <strong>Hobbies:</strong>
-          <span>{{ getNames(usr.hobbies) }}</span>
-        </div>
+          <div class="profile-info-block" *ngIf="usr.hobbies?.length">
+            <div class="info-label">Hobbies:</div>
+            <div class="info-value">{{ getNames(usr.hobbies) }}</div>
+          </div>
 
-        <div class="profile-info-block" *ngIf="usr.sports?.length > 0">
-          <strong>Sports:</strong>
-          <span>{{ getNames(usr.sports) }}</span>
-        </div>
+          <div class="profile-info-block" *ngIf="usr.sports?.length">
+            <div class="info-label">Sports:</div>
+            <div class="info-value">{{ getNames(usr.sports) }}</div>
+          </div>
 
-        <div class="profile-info-block" *ngIf="usr.languajes?.length > 0">
-          <strong>Languages:</strong>
-          <span>{{ getNames(usr.languajes) }}</span>
-        </div>
+          <div class="profile-info-block" *ngIf="usr.languajes?.length">
+            <div class="info-label">Languages:</div>
+            <div class="info-value">{{ getNames(usr.languajes) }}</div>
+          </div>
 
-        <div class="profile-info-block" *ngIf="usr.sign?.length > 0">
-          <strong>Sign:</strong>
-          <span>{{ getNames(usr.sign) }}</span>
-        </div>
+          <div class="profile-info-block" *ngIf="usr.sign?.length">
+            <div class="info-label">Sign:</div>
+            <div class="info-value">{{ getNames(usr.sign) }}</div>
+          </div>
 
-        <div class="profile-info-block" *ngIf="usr.education?.length > 0">
-          <strong>Education:</strong>
-          <span>{{ getNames(usr.education) }}</span>
-        </div>
+          <div class="profile-info-block" *ngIf="usr.education?.length">
+            <div class="info-label">Education:</div>
+            <div class="info-value">{{ getNames(usr.education) }}</div>
+          </div>
 
         </ion-card-content>
         <!-- <div class="profile-actions">

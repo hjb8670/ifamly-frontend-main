@@ -177,14 +177,19 @@ export class MatchService {
           console.log('RESP (crear-like): ', resp);
 
           if(resp['sCode'] != 7) {
-            resolve(false)
+            resolve(null)
           }
+
+          if(resp['sData'] && resp['sData'] != null) {
+            resolve(resp['sData']);
+          }
+
+          resolve(null)
           
-          resolve(true);
         },
         error:err => {
           console.log('ERR CREATE-LIKE', err);
-          resolve(false);
+          resolve(null);
         }
       });
     });

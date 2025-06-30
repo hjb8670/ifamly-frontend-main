@@ -18,10 +18,8 @@ import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { GoogleTranslateLoader } from './services/google-translate.loader';
 import { register } from 'swiper/element/bundle';
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { provideMessaging, getMessaging } from '@angular/fire/messaging';
-import { GalleryPage } from './pages/gallery/gallery.page';
 import { GalleryPageModule } from './pages/gallery/gallery.module';
+import { MatchModalPageModule } from './match-modal/match-modal.module';
 
 register();
 
@@ -44,7 +42,8 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    GalleryPageModule
+    GalleryPageModule,
+    MatchModalPageModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

@@ -36,25 +36,30 @@
   margin-bottom: 15px;
   margin-top: 5px;
   font-size: 14px;
+  color: orange;
 }
+
+
 
 .profile-info-block {
   display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
+  margin-bottom: 6px;
   font-size: 13px;
   line-height: 1.3;
-  margin-bottom: 6px;
 }
 
-.profile-info-block strong {
+.profile-info-block .info-label {
+  width: 100px;
   font-weight: 600;
-  margin-right: 4px;
-  white-space: nowrap;
+  color: #333;
+  flex-shrink: 0;
+  text-align: left;
 }
 
-.profile-info-block span {
-//   flex: 1;
+.profile-info-block .info-value {
+  flex-grow: 1;
+  text-align: left;
+  color: #555;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

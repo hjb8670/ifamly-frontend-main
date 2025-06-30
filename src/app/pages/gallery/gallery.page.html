@@ -10,11 +10,11 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <ion-slides [initialSlide]="selectedIndex" pager="true">
-    <ion-slide *ngFor="let img of images">
-      <div class="slide-image-wrapper">
-        <img [src]="img" class="slide-image" />
-      </div>
-    </ion-slide>
-  </ion-slides>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" sizeMd="4" sizeLg="3" *ngFor="let img of images">
+        <ion-img [src]="img" class="grid-image"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

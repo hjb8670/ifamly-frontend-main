@@ -269,10 +269,13 @@ export class TabDiscoverPage implements AfterViewInit{
 
 async openGallery(usr: any) {
   try {
-    const resImg = await this.matchService.getIMGS(usr.personId.toString()) as ImagesUser[];
+    let currentModal = await this.modalController.getTop();
+    if (currentModal) {
+      await currentModal.dismiss();
+    }
+    const resImg = await this.matchService.getIMGSOfPerson(usr.personId.toString()) as ImagesUser[];
     const safeImgList = Array.isArray(resImg) ? resImg : [];
     const images = safeImgList.map(img => img.multimediaUrl || '');
-    console.log("IMAGES: ", images);
     const modal = await this.modalController.create({
       component: GalleryPage,
       componentProps: {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -6,14 +6,15 @@ import { ModalController } from '@ionic/angular';
   templateUrl: './gallery.page.html',
   styleUrls: ['./gallery.page.scss'],
 })
-export class GalleryPage implements OnInit {
+export class GalleryPage {
   @Input() images: string[] = [];
   @Input() startIndex = 0;
 
   constructor(private modalCtrl: ModalController) {}
 
-  ngOnInit() {
-    console.log('GalleryPage initialized with images:', this.images);
+  ionViewDidEnter() {
+    console.log('GalleryPage: images =', this.images);
+    console.log('GalleryPage: startIndex =', this.startIndex);
   }
 
   closeModal() {

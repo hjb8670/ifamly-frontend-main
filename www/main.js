@@ -294,21 +294,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   AppModule: () => (/* binding */ AppModule),
 /* harmony export */   createTranslateLoader: () => (/* binding */ createTranslateLoader)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tslib */ 21124);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 94280);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/platform-browser */ 50168);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/router */ 24040);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ 78848);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @ionic/angular */ 27832);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser */ 50168);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/router */ 24040);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 78848);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ionic/angular */ 27832);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app-routing.module */ 80484);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component */ 86108);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ 33712);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
-/* harmony import */ var _angular_fire_compat__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/fire/compat */ 36724);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ 33712);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
+/* harmony import */ var _angular_fire_compat__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/fire/compat */ 36724);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/environments/environment */ 36716);
-/* harmony import */ var _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/fire/compat/auth */ 16088);
+/* harmony import */ var _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/fire/compat/auth */ 16088);
 /* harmony import */ var _services_google_translate_loader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/google-translate.loader */ 47944);
 /* harmony import */ var swiper_element_bundle__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! swiper/element/bundle */ 14508);
+/* harmony import */ var _pages_gallery_gallery_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/gallery/gallery.module */ 25940);
 
 
 
@@ -324,26 +325,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 (0,swiper_element_bundle__WEBPACK_IMPORTED_MODULE_4__.register)();
 function createTranslateLoader(http) {
   return new _services_google_translate_loader__WEBPACK_IMPORTED_MODULE_3__.GoogleTranslateLoader(http);
 }
 let AppModule = class AppModule {};
-AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.NgModule)({
+AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.NgModule)({
   declarations: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent],
-  imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__.BrowserModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.IonicModule.forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpClientModule, _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__.TranslateModule.forRoot({
+  imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__.BrowserModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonicModule.forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_10__.HttpClientModule, _ngx_translate_core__WEBPACK_IMPORTED_MODULE_11__.TranslateModule.forRoot({
     loader: {
-      provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__.TranslateLoader,
+      provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_11__.TranslateLoader,
       useFactory: createTranslateLoader,
-      deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpClient]
+      deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_10__.HttpClient]
     }
-  }), _angular_fire_compat__WEBPACK_IMPORTED_MODULE_11__.AngularFireModule.initializeApp(src_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.firebaseConfig), _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_12__.AngularFireAuthModule],
+  }), _angular_fire_compat__WEBPACK_IMPORTED_MODULE_12__.AngularFireModule.initializeApp(src_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.firebaseConfig), _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_13__.AngularFireAuthModule, _pages_gallery_gallery_module__WEBPACK_IMPORTED_MODULE_5__.GalleryPageModule],
   providers: [{
-    provide: _angular_router__WEBPACK_IMPORTED_MODULE_13__.RouteReuseStrategy,
-    useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_14__.IonicRouteStrategy
+    provide: _angular_router__WEBPACK_IMPORTED_MODULE_14__.RouteReuseStrategy,
+    useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_15__.IonicRouteStrategy
   }],
   bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent],
-  schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_6__.CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_7__.CUSTOM_ELEMENTS_SCHEMA]
 })], AppModule);
 
 
@@ -522,6 +524,98 @@ let UserGuard = class UserGuard {
 UserGuard = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
   providedIn: 'root'
 })], UserGuard);
+
+
+/***/ }),
+
+/***/ 25940:
+/*!*************************************************!*\
+  !*** ./src/app/pages/gallery/gallery.module.ts ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   GalleryPageModule: () => (/* binding */ GalleryPageModule)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 65056);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ 71904);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ 78848);
+/* harmony import */ var _gallery_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gallery.page */ 5548);
+
+
+
+
+
+
+let GalleryPageModule = class GalleryPageModule {};
+GalleryPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.NgModule)({
+  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule, _angular_forms__WEBPACK_IMPORTED_MODULE_4__.FormsModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_5__.IonicModule],
+  declarations: [_gallery_page__WEBPACK_IMPORTED_MODULE_0__.GalleryPage],
+  schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_2__.CUSTOM_ELEMENTS_SCHEMA]
+})], GalleryPageModule);
+
+
+/***/ }),
+
+/***/ 5548:
+/*!***********************************************!*\
+  !*** ./src/app/pages/gallery/gallery.page.ts ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   GalleryPage: () => (/* binding */ GalleryPage)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var _gallery_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gallery.page.html?ngResource */ 16456);
+/* harmony import */ var _gallery_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./gallery.page.scss?ngResource */ 62520);
+/* harmony import */ var _gallery_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_gallery_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ 78848);
+
+
+
+
+
+let GalleryPage = class GalleryPage {
+  constructor(modalCtrl) {
+    this.modalCtrl = modalCtrl;
+    this.images = [];
+    this.startIndex = 0;
+  }
+  ngOnInit() {
+    console.log('GalleryPage initialized with images:', this.images);
+  }
+  closeModal() {
+    this.modalCtrl.dismiss();
+  }
+  static {
+    this.ctorParameters = () => [{
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.ModalController
+    }];
+  }
+  static {
+    this.propDecorators = {
+      images: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input
+      }],
+      startIndex: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_3__.Input
+      }]
+    };
+  }
+};
+GalleryPage = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Component)({
+  selector: 'app-gallery',
+  template: _gallery_page_html_ngResource__WEBPACK_IMPORTED_MODULE_0__,
+  styles: [(_gallery_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_1___default())]
+})], GalleryPage);
 
 
 /***/ }),
@@ -3728,6 +3822,37 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 
 /***/ }),
 
+/***/ 62520:
+/*!************************************************************!*\
+  !*** ./src/app/pages/gallery/gallery.page.scss?ngResource ***!
+  \************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 19728);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ 67804);
+var ___CSS_LOADER_AT_RULE_IMPORT_0___ = __webpack_require__(/*! -!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].rules[0].oneOf[1].use[0]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].rules[0].oneOf[1].use[1]!../../../../node_modules/swiper/swiper-bundle.css */ 66860);
+var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
+___CSS_LOADER_EXPORT___.i(___CSS_LOADER_AT_RULE_IMPORT_0___);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.slide-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.slide-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}`, "",{"version":3,"sources":["webpack://./src/app/pages/gallery/gallery.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/gallery/gallery.page.scss"],"names":[],"mappings":"AAEA;EACE,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,YAAA;ACAF;;ADGA;EACE,eAAA;EACA,gBAAA;EACA,mBAAA;ACAF","sourcesContent":["@import 'swiper/swiper-bundle.css';\n\n.slide-image-wrapper {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 100%;\n}\n\n.slide-image {\n  max-width: 100%;\n  max-height: 100%;\n  object-fit: contain;\n}\n","@import 'swiper/swiper-bundle.css';\n.slide-image-wrapper {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 100%;\n}\n\n.slide-image {\n  max-width: 100%;\n  max-height: 100%;\n  object-fit: contain;\n}"],"sourceRoot":""}]);
+// Exports
+module.exports = ___CSS_LOADER_EXPORT___.toString();
+
+
+/***/ }),
+
 /***/ 26392:
 /*!******************************************************************!*\
   !*** ./src/app/pages/selectlang/selectlang.page.scss?ngResource ***!
@@ -3787,6 +3912,17 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 
 "use strict";
 module.exports = "<ion-app>\n  <ion-router-outlet [swipeGesture]=\"false\"></ion-router-outlet>\n</ion-app>\n";
+
+/***/ }),
+
+/***/ 16456:
+/*!************************************************************!*\
+  !*** ./src/app/pages/gallery/gallery.page.html?ngResource ***!
+  \************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<ion-header translucent>\n  <ion-toolbar color=\"light\">\n    <ion-buttons slot=\"start\">\n      <ion-button (click)=\"closeModal()\">\n        <ion-icon name=\"close-outline\"></ion-icon>\n      </ion-button>\n    </ion-buttons>\n    <ion-title>Gallery</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen>\n  <ion-slides [initialSlide]=\"selectedIndex\" pager=\"true\">\n    <ion-slide *ngFor=\"let img of images\">\n      <div class=\"slide-image-wrapper\">\n        <img [src]=\"img\" class=\"slide-image\" />\n      </div>\n    </ion-slide>\n  </ion-slides>\n</ion-content>\n";
 
 /***/ }),
 

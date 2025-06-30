@@ -23,8 +23,6 @@ import { DiscoverStateService } from '../../services/discover-state.service';
 export class TabDiscoverPage implements AfterViewInit{
   @ViewChildren(IonCard, {read: ElementRef}) cards: QueryList<ElementRef>;
   @ViewChild(IonModal) modal: IonModal;
-  @ViewChild('swiperEl', { static: false }) swiperElRef!: ElementRef;
-
   isLoading = true;
 
   private limToLoadProfiles = 3;//se actualizo a 0 por que no actualizaba el final 
@@ -255,15 +253,8 @@ export class TabDiscoverPage implements AfterViewInit{
     // this.religions = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Religion.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
   }
 
-  // async ngAfterViewInit() {
-  //   //await this.reLoadDiscover();
-  // }
-
   async ngAfterViewInit() {
-    const swiper = this.swiperElRef.nativeElement;
-    if (swiper && swiper.initialize) {
-      swiper.initialize();
-    }
+    //await this.reLoadDiscover();
   }
 
   iniSizeContenedorCard(){
@@ -630,11 +621,6 @@ export class TabDiscoverPage implements AfterViewInit{
     await this.setStatusDiscover(this.discoverUsrs[this.posCardGlobal].personId, this.statusUsrDicover.like);
     this.likeBtn = false;
     this.uiService.hideLoader();
-  }
-
-  getNames(items?: { name: string }[]): string {
-    if (!items || items.length === 0) return '';
-    return items.slice(0, 3).map(i => i.name).join(', ');
   }
 
   async doSuperLike() {

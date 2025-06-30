@@ -12,7 +12,8 @@ import { FormBuilder } from '@angular/forms';
 import { UtilitiesService } from '../../services/utilities.service';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { DetailMatchMenuPopoverPage } from '../match/detail-match-menu-popover/detail-match-menu-popover.page';
-import { DiscoverStateService } from '../../services/discover-state.service';
+import { GalleryPage } from '../gallery/gallery.page';
+import { ModalController } from '@ionic/angular';
 
 
 @Component({
@@ -23,6 +24,8 @@ import { DiscoverStateService } from '../../services/discover-state.service';
 export class TabDiscoverPage implements AfterViewInit{
   @ViewChildren(IonCard, {read: ElementRef}) cards: QueryList<ElementRef>;
   @ViewChild(IonModal) modal: IonModal;
+  @ViewChild('swiperEl', { static: false }) swiperElRef!: ElementRef;
+
   isLoading = true;
 
   private limToLoadProfiles = 3;//se actualizo a 0 por que no actualizaba el final 
@@ -147,9 +150,15 @@ export class TabDiscoverPage implements AfterViewInit{
     private cdRef: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private discoverState: DiscoverStateService
+    private modalController: ModalController
   ) {
-    // Removed ActivatedRoute queryParams subscription that overwrote discoverUsrs
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        if (!this.router.getCurrentNavigation().extras.state.mntList || this.router.getCurrentNavigation().extras.state.mntList.length > 0) {
+          this.discoverUsrs = this.router.getCurrentNavigation().extras.state.discoverUsrs;
+        }
+      }
+    });
   }
 
   get iam_a() {
@@ -211,24 +220,12 @@ export class TabDiscoverPage implements AfterViewInit{
   async ngOnInit() {
     this.iniSizeContenedorCard();
 
-    // Only reload if there is NO saved state
-    const savedList = this.discoverState.getCardList();
-    if (!savedList || savedList.length === 0) {
-      this.activatedRoute.queryParams.subscribe(async params => {
-        console.log('PARAMS: ', params);
-        await this.reLoadDiscover();
-      });
-    } else {
-      // Restore state immediately
-      this.discoverUsrs = savedList;
-      this.posCardGlobal = this.discoverState.getLastCardIndex();
-      this.isLoading = false;
-    }
+    this.activatedRoute.queryParams.subscribe(async params => {
+      console.log('PARAMS: ', params);
+      
+      await this.reLoadDiscover();
+    });
 
-    setTimeout(() => {
-      const cardArray = this.cards.toArray();
-      this.useSwipe(cardArray);
-    }, 100);
   }
 
   async ionViewDidEnter() {
@@ -237,6 +234,11 @@ export class TabDiscoverPage implements AfterViewInit{
     } else {
       this.lanCatalogo = constants.languages.en;
     }
+
+    // const tVal = await this.userService.validaToken();
+    // if( !tVal ) {
+    //   return;
+    // }
     this.matchService.newMatch = false;
     this.matchService.matchPerson = [];
     this.matchService.principal();
@@ -251,11 +253,40 @@ export class TabDiscoverPage implements AfterViewInit{
     // this.smoks =  <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Fuma.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
     // this.kids = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Hijos.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
     // this.religions = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Religion.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
+    
+
   }
 
+  // async ngAfterViewInit() {
+  //   //await this.reLoadDiscover();
+  // }
   async ngAfterViewInit() {
-    //await this.reLoadDiscover();
+  const swiper = this.swiperElRef?.nativeElement;
+  if (swiper && swiper.initialize) {
+    swiper.initialize();
   }
+}
+
+async openGallery(usr: any) {
+  try {
+    const resImg = await this.matchService.getIMGS(usr.personId.toString()) as ImagesUser[];
+    const safeImgList = Array.isArray(resImg) ? resImg : [];
+    const images = safeImgList.map(img => img.multimediaUrl || '');
+    console.log("IMAGES: ", images);
+    const modal = await this.modalController.create({
+      component: GalleryPage,
+      componentProps: {
+        images,
+        startIndex: 0
+      },
+      cssClass: 'gallery-modal'
+    });
+    await modal.present();
+  } catch (err) {
+    console.error('Failed to open gallery modal:', err);
+  }
+}
+
 
   iniSizeContenedorCard(){
     let imgSizeWidth = this.plt.width() * .9;
@@ -520,10 +551,6 @@ export class TabDiscoverPage implements AfterViewInit{
     this.discoverUsrs.pop();
     this.posCardGlobal--;
     
-    // Save state after change
-    this.discoverState.setCardList(this.discoverUsrs);
-    this.discoverState.setLastCardIndex(this.posCardGlobal);
-
     if(this.discoverUsrs.length <= 1) {
       await this.loadDiscover();
     }
@@ -621,6 +648,11 @@ export class TabDiscoverPage implements AfterViewInit{
     await this.setStatusDiscover(this.discoverUsrs[this.posCardGlobal].personId, this.statusUsrDicover.like);
     this.likeBtn = false;
     this.uiService.hideLoader();
+  }
+
+  getNames(items?: { name: string }[]): string {
+    if (!items || items.length === 0) return '';
+    return items.slice(0, 3).map(i => i.name).join(', ');
   }
 
   async doSuperLike() {
@@ -745,16 +777,18 @@ export class TabDiscoverPage implements AfterViewInit{
   }
 
 
-  viewProfile(user: User, index: number) {
-    this.discoverState.setLastCardIndex(index);
-    this.discoverState.setCardList(this.discoverUsrs);
-    let navegationExtras: NavigationExtras = {
-      state: {
-        typePerson: 1,
-        otherPerson: user.personId,
-        image: JSON.stringify(user.image)
+  viewProfile(user: User) {
+      console.log('SELECTED VIEW PROFILE: ', user);
+      //Validacion para sacar al otro usuario del match (matchId esta mal estructurado es personId)
+      let navegationExtras: NavigationExtras = {
+        state: {
+          typePerson: 1,
+          otherPerson: user.personId, //(match.personLiked.toString() == this.user.personId ? match.personLikes : match.personLiked),
+          //matchId: ustInt.personId, 
+          image: JSON.stringify(user.image)
+        }
       }
+      
+      this.router.navigate(['detail-match'], navegationExtras);
     }
-    this.router.navigate(['detail-match'], navegationExtras);
-  }
 }

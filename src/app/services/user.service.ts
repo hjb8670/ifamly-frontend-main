@@ -35,18 +35,32 @@ export class UserService {
    /*  private utilitiesService: UtilitiesService, */
   ) { }
   private user: User = {};
-  private oauthProvider: string = '';
+  private oAuthUserData: User | null = null;
+  private oAuthProvider: string | null = null;
 
   setUserr(user: Partial<User>) {
     this.user = { ...this.user, ...user };
   }
   
-  setOAuthProvider(provider: string) {
-    this.oauthProvider = provider;
+  clearOAuthUserData() {
+    this.oAuthUserData = null;
+    this.oAuthProvider = null;
+  }
+
+  setOAuthUserData(user: User) {
+    this.oAuthUserData = user;
+  }
+
+  getOAuthUserData(): User | null {
+    return this.oAuthUserData;
   }
   
-  getOAuthProvider(): string {
-    return this.oauthProvider;
+  setOAuthProvider(provider: string) {
+    this.oAuthProvider = provider;
+  }
+  
+  getOAuthProvider(): string | null {
+    return this.oAuthProvider;
   }
 
   getUserr(): User {

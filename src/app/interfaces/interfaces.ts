@@ -6,7 +6,7 @@ export interface User {
     personId?: string,
     firstName?: string,
     lastName?: string,
-    image?: string,
+    image?: ImagesUser,
     email?: string,
     password?: string,
     phone?: string,
@@ -55,6 +55,7 @@ export interface User {
     queSoy?: string,
     rateExperiences?: number,
     rateUserExperiences?: number,
+    notificationEnabled?: boolean,
 }
 
 export interface ImagesUser {

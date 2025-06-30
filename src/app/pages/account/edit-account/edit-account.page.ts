@@ -306,6 +306,7 @@ export class EditAccountPage implements OnInit {
     this.uiService.alertOK(this.translate.instant('ABOUT-ME.missingfiled'));
     this.iam_a.markAsTouched();
     this.iam_looking.markAsTouched();
+   
     return;
   }else{
 this.uiService.showLoader();
@@ -336,7 +337,9 @@ this.uiService.showLoader();
     this.uiService.hideLoader();
     if(!res0 || !res1){
       this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
+      this.router.navigate(['main/tabs/account']);
       return;
+      
     }
     this.router.navigate(['main/tabs/account']);
   }

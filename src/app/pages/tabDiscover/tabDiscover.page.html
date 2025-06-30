@@ -1,19 +1,11 @@
 <ion-header class="hdPage ion-no-border ion-padding">
   <ion-toolbar color="blanco">
     <ion-title class="titlePage" mode="ios">{{ 'DISCOVER.Title' | translate }}</ion-title>
-    <!-- <ion-buttons class="menuBtn" slot="end"  id="open-modal" expand="block"> 
-      <ion-icon class="menuIcon" name="options-outline"></ion-icon>
-    </ion-buttons> -->
-    <!-- <ion-title class="titleLoc" mode="ios">Chicago, Il</ion-title> -->
     <ion-title class="titleLoc" mode="ios">{{user?.location?.city}}, {{user?.location?.state}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content  color="blanco" class="ion-no-padding" *ngIf="isLoading">
- 
-</ion-content>
-
-<ion-content color="blanco" class="ion-no-padding" *ngIf="!isLoading">
+<ion-content fullscreen color="blanco" *ngIf="!isLoading">
   <div class="divNoFound" *ngIf="noDiscoverFound">
     <img class="imgNoFound" src="../../../assets/icon/31-NoFoundCards.png">
     <p class="pNoFound" *ngIf="discoverUsrs !== null">{{ 'DISCOVER.txtNoFound' | translate }}</p>
@@ -21,29 +13,80 @@
     <p class="pNoFoundRegular" *ngIf="discoverUsrs === null">{{ 'DISCOVER.txtToLimit2' | translate }}</p>
   </div>
 
-  <div class="contenedorCard" *ngIf="!noDiscoverFound"> <!-- [style.height]="heightImg"> -->
-    <ion-card *ngFor="let usr of discoverUsrs; let i = index" (click)="viewProfile(usr, i)">
+<!--   <div class="contenedorCard" *ngIf="!noDiscoverFound">  -->
+  <!-- [style.height]="heightImg"> -->
+<!--     <ion-card *ngFor="let usr of discoverUsrs; let i = index" (click)="viewProfile(usr, i)"> -->
       <!-- <img id="cardIm" class="card-img" [src]="usr.image"> -->
-      <img id="cardIm" class="card-img" *ngIf="usr.image?.multimediaUrl" [src]="usr.image.multimediaUrl"
-        [style.height]="heightImg" />
-      <img id="cardIm" class="card-img" *ngIf="!usr.image?.multimediaUrl" src="../../../assets/icon/30-Default_no-image.jpeg"
-        [style.height]="heightImg" />
-      <div class="card-gradient"></div>
-      <div class="card-boton">
-        <ion-buttons class="menuBtn" slot="end" (click)="openMenuPopoverBlock( $event, usr.image.personId )">
-          <ion-icon class="menuIcon" name="ellipsis-vertical"></ion-icon>
-        </ion-buttons>
-      </div>
-      <div class="card-title">{{usr.firstName}} {{usr.lastName}}, {{usr.age}}</div>
-      <div class="card-subtitle">{{usr.iam_a.slice(1)}}</div>
+<!--       <img id="cardIm" class="card-img" *ngIf="usr.image?.multimediaUrl" [src]="usr.image.multimediaUrl" -->
+<!--         [style.height]="heightImg" /> -->
+<!--       <img id="cardIm" class="card-img" *ngIf="!usr.image?.multimediaUrl" src="../../../assets/icon/30-Default_no-image.jpeg" -->
+<!--         [style.height]="heightImg" /> -->
+<!--       <div class="card-gradient"></div> -->
+<!--       <div class="card-boton"> -->
+<!--         <ion-buttons class="menuBtn" slot="end" (click)="openMenuPopoverBlock( $event, usr.image.personId )"> -->
+<!--           <ion-icon class="menuIcon" name="ellipsis-vertical"></ion-icon> -->
+<!--         </ion-buttons> -->
+<!--       </div> -->
+<!--       <div class="card-title">{{usr.firstName}} {{usr.lastName}}, {{usr.age}}</div> -->
+<!--       <div class="card-subtitle">{{usr.iam_a.slice(1)}}</div> -->
       <!-- <div *ngFor="let itm of createTempArray(usr.rate); let i = index">
         <img class="card-start" src="../../../assets/icon/17-Star_yellow.png" [style.right]="setPositionStart(i)">
       </div> -->
       <!-- <div class="card-ratings">({{usr.rates}} {{ 'DISCOVER.RatingTxt' | translate }})</div> -->
-      <img class="card-like-dis" src="../../../assets/icon/18-Dislike.png" *ngIf="usr.status == statusUsrDicover.dislike || disLikeBtn">
-      <img class="card-like-dis" src="../../../assets/icon/20-like_button_white.png" *ngIf="usr.status == statusUsrDicover.like || likeBtn">
-    </ion-card>
-  </div>
+<!--       <img class="card-like-dis" src="../../../assets/icon/18-Dislike.png" *ngIf="usr.status == statusUsrDicover.dislike || disLikeBtn"> -->
+<!--       <img class="card-like-dis" src="../../../assets/icon/20-like_button_white.png" *ngIf="usr.status == statusUsrDicover.like || likeBtn"> -->
+<!--     </ion-card> -->
+<!--   </div> -->
+  <swiper-container
+  #swiperEl
+  slides-per-view="1"
+  pagination="true"
+  style="height: 100vh;"
+  *ngIf="!noDiscoverFound"
+>
+  <swiper-slide *ngFor="let usr of discoverUsrs">
+      <ion-card class="profile-card">
+        <div (click)="openGallery(usr)">
+          <img class="profile-avatar" [src]="usr.image?.multimediaUrl || 'assets/icon/30-Default_no-image.jpeg'"/>
+        </div>
+        <ion-card-content>
+        <h2 class="profile-name">{{ usr.firstName }} {{ usr.lastName }}, {{ usr.age }}</h2>
+        <p class="profile-description">  {{ usr.aboutMe }} </p>
+
+        <div class="profile-info-block" *ngIf="usr.hobbies?.length > 0">
+          <strong>Hobbies:</strong>
+          <span>{{ getNames(usr.hobbies) }}</span>
+        </div>
+
+        <div class="profile-info-block" *ngIf="usr.sports?.length > 0">
+          <strong>Sports:</strong>
+          <span>{{ getNames(usr.sports) }}</span>
+        </div>
+
+        <div class="profile-info-block" *ngIf="usr.languajes?.length > 0">
+          <strong>Languages:</strong>
+          <span>{{ getNames(usr.languajes) }}</span>
+        </div>
+
+        <div class="profile-info-block" *ngIf="usr.sign?.length > 0">
+          <strong>Sign:</strong>
+          <span>{{ getNames(usr.sign) }}</span>
+        </div>
+
+        <div class="profile-info-block" *ngIf="usr.education?.length > 0">
+          <strong>Education:</strong>
+          <span>{{ getNames(usr.education) }}</span>
+        </div>
+
+        </ion-card-content>
+        <div class="profile-actions">
+          <ion-icon name="close-circle-outline" (click)="doDislike()"></ion-icon>
+          <ion-icon name="refresh-outline" (click)="returnDicover()"></ion-icon>
+          <ion-icon name="heart-circle" (click)="doLike()"></ion-icon>
+        </div>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
 
   <ion-grid fixed *ngIf="!noDiscoverFound">
     <ion-row class="row-btn ion-no-margin ion-no-padding">
@@ -255,3 +298,4 @@
   </ion-modal>
   
 </ion-content>
+

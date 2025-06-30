@@ -4,9 +4,19 @@
     <ion-buttons class="menuBtn" slot="end" (click)="openMenuPopover( $event )">
       <ion-icon class="menuIcon" name="ellipsis-vertical"></ion-icon>
     </ion-buttons>
+    <ion-buttons class="menuBtn" slot="start" (click)="filterexp()">
+      <ion-icon class="menuIcon op" name="options"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 
   <ion-toolbar>
+    <ion-searchbar
+      placeholder="Search by name, date or location"
+      [(ngModel)]="searchTerm"
+      *ngIf="showfilter"
+      (ionInput)="filterExperiences()">
+    </ion-searchbar>
+     
     <h1 [innerHtml]="(isMyExp ? 'EXPERIENCE.SubTitle2' : 'EXPERIENCE.SubTitle') | translate"></h1>
     <!-- <ion-buttons slot="end" (click)="changeList()">
       <ion-icon class="iconList" name="list-outline" *ngIf="isBigList"></ion-icon>
@@ -29,7 +39,7 @@
 <ion-content color="blanco">
   <ion-grid fixed *ngIf="isBigList">
     <ion-row>
-      <ng-container *ngFor="let exp of experiences; let i = index;">
+      <ng-container *ngFor="let exp of filteredExperiences; let i = index;">
         <ion-col class="colD" size="6" *ngIf="i%2 == 0">
           <ion-card class="cardBig" (click)="selectExperience(exp.experienceId)">
             <!-- <img class="imgListBig" [src]="exp.image"> -->
@@ -60,7 +70,7 @@
   </ion-grid>
 
   <ion-grid fixed *ngIf="!isBigList">
-    <ng-container *ngFor="let exp of experiences; let i = index;">
+    <ng-container *ngFor="let exp of filteredExperiences; let i = index;">
       <ion-row>
         <ion-col>
           <ion-card class="cardSmall" (click)="selectExperience(exp.experienceId)">

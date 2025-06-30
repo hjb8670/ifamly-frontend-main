@@ -509,10 +509,10 @@ let AboutMePage = class AboutMePage {
   next(op) {
     var _this4 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      if (_this4.aboutMeForm.invalid) {
-        _this4.uiService.alertOK(_this4.translate.instant('EXP-DETAIL.PleaseFill'));
-        return; // Don't proceed with save
-      }
+      //    if(this.aboutMeForm.invalid) {
+      //   this.uiService.alertOK(this.translate.instant('EXP-DETAIL.PleaseFill'));
+      //   return; // Don't proceed with save
+      // }
       if (op == 'next') {
         _this4.router.navigate(['edit-account']);
         let usr = {

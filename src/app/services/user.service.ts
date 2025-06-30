@@ -23,7 +23,7 @@ export class UserService {
   public sesionFin: boolean = false;
   private firebaseAuthService: any;
   public navegationExtras:NavigationExtras;
-  private oauthUserData: User = {};
+  private notificationsAllowed: boolean = false;
 
   constructor(  
     private http: HttpClient,
@@ -52,6 +52,17 @@ export class UserService {
   getUserr(): User {
     return this.user;
   }
+
+  setNotificationsAllowed(value: boolean) {
+    this.notificationsAllowed = value;
+    localStorage.setItem('notificationsAllowed', value.toString());
+  }
+
+  getNotificationsAllowed(): boolean {
+    const stored = localStorage.getItem('notificationsAllowed');
+    return this.notificationsAllowed || stored === 'true';
+  }
+
   login(username: string, password: string) {
     const data = { username, password };
 
@@ -351,6 +362,39 @@ export class UserService {
             res =  await this.getXCatalogo(constants.catalogs.Political),
             usr.political = res == ''? null : res;
 
+            resolve(usr);
+          } else {
+            resolve({});
+          }
+
+        }, 
+        error: err => {
+          console.log('ERRO VALIDA-TOKEN: ', err);
+          this.sesionFin = true;
+          this.navCtrl.navigateRoot('/login');
+          resolve({});
+        }  
+      });
+    })
+
+    //return { ...this.usuario };
+  }
+
+  async getUserOnly(userX: string) {
+    if( !this.usuario?.personId ) {
+       
+    }
+
+    return new Promise<User>((resolve, reject) => {
+      const headers = new HttpHeaders()
+          .set('Content-Type', 'application/json')
+          .set('Authorization', this.token);
+      
+      this.http.get(`${ URL }/discover/get-profile/${userX}`, { headers }).subscribe({
+        next: async resp => {
+          if (resp['sCode'] == 2) {
+            let usr: User = resp['sData'];
+            this.usuario = usr;
             resolve(usr);
           } else {
             resolve({});
@@ -979,36 +1023,22 @@ export class UserService {
     return false;
   }
 
-  setOAuthUserData(userData: User) {
-    this.oauthUserData = { ...this.oauthUserData, ...userData };
-    // Also store in localStorage for persistence
-    localStorage.setItem('oauth_user_data', JSON.stringify(this.oauthUserData));
-  }
-
-  getOAuthUserData(): User {
-    // First try to get from service
-    if (Object.keys(this.oauthUserData).length > 0) {
-      return this.oauthUserData;
-    }
-    
-    // Fallback to localStorage
-    const storedData = localStorage.getItem('oauth_user_data');
-    if (storedData) {
-      try {
-        this.oauthUserData = JSON.parse(storedData);
-        return this.oauthUserData;
-      } catch (e) {
-        console.error('Error parsing stored OAuth data:', e);
-      }
-    }
-    
-    return {};
-  }
-
-  clearOAuthUserData() {
-    this.oauthUserData = {};
-    localStorage.removeItem('oauth_user_data');
-    localStorage.removeItem('oauth_provider');
+  async sendDeviceToken(token: String): Promise<boolean> {
+    const headers = new HttpHeaders()
+          .set('Content-Type', 'application/json')
+          .set('Authorization', this.token);
+    return new Promise(resolve => {
+      this.http.post(`${URL}/notification`, {"notificationEnabled": true, "deviceToken": token}, { headers }).subscribe({
+        next: resp => {
+          console.log('Device token sent successfully:', resp);
+          resolve(true);
+        },
+        error: err => {
+          console.error('Error sending device token:', err);
+          resolve(false);
+        }
+      });
+    });
   }
 
 }

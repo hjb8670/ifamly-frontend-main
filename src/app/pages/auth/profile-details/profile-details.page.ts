@@ -29,7 +29,7 @@ export class ProfileDetailsPage implements OnInit {
   private rs = '';
   private mobile = '';
   private birthday = '';
-  private image = '';
+  private image = null;
   private name_img = '';
   public txtBirthDay = '';
   public genders: Catalog[];

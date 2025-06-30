@@ -213,7 +213,8 @@ export class IAmALookingForPage implements OnInit {
                  this.userService.clearOAuthUserData();
                }
                
-               this.router.navigate(['/main/tabs/discover']);
+              //  this.router.navigate(['/main/tabs/discover']);
+              this.router.navigate(['/notification-prompt']);
               // this.uiService.alertOK(this.translate.instant('LOCATION.SuccessMsg2'));
        
              }
@@ -221,7 +222,8 @@ export class IAmALookingForPage implements OnInit {
              
             }else{
               this.uiService.alertOK(this.translate.instant('ACCOUNT.imageError'));
-              this.router.navigate(['/main/tabs/discover']);
+              // this.router.navigate(['/main/tabs/discover']);
+              this.router.navigate(['/notification-prompt']);
             }
             }
         

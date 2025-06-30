@@ -13,7 +13,11 @@ import { UtilitiesService } from '../../services/utilities.service';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { DetailMatchMenuPopoverPage } from '../match/detail-match-menu-popover/detail-match-menu-popover.page';
 import { GalleryPage } from '../gallery/gallery.page';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
+import { Share } from '@capacitor/share';
+import { MatchModalPage } from 'src/app/match-modal/match-modal.page';
+import { Capacitor } from '@capacitor/core';
+
 
 
 @Component({
@@ -150,7 +154,9 @@ export class TabDiscoverPage implements AfterViewInit{
     private cdRef: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private navCtrl: NavController,
+    private platform: Platform
   ) {
     this.activatedRoute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
@@ -540,6 +546,44 @@ async openGallery(usr: any) {
     }
     
     let res = await this.matchService.doMatchProfiles(idDiscover.toString(), accionId.toString(), resLike, resSuperLike, null);
+    if(res){
+
+      const modal = await this.modalController.create({
+        component: MatchModalPage,
+        componentProps: {
+          matchedUserName: this.discoverUsrs[this.posCardGlobal].firstName.concat(" "+ this.discoverUsrs[this.posCardGlobal].lastName) ,
+          matchedUserImage: 'assets/img/allison.jpg',
+          currentUserImage: 'assets/img/you.jpg',
+        },
+        cssClass: 'match-modal',
+      });
+      await modal.present();
+
+        const { data } = await modal.onDidDismiss();
+
+        if (data?.action === 'message') {
+          // Navigate to messages tab
+          this.router.navigateByUrl('/main/tabs/message');
+        } else if (data?.action === 'swipe') {
+          // Navigate to discover tab
+          this.router.navigateByUrl('/main/tabs/discover');
+        } else if (data?.action === 'share') {
+          // Open native share dialog
+          try {
+            const url = Capacitor.getPlatform() === 'ios'
+            ? 'https://apps.apple.com/app/id123456789' // iOS App Store URL
+            : 'https://play.google.com/store/apps/details?id=com.ifmly.package'; // Android
+            await Share.share({
+              title: 'Check out this match!',
+              text: 'I just got a new match on the app! 🎉',
+              url: url,
+              dialogTitle: 'Share with your friends',
+            });
+          } catch (err) {
+            console.error('Error sharing:', err);
+          }
+        }
+    }
     //let res = await this.matchService.doMatchProfiles(this.idAntDiscover.toString(), accionId.toString(), resLike, resSuperLike);
     console.log('APLICAR MATCH: ', idDiscover.toString());
       /* if(!res) {

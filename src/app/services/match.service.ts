@@ -179,8 +179,13 @@ export class MatchService {
           if(resp['sCode'] != 7) {
             resolve(false)
           }
+
+          if(resp['sData'] && resp['sData'] != null) {
+            resolve(resp['sData']);
+          }
           
-          resolve(true);
+          resolve(false)
+          
         },
         error:err => {
           console.log('ERR CREATE-LIKE', err);

@@ -1,0 +1,19 @@
+<ion-content class="match-container">
+  <div class="match-title">It’s a Match!</div>
+  <div class="match-subtitle">You and {{matchedUserName}} have liked each other.</div>
+
+  <ion-button expand="block" class="match-btn" (click)="sendMessage()">
+    <ion-icon name="chatbubbles-outline" slot="start"></ion-icon>
+    Send a Message
+  </ion-button>
+
+  <ion-button expand="block" class="match-btn outline" fill="outline" (click)="keepSwiping()">
+    <ion-icon name="person-outline" slot="start"></ion-icon>
+    Keep Swiping
+  </ion-button>
+
+  <div class="share-section" (click)="share()">
+    <ion-icon name="share-outline" class="share-icon"></ion-icon>
+    <span>Tell your friends</span>
+  </div>
+</ion-content>

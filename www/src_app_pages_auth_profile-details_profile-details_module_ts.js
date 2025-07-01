@@ -250,9 +250,9 @@ let ProfileDetailsPage = class ProfileDetailsPage {
       if (_this2.validaCampo(_this2.fname, _this2.validation_messages.fname)) {
         return;
       }
-      if (_this2.validaCampo(_this2.lname, _this2.validation_messages.lname)) {
-        return;
-      }
+      // if(this.validaCampo(this.lname, this.validation_messages.lname)){
+      //   return;
+      // }
       if (_this2.validaCampo(_this2.gender, _this2.validation_messages.gender)) {
         return;
       }

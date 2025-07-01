@@ -34,6 +34,8 @@ PODS:
     - Capacitor
   - CapacitorPushNotifications (6.0.0):
     - Capacitor
+  - CapacitorShare (6.0.0):
+    - Capacitor
   - CapacitorStorage (1.2.5):
     - Capacitor
   - CodetrixStudioCapacitorGoogleAuth (0.0.1):
@@ -129,6 +131,7 @@ DEPENDENCIES:
   - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
   - "CapacitorPushNotifications (from `../../node_modules/@capacitor/push-notifications`)"
+  - "CapacitorShare (from `../../node_modules/@capacitor/share`)"
   - "CapacitorStorage (from `../../node_modules/@capacitor/storage`)"
   - "CodetrixStudioCapacitorGoogleAuth (from `../../node_modules/@codetrix-studio/capacitor-google-auth`)"
   - FirebaseMessaging
@@ -177,6 +180,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/keyboard"
   CapacitorPushNotifications:
     :path: "../../node_modules/@capacitor/push-notifications"
+  CapacitorShare:
+    :path: "../../node_modules/@capacitor/share"
   CapacitorStorage:
     :path: "../../node_modules/@capacitor/storage"
   CodetrixStudioCapacitorGoogleAuth:
@@ -195,6 +200,7 @@ SPEC CHECKSUMS:
   CapacitorHaptics: 85a1ecd1d3026089642518d789f0fb81fe93cf80
   CapacitorKeyboard: d878396bca6a0fefb313b1546c169648b5ae812a
   CapacitorPushNotifications: 8fd92b3f47e05646fbe78f6bf4d09d041e8ef91a
+  CapacitorShare: 785711ac46ecc2f98ac92525eb64bc78a665843d
   CapacitorStorage: 5525ad0c4925b07029da1d2724bb479449e218d9
   CodetrixStudioCapacitorGoogleAuth: 9dcfabfb7dd804ad6231a1513bc6e81e620cbec6
   FirebaseAppCheckInterop: 6a1757cfd4067d8e00fccd14fcc1b8fd78cfac07
@@ -215,6 +221,6 @@ SPEC CHECKSUMS:
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   SDWebImage: f29024626962457f3470184232766516dee8dfea
 
-PODFILE CHECKSUM: 83fcf7979d8ed2e1b98b190b889e25c7f4ce20e2
+PODFILE CHECKSUM: 98d2df574b78faa461ba3781e92a7accabb3ef4c
 
 COCOAPODS: 1.16.2

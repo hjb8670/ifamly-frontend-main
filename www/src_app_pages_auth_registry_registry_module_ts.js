@@ -267,14 +267,14 @@ let RegistryPage = class RegistryPage {
         _this2.uiService.alertOK('Apple Sign-In is not available on this platform');
         return;
       }
-      if (!_this2.isLegal) {
-        _this2.uiService.alertOK(_this2.translate.instant('REGISTRY.errorLegal'));
-        return;
-      }
-      if (!_this2.isTerms) {
-        _this2.uiService.alertOK(_this2.translate.instant('REGISTRY.errorTerms'));
-        return;
-      }
+      // if(!this.isLegal){
+      //   this.uiService.alertOK(this.translate.instant('REGISTRY.errorLegal'));
+      //   return;
+      // }
+      // if(!this.isTerms){
+      //   this.uiService.alertOK(this.translate.instant('REGISTRY.errorTerms'));
+      //   return;
+      // }
       try {
         const usr = yield _this2.firebaseAuthService.signInWithApple();
         console.log("USER APPLE", usr);

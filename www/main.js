@@ -293,22 +293,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   AppModule: () => (/* binding */ AppModule),
 /* harmony export */   createTranslateLoader: () => (/* binding */ createTranslateLoader)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 21124);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 94280);
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser */ 50168);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/router */ 24040);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ionic/angular */ 78848);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ionic/angular */ 27832);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser */ 50168);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/router */ 24040);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ionic/angular */ 78848);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic/angular */ 27832);
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app-routing.module */ 80484);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app.component */ 86108);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ 33712);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
-/* harmony import */ var _angular_fire_compat__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/fire/compat */ 36724);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common/http */ 33712);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
+/* harmony import */ var _angular_fire_compat__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/fire/compat */ 36724);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/environments/environment */ 36716);
-/* harmony import */ var _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/fire/compat/auth */ 16088);
+/* harmony import */ var _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/fire/compat/auth */ 16088);
 /* harmony import */ var _services_google_translate_loader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/google-translate.loader */ 47944);
 /* harmony import */ var swiper_element_bundle__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! swiper/element/bundle */ 14508);
 /* harmony import */ var _pages_gallery_gallery_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/gallery/gallery.module */ 25940);
+/* harmony import */ var _match_modal_match_modal_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./match-modal/match-modal.module */ 29900);
 
 
 
@@ -325,26 +326,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 (0,swiper_element_bundle__WEBPACK_IMPORTED_MODULE_4__.register)();
 function createTranslateLoader(http) {
   return new _services_google_translate_loader__WEBPACK_IMPORTED_MODULE_3__.GoogleTranslateLoader(http);
 }
 let AppModule = class AppModule {};
-AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.NgModule)({
+AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_8__.NgModule)({
   declarations: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent],
-  imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_8__.BrowserModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_9__.IonicModule.forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_10__.HttpClientModule, _ngx_translate_core__WEBPACK_IMPORTED_MODULE_11__.TranslateModule.forRoot({
+  imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__.BrowserModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_10__.IonicModule.forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_0__.AppRoutingModule, _angular_common_http__WEBPACK_IMPORTED_MODULE_11__.HttpClientModule, _ngx_translate_core__WEBPACK_IMPORTED_MODULE_12__.TranslateModule.forRoot({
     loader: {
-      provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_11__.TranslateLoader,
+      provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_12__.TranslateLoader,
       useFactory: createTranslateLoader,
-      deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_10__.HttpClient]
+      deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_11__.HttpClient]
     }
-  }), _angular_fire_compat__WEBPACK_IMPORTED_MODULE_12__.AngularFireModule.initializeApp(src_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.firebaseConfig), _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_13__.AngularFireAuthModule, _pages_gallery_gallery_module__WEBPACK_IMPORTED_MODULE_5__.GalleryPageModule],
+  }), _angular_fire_compat__WEBPACK_IMPORTED_MODULE_13__.AngularFireModule.initializeApp(src_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.firebaseConfig), _angular_fire_compat_auth__WEBPACK_IMPORTED_MODULE_14__.AngularFireAuthModule, _pages_gallery_gallery_module__WEBPACK_IMPORTED_MODULE_5__.GalleryPageModule, _match_modal_match_modal_module__WEBPACK_IMPORTED_MODULE_6__.MatchModalPageModule],
   providers: [{
-    provide: _angular_router__WEBPACK_IMPORTED_MODULE_14__.RouteReuseStrategy,
-    useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_15__.IonicRouteStrategy
+    provide: _angular_router__WEBPACK_IMPORTED_MODULE_15__.RouteReuseStrategy,
+    useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_16__.IonicRouteStrategy
   }],
   bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_1__.AppComponent],
-  schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_7__.CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_8__.CUSTOM_ELEMENTS_SCHEMA]
 })], AppModule);
 
 
@@ -412,12 +414,12 @@ let InitGuard = class InitGuard {
   goDiscovers() {
     var _this2 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      // Check if notifications are allowed before navigating
-      const isNotifAllowed = _this2.userService.getNotificationsAllowed();
-      if (!isNotifAllowed) {
-        yield _this2.router.navigate(['/notification-prompt']);
-        return;
-      }
+      // // Check if notifications are allowed before navigating
+      // const isNotifAllowed = this.userService.getNotificationsAllowed();
+      // if (!isNotifAllowed) {
+      //   await this.router.navigate(['/notification-prompt']);
+      //   return;
+      // }
       const discoverUsrs = yield _this2.preLoadDis();
       console.log('GO DISCOVER USRS: ', discoverUsrs);
       let navegationExtras = {
@@ -523,6 +525,154 @@ let UserGuard = class UserGuard {
 UserGuard = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.Injectable)({
   providedIn: 'root'
 })], UserGuard);
+
+
+/***/ }),
+
+/***/ 72264:
+/*!***********************************************************!*\
+  !*** ./src/app/match-modal/match-modal-routing.module.ts ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   MatchModalPageRoutingModule: () => (/* binding */ MatchModalPageRoutingModule)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 24040);
+/* harmony import */ var _match_modal_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./match-modal.page */ 95180);
+
+
+
+
+const routes = [{
+  path: 'match-notification',
+  component: _match_modal_page__WEBPACK_IMPORTED_MODULE_0__.MatchModalPage
+}];
+let MatchModalPageRoutingModule = class MatchModalPageRoutingModule {};
+MatchModalPageRoutingModule = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_2__.NgModule)({
+  imports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule.forChild(routes)],
+  exports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule]
+})], MatchModalPageRoutingModule);
+
+
+/***/ }),
+
+/***/ 29900:
+/*!***************************************************!*\
+  !*** ./src/app/match-modal/match-modal.module.ts ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   MatchModalPageModule: () => (/* binding */ MatchModalPageModule)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 65056);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 71904);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 78848);
+/* harmony import */ var _match_modal_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./match-modal-routing.module */ 72264);
+/* harmony import */ var _match_modal_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./match-modal.page */ 95180);
+
+
+
+
+
+
+
+let MatchModalPageModule = class MatchModalPageModule {};
+MatchModalPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
+  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormsModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonicModule, _match_modal_routing_module__WEBPACK_IMPORTED_MODULE_0__.MatchModalPageRoutingModule],
+  declarations: [_match_modal_page__WEBPACK_IMPORTED_MODULE_1__.MatchModalPage]
+})], MatchModalPageModule);
+
+
+/***/ }),
+
+/***/ 95180:
+/*!*************************************************!*\
+  !*** ./src/app/match-modal/match-modal.page.ts ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   MatchModalPage: () => (/* binding */ MatchModalPage)
+/* harmony export */ });
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var _match_modal_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./match-modal.page.html?ngResource */ 27404);
+/* harmony import */ var _match_modal_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./match-modal.page.scss?ngResource */ 23400);
+/* harmony import */ var _match_modal_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_match_modal_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 78848);
+/* harmony import */ var _capacitor_share__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @capacitor/share */ 54524);
+
+
+
+
+
+
+
+let MatchModalPage = class MatchModalPage {
+  constructor(modalCtrl) {
+    this.modalCtrl = modalCtrl;
+  }
+  sendMessage() {
+    this.modalCtrl.dismiss({
+      action: 'message'
+    });
+  }
+  keepSwiping() {
+    this.modalCtrl.dismiss({
+      action: 'swipe'
+    });
+  }
+  share() {
+    var _this = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      yield _capacitor_share__WEBPACK_IMPORTED_MODULE_3__.Share.share({
+        title: 'It’s a Match!',
+        text: `I just matched with ${_this.matchedUserName} on the app! 🎉`,
+        url: 'https://play.google.com/store/apps/details?id=com.yourapp.package',
+        dialogTitle: 'Share with your friends'
+      });
+      _this.modalCtrl.dismiss({
+        action: 'share'
+      });
+    })();
+  }
+  static {
+    this.ctorParameters = () => [{
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__.ModalController
+    }];
+  }
+  static {
+    this.propDecorators = {
+      matchedUserName: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.Input
+      }],
+      matchedUserImage: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.Input
+      }],
+      currentUserImage: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_5__.Input
+      }]
+    };
+  }
+};
+MatchModalPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_5__.Component)({
+  selector: 'app-match-modal',
+  template: _match_modal_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
+  styles: [(_match_modal_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]
+})], MatchModalPage);
 
 
 /***/ }),
@@ -1677,13 +1827,16 @@ let MatchService = class MatchService {
           next: resp => {
             console.log('RESP (crear-like): ', resp);
             if (resp['sCode'] != 7) {
-              resolve(false);
+              resolve(null);
             }
-            resolve(true);
+            if (resp['sData'] && resp['sData'] != null) {
+              resolve(resp['sData']);
+            }
+            resolve(null);
           },
           error: err => {
             console.log('ERR CREATE-LIKE', err);
-            resolve(false);
+            resolve(null);
           }
         });
       });
@@ -3819,6 +3972,92 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 
 /***/ }),
 
+/***/ 23400:
+/*!**************************************************************!*\
+  !*** ./src/app/match-modal/match-modal.page.scss?ngResource ***!
+  \**************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ 19728);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ 67804);
+var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `.match-container {
+  --background: #2c2c2e;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.match-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-family: "Cursive", sans-serif;
+  margin-bottom: 12px;
+  margin-top: 50px;
+  color: white;
+}
+
+.match-subtitle {
+  font-size: 1rem;
+  margin-bottom: 24px;
+  color: #ccc;
+}
+
+.match-avatars {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid white;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.match-btn {
+  margin-top: 30px;
+  margin: 10px;
+  width: 90%;
+  font-weight: 500;
+  border-radius: 10px;
+}
+
+.match-btn.outline {
+  --border-color: white;
+  --color: white;
+}
+
+.share-section {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+}
+
+.share-icon {
+  font-size: 24px;
+  margin-bottom: 4px;
+}`, "",{"version":3,"sources":["webpack://./src/app/match-modal/match-modal.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/match-modal/match-modal.page.scss"],"names":[],"mappings":"AAAA;EACE,qBAAA;EACA,YAAA;EACA,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,kBAAA;EACA,aAAA;EACA,uBAAA;EACA,gBAAA;ACCF;;ADEA;EACE,iBAAA;EACA,iBAAA;EACA,kCAAA;EACA,mBAAA;EACA,gBAAA;EACA,YAAA;ACCF;;ADEA;EACE,eAAA;EACA,mBAAA;EACA,WAAA;ACCF;;ADEA;EACE,aAAA;EACA,SAAA;EACA,mBAAA;ACCF;;ADEA;EACE,YAAA;EACA,aAAA;EACA,kBAAA;EACA,uBAAA;EACA,iBAAA;EACA,yCAAA;ACCF;;ADEA;EACE,gBAAA;EACA,YAAA;EACA,UAAA;EACA,gBAAA;EACA,mBAAA;ACCF;;ADEA;EACE,qBAAA;EACA,cAAA;ACCF;;ADEA;EACE,gBAAA;EACA,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,eAAA;EACA,YAAA;EACA,eAAA;ACCF;;ADEA;EACE,eAAA;EACA,kBAAA;ACCF","sourcesContent":[".match-container {\n  --background: #2c2c2e;\n  color: white;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  text-align: center;\n  padding: 24px;\n  justify-content: center;\n  margin-top: 20px;\n}\n\n.match-title {\n  font-size: 2.5rem;\n  font-weight: bold;\n  font-family: 'Cursive', sans-serif;\n  margin-bottom: 12px;\n  margin-top: 50px;\n  color: white;\n}\n\n.match-subtitle {\n  font-size: 1rem;\n  margin-bottom: 24px;\n  color: #ccc;\n}\n\n.match-avatars {\n  display: flex;\n  gap: 20px;\n  margin-bottom: 30px;\n}\n\n.avatar {\n  width: 100px;\n  height: 100px;\n  border-radius: 50%;\n  border: 3px solid white;\n  object-fit: cover;\n  box-shadow: 0 4px 12px rgba(0,0,0,0.4);\n}\n\n.match-btn {\n  margin-top: 30px;\n  margin: 10px;\n  width: 90%;\n  font-weight: 500;\n  border-radius: 10px;\n}\n\n.match-btn.outline {\n  --border-color: white;\n  --color: white;\n}\n\n.share-section {\n  margin-top: 50px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  font-size: 1rem;\n  color: white;\n  cursor: pointer;\n}\n\n.share-icon {\n  font-size: 24px;\n  margin-bottom: 4px;\n}\n",".match-container {\n  --background: #2c2c2e;\n  color: white;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  text-align: center;\n  padding: 24px;\n  justify-content: center;\n  margin-top: 20px;\n}\n\n.match-title {\n  font-size: 2.5rem;\n  font-weight: bold;\n  font-family: \"Cursive\", sans-serif;\n  margin-bottom: 12px;\n  margin-top: 50px;\n  color: white;\n}\n\n.match-subtitle {\n  font-size: 1rem;\n  margin-bottom: 24px;\n  color: #ccc;\n}\n\n.match-avatars {\n  display: flex;\n  gap: 20px;\n  margin-bottom: 30px;\n}\n\n.avatar {\n  width: 100px;\n  height: 100px;\n  border-radius: 50%;\n  border: 3px solid white;\n  object-fit: cover;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);\n}\n\n.match-btn {\n  margin-top: 30px;\n  margin: 10px;\n  width: 90%;\n  font-weight: 500;\n  border-radius: 10px;\n}\n\n.match-btn.outline {\n  --border-color: white;\n  --color: white;\n}\n\n.share-section {\n  margin-top: 50px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  font-size: 1rem;\n  color: white;\n  cursor: pointer;\n}\n\n.share-icon {\n  font-size: 24px;\n  margin-bottom: 4px;\n}"],"sourceRoot":""}]);
+// Exports
+module.exports = ___CSS_LOADER_EXPORT___.toString();
+
+
+/***/ }),
+
 /***/ 62520:
 /*!************************************************************!*\
   !*** ./src/app/pages/gallery/gallery.page.scss?ngResource ***!
@@ -3902,6 +4141,17 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 
 "use strict";
 module.exports = "<ion-app>\n  <ion-router-outlet [swipeGesture]=\"false\"></ion-router-outlet>\n</ion-app>\n";
+
+/***/ }),
+
+/***/ 27404:
+/*!**************************************************************!*\
+  !*** ./src/app/match-modal/match-modal.page.html?ngResource ***!
+  \**************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "<ion-content class=\"match-container\">\n  <div class=\"match-title\">It’s a Match!</div>\n  <div class=\"match-subtitle\">You and {{matchedUserName}} have liked each other.</div>\n\n  <ion-button expand=\"block\" class=\"match-btn\" (click)=\"sendMessage()\">\n    <ion-icon name=\"chatbubbles-outline\" slot=\"start\"></ion-icon>\n    Send a Message\n  </ion-button>\n\n  <ion-button expand=\"block\" class=\"match-btn outline\" fill=\"outline\" (click)=\"keepSwiping()\">\n    <ion-icon name=\"person-outline\" slot=\"start\"></ion-icon>\n    Keep Swiping\n  </ion-button>\n\n  <div class=\"share-section\" (click)=\"share()\">\n    <ion-icon name=\"share-outline\" class=\"share-icon\"></ion-icon>\n    <span>Tell your friends</span>\n  </div>\n</ion-content>\n";
 
 /***/ }),
 

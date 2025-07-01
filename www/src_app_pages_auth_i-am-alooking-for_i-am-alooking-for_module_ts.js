@@ -271,12 +271,14 @@ let IAmALookingForPage = class IAmALookingForPage {
                 if (isOAuthUser) {
                   _this2.userService.clearOAuthUserData();
                 }
-                _this2.router.navigate(['/main/tabs/discover']);
+                //  this.router.navigate(['/main/tabs/discover']);
+                _this2.router.navigate(['/notification-prompt']);
                 // this.uiService.alertOK(this.translate.instant('LOCATION.SuccessMsg2'));
               }
             } else {
               _this2.uiService.alertOK(_this2.translate.instant('ACCOUNT.imageError'));
-              _this2.router.navigate(['/main/tabs/discover']);
+              // this.router.navigate(['/main/tabs/discover']);
+              _this2.router.navigate(['/notification-prompt']);
             }
           }
         } else {

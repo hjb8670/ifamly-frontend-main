@@ -19,6 +19,7 @@ import { MatchModalPage } from 'src/app/match-modal/match-modal.page';
 import { Capacitor } from '@capacitor/core';
 import { TalkService } from 'src/app/services/talk.service';
 import { TabService } from 'src/app/services/tab.service';
+import { DiscoverStateService } from '../../services/discover-state.service';
 
 
 
@@ -160,7 +161,8 @@ export class TabDiscoverPage implements AfterViewInit{
     private navCtrl: NavController,
     private platform: Platform,
     private talkService: TalkService,
-    private tabService: TabService
+    private tabService: TabService,
+    private discoverState: DiscoverStateService
   ) {
     this.activatedRoute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
@@ -230,12 +232,22 @@ export class TabDiscoverPage implements AfterViewInit{
   async ngOnInit() {
     this.iniSizeContenedorCard();
 
-    this.activatedRoute.queryParams.subscribe(async params => {
-      console.log('PARAMS: ', params);
-      
-      await this.reLoadDiscover();
-    });
+    // Restore state if available
+    const savedList = this.discoverState.getCardList();
+    if (savedList && savedList.length > 0) {
+      this.discoverUsrs = savedList;
+      this.posCardGlobal = this.discoverState.getLastCardIndex();
+      this.isLoading = false;
+    } else {
+      this.activatedRoute.queryParams.subscribe(async params => {
+        await this.reLoadDiscover();
+      });
+    }
 
+    setTimeout(() => {
+      const cardArray = this.cards.toArray();
+      this.useSwipe(cardArray);
+    }, 100);
   }
 
   async ionViewDidEnter() {
@@ -618,6 +630,10 @@ async openGallery(usr: any) {
     this.discoverUsrs.pop();
     this.posCardGlobal--;
     
+    // Save state after change
+    this.discoverState.setCardList(this.discoverUsrs);
+    this.discoverState.setLastCardIndex(this.posCardGlobal);
+
     if(this.discoverUsrs.length <= 1) {
       await this.loadDiscover();
     }
@@ -677,21 +693,18 @@ async openGallery(usr: any) {
     this.uiService.showLoader();
     if(await this.matchService.rollbackLike(this.idAntDiscover.toString())){
       this.uiService.hideLoader();
-      // this.uiService.alertOK(this.translate.instant('DISCOVER.rollbackTrue'));
       this.idAntDiscover = 0;
-      
-      // Instead of reloading all profiles, just add the previous user back to the stack
       if(this.antDiscoverUsrs) {
         this.discoverUsrs.push(this.antDiscoverUsrs);
         this.posCardGlobal++;
-        
-        // Re-enable gestures for the new card
         setTimeout(() => {
           const cardArray = this.cards.toArray();
           this.useSwipe(cardArray);
         }, 100);
-        
-        this.antDiscoverUsrs = null; // Clear the stored user
+        this.antDiscoverUsrs = null;
+        // Save state after rollback
+        this.discoverState.setCardList(this.discoverUsrs);
+        this.discoverState.setLastCardIndex(this.posCardGlobal);
       }
     }else{
       this.uiService.hideLoader();
@@ -857,5 +870,7 @@ async openGallery(usr: any) {
       }
       
       this.router.navigate(['detail-match'], navegationExtras);
+      this.discoverState.setCardList(this.discoverUsrs);
+      this.discoverState.setLastCardIndex(this.posCardGlobal);
     }
 }

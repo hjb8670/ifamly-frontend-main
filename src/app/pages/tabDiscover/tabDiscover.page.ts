@@ -21,24 +21,24 @@ import { TalkService } from 'src/app/services/talk.service';
 import { TabService } from 'src/app/services/tab.service';
 import { DiscoverStateService } from '../../services/discover-state.service';
 
-
-
 @Component({
   selector: 'app-tabDiscover',
   templateUrl: 'tabDiscover.page.html',
   styleUrls: ['tabDiscover.page.scss']
 })
-export class TabDiscoverPage implements AfterViewInit{
+export class TabDiscoverPage implements AfterViewInit {
   @ViewChildren(IonCard, {read: ElementRef}) cards: QueryList<ElementRef>;
   @ViewChild(IonModal) modal: IonModal;
   @ViewChild('swiperEl', { static: false }) swiperElRef!: ElementRef;
 
   isLoading = true;
+  canReset = false;
 
-  private limToLoadProfiles = 3;//se actualizo a 0 por que no actualizaba el final 
+  private limToLoadProfiles = 3;
   public heightImg = '';
   public user: User = {};
   public discoverUsrs: DiscoverUsr[] = [];
+  public currentCardIndex = 0;
   private lanCatalogo = 'EN';
   private longPressActive = false;
   public statusUsrDicover = constants.statusUsrMatch;
@@ -47,7 +47,6 @@ export class TabDiscoverPage implements AfterViewInit{
   private filter: FilterDiscover = {};
   private latitud_gps: string = null;
   private longitud_gps: string = null;
-  private posCardGlobal = 1;
   public disLikeBtn = false;
   public likeBtn = false;
   public iams: Catalog[];
@@ -60,10 +59,11 @@ export class TabDiscoverPage implements AfterViewInit{
   public kids: Catalog[];
   public religions: Catalog[];
   public noDiscoverFound = false;
-  private idAntDiscover = 0;
-  private antDiscoverUsrs: DiscoverUsr;
+  private lastActionUserId = 0;
+  private lastActionUser: DiscoverUsr = null;
+  private lastActionType: 'like' | 'dislike' | null = null;
 
-  filterForm = this.formBuilder.group( {
+  filterForm = this.formBuilder.group({
     iam_a: [''],
     iam_looking: [''],
     age_between: [{lower: 18, upper: 100}],
@@ -80,66 +80,10 @@ export class TabDiscoverPage implements AfterViewInit{
     ageToggle: [true]
   });
 
-  customIamOptions = {
-    header: this.translate.instant('DISCOVER.Title_iam'),
-    cssClass: 'SelectControl',
-    subHeader: this.translate.instant('DISCOVER.SubHdIam'),
-    translucent: true,
-  };
-
-  customIamLookingOptions = {
-    header: this.translate.instant('DISCOVER.Title_looking'),
-    cssClass: 'SelectControl',
-    subHeader: this.translate.instant('DISCOVER.SubHdIamLooking'),
-    translucent: true,
-  };
-
   customExerciseOptions = {
     header: this.translate.instant('DISCOVER.Title_Exercise'),
     cssClass: 'SelectControl',
     subHeader: this.translate.instant('DISCOVER.SubHdExe'),
-    translucent: true,
-  };
-
-  customSingOptions = {
-    header: this.translate.instant('DISCOVER.Title_Sing'),
-    cssClass: 'SelectControl',
-    subHeader: this.translate.instant('DISCOVER.SubHdSing'),
-    translucent: true,
-  };
-
-  customEducationOptions = {
-    header: this.translate.instant('DISCOVER.Title_Education'),
-    cssClass: 'SelectControl',
-    subHeader: this.translate.instant('DISCOVER.SubHdEdu'),
-    translucent: true,
-  };
-
-  customDrinkOptions = {
-    header: this.translate.instant('DISCOVER.Title_Drink'),
-    cssClass: 'SelectControl',
-    subHeader: this.translate.instant('DISCOVER.SubHdDrnk'),
-    translucent: true,
-  };
-
-  customSmokOptions = {
-    header: this.translate.instant('DISCOVER.Title_Smok'),
-    cssClass: 'SelectControl',
-    subHeader: this.translate.instant('DISCOVER.SubHdSmk'),
-    translucent: true,
-  };
-
-  customKidOptions = {
-    header: this.translate.instant('DISCOVER.Title_Kid'),
-    cssClass: 'SelectControl',
-    subHeader: this.translate.instant('DISCOVER.SubHdKid'),
-    translucent: true,
-  };
-
-  customReligionOptions = {
-    header: this.translate.instant('DISCOVER.Title_Religion'),
-    cssClass: 'SelectControl',
-    subHeader: this.translate.instant('DISCOVER.SubHdRlgn'),
     translucent: true,
   };
 
@@ -165,164 +109,162 @@ export class TabDiscoverPage implements AfterViewInit{
     private discoverState: DiscoverStateService
   ) {
     this.activatedRoute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        if (!this.router.getCurrentNavigation().extras.state.mntList || this.router.getCurrentNavigation().extras.state.mntList.length > 0) {
+      if (this.router.getCurrentNavigation()?.extras?.state) {
+        if (!this.router.getCurrentNavigation().extras.state.mntList || 
+            this.router.getCurrentNavigation().extras.state.mntList.length > 0) {
           this.discoverUsrs = this.router.getCurrentNavigation().extras.state.discoverUsrs;
         }
       }
     });
   }
 
-  get iam_a() {
-    return this.filterForm.get('iam_a');
-  }
-
-  get iam_looking() {
-    return this.filterForm.get('iam_looking');
-  }
-
-  get age_between() {
-    return this.filterForm.get('age_between');
-  }
-
-  get distance() {
-    return this.filterForm.get('distance');
-  }
-
-  get height() {
-    return this.filterForm.get('height');
-  }
-
-  get exercise() {
-    return this.filterForm.get('exercise');
-  }
-
-  get sing() {
-    return this.filterForm.get('sing');
-  }
-
-  get education() {
-    return this.filterForm.get('education');
-  }
-
-  get drink() {
-    return this.filterForm.get('drink');
-  }
-
-  get smok() {
-    return this.filterForm.get('smok');
-  }
-  
-  get kid() {
-    return this.filterForm.get('kid');
-  }
-
-  get religion() {
-    return this.filterForm.get('religion');
-  }
-
-  get distanceToggle() {
-    return this.filterForm.get('distanceToggle');
-  }
-
-  get ageToggle() {
-    return this.filterForm.get('ageToggle');
-  }
+  // Form getters
+  get iam_a() { return this.filterForm.get('iam_a'); }
+  get iam_looking() { return this.filterForm.get('iam_looking'); }
+  get age_between() { return this.filterForm.get('age_between'); }
+  get distance() { return this.filterForm.get('distance'); }
+  get height() { return this.filterForm.get('height'); }
+  get exercise() { return this.filterForm.get('exercise'); }
+  get sing() { return this.filterForm.get('sing'); }
+  get education() { return this.filterForm.get('education'); }
+  get drink() { return this.filterForm.get('drink'); }
+  get smok() { return this.filterForm.get('smok'); }
+  get kid() { return this.filterForm.get('kid'); }
+  get religion() { return this.filterForm.get('religion'); }
+  get distanceToggle() { return this.filterForm.get('distanceToggle'); }
+  get ageToggle() { return this.filterForm.get('ageToggle'); }
 
   async ngOnInit() {
+    console.log('=== DISCOVER INIT ===');
     this.iniSizeContenedorCard();
+    await this.initializeDiscover();
+  }
 
-    // Restore state if available
-    const savedList = this.discoverState.getCardList();
-    if (savedList && savedList.length > 0) {
-      this.discoverUsrs = savedList;
-      this.posCardGlobal = this.discoverState.getLastCardIndex();
-      this.isLoading = false;
-    } else {
-      this.activatedRoute.queryParams.subscribe(async params => {
-        await this.reLoadDiscover();
-      });
-    }
-
+  async ngAfterViewInit() {
+    console.log('=== AFTER VIEW INIT ===');
     setTimeout(() => {
-      const cardArray = this.cards.toArray();
-      this.useSwipe(cardArray);
-    }, 100);
+      this.initializeSwiper();
+      this.setupGestures();
+    }, 500);
   }
 
   async ionViewDidEnter() {
-    if(this.translate.currentLang == 'es'){
+    console.log('=== ION VIEW DID ENTER ===');
+    if (this.translate.currentLang == 'es') {
       this.lanCatalogo = constants.languages.es;
     } else {
       this.lanCatalogo = constants.languages.en;
     }
 
-    // const tVal = await this.userService.validaToken();
-    // if( !tVal ) {
-    //   return;
-    // }
     this.matchService.newMatch = false;
     this.matchService.matchPerson = [];
     this.matchService.principal();
     this.iniSizeContenedorCard();
     this.user = await this.userService.getUserBasic('');
-    // this.iams = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.IamA.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-    // this.iamlookings = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.IamLooking.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-    // this.exercises = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Ejercicio.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-    // this.sings = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Sing.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-    // this.educations = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Educacion.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-    // this.drinks =  <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Bebe.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-    // this.smoks =  <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Fuma.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-    // this.kids = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Hijos.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-    // this.religions = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Religion.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-    
-
   }
 
-  // async ngAfterViewInit() {
-  //   //await this.reLoadDiscover();
-  // }
-  async ngAfterViewInit() {
-  const swiper = this.swiperElRef?.nativeElement;
-  if (swiper && swiper.initialize) {
-    swiper.initialize();
-  }
-}
-
-async openGallery(usr: any) {
-  try {
-    let currentModal = await this.modalController.getTop();
-    if (currentModal) {
-      await currentModal.dismiss();
+  private async initializeDiscover() {
+    try {
+      // Restore state if available
+      const savedList = this.discoverState.getCardList();
+      const savedIndex = this.discoverState.getLastCardIndex();
+      
+      if (savedList && savedList.length > 0) {
+        console.log('Restoring saved state:', savedList.length, 'cards, index:', savedIndex);
+        this.discoverUsrs = [...savedList];
+        this.currentCardIndex = Math.max(0, Math.min(savedIndex, this.discoverUsrs.length - 1));
+        this.isLoading = false;
+        this.noDiscoverFound = false;
+      } else {
+        console.log('Loading fresh discover data');
+        await this.reLoadDiscover();
+      }
+    } catch (error) {
+      console.error('Error initializing discover:', error);
+      this.isLoading = false;
+      this.noDiscoverFound = true;
     }
-    const resImg = await this.matchService.getIMGSOfPerson(usr.personId.toString()) as ImagesUser[];
-    const safeImgList = Array.isArray(resImg) ? resImg : [];
-    const images = safeImgList.map(img => img.multimediaUrl || '');
-    const modal = await this.modalController.create({
-      component: GalleryPage,
-      componentProps: {
-        images,
-        startIndex: 0
-      },
-      cssClass: 'gallery-modal'
-    });
-    await modal.present();
-  } catch (err) {
-    console.error('Failed to open gallery modal:', err);
   }
-}
 
+  private initializeSwiper() {
+    const swiper = this.swiperElRef?.nativeElement;
+    if (swiper) {
+      if (swiper.initialize) {
+        swiper.initialize();
+      }
+      
+      // Set initial slide
+      setTimeout(() => {
+        if (swiper.swiper && this.currentCardIndex >= 0) {
+          swiper.swiper.slideTo(this.currentCardIndex, 0);
+        }
+      }, 100);
+    }
+  }
 
-  iniSizeContenedorCard(){
+  private setupGestures() {
+    setTimeout(() => {
+      const cardArray = this.cards.toArray();
+      if (cardArray.length > 0) {
+        this.useSwipe(cardArray);
+        console.log('Gestures setup for', cardArray.length, 'cards');
+      }
+    }, 100);
+  }
+
+  private updateSwiperToCurrentCard() {
+    const swiper = this.swiperElRef?.nativeElement;
+    if (swiper && swiper.swiper && this.discoverUsrs.length > 0) {
+      // Ensure currentCardIndex is within bounds
+      this.currentCardIndex = Math.max(0, Math.min(this.currentCardIndex, this.discoverUsrs.length - 1));
+      
+      setTimeout(() => {
+        swiper.swiper.update();
+        swiper.swiper.slideTo(this.currentCardIndex, 300);
+        console.log('Updated swiper to slide:', this.currentCardIndex);
+      }, 50);
+    }
+  }
+
+  private saveCurrentState() {
+    this.discoverState.setCardList(this.discoverUsrs);
+    this.discoverState.setLastCardIndex(this.currentCardIndex);
+    console.log('State saved - Cards:', this.discoverUsrs.length, 'Index:', this.currentCardIndex);
+  }
+
+  async openGallery(usr: any) {
+    try {
+      let currentModal = await this.modalController.getTop();
+      if (currentModal) {
+        await currentModal.dismiss();
+      }
+      
+      const resImg = await this.matchService.getIMGSOfPerson(usr.personId.toString()) as ImagesUser[];
+      const safeImgList = Array.isArray(resImg) ? resImg : [];
+      const images = safeImgList.map(img => img.multimediaUrl || '');
+      
+      const modal = await this.modalController.create({
+        component: GalleryPage,
+        componentProps: {
+          images,
+          startIndex: 0
+        },
+        cssClass: 'gallery-modal'
+      });
+      
+      await modal.present();
+    } catch (err) {
+      console.error('Failed to open gallery modal:', err);
+    }
+  }
+
+  iniSizeContenedorCard() {
     let imgSizeWidth = this.plt.width() * .9;
     let imgSizeHeight = this.plt.height() * .58;
-    if(this.plt.platforms().indexOf('android') > -1)
+    if (this.plt.platforms().indexOf('android') > -1)
       imgSizeHeight = this.plt.height() * .65;
 
-    let heightImg_tmp = ((imgSizeWidth * 531) / 354) + 35
-    //this.heightImg = heightImg_tmp + 'px';
     this.heightImg = imgSizeHeight + 'px';
-
     this.cdRef.detectChanges();
   }
 
@@ -344,13 +286,6 @@ async openGallery(usr: any) {
       smoking: Number(this.user.smoking),
       kids: Number(this.user.kids),
       religion: Number(this.user.religion),
-      /* location: {
-        country: null,
-        state: null,
-        address: null,
-        latitud: this.latitud_gps,
-        longitud: this.longitud_gps
-      } */
       location: null
     }
 
@@ -369,39 +304,6 @@ async openGallery(usr: any) {
     this.religion.setValue(this.user.religion);
   }
 
-  useSuperLike(cardArray) {
-    for (let i = 0; i < cardArray.length; i++) {
-      const card = cardArray[i];
-      
-      const gesture = this.gestureCtrl.create({
-        el: card.nativeElement,
-        gestureName: 'long-press',
-        onStart: ev => {
-          this.longPressActive = true;
-          this.superLike(i);
-        },
-        onEnd: ev => {
-          this.longPressActive = false;
-        }
-      });
-      gesture.enable(true);
-    }
-  }
-
-  superLike(i) {
-    console.log('SUPER LIKE: ', i);
-
-    setTimeout(() => {
-      if (this.longPressActive) {
-        this.zone.run(() => {
-          console.log('SUPER LIKE A: ', this.discoverUsrs[i].firstName);
-          this.superLike(i);
-        });
-      }
-    }, 200);
-    
-  }
-
   useSwipe(cardArray) {
     for (let i = 0; i < cardArray.length; i++) {
       const card = cardArray[i];
@@ -410,7 +312,7 @@ async openGallery(usr: any) {
         el: card.nativeElement,
         gestureName: 'swipe',
         onStart: ev => {
-          
+          // Gesture start
         },
         onMove: ev => {
           card.nativeElement.style.transform = `translateX(${ev.deltaX}px) rotate(${ev.deltaX/10}deg)`;
@@ -420,14 +322,16 @@ async openGallery(usr: any) {
           card.nativeElement.style.transition = '.5s ease-out';
           if (ev.deltaX > 150) {
             card.nativeElement.style.transform = `translateX(${+this.plt.width() * 2}px) rotate(${ev.deltaX / 2}deg)`
-            this.setStatusDiscover(this.discoverUsrs[i].personId, this.statusUsrDicover.like)
+            this.handleSwipeAction('like');
           } else if (ev.deltaX < -150) {
             card.nativeElement.style.transform = `translateX(-${+this.plt.width() * 2}px) rotate(${ev.deltaX / 2}deg)`
-            this.setStatusDiscover(this.discoverUsrs[i].personId, this.statusUsrDicover.dislike);
+            this.handleSwipeAction('dislike');
           } else {
             card.nativeElement.style.transform = '';
-            this.discoverUsrs[i].status = this.statusUsrDicover.none;
-            this.cdRef.detectChanges();
+            if (this.discoverUsrs[i]) {
+              this.discoverUsrs[i].status = this.statusUsrDicover.none;
+              this.cdRef.detectChanges();
+            }
           }
         }
       });
@@ -436,13 +340,15 @@ async openGallery(usr: any) {
   }
 
   setIconPeople(x, numCard) {
+    if (!this.discoverUsrs[numCard]) return;
+
     if (x < -25) {
-      if(this.discoverUsrs[numCard].status != this.statusUsrDicover.dislike) {
+      if (this.discoverUsrs[numCard].status != this.statusUsrDicover.dislike) {
         this.discoverUsrs[numCard].status = this.statusUsrDicover.dislike;
         this.cdRef.detectChanges();
       }
     } else if ((x > 25)) {
-      if(this.discoverUsrs[numCard].status != this.statusUsrDicover.like) {
+      if (this.discoverUsrs[numCard].status != this.statusUsrDicover.like) {
         this.discoverUsrs[numCard].status = this.statusUsrDicover.like;
         this.cdRef.detectChanges();
       }
@@ -452,315 +358,326 @@ async openGallery(usr: any) {
     }
   }
 
-  createTempArray(number){
-    var arr=[];
-    for(let i=0;i<number;i++){
-      arr[i]="";
-    }
-    return arr;
-  }
-
-  setPositionStart(pos) {
-    let posF = 0;
-    if(this.translate.currentLang == 'es'){
-      posF = 115+(15*pos);
+  private async handleSwipeAction(action: 'like' | 'dislike') {
+    if (action === 'like') {
+      await this.doLike();
     } else {
-      posF = 80+(15*pos);
+      await this.doDislike();
     }
-    
-    return posF+'px';
-  }
-
-  async openMenuPopover( ev: any ) {
-    console.log('POPOVER');
-    
-    /* const popover = await this.popoverCtrl.create({
-      component: ExperienceMenuPopoverPage,
-      event: ev,
-      componentProps: { isMyExp: this.isMyExp }
-    });
-
-    await popover.present(); */
   }
 
   async loadDiscover() {
-    // await this.uiService.showLoader();
     try {
+      console.log('Loading more discover profiles...');
       this.isLoading = true;
-      const discoverUsr_res = <DiscoverUsr[]> await this.matchService.getDiscoverProfiles(this.iniDiscover.toString(), this.deltaDiscover.toString(), this.filter);
-      //this.iniDiscover += this.deltaDiscover;
-      this.cdRef.detectChanges();
-      if(discoverUsr_res === null){
-        this.discoverUsrs = null
-        await this.uiService.hideLoader();
+      
+      const discoverUsr_res = <DiscoverUsr[]> await this.matchService.getDiscoverProfiles(
+        this.iniDiscover.toString(), 
+        this.deltaDiscover.toString(), 
+        this.filter
+      );
+
+      if (discoverUsr_res === null) {
+        this.discoverUsrs = null;
         this.noDiscoverFound = true;
+        console.log('No more profiles available');
         return;
       }
 
-     // this.setAvatarImg(discoverUsr_res);
-
-      console.log('LOAD DISCOVER_USR: ', discoverUsr_res);
+      console.log('Loaded profiles:', discoverUsr_res.length);
       
-      //this.discoverUsrs.push(...discoverUsr_res);
-      this.discoverUsrs = [ ...discoverUsr_res, ...this.discoverUsrs ]
+      // Add new profiles to the beginning of the array
+      this.discoverUsrs = [...discoverUsr_res, ...this.discoverUsrs];
+      this.currentCardIndex = discoverUsr_res.length - 1;
+      
       this.cdRef.detectChanges();
-
-      // Espera a que las tarjetas se rendericen y actualiza los gestos
+      
+      // Update swiper and gestures
       setTimeout(() => {
-        const cardArray = this.cards.toArray();
-        this.useSwipe(cardArray);
+        this.updateSwiperToCurrentCard();
+        this.setupGestures();
       }, 100);
 
-      this.posCardGlobal = this.discoverUsrs.length-1;
-
-      if(this.discoverUsrs.length <= 0) {
-        this.noDiscoverFound = true;
-      } else {
-        this.noDiscoverFound = false;
-      }
+      this.noDiscoverFound = this.discoverUsrs.length <= 0;
+      this.saveCurrentState();
+      
     } catch (error) {
-      console.log('ERROR AL OBTENER PROFILE');
+      console.error('Error loading discover profiles:', error);
     } finally {
       this.isLoading = false;
     }
-    // await this.uiService.hideLoader();
-  }
-
-  async setAvatarImg(usrDicover: DiscoverUsr[]) {
-    // for (const usr of usrDicover) {
-    //   usr.image = '../../../assets/icon/30-Default_no-image.jpeg';
-
-    //   const res_imgs =  <ImagesUser[]> await this.matchService.getIMGS(usr.personId.toString());
-    //   for (const img of res_imgs) {
-    //     if(img.avatar) {
-    //       usr.image = img.multimediaUrl;
-    //     }
-    //   }
-    // }
-
-  }
-
-  getNameFull(user: User){
-    return user.firstName + (
-      (user.lastName && user.lastName !== '') 
-        ? ' ' + user.lastName 
-        : ''
-      )
-  }
-
-
-  async setStatusDiscover(idDiscover: number, accionId: number) {
-    let resLike = 'false'
-    let resSuperLike = 'false';
-    
-    if(accionId == 3){ //Like
-      resLike = 'true'
-      resSuperLike = 'false'
-    } else if (accionId == 6) { //Dislike
-      resLike = 'false'
-      resSuperLike = 'false'
-    }
-    
-    let matchId = await this.matchService.doMatchProfiles(idDiscover.toString(), accionId.toString(), resLike, resSuperLike, null);
-    if(matchId!=null){
-      const modal = await this.modalController.create({
-        component: MatchModalPage,
-        componentProps: {
-          matchedUserName: this.discoverUsrs[this.posCardGlobal].firstName.concat(" "+ this.discoverUsrs[this.posCardGlobal].lastName) ,
-          matchedUserImage: 'assets/img/allison.jpg',
-          currentUserImage: 'assets/img/you.jpg',
-        },
-        cssClass: 'match-modal',
-      });
-      await modal.present();
-
-        const { data } = await modal.onDidDismiss();
-
-        if (data?.action === 'message') {
-          // Navigate to messages tab
-              this.uiService.showLoader();
-              const resp = await this.talkService.updateConversation(matchId.toString());
-              this.uiService.hideLoader();
-              if (Object.keys(resp).length === 0) {
-                console.log("Chat registration issue");
-                return;
-              }
-              const navExtras: NavigationExtras = {
-                state: {
-                  idConversation: resp["idConversation"]
-                }
-              };
-              
-              // Navigate to message tab and trigger the tab change
-              this.router.navigate(['main/tabs/message'], navExtras).then(() => {
-                // Update tab state using the tab service
-                this.tabService.setActiveTab('message');
-              });
-        } else if (data?.action === 'swipe') {
-          // Navigate to discover tab
-          this.router.navigateByUrl('/main/tabs/discover');
-        } else if (data?.action === 'share') {
-          // Open native share dialog
-          try {
-            const url = Capacitor.getPlatform() === 'ios'
-            ? 'https://apps.apple.com/app/id123456789' // iOS App Store URL
-            : 'https://play.google.com/store/apps/details?id=com.ifmly.package'; // Android
-            await Share.share({
-              title: 'Check out this match!',
-              text: 'I just got a new match on the app! 🎉',
-              url: url,
-              dialogTitle: 'Share with your friends',
-            });
-          } catch (err) {
-            console.error('Error sharing:', err);
-          }
-        }
-    }
-    //let res = await this.matchService.doMatchProfiles(this.idAntDiscover.toString(), accionId.toString(), resLike, resSuperLike);
-    console.log('APLICAR MATCH: ', idDiscover.toString());
-      /* if(!res) {
-        return;
-      } */
-
-    // Store the current user before removing it for potential rollback
-    if(this.discoverUsrs.length > 0) {
-      this.antDiscoverUsrs = {...this.discoverUsrs[this.posCardGlobal]};
-    }
-
-    this.discoverUsrs.pop();
-    this.posCardGlobal--;
-    
-    // Save state after change
-    this.discoverState.setCardList(this.discoverUsrs);
-    this.discoverState.setLastCardIndex(this.posCardGlobal);
-
-    if(this.discoverUsrs.length <= 1) {
-      await this.loadDiscover();
-    }
-
-    this.idAntDiscover = idDiscover;
   }
 
   async reLoadDiscover() {
+    console.log('Reloading discover profiles...');
     this.uiService.showLoader();
-    this.iniDiscover = 0;
-    this.discoverUsrs = [];
-    this.noDiscoverFound = true;
-    this.cdRef.detectChanges();
+    
     try {
+      this.iniDiscover = 0;
+      this.discoverUsrs = [];
+      this.currentCardIndex = 0;
+      this.noDiscoverFound = true;
       this.isLoading = true;
-      this.discoverUsrs = <DiscoverUsr[]> await this.matchService.getDiscoverProfiles(this.iniDiscover.toString(), this.deltaDiscover.toString(), this.filter);
+      
       this.cdRef.detectChanges();
-      await this.setAvatarImg(this.discoverUsrs);
+      
+      const discoverUsr_res = <DiscoverUsr[]> await this.matchService.getDiscoverProfiles(
+        this.iniDiscover.toString(), 
+        this.deltaDiscover.toString(), 
+        this.filter
+      );
 
-      if(this.discoverUsrs === null){
-        await this.uiService.hideLoader();
+      if (discoverUsr_res === null) {
         this.noDiscoverFound = true;
+        console.log('No profiles found');
         return;
       }
 
+      console.log('Reloaded profiles:', discoverUsr_res.length);
       
-      console.log('RE-LOAD DISCOVER_USR: ', this.discoverUsrs);
-      
+      this.discoverUsrs = [...discoverUsr_res];
       this.iniDiscover = this.discoverUsrs.length;
-      this.posCardGlobal = this.discoverUsrs.length-1;
+      this.currentCardIndex = this.discoverUsrs.length - 1;
       
-      if(this.discoverUsrs.length <= 0) {
-        this.noDiscoverFound = true;
-      } else {
-        this.noDiscoverFound = false;
-      }
-
-      // Espera a que las tarjetas se rendericen y actualiza los gestos
+      this.noDiscoverFound = this.discoverUsrs.length <= 0;
+      
+      this.cdRef.detectChanges();
+      
+      // Update swiper and gestures
       setTimeout(() => {
-        const cardArray = this.cards.toArray();
-        this.useSwipe(cardArray);
-      }, 100);
+        this.updateSwiperToCurrentCard();
+        this.setupGestures();
+      }, 200);
+
+      this.saveCurrentState();
+      
     } catch (error) {
-      console.log('ERROR AL RECARGAR PROFILES');
+      console.error('Error reloading discover profiles:', error);
+      this.noDiscoverFound = true;
     } finally {
       this.isLoading = false;
+      this.uiService.hideLoader();
     }
+  }
+
+  async setStatusDiscover(idDiscover: number, accionId: number, actionType: 'like' | 'dislike') {
+    console.log('=== SET STATUS DISCOVER ===');
+    console.log('User ID:', idDiscover, 'Action:', accionId, 'Type:', actionType);
+    console.log('Current Index:', this.currentCardIndex, 'Total Cards:', this.discoverUsrs.length);
+
+    if (!this.discoverUsrs || this.discoverUsrs.length === 0 || this.currentCardIndex < 0) {
+      console.log('No cards available or invalid index');
+      return;
+    }
+
+    // Ensure we're working with the correct card
+    const currentUser = this.discoverUsrs[this.currentCardIndex];
+    if (!currentUser || currentUser.personId !== idDiscover) {
+      console.log('Card mismatch - finding correct card');
+      const correctIndex = this.discoverUsrs.findIndex(user => user.personId === idDiscover);
+      if (correctIndex !== -1) {
+        this.currentCardIndex = correctIndex;
+      } else {
+        console.error('Could not find user with ID:', idDiscover);
+        return;
+      }
+    }
+
+    try {
+      // Store for potential rollback
+      this.lastActionUser = {...this.discoverUsrs[this.currentCardIndex]};
+      this.lastActionUserId = idDiscover;
+      this.lastActionType = actionType;
+      this.canReset = true;
+
+      // API call
+      let resLike = actionType === 'like' ? 'true' : 'false';
+      let resSuperLike = 'false';
+      
+      console.log('Making API call...');
+      let matchId = await this.matchService.doMatchProfiles(
+        idDiscover.toString(), 
+        accionId.toString(), 
+        resLike, 
+        resSuperLike, 
+        null
+      );
+
+      // Handle match result
+      if (matchId != null) {
+        console.log('Match found!', matchId);
+        await this.showMatchModal(matchId);
+      }
+
+      // Remove current card
+      console.log('Removing card at index:', this.currentCardIndex);
+      this.discoverUsrs.splice(this.currentCardIndex, 1);
+      
+      // Adjust current index
+      if (this.currentCardIndex >= this.discoverUsrs.length) {
+        this.currentCardIndex = this.discoverUsrs.length - 1;
+      }
+      
+      console.log('After removal - Index:', this.currentCardIndex, 'Total:', this.discoverUsrs.length);
+      
+      // Force UI update
+      this.cdRef.detectChanges();
+      
+      // Update swiper
+      setTimeout(() => {
+        this.updateSwiperToCurrentCard();
+      }, 50);
+
+      // Load more if needed
+      if (this.discoverUsrs.length <= 2) {
+        console.log('Loading more cards...');
+        await this.loadDiscover();
+      }
+
+      // Save state
+      this.saveCurrentState();
+      
+    } catch (error) {
+      console.error('Error in setStatusDiscover:', error);
+      this.canReset = false;
+    }
+  }
+
+  private async showMatchModal(matchId: any) {
+    const currentUser = this.discoverUsrs[this.currentCardIndex];
+    const modal = await this.modalController.create({
+      component: MatchModalPage,
+      componentProps: {
+        matchedUserName: `${currentUser.firstName} ${currentUser.lastName}`,
+        matchedUserImage: getImageUrl(currentUser.image, 'assets/icon/30-Default_no-image.jpeg'),
+        currentUserImage: getImageUrl(this.user.image, 'assets/img/you.jpg'),
+      },
+      cssClass: 'match-modal',
+    });
     
-    await this.uiService.hideLoader();
+    await modal.present();
+    
+    const { data } = await modal.onDidDismiss();
+    
+    if (data?.action === 'message') {
+      this.uiService.showLoader();
+      const resp = await this.talkService.updateConversation(matchId.toString());
+      this.uiService.hideLoader();
+      
+      if (Object.keys(resp).length === 0) {
+        console.log("Chat registration issue");
+        return;
+      }
+      
+      const navExtras: NavigationExtras = {
+        state: {
+          idConversation: resp["idConversation"]
+        }
+      };
+      
+      this.router.navigate(['main/tabs/message'], navExtras).then(() => {
+        this.tabService.setActiveTab('message');
+      });
+    } else if (data?.action === 'share') {
+      try {
+        const url = Capacitor.getPlatform() === 'ios'
+          ? 'https://apps.apple.com/app/id123456789'
+          : 'https://play.google.com/store/apps/details?id=com.ifmly.package';
+        await Share.share({
+          title: 'Check out this match!',
+          text: 'I just got a new match on the app! 🎉',
+          url: url,
+          dialogTitle: 'Share with your friends',
+        });
+      } catch (err) {
+        console.error('Error sharing:', err);
+      }
+    }
   }
 
   async returnDicover() {
-    if(this.idAntDiscover === 0){
+    console.log('=== RETURN DISCOVER ===');
+    
+    if (!this.canReset || this.lastActionUserId === 0 || !this.lastActionUser) {
       this.uiService.alertOK(this.translate.instant('DISCOVER.notRollback'));
       return;
     }
-    this.uiService.showLoader();
-    if(await this.matchService.rollbackLike(this.idAntDiscover.toString())){
-      this.uiService.hideLoader();
-      this.idAntDiscover = 0;
-      if(this.antDiscoverUsrs) {
-        this.discoverUsrs.push(this.antDiscoverUsrs);
-        this.posCardGlobal++;
+
+    try {
+      console.log('Attempting rollback for user:', this.lastActionUserId);
+      
+      const rollbackSuccess = await this.matchService.rollbackLike(this.lastActionUserId.toString());
+      
+      if (rollbackSuccess) {
+        console.log('Rollback successful, restoring card');
+        
+        // Insert the card back at the current position
+        this.discoverUsrs.splice(this.currentCardIndex, 0, this.lastActionUser);
+        
+        console.log('Card restored at index:', this.currentCardIndex);
+        
+        // Reset rollback data
+        this.lastActionUserId = 0;
+        this.lastActionUser = null;
+        this.lastActionType = null;
+        this.canReset = false;
+        
+        // Force UI update
+        this.cdRef.detectChanges();
+        
+        // Update swiper
         setTimeout(() => {
-          const cardArray = this.cards.toArray();
-          this.useSwipe(cardArray);
+          this.updateSwiperToCurrentCard();
+          this.setupGestures();
         }, 100);
-        this.antDiscoverUsrs = null;
-        // Save state after rollback
-        this.discoverState.setCardList(this.discoverUsrs);
-        this.discoverState.setLastCardIndex(this.posCardGlobal);
+        
+        // Save state
+        this.saveCurrentState();
+        
+        console.log('Rollback completed successfully');
+      } else {
+        console.log('Rollback failed');
+        this.uiService.alertOK(this.translate.instant('DISCOVER.rollbackFalse'));
       }
-    }else{
-      this.uiService.hideLoader();
+    } catch (error) {
+      console.error('Error during rollback:', error);
       this.uiService.alertOK(this.translate.instant('DISCOVER.rollbackFalse'));
     }
   }
 
   async doDislike() {
-    console.log('DIS-LIKE', this.posCardGlobal);
-    this.disLikeBtn = true;
-    this.uiService.showLoader();
-    await this.setStatusDiscover(this.discoverUsrs[this.posCardGlobal].personId, this.statusUsrDicover.dislike);
-    this.disLikeBtn = false;
-    this.uiService.hideLoader();
+    console.log('=== DO DISLIKE ===');
+    
+    if (this.currentCardIndex < 0 || !this.discoverUsrs[this.currentCardIndex]) {
+      console.log('Cannot dislike - no card available');
+      return;
+    }
+
+    await this.setStatusDiscover(
+      this.discoverUsrs[this.currentCardIndex].personId, 
+      this.statusUsrDicover.dislike,
+      'dislike'
+    );
   }
 
   async doLike() {
-    this.uiService.showLoader();
-    console.log('LIKE', this.posCardGlobal);
-    this.likeBtn = true;
-    await this.setStatusDiscover(this.discoverUsrs[this.posCardGlobal].personId, this.statusUsrDicover.like);
-    this.likeBtn = false;
-    this.uiService.hideLoader();
+    console.log('=== DO LIKE ===');
+    
+    if (this.currentCardIndex < 0 || !this.discoverUsrs[this.currentCardIndex]) {
+      console.log('Cannot like - no card available');
+      return;
+    }
+
+    await this.setStatusDiscover(
+      this.discoverUsrs[this.currentCardIndex].personId, 
+      this.statusUsrDicover.like,
+      'like'
+    );
   }
 
   getNames(items?: { name: string }[]): string {
     if (!items || items.length === 0) return '';
     return items.slice(0, 3).map(i => i.name).join(', ');
-  }
-
-  async doSuperLike() {
-    const alert = await this.alertController.create({
-      cssClass: 'alert-superlike-class',
-      header: '*',
-      subHeader: this.translate.instant('DISCOVER.superLikeTitle'),
-      message: this.translate.instant('DISCOVER.superLikeMsg'),
-      //mode: 'md',
-      //buttons: [this.translate.instant('ALERT.btnMsg')]
-      buttons: [
-        {
-          text: this.translate.instant('DISCOVER.superLikeBtnOK'),
-          role: 'OK',
-          cssClass: 'alert-button-confirm',
-        },
-        {
-          text: this.translate.instant('DISCOVER.superLikeBtnCancel'),
-          role: 'CANCEL',
-          cssClass: 'alert-button-cancel',
-        }
-      ]
-    });
-
-    await alert.present();
-
-    const { role } = await alert.onDidDismiss();
-    console.log('RESP ALERT: ', role);
   }
 
   clearFilter() {
@@ -794,17 +711,11 @@ async openGallery(usr: any) {
       smoking: this.smok.value == '' ? null : Number(this.smok.value),
       kids: this.kid.value == '' ? null : Number(this.kid.value),
       religion: this.religion.value == '' ? null : Number(this.religion.value),
-      /* location: {
-        country: null,
-        state: null,
-        address: null,
-        latitud: this.latitud_gps,
-        longitud: this.longitud_gps
-      } */
       location: null
     };
-    console.log('FILTER: ', this.filter);
-
+    
+    console.log('Applying filter:', this.filter);
+    
     await this.modal.dismiss();
     await this.reLoadDiscover();
   }
@@ -817,7 +728,7 @@ async openGallery(usr: any) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'backdrop') {
       this.setFilterForm();
-      if(this.discoverUsrs.length <= 0) {
+      if (this.discoverUsrs.length <= 0) {
         this.noDiscoverFound = true;
       } else {
         this.noDiscoverFound = false;
@@ -825,52 +736,28 @@ async openGallery(usr: any) {
     }
   }
 
-  onClickAgeToggle() {
-    if(!this.ageToggle.value) {
-      this.age_between.enable();
-      this.age_between.setValue({lower: 18, upper: 100});
-    } else {
-      this.age_between.disable();
-      this.age_between.setValue({lower: 0, upper: 0});
-    }
-  }
-
-  onClickDisToggle() {
-    if(!this.distanceToggle.value) {
-      this.distance.enable();
-      this.distance.setValue('1');
-    } else {
-      this.distance.disable();
-      this.distance.setValue('0');
-    }
-  }
-
-  async openMenuPopoverBlock( ev: any, personId: number ) {
-    ev.stopPropagation();
-    const popover = await this.popoverCtrl.create({
-      component: DetailMatchMenuPopoverPage,
-      event: ev,
-      componentProps: { typeBlock: 2, matchId: null, personId }
-    });
-    
-    await popover.present();
-  }
-
-
   viewProfile(user: User) {
-      console.log('SELECTED VIEW PROFILE: ', user);
-      //Validacion para sacar al otro usuario del match (matchId esta mal estructurado es personId)
-      let navegationExtras: NavigationExtras = {
-        state: {
-          typePerson: 1,
-          otherPerson: user.personId, //(match.personLiked.toString() == this.user.personId ? match.personLikes : match.personLiked),
-          //matchId: ustInt.personId, 
-          image: JSON.stringify(user.image)
-        }
+    console.log('Viewing profile for user:', user);
+    let navegationExtras: NavigationExtras = {
+      state: {
+        typePerson: 1,
+        otherPerson: user.personId,
+        image: JSON.stringify(user.image)
       }
-      
-      this.router.navigate(['detail-match'], navegationExtras);
-      this.discoverState.setCardList(this.discoverUsrs);
-      this.discoverState.setLastCardIndex(this.posCardGlobal);
     }
+    
+    this.router.navigate(['detail-match'], navegationExtras);
+    this.saveCurrentState();
+  }
+}
+
+function getImageUrl(image: any, fallback: string): string {
+  if (!image) return fallback;
+  if (typeof image === 'object' && 'multimediaUrl' in image && image.multimediaUrl) {
+    return image.multimediaUrl;
+  }
+  if (typeof image === 'string') {
+    return image;
+  }
+  return fallback;
 }

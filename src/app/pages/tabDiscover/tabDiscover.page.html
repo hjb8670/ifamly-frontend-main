@@ -14,20 +14,21 @@
   </div>
 
   <swiper-container
-  #swiperEl
-  slides-per-view="1"
-  pagination="false"
-  style="height: 68vh;"
-  *ngIf="!noDiscoverFound"
->
-  <swiper-slide *ngFor="let usr of discoverUsrs">
-      <ion-card class="profile-card">
+    #swiperEl
+    slides-per-view="1"
+    pagination="false"
+    style="height: 68vh;"
+    *ngIf="!noDiscoverFound && discoverUsrs && discoverUsrs.length > 0"
+    [initialSlide]="currentCardIndex"
+  >
+    <swiper-slide *ngFor="let usr of discoverUsrs; let i = index" [attr.data-index]="i">
+      <ion-card class="profile-card" [class.current-card]="i === currentCardIndex">
         <div (click)="openGallery(usr)">
           <img class="profile-avatar" [src]="usr.image?.multimediaUrl || 'assets/icon/30-Default_no-image.jpeg'"/>
         </div>
         <ion-card-content>
-        <h2 class="profile-name">{{ usr.firstName }} {{ usr.lastName }}, {{ usr.age }}</h2>
-        <p class="profile-description">  {{ usr.aboutMe }} </p>
+          <h2 class="profile-name">{{ usr.firstName }} {{ usr.lastName }}, {{ usr.age }}</h2>
+          <p class="profile-description">{{ usr.aboutMe }}</p>
 
           <div class="profile-info-block" *ngIf="usr.hobbies?.length">
             <div class="info-label">Hobbies:</div>
@@ -53,43 +54,61 @@
             <div class="info-label">Education:</div>
             <div class="info-value">{{ getNames(usr.education) }}</div>
           </div>
-
         </ion-card-content>
-        <!-- <div class="profile-actions">
-          <ion-icon name="close-circle-outline" (click)="doDislike()"></ion-icon>
-          <ion-icon name="refresh-outline" (click)="returnDicover()"></ion-icon>
-          <ion-icon name="heart-circle" (click)="doLike()"></ion-icon>
-        </div> -->
       </ion-card>
     </swiper-slide>
   </swiper-container>
 
-
-  <ion-grid fixed *ngIf="!noDiscoverFound">
+  <ion-grid fixed *ngIf="!noDiscoverFound && discoverUsrs && discoverUsrs.length > 0">
     <ion-row class="row-btn ion-no-margin ion-no-padding">
-      
       <ion-col size="4" class="ion-no-margin ion-no-padding">
-        <img class="btn-small" src="../../../assets/icon/19-Dislike_button_grey.png" (click)="doDislike()">
+        <img 
+          class="btn-small" 
+          [class.btn-disabled]="isProcessing"
+          src="../../../assets/icon/19-Dislike_button_grey.png" 
+          (click)="doDislike()"
+        >
       </ion-col>
       <ion-col size="4" class="ion-no-margin ion-no-padding">
-        <img class="btn-small" src="../../../assets/icon/24-Refresh_button.png" (click)="returnDicover()"> <!-- (click)="reLoadDiscover()"> -->
+        <img 
+          class="btn-small" 
+          [class.btn-disabled]="!canReset || isProcessing"
+          src="../../../assets/icon/24-Refresh_button.png" 
+          (click)="returnDicover()"
+        >
       </ion-col>
       <ion-col size="4" class="ion-no-margin ion-no-padding">
-        <img class="btn-small" src="../../../assets/icon/21-like_button_orage.png" (click)="doLike()">
+        <img 
+          class="btn-small" 
+          [class.btn-disabled]="isProcessing"
+          src="../../../assets/icon/21-like_button_orage.png" 
+          (click)="doLike()"
+        >
       </ion-col>
-      <!-- <ion-col size="2" class="ion-no-margin ion-no-padding">
-        <img class="btn-small" src="../../../assets/icon/22-Favorite_button_grey.png" (click)="doSuperLike()">
-      </ion-col> -->
     </ion-row>
   </ion-grid>
+
+  <!-- Processing Indicator -->
+  <div class="processing-indicator" *ngIf="isProcessing">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>{{ processingMessage }}</p>
+  </div>
+
+  <!-- Debug Info (remove in production) -->
+  <div class="debug-info" *ngIf="false">
+    <p>Current Index: {{ currentCardIndex }}</p>
+    <p>Total Cards: {{ discoverUsrs?.length || 0 }}</p>
+    <p>Can Reset: {{ canReset }}</p>
+    <p>Processing: {{ isProcessing }}</p>
+  </div>
 
   <ion-modal #modal trigger="open-modal" [initialBreakpoint]="0.8" [breakpoints]="[0, 0.8]" (willPresent)="onWillPresent()" (willDismiss)="onWillDismiss($event)">
     <ng-template>
       <div class="div-modal-g">
         <ion-header class="header-filter ion-no-border">
           <ion-toolbar color="blanco" mode="ios">
-            <ion-title class="titleModal ">{{ 'DISCOVER.TitleFilter' | translate }}</ion-title>
-            <ion-buttons class="clearModal" slot="end"  (click)="clearFilter()"> <!-- (click)="openMenuPopover( $event )"> -->
+            <ion-title class="titleModal">{{ 'DISCOVER.TitleFilter' | translate }}</ion-title>
+            <ion-buttons class="clearModal" slot="end" (click)="clearFilter()">
               {{ 'DISCOVER.ClearBtnFilter' | translate }}
             </ion-buttons>
           </ion-toolbar>
@@ -98,32 +117,6 @@
         <div class="div-modal">
           <form [formGroup]="filterForm" (ngSubmit)="applyFilter()">
             <ion-list class="listModal ion-padding">
-              <!-- <ion-row>
-                <ion-col>
-                  <h1 class="text-h1">{{ 'DISCOVER.Title_iam' | translate }}</h1>
-                </ion-col>
-              </ion-row>
-              <ion-item lines="none" detail>
-                <ion-select formControlName="iam_a" [interfaceOptions]="customIamOptions" interface="action-sheet" cancelText="Cancel">
-                  <li *ngFor="let obj of iams">
-                    <ion-select-option [value]="obj.id">{{ obj.name }}</ion-select-option>
-                  </li>
-                </ion-select>
-              </ion-item> -->
-        
-              <!-- <ion-row>
-                <ion-col>
-                  <h1 class="text-h1">{{ 'DISCOVER.Title_looking' | translate }}</h1>
-                </ion-col>
-              </ion-row>
-              <ion-item lines="none" detail>
-                <ion-select formControlName="iam_looking" [interfaceOptions]="customIamLookingOptions" interface="action-sheet" cancelText="Cancel">
-                  <li *ngFor="let obj of iamlookings">
-                    <ion-select-option [value]="obj.id">{{ obj.name }}</ion-select-option>
-                  </li>
-                </ion-select>
-              </ion-item> -->
-
               <ion-row>
                 <ion-col size="10">
                   <h1 class="text-h1">{{ 'DISCOVER.Title_Age' | translate }}</h1>
@@ -133,10 +126,6 @@
                 </ion-col>
               </ion-row>
               <ion-range class="rangePersonal" formControlName="age_between" [dualKnobs]="true" min="18" max="100"></ion-range>
-              <!-- <ion-item class="item-toggle" lines="none">
-                <ion-label class="label">{{ 'DISCOVER.LabelageToggle' | translate }}</ion-label>
-                <ion-toggle class="toggleChk" formControlName="ageToggle" (click)="onClickAgeToggle()"></ion-toggle>
-              </ion-item> -->
 
               <ion-row>
                 <ion-col size="10">
@@ -147,11 +136,6 @@
                 </ion-col>
               </ion-row>
               <ion-range class="rangePersonal" formControlName="distance" min="1" max="1000"></ion-range>
-              
-              <!-- <ion-item class="item-toggle" lines="none">
-                <ion-label class="label">{{ 'DISCOVER.LabeldistToggle' | translate }}</ion-label>
-                <ion-toggle class="toggleChk" formControlName="distanceToggle" (click)="onClickDisToggle()"></ion-toggle>
-              </ion-item> -->
 
               <ion-row>
                 <ion-col>
@@ -183,95 +167,14 @@
               </ion-item>
 
               <ion-row>
-                <ion-col>
-                  <h1 class="text-h1">{{ 'DISCOVER.Title_Sing' | translate }}</h1>
-                </ion-col>
-              </ion-row>
-              <ion-item lines="none" detail>
-                <ion-select formControlName="sing" [interfaceOptions]="customSingOptions" interface="action-sheet" cancelText="Cancel">
-                  <li *ngFor="let obj of sings">
-                    <ion-select-option [value]="obj.id">{{ obj.name }}</ion-select-option>
-                  </li>
-                </ion-select>
-              </ion-item>
-
-              <ion-row>
-                <ion-col>
-                  <h1 class="text-h1">{{ 'DISCOVER.Title_Education' | translate }}</h1>
-                </ion-col>
-              </ion-row>
-              <ion-item lines="none" detail>
-                <ion-select formControlName="education" [interfaceOptions]="customEducationOptions" interface="action-sheet" cancelText="Cancel">
-                  <li *ngFor="let obj of educations">
-                    <ion-select-option [value]="obj.id">{{ obj.name }}</ion-select-option>
-                  </li>
-                </ion-select>
-              </ion-item>
-
-              <ion-row>
-                <ion-col>
-                  <h1 class="text-h1">{{ 'DISCOVER.Title_Drink' | translate }}</h1>
-                </ion-col>
-              </ion-row>
-              <ion-item lines="none" detail>
-                <ion-select formControlName="drink" [interfaceOptions]="customDrinkOptions" interface="action-sheet" cancelText="Cancel">
-                  <li *ngFor="let obj of drinks">
-                    <ion-select-option [value]="obj.id">{{ obj.name }}</ion-select-option>
-                  </li>
-                </ion-select>
-              </ion-item>
-
-              <ion-row>
-                <ion-col>
-                  <h1 class="text-h1">{{ 'DISCOVER.Title_Smok' | translate }}</h1>
-                </ion-col>
-              </ion-row>
-              <ion-item lines="none" detail>
-                <ion-select formControlName="smok" [interfaceOptions]="customSmokOptions" interface="action-sheet" cancelText="Cancel">
-                  <li *ngFor="let obj of smoks">
-                    <ion-select-option [value]="obj.id">{{ obj.name }}</ion-select-option>
-                  </li>
-                </ion-select>
-              </ion-item>
-
-              <ion-row>
-                <ion-col>
-                  <h1 class="text-h1">{{ 'DISCOVER.Title_Kid' | translate }}</h1>
-                </ion-col>
-              </ion-row>
-              <ion-item lines="none" detail>
-                <ion-select formControlName="kid" [interfaceOptions]="customKidOptions" interface="action-sheet" cancelText="Cancel">
-                  <li *ngFor="let obj of kids">
-                    <ion-select-option [value]="obj.id">{{ obj.name }}</ion-select-option>
-                  </li>
-                </ion-select>
-              </ion-item>
-
-              <ion-row>
-                <ion-col>
-                  <h1 class="text-h1">{{ 'DISCOVER.Title_Religion' | translate }}</h1>
-                </ion-col>
-              </ion-row>
-              <ion-item lines="none" detail>
-                <ion-select formControlName="religion" [interfaceOptions]="customReligionOptions" interface="action-sheet" cancelText="Cancel">
-                  <li *ngFor="let obj of religions">
-                    <ion-select-option [value]="obj.id">{{ obj.name }}</ion-select-option>
-                  </li>
-                </ion-select>
-              </ion-item>
-
-
-              <ion-row>
                 <ion-button class="apply-Bt" color="primary1" type="submit">
                   {{ 'DISCOVER.btnApply' | translate }}
                 </ion-button>
               </ion-row>
-
             </ion-list>
           </form>
         </div>
       </div>
     </ng-template>
   </ion-modal>
-  
 </ion-content>

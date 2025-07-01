@@ -171,9 +171,9 @@ export class ProfileDetailsPage implements OnInit {
     }
     
 
-    if(this.validaCampo(this.lname, this.validation_messages.lname)){
-      return;
-    }
+    // if(this.validaCampo(this.lname, this.validation_messages.lname)){
+    //   return;
+    // }
 
     if(this.validaCampo(this.gender, this.validation_messages.gender)){
       return;

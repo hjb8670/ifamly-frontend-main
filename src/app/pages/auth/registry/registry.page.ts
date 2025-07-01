@@ -185,14 +185,14 @@ export class RegistryPage implements OnInit {
       return;
     }
 
-    if(!this.isLegal){
-      this.uiService.alertOK(this.translate.instant('REGISTRY.errorLegal'));
-      return;
-    }
-    if(!this.isTerms){
-      this.uiService.alertOK(this.translate.instant('REGISTRY.errorTerms'));
-      return;
-    }
+    // if(!this.isLegal){
+    //   this.uiService.alertOK(this.translate.instant('REGISTRY.errorLegal'));
+    //   return;
+    // }
+    // if(!this.isTerms){
+    //   this.uiService.alertOK(this.translate.instant('REGISTRY.errorTerms'));
+    //   return;
+    // }
 
     try {
       const usr = await this.firebaseAuthService.signInWithApple();

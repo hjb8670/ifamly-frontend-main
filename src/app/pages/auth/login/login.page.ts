@@ -150,12 +150,14 @@ export class LoginPage implements OnInit {
 
     return false;
   }
-
+  loading = false;
   async singIn() {
+    this.loading = true;
     /* if(this.validaCampo(this.email, this.validation_messages.email)){
       return;
     } */
     if(this.validaCampo(this.password, this.validation_messages.password)){
+      this.loading = false;
       return;
     }
 
@@ -169,6 +171,7 @@ export class LoginPage implements OnInit {
         await this.goDiscovers();
 
       } else {
+        this.loading = false;
         if( valido['name'] === "HttpErrorResponse" ) {
           if (valido['status'] === 401)
             this.uiService.alertOK(this.translate.instant('LOGIN.msgErrLogin'));  
@@ -180,6 +183,7 @@ export class LoginPage implements OnInit {
         }
       }
     } catch (err) {
+      this.loading = false;
       console.log('ERROR LOGIN: ', err);
       this.uiService.alertOK( this.translate.instant('LOGIN.msgErrCnx') );
     }
@@ -425,6 +429,7 @@ export class LoginPage implements OnInit {
       }
     }
     await this.router.navigate(['/main/tabs/discover'], navegationExtras);
+    this.loading = false;
 
   }
 

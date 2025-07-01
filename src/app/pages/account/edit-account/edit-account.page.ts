@@ -303,7 +303,7 @@ export class EditAccountPage implements OnInit {
 
   async save() {
      if (this.iam_a.invalid || !this.iam_a.value || this.iam_looking.invalid || !this.iam_looking.value ) {
-    this.uiService.alertOK(this.translate.instant('ABOUT-ME.missingfiled'));
+   // this.uiService.alertOK(this.translate.instant('ABOUT-ME.missingfiled'));
     this.iam_a.markAsTouched();
     this.iam_looking.markAsTouched();
    
@@ -336,10 +336,10 @@ this.uiService.showLoader();
 
     this.uiService.hideLoader();
     if(!res0 || !res1){
-      this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
+     // this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
       this.router.navigate(['main/tabs/account']);
       return;
-      
+       
     }
     this.router.navigate(['main/tabs/account']);
   }

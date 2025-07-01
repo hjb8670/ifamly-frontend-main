@@ -9,8 +9,8 @@ if (environment.production) {
 }
 
 
-  navigator.serviceWorker.register('firebase-messaging-sw.js')
-    .then(reg => console.log('Service Worker Registered', reg));
+  // navigator.serviceWorker.register('firebase-messaging-sw.js')
+  //   .then(reg => console.log('Service Worker Registered', reg));
 
 
 platformBrowserDynamic().bootstrapModule(AppModule)

@@ -233,6 +233,32 @@ let TalkService = class TalkService {
       });
     })();
   }
+  updateConversationByPerson(personId) {
+    var _this5 = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const tVal = yield _this5.userService.validaToken();
+      if (!tVal) {
+        return;
+      }
+      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpHeaders().set('Content-Type', 'application/json').set('Authorization', _this5.userService.token);
+      return new Promise(resolve => {
+        _this5.http.get(`${URL}/chat/update/person/${personId}`, {
+          headers
+        }).subscribe({
+          next: resp => {
+            if (resp['sCode'] == 200) {
+              resolve(resp['sData']);
+            }
+            resolve({});
+          },
+          error: err => {
+            console.log('ERR MATCHES', err);
+            resolve({});
+          }
+        });
+      });
+    })();
+  }
   static {
     this.ctorParameters = () => [{
       type: _user_service__WEBPACK_IMPORTED_MODULE_3__.UserService

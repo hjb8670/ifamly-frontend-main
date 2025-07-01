@@ -123,8 +123,8 @@ let RegistryPage = class RegistryPage {
     this.contryISO = 'us';
     this.idToken = '';
     this.view = false;
-    this.isLegal = false;
-    this.isTerms = false;
+    this.isLegal = true;
+    this.isTerms = true;
     this.isMobile = false;
     this.isWeb = false;
     this.registryForm = this.formBuilder.group({
@@ -164,7 +164,6 @@ let RegistryPage = class RegistryPage {
     };
   }
   ngOnInit() {
-    this.isLegal = false;
     // Detect platform
     this.isMobile = this.platform.is('mobile') || this.platform.is('capacitor');
     this.isWeb = this.platform.is('desktop') || this.platform.is('pwa');

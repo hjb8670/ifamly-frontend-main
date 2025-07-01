@@ -262,7 +262,7 @@ let DetailMatchPage = class DetailMatchPage {
       console.log(_this2.matchId);
       console.log('SEND MESSAGE');
       _this2.uiService.showLoader();
-      let resp = yield _this2.talkService.updateConversation(_this2.matchId);
+      let resp = yield _this2.talkService.updateConversationByPerson(_this2.matchId);
       _this2.uiService.hideLoader();
       if (Object.keys(resp).length === 0) {
         console.log("Ocurrio un error alguno de los usuarios no esta registrado en chat.");
@@ -350,7 +350,7 @@ let DetailMatchPage = class DetailMatchPage {
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log(personid);
       _this6.uiService.showLoader();
-      let resp = yield _this6.talkService.updateConversation(personid.toString());
+      let resp = yield _this6.talkService.updateConversationByPerson(personid.toString());
       _this6.uiService.hideLoader();
       if (Object.keys(resp).length === 0) {
         console.log("Ocurrio un error alguno de los usuarios no esta registrado en chat.");

@@ -80,14 +80,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   LoginPage: () => (/* binding */ LoginPage)
 /* harmony export */ });
 /* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _login_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login.page.html?ngResource */ 87400);
 /* harmony import */ var _login_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./login.page.scss?ngResource */ 47144);
 /* harmony import */ var _login_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_login_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/forms */ 71904);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 24040);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic/angular */ 27832);
 /* harmony import */ var _services_ui_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/ui.service */ 44136);
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/user.service */ 90628);
 /* harmony import */ var src_app_services_match_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/match.service */ 5876);
@@ -108,11 +109,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 let LoginPage = class LoginPage {
-  constructor(formBuilder, router, translate, uiService, userService, matchService, utilities, firebaseAuthService, googleSingInService) {
+  constructor(formBuilder, router, translate, platform, uiService, userService, matchService, utilities, firebaseAuthService, googleSingInService) {
     this.formBuilder = formBuilder;
     this.router = router;
     this.translate = translate;
+    this.platform = platform;
     this.uiService = uiService;
     this.userService = userService;
     this.matchService = matchService;
@@ -124,6 +127,10 @@ let LoginPage = class LoginPage {
     //*public currentUser: User | null = null;
     this.idToken = '';
     this.view = false;
+    this.isMobile = false;
+    this.isWeb = false;
+    this.isLegal = true; // For login, assume user already accepted terms
+    this.isTerms = true; // For login, assume user already accepted terms
     this.loginForm = this.formBuilder.group({
       email: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__.Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
       password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__.Validators.required]]
@@ -143,7 +150,28 @@ let LoginPage = class LoginPage {
     };
     this.loading = false;
   }
-  ngOnInit() {}
+  ngOnInit() {
+    // Detect platform
+    this.isMobile = this.platform.is('mobile') || this.platform.is('capacitor');
+    this.isWeb = this.platform.is('desktop') || this.platform.is('pwa');
+    console.log('Platform detection:', {
+      isMobile: this.isMobile,
+      isWeb: this.isWeb,
+      platform: this.platform.platforms(),
+      userAgent: navigator.userAgent
+    });
+    // Initialize OAuth services for web platform
+    if (this.isWeb) {
+      console.log('Initializing OAuth services for web platform');
+      try {
+        this.googleSingInService.initialize();
+        this.firebaseAuthService.initialize();
+        console.log('OAuth services initialized successfully');
+      } catch (error) {
+        console.error('Failed to initialize OAuth services:', error);
+      }
+    }
+  }
   ionViewDidEnter() {
     var _this = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
@@ -322,6 +350,11 @@ let LoginPage = class LoginPage {
     var _this7 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log("SING IN WITH GOOGLE");
+      // Check if OAuth is available for current platform
+      if (!_this7.isMobile && !_this7.isWeb) {
+        _this7.uiService.alertOK('Google Sign-In is not available on this platform');
+        return;
+      }
       let email_final = '';
       let password_final = '';
       try {
@@ -381,6 +414,11 @@ let LoginPage = class LoginPage {
     var _this8 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log("SING IN WITH APPLE");
+      // Check if OAuth is available for current platform
+      if (!_this8.isMobile && !_this8.isWeb) {
+        _this8.uiService.alertOK('Apple Sign-In is not available on this platform');
+        return;
+      }
       let email_final = '';
       let password_final = '';
       try {
@@ -503,6 +541,8 @@ let LoginPage = class LoginPage {
     }, {
       type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_11__.TranslateService
     }, {
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_12__.Platform
+    }, {
       type: _services_ui_service__WEBPACK_IMPORTED_MODULE_3__.UiService
     }, {
       type: _services_user_service__WEBPACK_IMPORTED_MODULE_4__.UserService
@@ -517,7 +557,7 @@ let LoginPage = class LoginPage {
     }];
   }
 };
-LoginPage = (0,tslib__WEBPACK_IMPORTED_MODULE_12__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_13__.Component)({
+LoginPage = (0,tslib__WEBPACK_IMPORTED_MODULE_13__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_14__.Component)({
   selector: 'app-login',
   template: _login_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   styles: [(_login_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]

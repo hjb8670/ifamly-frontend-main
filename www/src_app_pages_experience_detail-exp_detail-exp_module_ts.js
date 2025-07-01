@@ -213,13 +213,13 @@ let DetailExpPage = class DetailExpPage {
         _this.noRegistered = _this.countUsrList(_this.allowUsr);
       } else {
         //this.ownerExp = await this.experienceService.getOwnerExperiences(this.experience.ownerPersonId);
-        _this.ownerExp = yield _this.userService.getUserBasic(_this.experience.ownerPersonId.toString());
+        _this.ownerExp = yield _this.userService.getUserOnly(_this.experience.ownerPersonId.toString());
         _this.textAboutMe = _this.ownerExp?.aboutMe || '';
         _this.interestedExp = yield _this.experienceService.checkedRegisterGuest(_this.expId);
         console.log('OWNER: ', _this.ownerExp);
         console.log('INTERESTED: ', _this.interestedExp);
         _this.imgUsers[0] = '../../../assets/icon/30-Default_no-image.jpeg';
-        let resImg = yield _this.matchService.getIMGS(_this.experience.ownerPersonId.toString());
+        let resImg = yield _this.matchService.getIMGSOfPerson(_this.experience.ownerPersonId.toString());
         for (const img of resImg) {
           if (img.avatar) {
             _this.imgUsers[0] = img.multimediaUrl;

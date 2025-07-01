@@ -80,20 +80,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   TabDiscoverPage: () => (/* binding */ TabDiscoverPage)
 /* harmony export */ });
 /* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _tabDiscover_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabDiscover.page.html?ngResource */ 97524);
 /* harmony import */ var _tabDiscover_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tabDiscover.page.scss?ngResource */ 18344);
 /* harmony import */ var _tabDiscover_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_tabDiscover_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/core */ 94280);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ionic/angular */ 78848);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic/angular */ 27832);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic/angular */ 78848);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ionic/angular */ 27832);
 /* harmony import */ var src_environments_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/environments/constants */ 57724);
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/user.service */ 90628);
 /* harmony import */ var _services_match_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/match.service */ 5876);
 /* harmony import */ var _services_ui_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/ui.service */ 44136);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/forms */ 71904);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/router */ 24040);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/forms */ 71904);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/router */ 24040);
 /* harmony import */ var _match_detail_match_menu_popover_detail_match_menu_popover_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../match/detail-match-menu-popover/detail-match-menu-popover.page */ 76244);
 /* harmony import */ var _gallery_gallery_page__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../gallery/gallery.page */ 5548);
 /* harmony import */ var _capacitor_share__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @capacitor/share */ 54524);
@@ -101,6 +101,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @capacitor/core */ 3536);
 /* harmony import */ var src_app_services_talk_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/services/talk.service */ 68648);
 /* harmony import */ var src_app_services_tab_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/services/tab.service */ 87548);
+/* harmony import */ var _services_discover_state_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../services/discover-state.service */ 36508);
+
 
 
 
@@ -123,7 +125,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let TabDiscoverPage = class TabDiscoverPage {
-  constructor(formBuilder, alertController, popoverCtrl, translate, userService, uiService, matchService, gestureCtrl, zone, plt, cdRef, activatedRoute, router, modalController, navCtrl, platform, talkService, tabService) {
+  constructor(formBuilder, alertController, popoverCtrl, translate, userService, uiService, matchService, gestureCtrl, zone, plt, cdRef, activatedRoute, router, modalController, navCtrl, platform, talkService, tabService, discoverState) {
     this.formBuilder = formBuilder;
     this.alertController = alertController;
     this.popoverCtrl = popoverCtrl;
@@ -142,6 +144,7 @@ let TabDiscoverPage = class TabDiscoverPage {
     this.platform = platform;
     this.talkService = talkService;
     this.tabService = tabService;
+    this.discoverState = discoverState;
     this.isLoading = true;
     this.limToLoadProfiles = 3; //se actualizo a 0 por que no actualizaba el final 
     this.heightImg = '';
@@ -290,15 +293,26 @@ let TabDiscoverPage = class TabDiscoverPage {
     var _this = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       _this.iniSizeContenedorCard();
-      _this.activatedRoute.queryParams.subscribe( /*#__PURE__*/function () {
-        var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (params) {
-          console.log('PARAMS: ', params);
-          yield _this.reLoadDiscover();
-        });
-        return function (_x) {
-          return _ref.apply(this, arguments);
-        };
-      }());
+      // Restore state if available
+      const savedList = _this.discoverState.getCardList();
+      if (savedList && savedList.length > 0) {
+        _this.discoverUsrs = savedList;
+        _this.posCardGlobal = _this.discoverState.getLastCardIndex();
+        _this.isLoading = false;
+      } else {
+        _this.activatedRoute.queryParams.subscribe( /*#__PURE__*/function () {
+          var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (params) {
+            yield _this.reLoadDiscover();
+          });
+          return function (_x) {
+            return _ref.apply(this, arguments);
+          };
+        }());
+      }
+      setTimeout(() => {
+        const cardArray = _this.cards.toArray();
+        _this.useSwipe(cardArray);
+      }, 100);
     })();
   }
   ionViewDidEnter() {
@@ -650,6 +664,9 @@ let TabDiscoverPage = class TabDiscoverPage {
       }
       _this7.discoverUsrs.pop();
       _this7.posCardGlobal--;
+      // Save state after change
+      _this7.discoverState.setCardList(_this7.discoverUsrs);
+      _this7.discoverState.setLastCardIndex(_this7.posCardGlobal);
       if (_this7.discoverUsrs.length <= 1) {
         yield _this7.loadDiscover();
       }
@@ -705,18 +722,18 @@ let TabDiscoverPage = class TabDiscoverPage {
       _this9.uiService.showLoader();
       if (yield _this9.matchService.rollbackLike(_this9.idAntDiscover.toString())) {
         _this9.uiService.hideLoader();
-        // this.uiService.alertOK(this.translate.instant('DISCOVER.rollbackTrue'));
         _this9.idAntDiscover = 0;
-        // Instead of reloading all profiles, just add the previous user back to the stack
         if (_this9.antDiscoverUsrs) {
           _this9.discoverUsrs.push(_this9.antDiscoverUsrs);
           _this9.posCardGlobal++;
-          // Re-enable gestures for the new card
           setTimeout(() => {
             const cardArray = _this9.cards.toArray();
             _this9.useSwipe(cardArray);
           }, 100);
-          _this9.antDiscoverUsrs = null; // Clear the stored user
+          _this9.antDiscoverUsrs = null;
+          // Save state after rollback
+          _this9.discoverState.setCardList(_this9.discoverUsrs);
+          _this9.discoverState.setLastCardIndex(_this9.posCardGlobal);
         }
       } else {
         _this9.uiService.hideLoader();
@@ -896,16 +913,18 @@ let TabDiscoverPage = class TabDiscoverPage {
       }
     };
     this.router.navigate(['detail-match'], navegationExtras);
+    this.discoverState.setCardList(this.discoverUsrs);
+    this.discoverState.setLastCardIndex(this.posCardGlobal);
   }
   static {
     this.ctorParameters = () => [{
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_14__.FormBuilder
+      type: _angular_forms__WEBPACK_IMPORTED_MODULE_15__.FormBuilder
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_15__.AlertController
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_16__.AlertController
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_15__.PopoverController
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_16__.PopoverController
     }, {
-      type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_16__.TranslateService
+      type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_17__.TranslateService
     }, {
       type: _services_user_service__WEBPACK_IMPORTED_MODULE_4__.UserService
     }, {
@@ -913,43 +932,45 @@ let TabDiscoverPage = class TabDiscoverPage {
     }, {
       type: _services_match_service__WEBPACK_IMPORTED_MODULE_5__.MatchService
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_15__.GestureController
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_16__.GestureController
     }, {
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_17__.NgZone
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_18__.NgZone
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_18__.Platform
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_19__.Platform
     }, {
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_17__.ChangeDetectorRef
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_18__.ChangeDetectorRef
     }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_19__.ActivatedRoute
+      type: _angular_router__WEBPACK_IMPORTED_MODULE_20__.ActivatedRoute
     }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_19__.Router
+      type: _angular_router__WEBPACK_IMPORTED_MODULE_20__.Router
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_15__.ModalController
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_16__.ModalController
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_18__.NavController
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_19__.NavController
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_18__.Platform
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_19__.Platform
     }, {
       type: src_app_services_talk_service__WEBPACK_IMPORTED_MODULE_12__.TalkService
     }, {
       type: src_app_services_tab_service__WEBPACK_IMPORTED_MODULE_13__.TabService
+    }, {
+      type: _services_discover_state_service__WEBPACK_IMPORTED_MODULE_14__.DiscoverStateService
     }];
   }
   static {
     this.propDecorators = {
       cards: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_17__.ViewChildren,
-        args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_15__.IonCard, {
-          read: _angular_core__WEBPACK_IMPORTED_MODULE_17__.ElementRef
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_18__.ViewChildren,
+        args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_16__.IonCard, {
+          read: _angular_core__WEBPACK_IMPORTED_MODULE_18__.ElementRef
         }]
       }],
       modal: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_17__.ViewChild,
-        args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_15__.IonModal]
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_18__.ViewChild,
+        args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_16__.IonModal]
       }],
       swiperElRef: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_17__.ViewChild,
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_18__.ViewChild,
         args: ['swiperEl', {
           static: false
         }]
@@ -957,11 +978,57 @@ let TabDiscoverPage = class TabDiscoverPage {
     };
   }
 };
-TabDiscoverPage = (0,tslib__WEBPACK_IMPORTED_MODULE_20__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_17__.Component)({
+TabDiscoverPage = (0,tslib__WEBPACK_IMPORTED_MODULE_21__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_18__.Component)({
   selector: 'app-tabDiscover',
   template: _tabDiscover_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   styles: [(_tabDiscover_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]
 })], TabDiscoverPage);
+
+
+/***/ }),
+
+/***/ 36508:
+/*!****************************************************!*\
+  !*** ./src/app/services/discover-state.service.ts ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   DiscoverStateService: () => (/* binding */ DiscoverStateService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 94280);
+
+
+let DiscoverStateService = class DiscoverStateService {
+  constructor() {
+    this.cardListKey = 'discover_card_list';
+    this.cardIndexKey = 'discover_card_index';
+  }
+  setCardList(list) {
+    localStorage.setItem(this.cardListKey, JSON.stringify(list));
+  }
+  getCardList() {
+    const data = localStorage.getItem(this.cardListKey);
+    return data ? JSON.parse(data) : [];
+  }
+  setLastCardIndex(index) {
+    localStorage.setItem(this.cardIndexKey, index.toString());
+  }
+  getLastCardIndex() {
+    const data = localStorage.getItem(this.cardIndexKey);
+    return data ? parseInt(data, 10) : 0;
+  }
+  clear() {
+    localStorage.removeItem(this.cardListKey);
+    localStorage.removeItem(this.cardIndexKey);
+  }
+};
+DiscoverStateService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({
+  providedIn: 'root'
+})], DiscoverStateService);
 
 
 /***/ }),
@@ -981,8 +1048,6 @@ ___CSS_LOADER_EXPORT___.i(___CSS_LOADER_AT_RULE_IMPORT_0___);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `/* styles.scss */
 .profile-card {
-  margin-left: 10px;
-  margin-right: 10px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -1092,7 +1157,7 @@ swiper-slide,
 ion-card {
   background-color: #f4f0e5;
   height: 100%;
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 ion-content {
@@ -1444,7 +1509,7 @@ ion-select::part(icon) {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-}`, "",{"version":3,"sources":["webpack://./src/app/pages/tabDiscover/tabDiscover.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/tabDiscover/tabDiscover.page.scss"],"names":[],"mappings":"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","sourcesContent":["/* styles.scss */\n@import 'swiper/swiper-bundle.css';\n\n.profile-card {\n  margin-left: 10px;\n  margin-right: 10px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n  text-align: center;\n  ion-card-content {\n    padding: 16px;\n  }\n}\n\n.profile-avatar {\n  width: 200px;\n  height: 200px;\n  margin-top: 2px;\n  border-radius: 10%;\n  object-fit: cover;\n  border: 3px solid #eee;\n}\n\n.profile-name {\n  font-size: 25px;\n  font-weight: bold;\n  color: #333;\n}\n\n.profile-description {\n  display: -webkit-box;\n  -webkit-line-clamp: 3; /* show 3 lines max */\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  margin-bottom: 15px;\n  margin-top: 5px;\n  font-size: 14px;\n  color: orange;\n}\n\n\n\n.profile-info-block {\n  display: flex;\n  margin-bottom: 6px;\n  font-size: 13px;\n  line-height: 1.3;\n}\n\n.profile-info-block .info-label {\n  width: 100px;\n  font-weight: 600;\n  color: #333;\n  flex-shrink: 0;\n  text-align: left;\n}\n\n.profile-info-block .info-value {\n  flex-grow: 1;\n  text-align: left;\n  color: #555;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.profile-section {\n  margin-top: 16px;\n  text-align: left;\n\n  h3 {\n    font-size: 14px;\n    font-weight: bold;\n    margin-bottom: 6px;\n    color: #555;\n  }\n\n  ul {\n    list-style: none;\n    padding: 0;\n    li {\n      font-size: 14px;\n      color: #333;\n      padding-left: 12px;\n      position: relative;\n    }\n  }\n}\n\n.profile-actions {\n  display: flex;\n  justify-content: space-around;\n  padding: 16px;\n  border-top: 1px solid #eee;\n  ion-icon {\n    font-size: 32px;\n    color: #ff6b6b;\n    cursor: pointer;\n\n    &:nth-child(2) {\n      color: #ffc107;\n    }\n\n    &:nth-child(3) {\n      color: #4cd137;\n    }\n  }\n}\n\n.profile-photo {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\nswiper-container,\nswiper-slide,\nion-card {\n  background-color: #f4f0e5;\n  height: 100%;\n  margin-top: 5px;\n}\n\nion-content{\n    --overflow:hidden;\n}\n.hdPage {\n    background: var(--ion-color-blanco);\n    padding-bottom: 0px;\n}\n\nion-back-button {\n    border-style: solid;\n    border-width: 1px;\n    border-radius: 15px;\n}\n\n.titlePage {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 24px;\n    text-align: center;\n    margin-top: -5px;\n    margin-bottom: 0;\n}\n\n.titleLoc {\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 12px;\n    color: var(--ion-color-gris1);\n    text-align: center;\n    margin-top: 15px;\n    margin-bottom: 0;\n}\n\n.menuBtn {\n    border-style: solid;\n    border-width: 1px;\n    border-radius: 10px;\n    width: 50px;\n    height: 50px;\n}\n\n.menuIcon {\n    font-size: 28px;\n    margin-left: auto;\n    margin-right: auto;\n}\n\n.contenedorCard {\n    position: relative;\n    height: 82%;\n}\n\nion-card {\n    position: absolute;\n    width: 90%;\n    margin-left: 5%;\n    //margin-right: 5%;\n    //text-align: center;\n    /* border-style: solid;\n    border-width: 0;\n    border-radius: 15px; */\n    --background: none;\n    box-shadow: none !important;\n}\n\n.card-img {\n    object-fit: cover;\n    width: 100%;\n    background-color: white;\n    //height: 550px;\n    border-style: solid;\n    border-width: 0;\n    border-radius: 15px;\n}\n\n.card-boton {\n    position: absolute;\n    top: 10px;\n    right: 10px;\n}\n\n.card-gradient {\n    position: absolute;\n    background: linear-gradient(0deg, rgba(255, 79, 1, 1) 0%, rgba(255, 255, 255, 0) 25%);\n    width: 100%;\n    height: 100%;\n    border-style: solid;\n    border-width: 0;\n    border-radius: 15px;\n    top: 0;\n}\n\n.menuBtn {\n    font-size: 18px;\n    background: var(--ion-color-blanco);\n    height: 48px;\n    width: 50px;\n    color: var(--ion-color-negro);\n    border-style: solid;\n    border-width: 1px;\n    border-radius: 15px;\n}\n\n.menuIcon {\n    margin-left: auto;\n    margin-right: auto;\n}\n\n.card-title {\n    position: absolute;\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 30px;\n    color: var(--ion-color-blanco);\n    bottom: 50px;\n    left: 15px;\n}\n\n.card-subtitle {\n    position: absolute;\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 18px;\n    color: var(--ion-color-blanco);\n    bottom: 25px;\n    left: 15px;\n}\n\n.card-start {\n    position: absolute;\n    width: 13px;\n    bottom: 25px;\n}\n\n.card-ratings {\n    position: absolute;\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 12px;\n    color: var(--ion-color-blanco);\n    bottom: 25px;\n    right: 15px;\n    //right: 5%;\n}\n\n.card-like-dis {\n    position: absolute;\n    width: 26%;\n    top: 38%;\n    left: 38%;\n}\n\n.row-btn {\n    align-items: center;\n    text-align: center;\n    padding-left: 5%;\n    padding-right: 5%;\n    padding-top: 1%;\n}\n\n.btn-small {\n    width: 60px;\n}\n\n.btn-big {\n    width: 100px;\n}\n\n//******** MODAL FILTER ***********//\n.header-filter {\n    margin-top: 10px;\n}\n\n.div-modal-g {\n    height: 75%;\n}\n\n.div-modal {\n    height: 100%;\n    overflow-y: scroll;\n}\n\n.listModal {\n    margin-top: 0;\n    padding-top: 0;\n    /* .ios {\n        margin-top: 8px;\n    } */\n}\n\n.titleModal {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 22px;\n}\n\n.clearModal {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    color: var(--ion-color-primary1);\n    padding-top: 14px;\n    //padding-right: 10px;\n}\n\n.text-h1 {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    color: var(--ion-color-negro);\n    /* margin-top: -10px;\n    margin-bottom: 0px; */\n}\n\n.text-h1-2 {\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 12px;\n    text-align: end;\n    color: var(--ion-color-gris1);\n    margin-top: 22px;\n}\n\nion-item {\n    --background: var(--ion-color-blanco);\n    --color: var(--ion-color-negro);\n    --color-focused: var(--ion-color-negro);\n    --border-width: 1px !important;\n    --border-radius: 15px;\n    --border-color: var(--ion-color-negro);\n    //--padding-bottom: 0px; \n    --padding-start: 15px;\n    --highlight-color-invalid: none;\n    --highlight-color-valid: none;\n    --highlight-color-focused: none !important;\n    /* margin-top: 30px;\n    margin-bottom: 70px; */\n}\n\nion-select {\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 16px;\n    --padding-end: 0px;\n}\n\nion-select::part(icon) {\n    display: none !important;\n}\n\n.rangePersonal {\n    --bar-background: var(--ion-color-gris1);\n    --bar-background-active: var(--ion-color-primary1);\n    --bar-height: 5px;\n    --knob-size: 28px;\n    --knob-border-radius: 50%;\n    --bar-border-radius: 20px;\n    --knob-background: var(--ion-color-primary1);\n    --knob-box-shadow: 0px 0px 0px 3px #fff;\n    padding-top: 0;\n    padding-bottom: 0;\n}\n\n.text-subtitle {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 18px;\n    color: var(--ion-color-negro);\n    margin-bottom: -10px;\n}\n\n.apply-Bt {\n    display: block;\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 15px;\n    text-transform: none;\n    width: 100%;\n    height: 45px;\n    --border-radius: 10px;\n    --box-shadow: none;\n    margin-top: 40px;\n    margin-bottom: 20px;\n}\n\n.item-toggle {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    --detail-icon-color: var(--ion-color-primary1);\n    --border-width: 0 !important;\n    --padding-start: 10px;\n    --padding-end: 0px !important;\n    margin-right: -10px;\n}\n\n.toggleChk {\n    display: flex;\n    --background: var(--ion-color-gris1);\n    --background-checked: var(--ion-color-primary1);\n    --handle-background: var(--ion-color-blanco);\n    --handle-background-checked: var(--ion-color-blanco);\n    --handle-spacing: 2px;\n    --handle-height: 25px;\n    --handle-width: 25px;\n    width: 50px;\n    height: 30px;\n    padding: 0;\n    padding-right: 0;\n    border: 0.6px solid var(--ion-color-blanco);\n    border-radius: 18px;\n}\n\n.divNoFound {\n    height: 100%;\n}\n\n.imgNoFound {\n    display: block;\n    width: 35%;\n    margin-top: 35%;\n    margin-left: auto;\n    margin-right: auto;\n}\n\n.pNoFoundRegular {\n    text-align: center;\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 16px;\n    margin: 30px 20px 0 20px;\n}\n\n.pNoFound {\n    text-align: center;\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 18px;\n    margin: 30px 20px 0 20px;\n}\n\n.skeleton-container {\n    display: flex;\n    flex-direction: column;\n    gap: 16px;\n}\n\n.skeleton-img {\n    width: 100%;\n    //height: 500px;\n    border-radius: 8px;\n}\n\n.skeleton-buttons {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    padding: 8px 0;\n    margin-top: 40px;\n}\n\n.skeleton-btnT {\n    width: 60px;\n    height: 60px;\n    border-radius: 50%;\n}\n\n.skeleton-btnL {\n    width: 90px;\n    height: 90px;\n    border-radius: 50%;\n}","/* styles.scss */\n@import 'swiper/swiper-bundle.css';\n.profile-card {\n  margin-left: 10px;\n  margin-right: 10px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n  text-align: center;\n}\n.profile-card ion-card-content {\n  padding: 16px;\n}\n\n.profile-avatar {\n  width: 200px;\n  height: 200px;\n  margin-top: 2px;\n  border-radius: 10%;\n  object-fit: cover;\n  border: 3px solid #eee;\n}\n\n.profile-name {\n  font-size: 25px;\n  font-weight: bold;\n  color: #333;\n}\n\n.profile-description {\n  display: -webkit-box;\n  -webkit-line-clamp: 3; /* show 3 lines max */\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  margin-bottom: 15px;\n  margin-top: 5px;\n  font-size: 14px;\n  color: orange;\n}\n\n.profile-info-block {\n  display: flex;\n  margin-bottom: 6px;\n  font-size: 13px;\n  line-height: 1.3;\n}\n\n.profile-info-block .info-label {\n  width: 100px;\n  font-weight: 600;\n  color: #333;\n  flex-shrink: 0;\n  text-align: left;\n}\n\n.profile-info-block .info-value {\n  flex-grow: 1;\n  text-align: left;\n  color: #555;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.profile-section {\n  margin-top: 16px;\n  text-align: left;\n}\n.profile-section h3 {\n  font-size: 14px;\n  font-weight: bold;\n  margin-bottom: 6px;\n  color: #555;\n}\n.profile-section ul {\n  list-style: none;\n  padding: 0;\n}\n.profile-section ul li {\n  font-size: 14px;\n  color: #333;\n  padding-left: 12px;\n  position: relative;\n}\n\n.profile-actions {\n  display: flex;\n  justify-content: space-around;\n  padding: 16px;\n  border-top: 1px solid #eee;\n}\n.profile-actions ion-icon {\n  font-size: 32px;\n  color: #ff6b6b;\n  cursor: pointer;\n}\n.profile-actions ion-icon:nth-child(2) {\n  color: #ffc107;\n}\n.profile-actions ion-icon:nth-child(3) {\n  color: #4cd137;\n}\n\n.profile-photo {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\nswiper-container,\nswiper-slide,\nion-card {\n  background-color: #f4f0e5;\n  height: 100%;\n  margin-top: 5px;\n}\n\nion-content {\n  --overflow:hidden;\n}\n\n.hdPage {\n  background: var(--ion-color-blanco);\n  padding-bottom: 0px;\n}\n\nion-back-button {\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 15px;\n}\n\n.titlePage {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 24px;\n  text-align: center;\n  margin-top: -5px;\n  margin-bottom: 0;\n}\n\n.titleLoc {\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 12px;\n  color: var(--ion-color-gris1);\n  text-align: center;\n  margin-top: 15px;\n  margin-bottom: 0;\n}\n\n.menuBtn {\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 10px;\n  width: 50px;\n  height: 50px;\n}\n\n.menuIcon {\n  font-size: 28px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.contenedorCard {\n  position: relative;\n  height: 82%;\n}\n\nion-card {\n  position: absolute;\n  width: 90%;\n  margin-left: 5%;\n  /* border-style: solid;\n  border-width: 0;\n  border-radius: 15px; */\n  --background: none;\n  box-shadow: none !important;\n}\n\n.card-img {\n  object-fit: cover;\n  width: 100%;\n  background-color: white;\n  border-style: solid;\n  border-width: 0;\n  border-radius: 15px;\n}\n\n.card-boton {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n}\n\n.card-gradient {\n  position: absolute;\n  background: linear-gradient(0deg, rgb(255, 79, 1) 0%, rgba(255, 255, 255, 0) 25%);\n  width: 100%;\n  height: 100%;\n  border-style: solid;\n  border-width: 0;\n  border-radius: 15px;\n  top: 0;\n}\n\n.menuBtn {\n  font-size: 18px;\n  background: var(--ion-color-blanco);\n  height: 48px;\n  width: 50px;\n  color: var(--ion-color-negro);\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 15px;\n}\n\n.menuIcon {\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.card-title {\n  position: absolute;\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 30px;\n  color: var(--ion-color-blanco);\n  bottom: 50px;\n  left: 15px;\n}\n\n.card-subtitle {\n  position: absolute;\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 18px;\n  color: var(--ion-color-blanco);\n  bottom: 25px;\n  left: 15px;\n}\n\n.card-start {\n  position: absolute;\n  width: 13px;\n  bottom: 25px;\n}\n\n.card-ratings {\n  position: absolute;\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 12px;\n  color: var(--ion-color-blanco);\n  bottom: 25px;\n  right: 15px;\n}\n\n.card-like-dis {\n  position: absolute;\n  width: 26%;\n  top: 38%;\n  left: 38%;\n}\n\n.row-btn {\n  align-items: center;\n  text-align: center;\n  padding-left: 5%;\n  padding-right: 5%;\n  padding-top: 1%;\n}\n\n.btn-small {\n  width: 60px;\n}\n\n.btn-big {\n  width: 100px;\n}\n\n.header-filter {\n  margin-top: 10px;\n}\n\n.div-modal-g {\n  height: 75%;\n}\n\n.div-modal {\n  height: 100%;\n  overflow-y: scroll;\n}\n\n.listModal {\n  margin-top: 0;\n  padding-top: 0;\n  /* .ios {\n      margin-top: 8px;\n  } */\n}\n\n.titleModal {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 22px;\n}\n\n.clearModal {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 16px;\n  color: var(--ion-color-primary1);\n  padding-top: 14px;\n}\n\n.text-h1 {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 16px;\n  color: var(--ion-color-negro);\n  /* margin-top: -10px;\n  margin-bottom: 0px; */\n}\n\n.text-h1-2 {\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 12px;\n  text-align: end;\n  color: var(--ion-color-gris1);\n  margin-top: 22px;\n}\n\nion-item {\n  --background: var(--ion-color-blanco);\n  --color: var(--ion-color-negro);\n  --color-focused: var(--ion-color-negro);\n  --border-width: 1px !important;\n  --border-radius: 15px;\n  --border-color: var(--ion-color-negro);\n  --padding-start: 15px;\n  --highlight-color-invalid: none;\n  --highlight-color-valid: none;\n  --highlight-color-focused: none !important;\n  /* margin-top: 30px;\n  margin-bottom: 70px; */\n}\n\nion-select {\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 16px;\n  --padding-end: 0px;\n}\n\nion-select::part(icon) {\n  display: none !important;\n}\n\n.rangePersonal {\n  --bar-background: var(--ion-color-gris1);\n  --bar-background-active: var(--ion-color-primary1);\n  --bar-height: 5px;\n  --knob-size: 28px;\n  --knob-border-radius: 50%;\n  --bar-border-radius: 20px;\n  --knob-background: var(--ion-color-primary1);\n  --knob-box-shadow: 0px 0px 0px 3px #fff;\n  padding-top: 0;\n  padding-bottom: 0;\n}\n\n.text-subtitle {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 18px;\n  color: var(--ion-color-negro);\n  margin-bottom: -10px;\n}\n\n.apply-Bt {\n  display: block;\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 15px;\n  text-transform: none;\n  width: 100%;\n  height: 45px;\n  --border-radius: 10px;\n  --box-shadow: none;\n  margin-top: 40px;\n  margin-bottom: 20px;\n}\n\n.item-toggle {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 16px;\n  --detail-icon-color: var(--ion-color-primary1);\n  --border-width: 0 !important;\n  --padding-start: 10px;\n  --padding-end: 0px !important;\n  margin-right: -10px;\n}\n\n.toggleChk {\n  display: flex;\n  --background: var(--ion-color-gris1);\n  --background-checked: var(--ion-color-primary1);\n  --handle-background: var(--ion-color-blanco);\n  --handle-background-checked: var(--ion-color-blanco);\n  --handle-spacing: 2px;\n  --handle-height: 25px;\n  --handle-width: 25px;\n  width: 50px;\n  height: 30px;\n  padding: 0;\n  padding-right: 0;\n  border: 0.6px solid var(--ion-color-blanco);\n  border-radius: 18px;\n}\n\n.divNoFound {\n  height: 100%;\n}\n\n.imgNoFound {\n  display: block;\n  width: 35%;\n  margin-top: 35%;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.pNoFoundRegular {\n  text-align: center;\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 16px;\n  margin: 30px 20px 0 20px;\n}\n\n.pNoFound {\n  text-align: center;\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 18px;\n  margin: 30px 20px 0 20px;\n}\n\n.skeleton-container {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n}\n\n.skeleton-img {\n  width: 100%;\n  border-radius: 8px;\n}\n\n.skeleton-buttons {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  padding: 8px 0;\n  margin-top: 40px;\n}\n\n.skeleton-btnT {\n  width: 60px;\n  height: 60px;\n  border-radius: 50%;\n}\n\n.skeleton-btnL {\n  width: 90px;\n  height: 90px;\n  border-radius: 50%;\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/app/pages/tabDiscover/tabDiscover.page.scss","webpack://./../../My%20Projects/frontend-ifamily/src/app/pages/tabDiscover/tabDiscover.page.scss"],"names":[],"mappings":"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","sourcesContent":["/* styles.scss */\n@import 'swiper/swiper-bundle.css';\n\n.profile-card {\n//   margin-left: 10px;\n//   margin-right: 10px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n  text-align: center;\n  ion-card-content {\n    padding: 16px;\n  }\n}\n\n.profile-avatar {\n  width: 200px;\n  height: 200px;\n  margin-top: 2px;\n  border-radius: 10%;\n  object-fit: cover;\n  border: 3px solid #eee;\n}\n\n.profile-name {\n  font-size: 25px;\n  font-weight: bold;\n  color: #333;\n}\n\n.profile-description {\n  display: -webkit-box;\n  -webkit-line-clamp: 3; /* show 3 lines max */\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  margin-bottom: 15px;\n  margin-top: 5px;\n  font-size: 14px;\n  color: orange;\n}\n\n\n\n.profile-info-block {\n  display: flex;\n  margin-bottom: 6px;\n  font-size: 13px;\n  line-height: 1.3;\n}\n\n.profile-info-block .info-label {\n  width: 100px;\n  font-weight: 600;\n  color: #333;\n  flex-shrink: 0;\n  text-align: left;\n}\n\n.profile-info-block .info-value {\n  flex-grow: 1;\n  text-align: left;\n  color: #555;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.profile-section {\n  margin-top: 16px;\n  text-align: left;\n\n  h3 {\n    font-size: 14px;\n    font-weight: bold;\n    margin-bottom: 6px;\n    color: #555;\n  }\n\n  ul {\n    list-style: none;\n    padding: 0;\n    li {\n      font-size: 14px;\n      color: #333;\n      padding-left: 12px;\n      position: relative;\n    }\n  }\n}\n\n.profile-actions {\n  display: flex;\n  justify-content: space-around;\n  padding: 16px;\n  border-top: 1px solid #eee;\n  ion-icon {\n    font-size: 32px;\n    color: #ff6b6b;\n    cursor: pointer;\n\n    &:nth-child(2) {\n      color: #ffc107;\n    }\n\n    &:nth-child(3) {\n      color: #4cd137;\n    }\n  }\n}\n\n.profile-photo {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\nswiper-container,\nswiper-slide,\nion-card {\n  background-color: #f4f0e5;\n  height: 100%;\n  margin-top: 2px;\n}\n\nion-content{\n    --overflow:hidden;\n}\n.hdPage {\n    background: var(--ion-color-blanco);\n    padding-bottom: 0px;\n}\n\nion-back-button {\n    border-style: solid;\n    border-width: 1px;\n    border-radius: 15px;\n}\n\n.titlePage {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 24px;\n    text-align: center;\n    margin-top: -5px;\n    margin-bottom: 0;\n}\n\n.titleLoc {\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 12px;\n    color: var(--ion-color-gris1);\n    text-align: center;\n    margin-top: 15px;\n    margin-bottom: 0;\n}\n\n.menuBtn {\n    border-style: solid;\n    border-width: 1px;\n    border-radius: 10px;\n    width: 50px;\n    height: 50px;\n}\n\n.menuIcon {\n    font-size: 28px;\n    margin-left: auto;\n    margin-right: auto;\n}\n\n.contenedorCard {\n    position: relative;\n    height: 82%;\n}\n\nion-card {\n    position: absolute;\n    width: 90%;\n    margin-left: 5%;\n    //margin-right: 5%;\n    //text-align: center;\n    /* border-style: solid;\n    border-width: 0;\n    border-radius: 15px; */\n    --background: none;\n    box-shadow: none !important;\n}\n\n.card-img {\n    object-fit: cover;\n    width: 100%;\n    background-color: white;\n    //height: 550px;\n    border-style: solid;\n    border-width: 0;\n    border-radius: 15px;\n}\n\n.card-boton {\n    position: absolute;\n    top: 10px;\n    right: 10px;\n}\n\n.card-gradient {\n    position: absolute;\n    background: linear-gradient(0deg, rgba(255, 79, 1, 1) 0%, rgba(255, 255, 255, 0) 25%);\n    width: 100%;\n    height: 100%;\n    border-style: solid;\n    border-width: 0;\n    border-radius: 15px;\n    top: 0;\n}\n\n.menuBtn {\n    font-size: 18px;\n    background: var(--ion-color-blanco);\n    height: 48px;\n    width: 50px;\n    color: var(--ion-color-negro);\n    border-style: solid;\n    border-width: 1px;\n    border-radius: 15px;\n}\n\n.menuIcon {\n    margin-left: auto;\n    margin-right: auto;\n}\n\n.card-title {\n    position: absolute;\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 30px;\n    color: var(--ion-color-blanco);\n    bottom: 50px;\n    left: 15px;\n}\n\n.card-subtitle {\n    position: absolute;\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 18px;\n    color: var(--ion-color-blanco);\n    bottom: 25px;\n    left: 15px;\n}\n\n.card-start {\n    position: absolute;\n    width: 13px;\n    bottom: 25px;\n}\n\n.card-ratings {\n    position: absolute;\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 12px;\n    color: var(--ion-color-blanco);\n    bottom: 25px;\n    right: 15px;\n    //right: 5%;\n}\n\n.card-like-dis {\n    position: absolute;\n    width: 26%;\n    top: 38%;\n    left: 38%;\n}\n\n.row-btn {\n    align-items: center;\n    text-align: center;\n    padding-left: 5%;\n    padding-right: 5%;\n    padding-top: 1%;\n}\n\n.btn-small {\n    width: 60px;\n}\n\n.btn-big {\n    width: 100px;\n}\n\n//******** MODAL FILTER ***********//\n.header-filter {\n    margin-top: 10px;\n}\n\n.div-modal-g {\n    height: 75%;\n}\n\n.div-modal {\n    height: 100%;\n    overflow-y: scroll;\n}\n\n.listModal {\n    margin-top: 0;\n    padding-top: 0;\n    /* .ios {\n        margin-top: 8px;\n    } */\n}\n\n.titleModal {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 22px;\n}\n\n.clearModal {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    color: var(--ion-color-primary1);\n    padding-top: 14px;\n    //padding-right: 10px;\n}\n\n.text-h1 {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    color: var(--ion-color-negro);\n    /* margin-top: -10px;\n    margin-bottom: 0px; */\n}\n\n.text-h1-2 {\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 12px;\n    text-align: end;\n    color: var(--ion-color-gris1);\n    margin-top: 22px;\n}\n\nion-item {\n    --background: var(--ion-color-blanco);\n    --color: var(--ion-color-negro);\n    --color-focused: var(--ion-color-negro);\n    --border-width: 1px !important;\n    --border-radius: 15px;\n    --border-color: var(--ion-color-negro);\n    //--padding-bottom: 0px; \n    --padding-start: 15px;\n    --highlight-color-invalid: none;\n    --highlight-color-valid: none;\n    --highlight-color-focused: none !important;\n    /* margin-top: 30px;\n    margin-bottom: 70px; */\n}\n\nion-select {\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 16px;\n    --padding-end: 0px;\n}\n\nion-select::part(icon) {\n    display: none !important;\n}\n\n.rangePersonal {\n    --bar-background: var(--ion-color-gris1);\n    --bar-background-active: var(--ion-color-primary1);\n    --bar-height: 5px;\n    --knob-size: 28px;\n    --knob-border-radius: 50%;\n    --bar-border-radius: 20px;\n    --knob-background: var(--ion-color-primary1);\n    --knob-box-shadow: 0px 0px 0px 3px #fff;\n    padding-top: 0;\n    padding-bottom: 0;\n}\n\n.text-subtitle {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 18px;\n    color: var(--ion-color-negro);\n    margin-bottom: -10px;\n}\n\n.apply-Bt {\n    display: block;\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 15px;\n    text-transform: none;\n    width: 100%;\n    height: 45px;\n    --border-radius: 10px;\n    --box-shadow: none;\n    margin-top: 40px;\n    margin-bottom: 20px;\n}\n\n.item-toggle {\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 16px;\n    --detail-icon-color: var(--ion-color-primary1);\n    --border-width: 0 !important;\n    --padding-start: 10px;\n    --padding-end: 0px !important;\n    margin-right: -10px;\n}\n\n.toggleChk {\n    display: flex;\n    --background: var(--ion-color-gris1);\n    --background-checked: var(--ion-color-primary1);\n    --handle-background: var(--ion-color-blanco);\n    --handle-background-checked: var(--ion-color-blanco);\n    --handle-spacing: 2px;\n    --handle-height: 25px;\n    --handle-width: 25px;\n    width: 50px;\n    height: 30px;\n    padding: 0;\n    padding-right: 0;\n    border: 0.6px solid var(--ion-color-blanco);\n    border-radius: 18px;\n}\n\n.divNoFound {\n    height: 100%;\n}\n\n.imgNoFound {\n    display: block;\n    width: 35%;\n    margin-top: 35%;\n    margin-left: auto;\n    margin-right: auto;\n}\n\n.pNoFoundRegular {\n    text-align: center;\n    font-family: 'Sk-Modernist-Regular';\n    font-size: 16px;\n    margin: 30px 20px 0 20px;\n}\n\n.pNoFound {\n    text-align: center;\n    font-family: 'Sk-Modernist-Bold';\n    font-size: 18px;\n    margin: 30px 20px 0 20px;\n}\n\n.skeleton-container {\n    display: flex;\n    flex-direction: column;\n    gap: 16px;\n}\n\n.skeleton-img {\n    width: 100%;\n    //height: 500px;\n    border-radius: 8px;\n}\n\n.skeleton-buttons {\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    padding: 8px 0;\n    margin-top: 40px;\n}\n\n.skeleton-btnT {\n    width: 60px;\n    height: 60px;\n    border-radius: 50%;\n}\n\n.skeleton-btnL {\n    width: 90px;\n    height: 90px;\n    border-radius: 50%;\n}","/* styles.scss */\n@import 'swiper/swiper-bundle.css';\n.profile-card {\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);\n  text-align: center;\n}\n.profile-card ion-card-content {\n  padding: 16px;\n}\n\n.profile-avatar {\n  width: 200px;\n  height: 200px;\n  margin-top: 2px;\n  border-radius: 10%;\n  object-fit: cover;\n  border: 3px solid #eee;\n}\n\n.profile-name {\n  font-size: 25px;\n  font-weight: bold;\n  color: #333;\n}\n\n.profile-description {\n  display: -webkit-box;\n  -webkit-line-clamp: 3; /* show 3 lines max */\n  -webkit-box-orient: vertical;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  margin-bottom: 15px;\n  margin-top: 5px;\n  font-size: 14px;\n  color: orange;\n}\n\n.profile-info-block {\n  display: flex;\n  margin-bottom: 6px;\n  font-size: 13px;\n  line-height: 1.3;\n}\n\n.profile-info-block .info-label {\n  width: 100px;\n  font-weight: 600;\n  color: #333;\n  flex-shrink: 0;\n  text-align: left;\n}\n\n.profile-info-block .info-value {\n  flex-grow: 1;\n  text-align: left;\n  color: #555;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.profile-section {\n  margin-top: 16px;\n  text-align: left;\n}\n.profile-section h3 {\n  font-size: 14px;\n  font-weight: bold;\n  margin-bottom: 6px;\n  color: #555;\n}\n.profile-section ul {\n  list-style: none;\n  padding: 0;\n}\n.profile-section ul li {\n  font-size: 14px;\n  color: #333;\n  padding-left: 12px;\n  position: relative;\n}\n\n.profile-actions {\n  display: flex;\n  justify-content: space-around;\n  padding: 16px;\n  border-top: 1px solid #eee;\n}\n.profile-actions ion-icon {\n  font-size: 32px;\n  color: #ff6b6b;\n  cursor: pointer;\n}\n.profile-actions ion-icon:nth-child(2) {\n  color: #ffc107;\n}\n.profile-actions ion-icon:nth-child(3) {\n  color: #4cd137;\n}\n\n.profile-photo {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\nswiper-container,\nswiper-slide,\nion-card {\n  background-color: #f4f0e5;\n  height: 100%;\n  margin-top: 2px;\n}\n\nion-content {\n  --overflow:hidden;\n}\n\n.hdPage {\n  background: var(--ion-color-blanco);\n  padding-bottom: 0px;\n}\n\nion-back-button {\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 15px;\n}\n\n.titlePage {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 24px;\n  text-align: center;\n  margin-top: -5px;\n  margin-bottom: 0;\n}\n\n.titleLoc {\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 12px;\n  color: var(--ion-color-gris1);\n  text-align: center;\n  margin-top: 15px;\n  margin-bottom: 0;\n}\n\n.menuBtn {\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 10px;\n  width: 50px;\n  height: 50px;\n}\n\n.menuIcon {\n  font-size: 28px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.contenedorCard {\n  position: relative;\n  height: 82%;\n}\n\nion-card {\n  position: absolute;\n  width: 90%;\n  margin-left: 5%;\n  /* border-style: solid;\n  border-width: 0;\n  border-radius: 15px; */\n  --background: none;\n  box-shadow: none !important;\n}\n\n.card-img {\n  object-fit: cover;\n  width: 100%;\n  background-color: white;\n  border-style: solid;\n  border-width: 0;\n  border-radius: 15px;\n}\n\n.card-boton {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n}\n\n.card-gradient {\n  position: absolute;\n  background: linear-gradient(0deg, rgb(255, 79, 1) 0%, rgba(255, 255, 255, 0) 25%);\n  width: 100%;\n  height: 100%;\n  border-style: solid;\n  border-width: 0;\n  border-radius: 15px;\n  top: 0;\n}\n\n.menuBtn {\n  font-size: 18px;\n  background: var(--ion-color-blanco);\n  height: 48px;\n  width: 50px;\n  color: var(--ion-color-negro);\n  border-style: solid;\n  border-width: 1px;\n  border-radius: 15px;\n}\n\n.menuIcon {\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.card-title {\n  position: absolute;\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 30px;\n  color: var(--ion-color-blanco);\n  bottom: 50px;\n  left: 15px;\n}\n\n.card-subtitle {\n  position: absolute;\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 18px;\n  color: var(--ion-color-blanco);\n  bottom: 25px;\n  left: 15px;\n}\n\n.card-start {\n  position: absolute;\n  width: 13px;\n  bottom: 25px;\n}\n\n.card-ratings {\n  position: absolute;\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 12px;\n  color: var(--ion-color-blanco);\n  bottom: 25px;\n  right: 15px;\n}\n\n.card-like-dis {\n  position: absolute;\n  width: 26%;\n  top: 38%;\n  left: 38%;\n}\n\n.row-btn {\n  align-items: center;\n  text-align: center;\n  padding-left: 5%;\n  padding-right: 5%;\n  padding-top: 1%;\n}\n\n.btn-small {\n  width: 60px;\n}\n\n.btn-big {\n  width: 100px;\n}\n\n.header-filter {\n  margin-top: 10px;\n}\n\n.div-modal-g {\n  height: 75%;\n}\n\n.div-modal {\n  height: 100%;\n  overflow-y: scroll;\n}\n\n.listModal {\n  margin-top: 0;\n  padding-top: 0;\n  /* .ios {\n      margin-top: 8px;\n  } */\n}\n\n.titleModal {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 22px;\n}\n\n.clearModal {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 16px;\n  color: var(--ion-color-primary1);\n  padding-top: 14px;\n}\n\n.text-h1 {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 16px;\n  color: var(--ion-color-negro);\n  /* margin-top: -10px;\n  margin-bottom: 0px; */\n}\n\n.text-h1-2 {\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 12px;\n  text-align: end;\n  color: var(--ion-color-gris1);\n  margin-top: 22px;\n}\n\nion-item {\n  --background: var(--ion-color-blanco);\n  --color: var(--ion-color-negro);\n  --color-focused: var(--ion-color-negro);\n  --border-width: 1px !important;\n  --border-radius: 15px;\n  --border-color: var(--ion-color-negro);\n  --padding-start: 15px;\n  --highlight-color-invalid: none;\n  --highlight-color-valid: none;\n  --highlight-color-focused: none !important;\n  /* margin-top: 30px;\n  margin-bottom: 70px; */\n}\n\nion-select {\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 16px;\n  --padding-end: 0px;\n}\n\nion-select::part(icon) {\n  display: none !important;\n}\n\n.rangePersonal {\n  --bar-background: var(--ion-color-gris1);\n  --bar-background-active: var(--ion-color-primary1);\n  --bar-height: 5px;\n  --knob-size: 28px;\n  --knob-border-radius: 50%;\n  --bar-border-radius: 20px;\n  --knob-background: var(--ion-color-primary1);\n  --knob-box-shadow: 0px 0px 0px 3px #fff;\n  padding-top: 0;\n  padding-bottom: 0;\n}\n\n.text-subtitle {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 18px;\n  color: var(--ion-color-negro);\n  margin-bottom: -10px;\n}\n\n.apply-Bt {\n  display: block;\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 15px;\n  text-transform: none;\n  width: 100%;\n  height: 45px;\n  --border-radius: 10px;\n  --box-shadow: none;\n  margin-top: 40px;\n  margin-bottom: 20px;\n}\n\n.item-toggle {\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 16px;\n  --detail-icon-color: var(--ion-color-primary1);\n  --border-width: 0 !important;\n  --padding-start: 10px;\n  --padding-end: 0px !important;\n  margin-right: -10px;\n}\n\n.toggleChk {\n  display: flex;\n  --background: var(--ion-color-gris1);\n  --background-checked: var(--ion-color-primary1);\n  --handle-background: var(--ion-color-blanco);\n  --handle-background-checked: var(--ion-color-blanco);\n  --handle-spacing: 2px;\n  --handle-height: 25px;\n  --handle-width: 25px;\n  width: 50px;\n  height: 30px;\n  padding: 0;\n  padding-right: 0;\n  border: 0.6px solid var(--ion-color-blanco);\n  border-radius: 18px;\n}\n\n.divNoFound {\n  height: 100%;\n}\n\n.imgNoFound {\n  display: block;\n  width: 35%;\n  margin-top: 35%;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.pNoFoundRegular {\n  text-align: center;\n  font-family: \"Sk-Modernist-Regular\";\n  font-size: 16px;\n  margin: 30px 20px 0 20px;\n}\n\n.pNoFound {\n  text-align: center;\n  font-family: \"Sk-Modernist-Bold\";\n  font-size: 18px;\n  margin: 30px 20px 0 20px;\n}\n\n.skeleton-container {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n}\n\n.skeleton-img {\n  width: 100%;\n  border-radius: 8px;\n}\n\n.skeleton-buttons {\n  display: flex;\n  justify-content: space-around;\n  align-items: center;\n  padding: 8px 0;\n  margin-top: 40px;\n}\n\n.skeleton-btnT {\n  width: 60px;\n  height: 60px;\n  border-radius: 50%;\n}\n\n.skeleton-btnL {\n  width: 90px;\n  height: 90px;\n  border-radius: 50%;\n}"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___.toString();
 

@@ -32,7 +32,7 @@
     "@capacitor/ios": "5.7.0",
     "@capacitor/keyboard": "5.0.8",
     "@capacitor/push-notifications": "^6.0.0",
-    "@capacitor/share": "^7.0.1",
+    "@capacitor/share": "^6.0.0",
     "@capacitor/storage": "^1.2.5",
     "@codetrix-studio/capacitor-google-auth": "^3.3.6",
     "@ionic/angular": "^7.7.3",

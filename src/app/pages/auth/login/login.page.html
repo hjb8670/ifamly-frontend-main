@@ -104,7 +104,13 @@
 
       <ion-row>
         <ion-button class="singIn-Bt" color="primary1" type="submit">
-          {{ 'LOGIN.btnSingIn' | translate }}
+          
+          <ng-container *ngIf="!loading">
+            {{ 'LOGIN.btnSingIn' | translate }}
+          </ng-container>
+          <ng-container *ngIf="loading">
+            <ion-spinner name="dots" color="light"></ion-spinner>
+          </ng-container>
         </ion-button>
       </ion-row>
 

@@ -339,7 +339,7 @@ this.uiService.showLoader();
      // this.uiService.alertOK(this.translate.instant('EDIT-ACCOUNT.ErrorMsg'));
       this.router.navigate(['main/tabs/account']);
       return;
-      
+       
     }
     this.router.navigate(['main/tabs/account']);
   }

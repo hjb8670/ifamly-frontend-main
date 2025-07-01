@@ -117,14 +117,14 @@ openMap(lat: any, long: any) {
 
     } else { 
       //this.ownerExp = await this.experienceService.getOwnerExperiences(this.experience.ownerPersonId);
-      this.ownerExp = await this.userService.getUserBasic(this.experience.ownerPersonId.toString());
+      this.ownerExp = await this.userService.getUserOnly(this.experience.ownerPersonId.toString());
       this.textAboutMe = this.ownerExp?.aboutMe  || '';
       this.interestedExp = await this.experienceService.checkedRegisterGuest(this.expId);
       console.log('OWNER: ', this.ownerExp);
       console.log('INTERESTED: ', this.interestedExp);
       
       this.imgUsers[0] = '../../../assets/icon/30-Default_no-image.jpeg';
-          let resImg = <ImagesUser[]> await this.matchService.getIMGS(this.experience.ownerPersonId.toString());
+          let resImg = <ImagesUser[]> await this.matchService.getIMGSOfPerson(this.experience.ownerPersonId.toString());
           for (const img of resImg) {
             if(img.avatar) {
               this.imgUsers[0] = img.multimediaUrl;

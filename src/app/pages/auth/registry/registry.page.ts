@@ -20,8 +20,8 @@ export class RegistryPage implements OnInit {
   public contryISO='us';
   public idToken = '';
   public view = false;
-  public isLegal = false;
-  public isTerms = false;
+  public isLegal = true; 
+  public isTerms = true; 
   public isMobile = false;
   public isWeb = false;
 
@@ -69,8 +69,6 @@ export class RegistryPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.isLegal = false;
-    
     // Detect platform
     this.isMobile = this.platform.is('mobile') || this.platform.is('capacitor');
     this.isWeb = this.platform.is('desktop') || this.platform.is('pwa');

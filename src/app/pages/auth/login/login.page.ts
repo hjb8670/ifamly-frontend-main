@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 //*import { User } from '@capacitor-firebase/authentication';
 
 import { DiscoverUsr, FilterDiscover, ImagesUser } from 'src/app/interfaces/interfaces';
@@ -26,6 +27,10 @@ export class LoginPage implements OnInit {
   //*public currentUser: User | null = null;
   public idToken = '';
   public view = false;
+  public isMobile = false;
+  public isWeb = false;
+  public isLegal = true; // For login, assume user already accepted terms
+  public isTerms = true; // For login, assume user already accepted terms
 
   loginForm = this.formBuilder.group( {
     email: ['', [
@@ -49,6 +54,7 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private translate: TranslateService,
+    private platform: Platform,
     private uiService: UiService,
     private userService: UserService,
     private matchService: MatchService,
@@ -58,6 +64,28 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    // Detect platform
+    this.isMobile = this.platform.is('mobile') || this.platform.is('capacitor');
+    this.isWeb = this.platform.is('desktop') || this.platform.is('pwa');
+    
+    console.log('Platform detection:', {
+      isMobile: this.isMobile,
+      isWeb: this.isWeb,
+      platform: this.platform.platforms(),
+      userAgent: navigator.userAgent
+    });
+    
+    // Initialize OAuth services for web platform
+    if (this.isWeb) {
+      console.log('Initializing OAuth services for web platform');
+      try {
+        this.googleSingInService.initialize();
+        this.firebaseAuthService.initialize();
+        console.log('OAuth services initialized successfully');
+      } catch (error) {
+        console.error('Failed to initialize OAuth services:', error);
+      }
+    }
   }
 
   async ionViewDidEnter() {
@@ -247,6 +275,12 @@ export class LoginPage implements OnInit {
   async singInGoogle() {
     console.log("SING IN WITH GOOGLE");
 
+    // Check if OAuth is available for current platform
+    if (!this.isMobile && !this.isWeb) {
+      this.uiService.alertOK('Google Sign-In is not available on this platform');
+      return;
+    }
+
     let email_final = '';
     let password_final = '';
 
@@ -311,6 +345,12 @@ export class LoginPage implements OnInit {
 
   async singInApple() {
     console.log("SING IN WITH APPLE");
+
+    // Check if OAuth is available for current platform
+    if (!this.isMobile && !this.isWeb) {
+      this.uiService.alertOK('Apple Sign-In is not available on this platform');
+      return;
+    }
 
     let email_final = '';
     let password_final = '';

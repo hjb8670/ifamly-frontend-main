@@ -128,7 +128,7 @@ export class UserService {
     console.log('Email reset password', email);
 
     return new Promise(resolve => {
-      this.http.get(`${URL}/passwoord/resetPW/${email}/${lang}`).subscribe({ 
+      this.http.get(`${URL}/password/resetPW/${email}/${lang}`).subscribe({ 
         next: resp => {
           resolve(resp['sCode']);
         },
@@ -965,7 +965,7 @@ export class UserService {
           .set('Content-Type', 'application/json')
 
     return new Promise(resolve => {
-      this.http.get(`${URL}/passwoord/verifyCodeEmail/${email}/${lang}`, { headers }).subscribe({ 
+      this.http.get(`${URL}/password/verifyCodeEmail/${email}/${lang}`, { headers }).subscribe({ 
         next: resp => {          
           resp["sCode"] == 200 ? resolve(true) : resolve(false);
         },
@@ -982,7 +982,7 @@ export class UserService {
           .set('Content-Type', 'application/json')
 
     return new Promise(resolve => {
-      this.http.get(`${URL}/passwoord/verifyCode/${email}/${code}`, { headers }).subscribe({ 
+      this.http.get(`${URL}/password/verifyCode/${email}/${code}`, { headers }).subscribe({ 
         next: resp => {
           resolve(resp["sCode"]);
         },

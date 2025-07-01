@@ -350,7 +350,7 @@ let EditAccountPage = class EditAccountPage {
     var _this5 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (_this5.iam_a.invalid || !_this5.iam_a.value || _this5.iam_looking.invalid || !_this5.iam_looking.value) {
-        _this5.uiService.alertOK(_this5.translate.instant('ABOUT-ME.missingfiled'));
+        // this.uiService.alertOK(this.translate.instant('ABOUT-ME.missingfiled'));
         _this5.iam_a.markAsTouched();
         _this5.iam_looking.markAsTouched();
         return;

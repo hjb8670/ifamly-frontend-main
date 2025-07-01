@@ -78,11 +78,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   NotificationPromptPage: () => (/* binding */ NotificationPromptPage)
 /* harmony export */ });
 /* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _notification_prompt_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./notification-prompt.page.html?ngResource */ 99136);
 /* harmony import */ var _notification_prompt_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./notification-prompt.page.scss?ngResource */ 95440);
 /* harmony import */ var _notification_prompt_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_notification_prompt_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 24040);
 /* harmony import */ var src_app_services_notification_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/notification.service */ 44244);
 /* harmony import */ var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/user.service */ 90628);
@@ -95,9 +95,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let NotificationPromptPage = class NotificationPromptPage {
-  constructor(userService, router, notificationService) {
+  constructor(userService, router, zone, notificationService) {
     this.userService = userService;
     this.router = router;
+    this.zone = zone;
     this.notificationService = notificationService;
   }
   allowNotifications() {
@@ -105,14 +106,20 @@ let NotificationPromptPage = class NotificationPromptPage {
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         const token = yield _this.notificationService.requestPermission();
+        console.log(token);
+        _this.userService.setNotificationsAllowed(true);
         _this.notificationService.listenToMessages(); // Start listening
         yield _this.userService.sendDeviceToken(token);
-        _this.userService.setNotificationsAllowed(true);
-        _this.router.navigate(['/main/tabs/discover']);
+        // Force navigation inside Angular zone
+        _this.zone.run(() => {
+          _this.router.navigate(['/main/tabs/discover']);
+        });
       } catch (err) {
         console.error('Notification permission denied or failed:', err);
         _this.userService.setNotificationsAllowed(false);
-        _this.router.navigate(['/main/tabs/discover']);
+        _this.zone.run(() => {
+          _this.router.navigate(['/main/tabs/discover']);
+        });
       }
     })();
   }
@@ -126,11 +133,13 @@ let NotificationPromptPage = class NotificationPromptPage {
     }, {
       type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router
     }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.NgZone
+    }, {
       type: src_app_services_notification_service__WEBPACK_IMPORTED_MODULE_3__.NotificationService
     }];
   }
 };
-NotificationPromptPage = (0,tslib__WEBPACK_IMPORTED_MODULE_6__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
+NotificationPromptPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
   selector: 'app-notification-prompt',
   template: _notification_prompt_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   styles: [(_notification_prompt_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]

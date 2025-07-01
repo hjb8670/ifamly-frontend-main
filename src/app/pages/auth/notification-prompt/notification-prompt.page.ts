@@ -20,6 +20,7 @@ export class NotificationPromptPage {
   async allowNotifications() {
     try {
       const token = await this.notificationService.requestPermission();
+      console.log(token);
       this.userService.setNotificationsAllowed(true);
       this.notificationService.listenToMessages(); // Start listening
       await this.userService.sendDeviceToken(token);

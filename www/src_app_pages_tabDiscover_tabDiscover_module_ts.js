@@ -80,29 +80,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   TabDiscoverPage: () => (/* binding */ TabDiscoverPage)
 /* harmony export */ });
 /* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _tabDiscover_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tabDiscover.page.html?ngResource */ 97524);
 /* harmony import */ var _tabDiscover_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tabDiscover.page.scss?ngResource */ 18344);
 /* harmony import */ var _tabDiscover_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_tabDiscover_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/core */ 94280);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ionic/angular */ 78848);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ionic/angular */ 27832);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @ionic/angular */ 78848);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic/angular */ 27832);
 /* harmony import */ var src_environments_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/environments/constants */ 57724);
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/user.service */ 90628);
 /* harmony import */ var _services_match_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/match.service */ 5876);
 /* harmony import */ var _services_ui_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/ui.service */ 44136);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/forms */ 71904);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/router */ 24040);
-/* harmony import */ var _match_detail_match_menu_popover_detail_match_menu_popover_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../match/detail-match-menu-popover/detail-match-menu-popover.page */ 76244);
-/* harmony import */ var _gallery_gallery_page__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../gallery/gallery.page */ 5548);
-/* harmony import */ var _capacitor_share__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @capacitor/share */ 54524);
-/* harmony import */ var src_app_match_modal_match_modal_page__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/match-modal/match-modal.page */ 95180);
-/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @capacitor/core */ 3536);
-/* harmony import */ var src_app_services_talk_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/services/talk.service */ 68648);
-/* harmony import */ var src_app_services_tab_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/services/tab.service */ 87548);
-/* harmony import */ var _services_discover_state_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../services/discover-state.service */ 36508);
-
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/forms */ 71904);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/router */ 24040);
+/* harmony import */ var _gallery_gallery_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../gallery/gallery.page */ 5548);
+/* harmony import */ var _capacitor_share__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @capacitor/share */ 54524);
+/* harmony import */ var src_app_match_modal_match_modal_page__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/match-modal/match-modal.page */ 95180);
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @capacitor/core */ 3536);
+/* harmony import */ var src_app_services_talk_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/services/talk.service */ 68648);
+/* harmony import */ var src_app_services_tab_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/services/tab.service */ 87548);
+/* harmony import */ var _services_discover_state_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../services/discover-state.service */ 36508);
 
 
 
@@ -146,10 +144,12 @@ let TabDiscoverPage = class TabDiscoverPage {
     this.tabService = tabService;
     this.discoverState = discoverState;
     this.isLoading = true;
-    this.limToLoadProfiles = 3; //se actualizo a 0 por que no actualizaba el final 
+    this.canReset = false;
+    this.limToLoadProfiles = 3;
     this.heightImg = '';
     this.user = {};
     this.discoverUsrs = [];
+    this.currentCardIndex = 0;
     this.lanCatalogo = 'EN';
     this.longPressActive = false;
     this.statusUsrDicover = src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.statusUsrMatch;
@@ -158,11 +158,12 @@ let TabDiscoverPage = class TabDiscoverPage {
     this.filter = {};
     this.latitud_gps = null;
     this.longitud_gps = null;
-    this.posCardGlobal = 1;
     this.disLikeBtn = false;
     this.likeBtn = false;
     this.noDiscoverFound = false;
-    this.idAntDiscover = 0;
+    this.lastActionUserId = 0;
+    this.lastActionUser = null;
+    this.lastActionType = null;
     this.filterForm = this.formBuilder.group({
       iam_a: [''],
       iam_looking: [''],
@@ -185,68 +186,21 @@ let TabDiscoverPage = class TabDiscoverPage {
       distanceToggle: [true],
       ageToggle: [true]
     });
-    this.customIamOptions = {
-      header: this.translate.instant('DISCOVER.Title_iam'),
-      cssClass: 'SelectControl',
-      subHeader: this.translate.instant('DISCOVER.SubHdIam'),
-      translucent: true
-    };
-    this.customIamLookingOptions = {
-      header: this.translate.instant('DISCOVER.Title_looking'),
-      cssClass: 'SelectControl',
-      subHeader: this.translate.instant('DISCOVER.SubHdIamLooking'),
-      translucent: true
-    };
     this.customExerciseOptions = {
       header: this.translate.instant('DISCOVER.Title_Exercise'),
       cssClass: 'SelectControl',
       subHeader: this.translate.instant('DISCOVER.SubHdExe'),
       translucent: true
     };
-    this.customSingOptions = {
-      header: this.translate.instant('DISCOVER.Title_Sing'),
-      cssClass: 'SelectControl',
-      subHeader: this.translate.instant('DISCOVER.SubHdSing'),
-      translucent: true
-    };
-    this.customEducationOptions = {
-      header: this.translate.instant('DISCOVER.Title_Education'),
-      cssClass: 'SelectControl',
-      subHeader: this.translate.instant('DISCOVER.SubHdEdu'),
-      translucent: true
-    };
-    this.customDrinkOptions = {
-      header: this.translate.instant('DISCOVER.Title_Drink'),
-      cssClass: 'SelectControl',
-      subHeader: this.translate.instant('DISCOVER.SubHdDrnk'),
-      translucent: true
-    };
-    this.customSmokOptions = {
-      header: this.translate.instant('DISCOVER.Title_Smok'),
-      cssClass: 'SelectControl',
-      subHeader: this.translate.instant('DISCOVER.SubHdSmk'),
-      translucent: true
-    };
-    this.customKidOptions = {
-      header: this.translate.instant('DISCOVER.Title_Kid'),
-      cssClass: 'SelectControl',
-      subHeader: this.translate.instant('DISCOVER.SubHdKid'),
-      translucent: true
-    };
-    this.customReligionOptions = {
-      header: this.translate.instant('DISCOVER.Title_Religion'),
-      cssClass: 'SelectControl',
-      subHeader: this.translate.instant('DISCOVER.SubHdRlgn'),
-      translucent: true
-    };
     this.activatedRoute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
+      if (this.router.getCurrentNavigation()?.extras?.state) {
         if (!this.router.getCurrentNavigation().extras.state.mntList || this.router.getCurrentNavigation().extras.state.mntList.length > 0) {
           this.discoverUsrs = this.router.getCurrentNavigation().extras.state.discoverUsrs;
         }
       }
     });
   }
+  // Form getters
   get iam_a() {
     return this.filterForm.get('iam_a');
   }
@@ -292,82 +246,114 @@ let TabDiscoverPage = class TabDiscoverPage {
   ngOnInit() {
     var _this = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      console.log('=== DISCOVER INIT ===');
       _this.iniSizeContenedorCard();
-      // Restore state if available
-      const savedList = _this.discoverState.getCardList();
-      if (savedList && savedList.length > 0) {
-        _this.discoverUsrs = savedList;
-        _this.posCardGlobal = _this.discoverState.getLastCardIndex();
-        _this.isLoading = false;
-      } else {
-        _this.activatedRoute.queryParams.subscribe( /*#__PURE__*/function () {
-          var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (params) {
-            yield _this.reLoadDiscover();
-          });
-          return function (_x) {
-            return _ref.apply(this, arguments);
-          };
-        }());
-      }
+      yield _this.initializeDiscover();
+    })();
+  }
+  ngAfterViewInit() {
+    var _this2 = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      console.log('=== AFTER VIEW INIT ===');
       setTimeout(() => {
-        const cardArray = _this.cards.toArray();
-        _this.useSwipe(cardArray);
-      }, 100);
+        _this2.initializeSwiper();
+        _this2.setupGestures();
+      }, 500);
     })();
   }
   ionViewDidEnter() {
-    var _this2 = this;
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      if (_this2.translate.currentLang == 'es') {
-        _this2.lanCatalogo = src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.languages.es;
-      } else {
-        _this2.lanCatalogo = src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.languages.en;
-      }
-      // const tVal = await this.userService.validaToken();
-      // if( !tVal ) {
-      //   return;
-      // }
-      _this2.matchService.newMatch = false;
-      _this2.matchService.matchPerson = [];
-      _this2.matchService.principal();
-      _this2.iniSizeContenedorCard();
-      _this2.user = yield _this2.userService.getUserBasic('');
-      // this.iams = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.IamA.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-      // this.iamlookings = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.IamLooking.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-      // this.exercises = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Ejercicio.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-      // this.sings = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Sing.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-      // this.educations = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Educacion.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-      // this.drinks =  <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Bebe.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-      // this.smoks =  <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Fuma.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-      // this.kids = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Hijos.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-      // this.religions = <Catalog[]> await this.userService.getCatalogo2(constants.catalogs.Religion.toString(), this.lanCatalogo,this.user.birthDay,this.user.gender,this.user.email);
-    })();
-  }
-  // async ngAfterViewInit() {
-  //   //await this.reLoadDiscover();
-  // }
-  ngAfterViewInit() {
     var _this3 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const swiper = _this3.swiperElRef?.nativeElement;
-      if (swiper && swiper.initialize) {
-        swiper.initialize();
+      console.log('=== ION VIEW DID ENTER ===');
+      if (_this3.translate.currentLang == 'es') {
+        _this3.lanCatalogo = src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.languages.es;
+      } else {
+        _this3.lanCatalogo = src_environments_constants__WEBPACK_IMPORTED_MODULE_3__.constants.languages.en;
       }
+      _this3.matchService.newMatch = false;
+      _this3.matchService.matchPerson = [];
+      _this3.matchService.principal();
+      _this3.iniSizeContenedorCard();
+      _this3.user = yield _this3.userService.getUserBasic('');
     })();
   }
-  openGallery(usr) {
+  initializeDiscover() {
     var _this4 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
-        let currentModal = yield _this4.modalController.getTop();
+        // Restore state if available
+        const savedList = _this4.discoverState.getCardList();
+        const savedIndex = _this4.discoverState.getLastCardIndex();
+        if (savedList && savedList.length > 0) {
+          console.log('Restoring saved state:', savedList.length, 'cards, index:', savedIndex);
+          _this4.discoverUsrs = [...savedList];
+          _this4.currentCardIndex = Math.max(0, Math.min(savedIndex, _this4.discoverUsrs.length - 1));
+          _this4.isLoading = false;
+          _this4.noDiscoverFound = false;
+        } else {
+          console.log('Loading fresh discover data');
+          yield _this4.reLoadDiscover();
+        }
+      } catch (error) {
+        console.error('Error initializing discover:', error);
+        _this4.isLoading = false;
+        _this4.noDiscoverFound = true;
+      }
+    })();
+  }
+  initializeSwiper() {
+    const swiper = this.swiperElRef?.nativeElement;
+    if (swiper) {
+      if (swiper.initialize) {
+        swiper.initialize();
+      }
+      // Set initial slide
+      setTimeout(() => {
+        if (swiper.swiper && this.currentCardIndex >= 0) {
+          swiper.swiper.slideTo(this.currentCardIndex, 0);
+        }
+      }, 100);
+    }
+  }
+  setupGestures() {
+    setTimeout(() => {
+      const cardArray = this.cards.toArray();
+      if (cardArray.length > 0) {
+        this.useSwipe(cardArray);
+        console.log('Gestures setup for', cardArray.length, 'cards');
+      }
+    }, 100);
+  }
+  updateSwiperToCurrentCard() {
+    const swiper = this.swiperElRef?.nativeElement;
+    if (swiper && swiper.swiper && this.discoverUsrs.length > 0) {
+      // Ensure currentCardIndex is within bounds
+      this.currentCardIndex = Math.max(0, Math.min(this.currentCardIndex, this.discoverUsrs.length - 1));
+      setTimeout(() => {
+        swiper.swiper.update();
+        swiper.swiper.slideTo(this.currentCardIndex, 300);
+        console.log('Updated swiper to slide:', this.currentCardIndex);
+      }, 50);
+    }
+  }
+  saveCurrentState() {
+    this.discoverState.setCardList(this.discoverUsrs);
+    this.discoverState.setLastCardIndex(this.currentCardIndex);
+    console.log('State saved - Cards:', this.discoverUsrs.length, 'Index:', this.currentCardIndex);
+  }
+  openGallery(usr) {
+    var _this5 = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      try {
+        let currentModal = yield _this5.modalController.getTop();
         if (currentModal) {
           yield currentModal.dismiss();
         }
-        const resImg = yield _this4.matchService.getIMGSOfPerson(usr.personId.toString());
+        const resImg = yield _this5.matchService.getIMGSOfPerson(usr.personId.toString());
         const safeImgList = Array.isArray(resImg) ? resImg : [];
         const images = safeImgList.map(img => img.multimediaUrl || '');
-        const modal = yield _this4.modalController.create({
-          component: _gallery_gallery_page__WEBPACK_IMPORTED_MODULE_8__.GalleryPage,
+        const modal = yield _this5.modalController.create({
+          component: _gallery_gallery_page__WEBPACK_IMPORTED_MODULE_7__.GalleryPage,
           componentProps: {
             images,
             startIndex: 0
@@ -384,40 +370,31 @@ let TabDiscoverPage = class TabDiscoverPage {
     let imgSizeWidth = this.plt.width() * .9;
     let imgSizeHeight = this.plt.height() * .58;
     if (this.plt.platforms().indexOf('android') > -1) imgSizeHeight = this.plt.height() * .65;
-    let heightImg_tmp = imgSizeWidth * 531 / 354 + 35;
-    //this.heightImg = heightImg_tmp + 'px';
     this.heightImg = imgSizeHeight + 'px';
     this.cdRef.detectChanges();
   }
   iniFilter() {
-    var _this5 = this;
+    var _this6 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this5.user = yield _this5.userService.getUser('');
-      _this5.filter = {
-        selfRole: _this5.user.iam_a,
-        targetRole: _this5.user.iam_looking,
+      _this6.user = yield _this6.userService.getUser('');
+      _this6.filter = {
+        selfRole: _this6.user.iam_a,
+        targetRole: _this6.user.iam_looking,
         ageIni: 18,
         ageEnd: 100,
         distance: null,
         minHeight: 1,
         maxHeight: 100,
-        exercise: Number(_this5.user.exercise),
-        zodiacSign: Number(_this5.user.sings),
-        education: Number(_this5.user.education),
-        drinking: Number(_this5.user.drinking),
-        smoking: Number(_this5.user.smoking),
-        kids: Number(_this5.user.kids),
-        religion: Number(_this5.user.religion),
-        /* location: {
-          country: null,
-          state: null,
-          address: null,
-          latitud: this.latitud_gps,
-          longitud: this.longitud_gps
-        } */
+        exercise: Number(_this6.user.exercise),
+        zodiacSign: Number(_this6.user.sings),
+        education: Number(_this6.user.education),
+        drinking: Number(_this6.user.drinking),
+        smoking: Number(_this6.user.smoking),
+        kids: Number(_this6.user.kids),
+        religion: Number(_this6.user.religion),
         location: null
       };
-      _this5.setFilterForm();
+      _this6.setFilterForm();
     })();
   }
   setFilterForm() {
@@ -431,41 +408,15 @@ let TabDiscoverPage = class TabDiscoverPage {
     this.kid.setValue(this.user.kids);
     this.religion.setValue(this.user.religion);
   }
-  useSuperLike(cardArray) {
-    for (let i = 0; i < cardArray.length; i++) {
-      const card = cardArray[i];
-      const gesture = this.gestureCtrl.create({
-        el: card.nativeElement,
-        gestureName: 'long-press',
-        onStart: ev => {
-          this.longPressActive = true;
-          this.superLike(i);
-        },
-        onEnd: ev => {
-          this.longPressActive = false;
-        }
-      });
-      gesture.enable(true);
-    }
-  }
-  superLike(i) {
-    console.log('SUPER LIKE: ', i);
-    setTimeout(() => {
-      if (this.longPressActive) {
-        this.zone.run(() => {
-          console.log('SUPER LIKE A: ', this.discoverUsrs[i].firstName);
-          this.superLike(i);
-        });
-      }
-    }, 200);
-  }
   useSwipe(cardArray) {
     for (let i = 0; i < cardArray.length; i++) {
       const card = cardArray[i];
       const gesture = this.gestureCtrl.create({
         el: card.nativeElement,
         gestureName: 'swipe',
-        onStart: ev => {},
+        onStart: ev => {
+          // Gesture start
+        },
         onMove: ev => {
           card.nativeElement.style.transform = `translateX(${ev.deltaX}px) rotate(${ev.deltaX / 10}deg)`;
           this.setIconPeople(ev.deltaX, i);
@@ -474,14 +425,16 @@ let TabDiscoverPage = class TabDiscoverPage {
           card.nativeElement.style.transition = '.5s ease-out';
           if (ev.deltaX > 150) {
             card.nativeElement.style.transform = `translateX(${+this.plt.width() * 2}px) rotate(${ev.deltaX / 2}deg)`;
-            this.setStatusDiscover(this.discoverUsrs[i].personId, this.statusUsrDicover.like);
+            this.handleSwipeAction('like');
           } else if (ev.deltaX < -150) {
             card.nativeElement.style.transform = `translateX(-${+this.plt.width() * 2}px) rotate(${ev.deltaX / 2}deg)`;
-            this.setStatusDiscover(this.discoverUsrs[i].personId, this.statusUsrDicover.dislike);
+            this.handleSwipeAction('dislike');
           } else {
             card.nativeElement.style.transform = '';
-            this.discoverUsrs[i].status = this.statusUsrDicover.none;
-            this.cdRef.detectChanges();
+            if (this.discoverUsrs[i]) {
+              this.discoverUsrs[i].status = this.statusUsrDicover.none;
+              this.cdRef.detectChanges();
+            }
           }
         }
       });
@@ -489,6 +442,7 @@ let TabDiscoverPage = class TabDiscoverPage {
     }
   }
   setIconPeople(x, numCard) {
+    if (!this.discoverUsrs[numCard]) return;
     if (x < -25) {
       if (this.discoverUsrs[numCard].status != this.statusUsrDicover.dislike) {
         this.discoverUsrs[numCard].status = this.statusUsrDicover.dislike;
@@ -504,295 +458,268 @@ let TabDiscoverPage = class TabDiscoverPage {
       this.cdRef.detectChanges();
     }
   }
-  createTempArray(number) {
-    var arr = [];
-    for (let i = 0; i < number; i++) {
-      arr[i] = "";
-    }
-    return arr;
-  }
-  setPositionStart(pos) {
-    let posF = 0;
-    if (this.translate.currentLang == 'es') {
-      posF = 115 + 15 * pos;
-    } else {
-      posF = 80 + 15 * pos;
-    }
-    return posF + 'px';
-  }
-  openMenuPopover(ev) {
+  handleSwipeAction(action) {
+    var _this7 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      console.log('POPOVER');
-      /* const popover = await this.popoverCtrl.create({
-        component: ExperienceMenuPopoverPage,
-        event: ev,
-        componentProps: { isMyExp: this.isMyExp }
-      });
-           await popover.present(); */
+      if (action === 'like') {
+        yield _this7.doLike();
+      } else {
+        yield _this7.doDislike();
+      }
     })();
   }
   loadDiscover() {
-    var _this6 = this;
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      // await this.uiService.showLoader();
-      try {
-        _this6.isLoading = true;
-        const discoverUsr_res = yield _this6.matchService.getDiscoverProfiles(_this6.iniDiscover.toString(), _this6.deltaDiscover.toString(), _this6.filter);
-        //this.iniDiscover += this.deltaDiscover;
-        _this6.cdRef.detectChanges();
-        if (discoverUsr_res === null) {
-          _this6.discoverUsrs = null;
-          yield _this6.uiService.hideLoader();
-          _this6.noDiscoverFound = true;
-          return;
-        }
-        // this.setAvatarImg(discoverUsr_res);
-        console.log('LOAD DISCOVER_USR: ', discoverUsr_res);
-        //this.discoverUsrs.push(...discoverUsr_res);
-        _this6.discoverUsrs = [...discoverUsr_res, ..._this6.discoverUsrs];
-        _this6.cdRef.detectChanges();
-        // Espera a que las tarjetas se rendericen y actualiza los gestos
-        setTimeout(() => {
-          const cardArray = _this6.cards.toArray();
-          _this6.useSwipe(cardArray);
-        }, 100);
-        _this6.posCardGlobal = _this6.discoverUsrs.length - 1;
-        if (_this6.discoverUsrs.length <= 0) {
-          _this6.noDiscoverFound = true;
-        } else {
-          _this6.noDiscoverFound = false;
-        }
-      } catch (error) {
-        console.log('ERROR AL OBTENER PROFILE');
-      } finally {
-        _this6.isLoading = false;
-      }
-      // await this.uiService.hideLoader();
-    })();
-  }
-  setAvatarImg(usrDicover) {
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {})();
-  } // for (const usr of usrDicover) {
-  //   usr.image = '../../../assets/icon/30-Default_no-image.jpeg';
-  //   const res_imgs =  <ImagesUser[]> await this.matchService.getIMGS(usr.personId.toString());
-  //   for (const img of res_imgs) {
-  //     if(img.avatar) {
-  //       usr.image = img.multimediaUrl;
-  //     }
-  //   }
-  // }
-  getNameFull(user) {
-    return user.firstName + (user.lastName && user.lastName !== '' ? ' ' + user.lastName : '');
-  }
-  setStatusDiscover(idDiscover, accionId) {
-    var _this7 = this;
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      let resLike = 'false';
-      let resSuperLike = 'false';
-      if (accionId == 3) {
-        //Like
-        resLike = 'true';
-        resSuperLike = 'false';
-      } else if (accionId == 6) {
-        //Dislike
-        resLike = 'false';
-        resSuperLike = 'false';
-      }
-      let matchId = yield _this7.matchService.doMatchProfiles(idDiscover.toString(), accionId.toString(), resLike, resSuperLike, null);
-      if (matchId != null) {
-        const modal = yield _this7.modalController.create({
-          component: src_app_match_modal_match_modal_page__WEBPACK_IMPORTED_MODULE_10__.MatchModalPage,
-          componentProps: {
-            matchedUserName: _this7.discoverUsrs[_this7.posCardGlobal].firstName.concat(" " + _this7.discoverUsrs[_this7.posCardGlobal].lastName),
-            matchedUserImage: 'assets/img/allison.jpg',
-            currentUserImage: 'assets/img/you.jpg'
-          },
-          cssClass: 'match-modal'
-        });
-        yield modal.present();
-        const {
-          data
-        } = yield modal.onDidDismiss();
-        if (data?.action === 'message') {
-          // Navigate to messages tab
-          _this7.uiService.showLoader();
-          const resp = yield _this7.talkService.updateConversation(matchId.toString());
-          _this7.uiService.hideLoader();
-          if (Object.keys(resp).length === 0) {
-            console.log("Chat registration issue");
-            return;
-          }
-          const navExtras = {
-            state: {
-              idConversation: resp["idConversation"]
-            }
-          };
-          // Navigate to message tab and trigger the tab change
-          _this7.router.navigate(['main/tabs/message'], navExtras).then(() => {
-            // Update tab state using the tab service
-            _this7.tabService.setActiveTab('message');
-          });
-        } else if (data?.action === 'swipe') {
-          // Navigate to discover tab
-          _this7.router.navigateByUrl('/main/tabs/discover');
-        } else if (data?.action === 'share') {
-          // Open native share dialog
-          try {
-            const url = _capacitor_core__WEBPACK_IMPORTED_MODULE_11__.Capacitor.getPlatform() === 'ios' ? 'https://apps.apple.com/app/id123456789' // iOS App Store URL
-            : 'https://play.google.com/store/apps/details?id=com.ifmly.package'; // Android
-            yield _capacitor_share__WEBPACK_IMPORTED_MODULE_9__.Share.share({
-              title: 'Check out this match!',
-              text: 'I just got a new match on the app! 🎉',
-              url: url,
-              dialogTitle: 'Share with your friends'
-            });
-          } catch (err) {
-            console.error('Error sharing:', err);
-          }
-        }
-      }
-      //let res = await this.matchService.doMatchProfiles(this.idAntDiscover.toString(), accionId.toString(), resLike, resSuperLike);
-      console.log('APLICAR MATCH: ', idDiscover.toString());
-      /* if(!res) {
-        return;
-      } */
-      // Store the current user before removing it for potential rollback
-      if (_this7.discoverUsrs.length > 0) {
-        _this7.antDiscoverUsrs = {
-          ..._this7.discoverUsrs[_this7.posCardGlobal]
-        };
-      }
-      _this7.discoverUsrs.pop();
-      _this7.posCardGlobal--;
-      // Save state after change
-      _this7.discoverState.setCardList(_this7.discoverUsrs);
-      _this7.discoverState.setLastCardIndex(_this7.posCardGlobal);
-      if (_this7.discoverUsrs.length <= 1) {
-        yield _this7.loadDiscover();
-      }
-      _this7.idAntDiscover = idDiscover;
-    })();
-  }
-  reLoadDiscover() {
     var _this8 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this8.uiService.showLoader();
-      _this8.iniDiscover = 0;
-      _this8.discoverUsrs = [];
-      _this8.noDiscoverFound = true;
-      _this8.cdRef.detectChanges();
       try {
+        console.log('Loading more discover profiles...');
         _this8.isLoading = true;
-        _this8.discoverUsrs = yield _this8.matchService.getDiscoverProfiles(_this8.iniDiscover.toString(), _this8.deltaDiscover.toString(), _this8.filter);
-        _this8.cdRef.detectChanges();
-        yield _this8.setAvatarImg(_this8.discoverUsrs);
-        if (_this8.discoverUsrs === null) {
-          yield _this8.uiService.hideLoader();
+        const discoverUsr_res = yield _this8.matchService.getDiscoverProfiles(_this8.iniDiscover.toString(), _this8.deltaDiscover.toString(), _this8.filter);
+        if (discoverUsr_res === null) {
+          _this8.discoverUsrs = null;
           _this8.noDiscoverFound = true;
+          console.log('No more profiles available');
           return;
         }
-        console.log('RE-LOAD DISCOVER_USR: ', _this8.discoverUsrs);
-        _this8.iniDiscover = _this8.discoverUsrs.length;
-        _this8.posCardGlobal = _this8.discoverUsrs.length - 1;
-        if (_this8.discoverUsrs.length <= 0) {
-          _this8.noDiscoverFound = true;
-        } else {
-          _this8.noDiscoverFound = false;
-        }
-        // Espera a que las tarjetas se rendericen y actualiza los gestos
+        console.log('Loaded profiles:', discoverUsr_res.length);
+        // Add new profiles to the beginning of the array
+        _this8.discoverUsrs = [...discoverUsr_res, ..._this8.discoverUsrs];
+        _this8.currentCardIndex = discoverUsr_res.length - 1;
+        _this8.cdRef.detectChanges();
+        // Update swiper and gestures
         setTimeout(() => {
-          const cardArray = _this8.cards.toArray();
-          _this8.useSwipe(cardArray);
+          _this8.updateSwiperToCurrentCard();
+          _this8.setupGestures();
         }, 100);
+        _this8.noDiscoverFound = _this8.discoverUsrs.length <= 0;
+        _this8.saveCurrentState();
       } catch (error) {
-        console.log('ERROR AL RECARGAR PROFILES');
+        console.error('Error loading discover profiles:', error);
       } finally {
         _this8.isLoading = false;
       }
-      yield _this8.uiService.hideLoader();
+    })();
+  }
+  reLoadDiscover() {
+    var _this9 = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      console.log('Reloading discover profiles...');
+      _this9.uiService.showLoader();
+      try {
+        _this9.iniDiscover = 0;
+        _this9.discoverUsrs = [];
+        _this9.currentCardIndex = 0;
+        _this9.noDiscoverFound = true;
+        _this9.isLoading = true;
+        _this9.cdRef.detectChanges();
+        const discoverUsr_res = yield _this9.matchService.getDiscoverProfiles(_this9.iniDiscover.toString(), _this9.deltaDiscover.toString(), _this9.filter);
+        if (discoverUsr_res === null) {
+          _this9.noDiscoverFound = true;
+          console.log('No profiles found');
+          return;
+        }
+        console.log('Reloaded profiles:', discoverUsr_res.length);
+        _this9.discoverUsrs = [...discoverUsr_res];
+        _this9.iniDiscover = _this9.discoverUsrs.length;
+        _this9.currentCardIndex = _this9.discoverUsrs.length - 1;
+        _this9.noDiscoverFound = _this9.discoverUsrs.length <= 0;
+        _this9.cdRef.detectChanges();
+        // Update swiper and gestures
+        setTimeout(() => {
+          _this9.updateSwiperToCurrentCard();
+          _this9.setupGestures();
+        }, 200);
+        _this9.saveCurrentState();
+      } catch (error) {
+        console.error('Error reloading discover profiles:', error);
+        _this9.noDiscoverFound = true;
+      } finally {
+        _this9.isLoading = false;
+        _this9.uiService.hideLoader();
+      }
+    })();
+  }
+  setStatusDiscover(idDiscover, accionId, actionType) {
+    var _this10 = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      console.log('=== SET STATUS DISCOVER ===');
+      console.log('User ID:', idDiscover, 'Action:', accionId, 'Type:', actionType);
+      console.log('Current Index:', _this10.currentCardIndex, 'Total Cards:', _this10.discoverUsrs.length);
+      if (!_this10.discoverUsrs || _this10.discoverUsrs.length === 0 || _this10.currentCardIndex < 0) {
+        console.log('No cards available or invalid index');
+        return;
+      }
+      // Ensure we're working with the correct card
+      const currentUser = _this10.discoverUsrs[_this10.currentCardIndex];
+      if (!currentUser || currentUser.personId !== idDiscover) {
+        console.log('Card mismatch - finding correct card');
+        const correctIndex = _this10.discoverUsrs.findIndex(user => user.personId === idDiscover);
+        if (correctIndex !== -1) {
+          _this10.currentCardIndex = correctIndex;
+        } else {
+          console.error('Could not find user with ID:', idDiscover);
+          return;
+        }
+      }
+      try {
+        // Store for potential rollback
+        _this10.lastActionUser = {
+          ..._this10.discoverUsrs[_this10.currentCardIndex]
+        };
+        _this10.lastActionUserId = idDiscover;
+        _this10.lastActionType = actionType;
+        _this10.canReset = true;
+        // API call
+        let resLike = actionType === 'like' ? 'true' : 'false';
+        let resSuperLike = 'false';
+        console.log('Making API call...');
+        let matchId = yield _this10.matchService.doMatchProfiles(idDiscover.toString(), accionId.toString(), resLike, resSuperLike, null);
+        // Handle match result
+        if (matchId != null) {
+          console.log('Match found!', matchId);
+          yield _this10.showMatchModal(matchId);
+        }
+        // Remove current card
+        console.log('Removing card at index:', _this10.currentCardIndex);
+        _this10.discoverUsrs.splice(_this10.currentCardIndex, 1);
+        // Adjust current index
+        if (_this10.currentCardIndex >= _this10.discoverUsrs.length) {
+          _this10.currentCardIndex = _this10.discoverUsrs.length - 1;
+        }
+        console.log('After removal - Index:', _this10.currentCardIndex, 'Total:', _this10.discoverUsrs.length);
+        // Force UI update
+        _this10.cdRef.detectChanges();
+        // Update swiper
+        setTimeout(() => {
+          _this10.updateSwiperToCurrentCard();
+        }, 50);
+        // Load more if needed
+        if (_this10.discoverUsrs.length <= 2) {
+          console.log('Loading more cards...');
+          yield _this10.loadDiscover();
+        }
+        // Save state
+        _this10.saveCurrentState();
+      } catch (error) {
+        console.error('Error in setStatusDiscover:', error);
+        _this10.canReset = false;
+      }
+    })();
+  }
+  showMatchModal(matchId) {
+    var _this11 = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const currentUser = _this11.discoverUsrs[_this11.currentCardIndex];
+      const modal = yield _this11.modalController.create({
+        component: src_app_match_modal_match_modal_page__WEBPACK_IMPORTED_MODULE_9__.MatchModalPage,
+        componentProps: {
+          matchedUserName: `${currentUser.firstName} ${currentUser.lastName}`,
+          matchedUserImage: getImageUrl(currentUser.image, 'assets/icon/30-Default_no-image.jpeg'),
+          currentUserImage: getImageUrl(_this11.user.image, 'assets/img/you.jpg')
+        },
+        cssClass: 'match-modal'
+      });
+      yield modal.present();
+      const {
+        data
+      } = yield modal.onDidDismiss();
+      if (data?.action === 'message') {
+        _this11.uiService.showLoader();
+        const resp = yield _this11.talkService.updateConversation(matchId.toString());
+        _this11.uiService.hideLoader();
+        if (Object.keys(resp).length === 0) {
+          console.log("Chat registration issue");
+          return;
+        }
+        const navExtras = {
+          state: {
+            idConversation: resp["idConversation"]
+          }
+        };
+        _this11.router.navigate(['main/tabs/message'], navExtras).then(() => {
+          _this11.tabService.setActiveTab('message');
+        });
+      } else if (data?.action === 'share') {
+        try {
+          const url = _capacitor_core__WEBPACK_IMPORTED_MODULE_10__.Capacitor.getPlatform() === 'ios' ? 'https://apps.apple.com/app/id123456789' : 'https://play.google.com/store/apps/details?id=com.ifmly.package';
+          yield _capacitor_share__WEBPACK_IMPORTED_MODULE_8__.Share.share({
+            title: 'Check out this match!',
+            text: 'I just got a new match on the app! 🎉',
+            url: url,
+            dialogTitle: 'Share with your friends'
+          });
+        } catch (err) {
+          console.error('Error sharing:', err);
+        }
+      }
     })();
   }
   returnDicover() {
-    var _this9 = this;
+    var _this12 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      if (_this9.idAntDiscover === 0) {
-        _this9.uiService.alertOK(_this9.translate.instant('DISCOVER.notRollback'));
+      console.log('=== RETURN DISCOVER ===');
+      if (!_this12.canReset || _this12.lastActionUserId === 0 || !_this12.lastActionUser) {
+        _this12.uiService.alertOK(_this12.translate.instant('DISCOVER.notRollback'));
         return;
       }
-      _this9.uiService.showLoader();
-      if (yield _this9.matchService.rollbackLike(_this9.idAntDiscover.toString())) {
-        _this9.uiService.hideLoader();
-        _this9.idAntDiscover = 0;
-        if (_this9.antDiscoverUsrs) {
-          _this9.discoverUsrs.push(_this9.antDiscoverUsrs);
-          _this9.posCardGlobal++;
+      try {
+        console.log('Attempting rollback for user:', _this12.lastActionUserId);
+        const rollbackSuccess = yield _this12.matchService.rollbackLike(_this12.lastActionUserId.toString());
+        if (rollbackSuccess) {
+          console.log('Rollback successful, restoring card');
+          // Insert the card back at the current position
+          _this12.discoverUsrs.splice(_this12.currentCardIndex, 0, _this12.lastActionUser);
+          console.log('Card restored at index:', _this12.currentCardIndex);
+          // Reset rollback data
+          _this12.lastActionUserId = 0;
+          _this12.lastActionUser = null;
+          _this12.lastActionType = null;
+          _this12.canReset = false;
+          // Force UI update
+          _this12.cdRef.detectChanges();
+          // Update swiper
           setTimeout(() => {
-            const cardArray = _this9.cards.toArray();
-            _this9.useSwipe(cardArray);
+            _this12.updateSwiperToCurrentCard();
+            _this12.setupGestures();
           }, 100);
-          _this9.antDiscoverUsrs = null;
-          // Save state after rollback
-          _this9.discoverState.setCardList(_this9.discoverUsrs);
-          _this9.discoverState.setLastCardIndex(_this9.posCardGlobal);
+          // Save state
+          _this12.saveCurrentState();
+          console.log('Rollback completed successfully');
+        } else {
+          console.log('Rollback failed');
+          _this12.uiService.alertOK(_this12.translate.instant('DISCOVER.rollbackFalse'));
         }
-      } else {
-        _this9.uiService.hideLoader();
-        _this9.uiService.alertOK(_this9.translate.instant('DISCOVER.rollbackFalse'));
+      } catch (error) {
+        console.error('Error during rollback:', error);
+        _this12.uiService.alertOK(_this12.translate.instant('DISCOVER.rollbackFalse'));
       }
     })();
   }
   doDislike() {
-    var _this10 = this;
+    var _this13 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      console.log('DIS-LIKE', _this10.posCardGlobal);
-      _this10.disLikeBtn = true;
-      _this10.uiService.showLoader();
-      yield _this10.setStatusDiscover(_this10.discoverUsrs[_this10.posCardGlobal].personId, _this10.statusUsrDicover.dislike);
-      _this10.disLikeBtn = false;
-      _this10.uiService.hideLoader();
+      console.log('=== DO DISLIKE ===');
+      if (_this13.currentCardIndex < 0 || !_this13.discoverUsrs[_this13.currentCardIndex]) {
+        console.log('Cannot dislike - no card available');
+        return;
+      }
+      yield _this13.setStatusDiscover(_this13.discoverUsrs[_this13.currentCardIndex].personId, _this13.statusUsrDicover.dislike, 'dislike');
     })();
   }
   doLike() {
-    var _this11 = this;
+    var _this14 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this11.uiService.showLoader();
-      console.log('LIKE', _this11.posCardGlobal);
-      _this11.likeBtn = true;
-      yield _this11.setStatusDiscover(_this11.discoverUsrs[_this11.posCardGlobal].personId, _this11.statusUsrDicover.like);
-      _this11.likeBtn = false;
-      _this11.uiService.hideLoader();
+      console.log('=== DO LIKE ===');
+      if (_this14.currentCardIndex < 0 || !_this14.discoverUsrs[_this14.currentCardIndex]) {
+        console.log('Cannot like - no card available');
+        return;
+      }
+      yield _this14.setStatusDiscover(_this14.discoverUsrs[_this14.currentCardIndex].personId, _this14.statusUsrDicover.like, 'like');
     })();
   }
   getNames(items) {
     if (!items || items.length === 0) return '';
     return items.slice(0, 3).map(i => i.name).join(', ');
-  }
-  doSuperLike() {
-    var _this12 = this;
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const alert = yield _this12.alertController.create({
-        cssClass: 'alert-superlike-class',
-        header: '*',
-        subHeader: _this12.translate.instant('DISCOVER.superLikeTitle'),
-        message: _this12.translate.instant('DISCOVER.superLikeMsg'),
-        //mode: 'md',
-        //buttons: [this.translate.instant('ALERT.btnMsg')]
-        buttons: [{
-          text: _this12.translate.instant('DISCOVER.superLikeBtnOK'),
-          role: 'OK',
-          cssClass: 'alert-button-confirm'
-        }, {
-          text: _this12.translate.instant('DISCOVER.superLikeBtnCancel'),
-          role: 'CANCEL',
-          cssClass: 'alert-button-cancel'
-        }]
-      });
-      yield alert.present();
-      const {
-        role
-      } = yield alert.onDidDismiss();
-      console.log('RESP ALERT: ', role);
-    })();
   }
   clearFilter() {
     this.iam_a.setValue('');
@@ -815,35 +742,28 @@ let TabDiscoverPage = class TabDiscoverPage {
     this.religion.setValue('');
   }
   applyFilter() {
-    var _this13 = this;
+    var _this15 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this13.filter = {
-        selfRole: _this13.iam_a.value == '' ? null : _this13.iam_a.value,
-        targetRole: _this13.iam_looking.value == '' ? null : _this13.iam_looking.value,
-        ageIni: _this13.age_between.value.lower,
-        ageEnd: _this13.age_between.value.upper,
-        distance: _this13.distance.value == '' ? null : Number(_this13.distance.value),
-        minHeight: _this13.height.value.lower,
-        maxHeight: _this13.height.value.upper,
-        exercise: _this13.exercise.value == '' ? null : Number(_this13.exercise.value),
-        zodiacSign: _this13.sing.value == '' ? null : Number(_this13.sing.value),
-        education: _this13.education.value == '' ? null : Number(_this13.education.value),
-        drinking: _this13.drink.value == '' ? null : Number(_this13.drink.value),
-        smoking: _this13.smok.value == '' ? null : Number(_this13.smok.value),
-        kids: _this13.kid.value == '' ? null : Number(_this13.kid.value),
-        religion: _this13.religion.value == '' ? null : Number(_this13.religion.value),
-        /* location: {
-          country: null,
-          state: null,
-          address: null,
-          latitud: this.latitud_gps,
-          longitud: this.longitud_gps
-        } */
+      _this15.filter = {
+        selfRole: _this15.iam_a.value == '' ? null : _this15.iam_a.value,
+        targetRole: _this15.iam_looking.value == '' ? null : _this15.iam_looking.value,
+        ageIni: _this15.age_between.value.lower,
+        ageEnd: _this15.age_between.value.upper,
+        distance: _this15.distance.value == '' ? null : Number(_this15.distance.value),
+        minHeight: _this15.height.value.lower,
+        maxHeight: _this15.height.value.upper,
+        exercise: _this15.exercise.value == '' ? null : Number(_this15.exercise.value),
+        zodiacSign: _this15.sing.value == '' ? null : Number(_this15.sing.value),
+        education: _this15.education.value == '' ? null : Number(_this15.education.value),
+        drinking: _this15.drink.value == '' ? null : Number(_this15.drink.value),
+        smoking: _this15.smok.value == '' ? null : Number(_this15.smok.value),
+        kids: _this15.kid.value == '' ? null : Number(_this15.kid.value),
+        religion: _this15.religion.value == '' ? null : Number(_this15.religion.value),
         location: null
       };
-      console.log('FILTER: ', _this13.filter);
-      yield _this13.modal.dismiss();
-      yield _this13.reLoadDiscover();
+      console.log('Applying filter:', _this15.filter);
+      yield _this15.modal.dismiss();
+      yield _this15.reLoadDiscover();
     })();
   }
   onWillPresent() {
@@ -860,71 +780,27 @@ let TabDiscoverPage = class TabDiscoverPage {
       }
     }
   }
-  onClickAgeToggle() {
-    if (!this.ageToggle.value) {
-      this.age_between.enable();
-      this.age_between.setValue({
-        lower: 18,
-        upper: 100
-      });
-    } else {
-      this.age_between.disable();
-      this.age_between.setValue({
-        lower: 0,
-        upper: 0
-      });
-    }
-  }
-  onClickDisToggle() {
-    if (!this.distanceToggle.value) {
-      this.distance.enable();
-      this.distance.setValue('1');
-    } else {
-      this.distance.disable();
-      this.distance.setValue('0');
-    }
-  }
-  openMenuPopoverBlock(ev, personId) {
-    var _this14 = this;
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      ev.stopPropagation();
-      const popover = yield _this14.popoverCtrl.create({
-        component: _match_detail_match_menu_popover_detail_match_menu_popover_page__WEBPACK_IMPORTED_MODULE_7__.DetailMatchMenuPopoverPage,
-        event: ev,
-        componentProps: {
-          typeBlock: 2,
-          matchId: null,
-          personId
-        }
-      });
-      yield popover.present();
-    })();
-  }
   viewProfile(user) {
-    console.log('SELECTED VIEW PROFILE: ', user);
-    //Validacion para sacar al otro usuario del match (matchId esta mal estructurado es personId)
+    console.log('Viewing profile for user:', user);
     let navegationExtras = {
       state: {
         typePerson: 1,
         otherPerson: user.personId,
-        //(match.personLiked.toString() == this.user.personId ? match.personLikes : match.personLiked),
-        //matchId: ustInt.personId, 
         image: JSON.stringify(user.image)
       }
     };
     this.router.navigate(['detail-match'], navegationExtras);
-    this.discoverState.setCardList(this.discoverUsrs);
-    this.discoverState.setLastCardIndex(this.posCardGlobal);
+    this.saveCurrentState();
   }
   static {
     this.ctorParameters = () => [{
-      type: _angular_forms__WEBPACK_IMPORTED_MODULE_15__.FormBuilder
+      type: _angular_forms__WEBPACK_IMPORTED_MODULE_14__.FormBuilder
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_16__.AlertController
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_15__.AlertController
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_16__.PopoverController
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_15__.PopoverController
     }, {
-      type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_17__.TranslateService
+      type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_16__.TranslateService
     }, {
       type: _services_user_service__WEBPACK_IMPORTED_MODULE_4__.UserService
     }, {
@@ -932,45 +808,45 @@ let TabDiscoverPage = class TabDiscoverPage {
     }, {
       type: _services_match_service__WEBPACK_IMPORTED_MODULE_5__.MatchService
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_16__.GestureController
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_15__.GestureController
     }, {
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_18__.NgZone
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_17__.NgZone
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_19__.Platform
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_18__.Platform
     }, {
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_18__.ChangeDetectorRef
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_17__.ChangeDetectorRef
     }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_20__.ActivatedRoute
+      type: _angular_router__WEBPACK_IMPORTED_MODULE_19__.ActivatedRoute
     }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_20__.Router
+      type: _angular_router__WEBPACK_IMPORTED_MODULE_19__.Router
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_16__.ModalController
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_15__.ModalController
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_19__.NavController
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_18__.NavController
     }, {
-      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_19__.Platform
+      type: _ionic_angular__WEBPACK_IMPORTED_MODULE_18__.Platform
     }, {
-      type: src_app_services_talk_service__WEBPACK_IMPORTED_MODULE_12__.TalkService
+      type: src_app_services_talk_service__WEBPACK_IMPORTED_MODULE_11__.TalkService
     }, {
-      type: src_app_services_tab_service__WEBPACK_IMPORTED_MODULE_13__.TabService
+      type: src_app_services_tab_service__WEBPACK_IMPORTED_MODULE_12__.TabService
     }, {
-      type: _services_discover_state_service__WEBPACK_IMPORTED_MODULE_14__.DiscoverStateService
+      type: _services_discover_state_service__WEBPACK_IMPORTED_MODULE_13__.DiscoverStateService
     }];
   }
   static {
     this.propDecorators = {
       cards: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_18__.ViewChildren,
-        args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_16__.IonCard, {
-          read: _angular_core__WEBPACK_IMPORTED_MODULE_18__.ElementRef
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_17__.ViewChildren,
+        args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_15__.IonCard, {
+          read: _angular_core__WEBPACK_IMPORTED_MODULE_17__.ElementRef
         }]
       }],
       modal: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_18__.ViewChild,
-        args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_16__.IonModal]
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_17__.ViewChild,
+        args: [_ionic_angular__WEBPACK_IMPORTED_MODULE_15__.IonModal]
       }],
       swiperElRef: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_18__.ViewChild,
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_17__.ViewChild,
         args: ['swiperEl', {
           static: false
         }]
@@ -978,12 +854,22 @@ let TabDiscoverPage = class TabDiscoverPage {
     };
   }
 };
-TabDiscoverPage = (0,tslib__WEBPACK_IMPORTED_MODULE_21__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_18__.Component)({
+TabDiscoverPage = (0,tslib__WEBPACK_IMPORTED_MODULE_20__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_17__.Component)({
   selector: 'app-tabDiscover',
   template: _tabDiscover_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   styles: [(_tabDiscover_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]
 })], TabDiscoverPage);
 
+function getImageUrl(image, fallback) {
+  if (!image) return fallback;
+  if (typeof image === 'object' && 'multimediaUrl' in image && image.multimediaUrl) {
+    return image.multimediaUrl;
+  }
+  if (typeof image === 'string') {
+    return image;
+  }
+  return fallback;
+}
 
 /***/ }),
 
@@ -2268,7 +2154,7 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-header class=\"hdPage ion-no-border ion-padding\">\n  <ion-toolbar color=\"blanco\">\n    <ion-title class=\"titlePage\" mode=\"ios\">{{ 'DISCOVER.Title' | translate }}</ion-title>\n    <ion-title class=\"titleLoc\" mode=\"ios\">{{user?.location?.city}}, {{user?.location?.state}}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen color=\"blanco\" *ngIf=\"!isLoading\">\n  <div class=\"divNoFound\" *ngIf=\"noDiscoverFound\">\n    <img class=\"imgNoFound\" src=\"../../../assets/icon/31-NoFoundCards.png\">\n    <p class=\"pNoFound\" *ngIf=\"discoverUsrs !== null\">{{ 'DISCOVER.txtNoFound' | translate }}</p>\n    <p class=\"pNoFound\" *ngIf=\"discoverUsrs === null\">{{ 'DISCOVER.txtToLimit' | translate }}</p>\n    <p class=\"pNoFoundRegular\" *ngIf=\"discoverUsrs === null\">{{ 'DISCOVER.txtToLimit2' | translate }}</p>\n  </div>\n\n  <swiper-container\n  #swiperEl\n  slides-per-view=\"1\"\n  pagination=\"false\"\n  style=\"height: 68vh;\"\n  *ngIf=\"!noDiscoverFound\"\n>\n  <swiper-slide *ngFor=\"let usr of discoverUsrs\">\n      <ion-card class=\"profile-card\">\n        <div (click)=\"openGallery(usr)\">\n          <img class=\"profile-avatar\" [src]=\"usr.image?.multimediaUrl || 'assets/icon/30-Default_no-image.jpeg'\"/>\n        </div>\n        <ion-card-content>\n        <h2 class=\"profile-name\">{{ usr.firstName }} {{ usr.lastName }}, {{ usr.age }}</h2>\n        <p class=\"profile-description\">  {{ usr.aboutMe }} </p>\n\n          <div class=\"profile-info-block\" *ngIf=\"usr.hobbies?.length\">\n            <div class=\"info-label\">Hobbies:</div>\n            <div class=\"info-value\">{{ getNames(usr.hobbies) }}</div>\n          </div>\n\n          <div class=\"profile-info-block\" *ngIf=\"usr.sports?.length\">\n            <div class=\"info-label\">Sports:</div>\n            <div class=\"info-value\">{{ getNames(usr.sports) }}</div>\n          </div>\n\n          <div class=\"profile-info-block\" *ngIf=\"usr.languajes?.length\">\n            <div class=\"info-label\">Languages:</div>\n            <div class=\"info-value\">{{ getNames(usr.languajes) }}</div>\n          </div>\n\n          <div class=\"profile-info-block\" *ngIf=\"usr.sign?.length\">\n            <div class=\"info-label\">Sign:</div>\n            <div class=\"info-value\">{{ getNames(usr.sign) }}</div>\n          </div>\n\n          <div class=\"profile-info-block\" *ngIf=\"usr.education?.length\">\n            <div class=\"info-label\">Education:</div>\n            <div class=\"info-value\">{{ getNames(usr.education) }}</div>\n          </div>\n\n        </ion-card-content>\n        <!-- <div class=\"profile-actions\">\n          <ion-icon name=\"close-circle-outline\" (click)=\"doDislike()\"></ion-icon>\n          <ion-icon name=\"refresh-outline\" (click)=\"returnDicover()\"></ion-icon>\n          <ion-icon name=\"heart-circle\" (click)=\"doLike()\"></ion-icon>\n        </div> -->\n      </ion-card>\n    </swiper-slide>\n  </swiper-container>\n\n\n  <ion-grid fixed *ngIf=\"!noDiscoverFound\">\n    <ion-row class=\"row-btn ion-no-margin ion-no-padding\">\n      \n      <ion-col size=\"4\" class=\"ion-no-margin ion-no-padding\">\n        <img class=\"btn-small\" src=\"../../../assets/icon/19-Dislike_button_grey.png\" (click)=\"doDislike()\">\n      </ion-col>\n      <ion-col size=\"4\" class=\"ion-no-margin ion-no-padding\">\n        <img class=\"btn-small\" src=\"../../../assets/icon/24-Refresh_button.png\" (click)=\"returnDicover()\"> <!-- (click)=\"reLoadDiscover()\"> -->\n      </ion-col>\n      <ion-col size=\"4\" class=\"ion-no-margin ion-no-padding\">\n        <img class=\"btn-small\" src=\"../../../assets/icon/21-like_button_orage.png\" (click)=\"doLike()\">\n      </ion-col>\n      <!-- <ion-col size=\"2\" class=\"ion-no-margin ion-no-padding\">\n        <img class=\"btn-small\" src=\"../../../assets/icon/22-Favorite_button_grey.png\" (click)=\"doSuperLike()\">\n      </ion-col> -->\n    </ion-row>\n  </ion-grid>\n\n  <ion-modal #modal trigger=\"open-modal\" [initialBreakpoint]=\"0.8\" [breakpoints]=\"[0, 0.8]\" (willPresent)=\"onWillPresent()\" (willDismiss)=\"onWillDismiss($event)\">\n    <ng-template>\n      <div class=\"div-modal-g\">\n        <ion-header class=\"header-filter ion-no-border\">\n          <ion-toolbar color=\"blanco\" mode=\"ios\">\n            <ion-title class=\"titleModal \">{{ 'DISCOVER.TitleFilter' | translate }}</ion-title>\n            <ion-buttons class=\"clearModal\" slot=\"end\"  (click)=\"clearFilter()\"> <!-- (click)=\"openMenuPopover( $event )\"> -->\n              {{ 'DISCOVER.ClearBtnFilter' | translate }}\n            </ion-buttons>\n          </ion-toolbar>\n        </ion-header>\n\n        <div class=\"div-modal\">\n          <form [formGroup]=\"filterForm\" (ngSubmit)=\"applyFilter()\">\n            <ion-list class=\"listModal ion-padding\">\n              <!-- <ion-row>\n                <ion-col>\n                  <h1 class=\"text-h1\">{{ 'DISCOVER.Title_iam' | translate }}</h1>\n                </ion-col>\n              </ion-row>\n              <ion-item lines=\"none\" detail>\n                <ion-select formControlName=\"iam_a\" [interfaceOptions]=\"customIamOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n                  <li *ngFor=\"let obj of iams\">\n                    <ion-select-option [value]=\"obj.id\">{{ obj.name }}</ion-select-option>\n                  </li>\n                </ion-select>\n              </ion-item> -->\n        \n              <!-- <ion-row>\n                <ion-col>\n                  <h1 class=\"text-h1\">{{ 'DISCOVER.Title_looking' | translate }}</h1>\n                </ion-col>\n              </ion-row>\n              <ion-item lines=\"none\" detail>\n                <ion-select formControlName=\"iam_looking\" [interfaceOptions]=\"customIamLookingOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n                  <li *ngFor=\"let obj of iamlookings\">\n                    <ion-select-option [value]=\"obj.id\">{{ obj.name }}</ion-select-option>\n                  </li>\n                </ion-select>\n              </ion-item> -->\n\n              <ion-row>\n                <ion-col size=\"10\">\n                  <h1 class=\"text-h1\">{{ 'DISCOVER.Title_Age' | translate }}</h1>\n                </ion-col>\n                <ion-col size=\"2\">\n                  <h1 class=\"text-h1-2\">{{ this.age_between.value.lower }} - {{ this.age_between.value.upper }}</h1>\n                </ion-col>\n              </ion-row>\n              <ion-range class=\"rangePersonal\" formControlName=\"age_between\" [dualKnobs]=\"true\" min=\"18\" max=\"100\"></ion-range>\n              <!-- <ion-item class=\"item-toggle\" lines=\"none\">\n                <ion-label class=\"label\">{{ 'DISCOVER.LabelageToggle' | translate }}</ion-label>\n                <ion-toggle class=\"toggleChk\" formControlName=\"ageToggle\" (click)=\"onClickAgeToggle()\"></ion-toggle>\n              </ion-item> -->\n\n              <ion-row>\n                <ion-col size=\"10\">\n                  <h1 class=\"text-h1\">{{ 'DISCOVER.Title_Distancia' | translate }}</h1>\n                </ion-col>\n                <ion-col size=\"2\">\n                  <h1 class=\"text-h1-2\">1 - {{ this.distance.value }}</h1>\n                </ion-col>\n              </ion-row>\n              <ion-range class=\"rangePersonal\" formControlName=\"distance\" min=\"1\" max=\"1000\"></ion-range>\n              \n              <!-- <ion-item class=\"item-toggle\" lines=\"none\">\n                <ion-label class=\"label\">{{ 'DISCOVER.LabeldistToggle' | translate }}</ion-label>\n                <ion-toggle class=\"toggleChk\" formControlName=\"distanceToggle\" (click)=\"onClickDisToggle()\"></ion-toggle>\n              </ion-item> -->\n\n              <ion-row>\n                <ion-col>\n                  <h1 class=\"text-subtitle\">{{ 'DISCOVER.SubTitle_Filter' | translate }}</h1>\n                </ion-col>\n              </ion-row>\n\n              <ion-row>\n                <ion-col size=\"10\">\n                  <h1 class=\"text-h1\">{{ 'DISCOVER.Title_Height' | translate }}</h1>\n                </ion-col>\n                <ion-col size=\"2\">\n                  <h1 class=\"text-h1-2\">{{ this.height.value.lower }} - {{ this.height.value.upper }}</h1>\n                </ion-col>\n              </ion-row>\n              <ion-range class=\"rangePersonal\" formControlName=\"height\" [dualKnobs]=\"true\" min=\"1\" max=\"8\"></ion-range>\n\n              <ion-row>\n                <ion-col>\n                  <h1 class=\"text-h1\">{{ 'DISCOVER.Title_Exercise' | translate }}</h1>\n                </ion-col>\n              </ion-row>\n              <ion-item lines=\"none\" detail>\n                <ion-select formControlName=\"exercise\" [interfaceOptions]=\"customExerciseOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n                  <li *ngFor=\"let obj of exercises\">\n                    <ion-select-option [value]=\"obj.id\">{{ obj.name }}</ion-select-option>\n                  </li>\n                </ion-select>\n              </ion-item>\n\n              <ion-row>\n                <ion-col>\n                  <h1 class=\"text-h1\">{{ 'DISCOVER.Title_Sing' | translate }}</h1>\n                </ion-col>\n              </ion-row>\n              <ion-item lines=\"none\" detail>\n                <ion-select formControlName=\"sing\" [interfaceOptions]=\"customSingOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n                  <li *ngFor=\"let obj of sings\">\n                    <ion-select-option [value]=\"obj.id\">{{ obj.name }}</ion-select-option>\n                  </li>\n                </ion-select>\n              </ion-item>\n\n              <ion-row>\n                <ion-col>\n                  <h1 class=\"text-h1\">{{ 'DISCOVER.Title_Education' | translate }}</h1>\n                </ion-col>\n              </ion-row>\n              <ion-item lines=\"none\" detail>\n                <ion-select formControlName=\"education\" [interfaceOptions]=\"customEducationOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n                  <li *ngFor=\"let obj of educations\">\n                    <ion-select-option [value]=\"obj.id\">{{ obj.name }}</ion-select-option>\n                  </li>\n                </ion-select>\n              </ion-item>\n\n              <ion-row>\n                <ion-col>\n                  <h1 class=\"text-h1\">{{ 'DISCOVER.Title_Drink' | translate }}</h1>\n                </ion-col>\n              </ion-row>\n              <ion-item lines=\"none\" detail>\n                <ion-select formControlName=\"drink\" [interfaceOptions]=\"customDrinkOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n                  <li *ngFor=\"let obj of drinks\">\n                    <ion-select-option [value]=\"obj.id\">{{ obj.name }}</ion-select-option>\n                  </li>\n                </ion-select>\n              </ion-item>\n\n              <ion-row>\n                <ion-col>\n                  <h1 class=\"text-h1\">{{ 'DISCOVER.Title_Smok' | translate }}</h1>\n                </ion-col>\n              </ion-row>\n              <ion-item lines=\"none\" detail>\n                <ion-select formControlName=\"smok\" [interfaceOptions]=\"customSmokOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n                  <li *ngFor=\"let obj of smoks\">\n                    <ion-select-option [value]=\"obj.id\">{{ obj.name }}</ion-select-option>\n                  </li>\n                </ion-select>\n              </ion-item>\n\n              <ion-row>\n                <ion-col>\n                  <h1 class=\"text-h1\">{{ 'DISCOVER.Title_Kid' | translate }}</h1>\n                </ion-col>\n              </ion-row>\n              <ion-item lines=\"none\" detail>\n                <ion-select formControlName=\"kid\" [interfaceOptions]=\"customKidOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n                  <li *ngFor=\"let obj of kids\">\n                    <ion-select-option [value]=\"obj.id\">{{ obj.name }}</ion-select-option>\n                  </li>\n                </ion-select>\n              </ion-item>\n\n              <ion-row>\n                <ion-col>\n                  <h1 class=\"text-h1\">{{ 'DISCOVER.Title_Religion' | translate }}</h1>\n                </ion-col>\n              </ion-row>\n              <ion-item lines=\"none\" detail>\n                <ion-select formControlName=\"religion\" [interfaceOptions]=\"customReligionOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n                  <li *ngFor=\"let obj of religions\">\n                    <ion-select-option [value]=\"obj.id\">{{ obj.name }}</ion-select-option>\n                  </li>\n                </ion-select>\n              </ion-item>\n\n\n              <ion-row>\n                <ion-button class=\"apply-Bt\" color=\"primary1\" type=\"submit\">\n                  {{ 'DISCOVER.btnApply' | translate }}\n                </ion-button>\n              </ion-row>\n\n            </ion-list>\n          </form>\n        </div>\n      </div>\n    </ng-template>\n  </ion-modal>\n  \n</ion-content>\n";
+module.exports = "<ion-header class=\"hdPage ion-no-border ion-padding\">\n  <ion-toolbar color=\"blanco\">\n    <ion-title class=\"titlePage\" mode=\"ios\">{{ 'DISCOVER.Title' | translate }}</ion-title>\n    <ion-title class=\"titleLoc\" mode=\"ios\">{{user?.location?.city}}, {{user?.location?.state}}</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content fullscreen color=\"blanco\" *ngIf=\"!isLoading\">\n  <div class=\"divNoFound\" *ngIf=\"noDiscoverFound\">\n    <img class=\"imgNoFound\" src=\"../../../assets/icon/31-NoFoundCards.png\">\n    <p class=\"pNoFound\" *ngIf=\"discoverUsrs !== null\">{{ 'DISCOVER.txtNoFound' | translate }}</p>\n    <p class=\"pNoFound\" *ngIf=\"discoverUsrs === null\">{{ 'DISCOVER.txtToLimit' | translate }}</p>\n    <p class=\"pNoFoundRegular\" *ngIf=\"discoverUsrs === null\">{{ 'DISCOVER.txtToLimit2' | translate }}</p>\n  </div>\n\n  <swiper-container\n    #swiperEl\n    slides-per-view=\"1\"\n    pagination=\"false\"\n    style=\"height: 68vh;\"\n    *ngIf=\"!noDiscoverFound && discoverUsrs && discoverUsrs.length > 0\"\n    [initialSlide]=\"currentCardIndex\"\n  >\n    <swiper-slide *ngFor=\"let usr of discoverUsrs; let i = index\" [attr.data-index]=\"i\">\n      <ion-card class=\"profile-card\" [class.current-card]=\"i === currentCardIndex\">\n        <div (click)=\"openGallery(usr)\">\n          <img class=\"profile-avatar\" [src]=\"usr.image?.multimediaUrl || 'assets/icon/30-Default_no-image.jpeg'\"/>\n        </div>\n        <ion-card-content>\n          <h2 class=\"profile-name\">{{ usr.firstName }} {{ usr.lastName }}, {{ usr.age }}</h2>\n          <p class=\"profile-description\">{{ usr.aboutMe }}</p>\n\n          <div class=\"profile-info-block\" *ngIf=\"usr.hobbies?.length\">\n            <div class=\"info-label\">Hobbies:</div>\n            <div class=\"info-value\">{{ getNames(usr.hobbies) }}</div>\n          </div>\n\n          <div class=\"profile-info-block\" *ngIf=\"usr.sports?.length\">\n            <div class=\"info-label\">Sports:</div>\n            <div class=\"info-value\">{{ getNames(usr.sports) }}</div>\n          </div>\n\n          <div class=\"profile-info-block\" *ngIf=\"usr.languajes?.length\">\n            <div class=\"info-label\">Languages:</div>\n            <div class=\"info-value\">{{ getNames(usr.languajes) }}</div>\n          </div>\n\n          <div class=\"profile-info-block\" *ngIf=\"usr.sign?.length\">\n            <div class=\"info-label\">Sign:</div>\n            <div class=\"info-value\">{{ getNames(usr.sign) }}</div>\n          </div>\n\n          <div class=\"profile-info-block\" *ngIf=\"usr.education?.length\">\n            <div class=\"info-label\">Education:</div>\n            <div class=\"info-value\">{{ getNames(usr.education) }}</div>\n          </div>\n        </ion-card-content>\n      </ion-card>\n    </swiper-slide>\n  </swiper-container>\n\n  <ion-grid fixed *ngIf=\"!noDiscoverFound && discoverUsrs && discoverUsrs.length > 0\">\n    <ion-row class=\"row-btn ion-no-margin ion-no-padding\">\n      <ion-col size=\"4\" class=\"ion-no-margin ion-no-padding\">\n        <img \n          class=\"btn-small\" \n          [class.btn-disabled]=\"isProcessing\"\n          src=\"../../../assets/icon/19-Dislike_button_grey.png\" \n          (click)=\"doDislike()\"\n        >\n      </ion-col>\n      <ion-col size=\"4\" class=\"ion-no-margin ion-no-padding\">\n        <img \n          class=\"btn-small\" \n          [class.btn-disabled]=\"!canReset || isProcessing\"\n          src=\"../../../assets/icon/24-Refresh_button.png\" \n          (click)=\"returnDicover()\"\n        >\n      </ion-col>\n      <ion-col size=\"4\" class=\"ion-no-margin ion-no-padding\">\n        <img \n          class=\"btn-small\" \n          [class.btn-disabled]=\"isProcessing\"\n          src=\"../../../assets/icon/21-like_button_orage.png\" \n          (click)=\"doLike()\"\n        >\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n  <!-- Processing Indicator -->\n  <div class=\"processing-indicator\" *ngIf=\"isProcessing\">\n    <ion-spinner name=\"crescent\"></ion-spinner>\n    <p>{{ processingMessage }}</p>\n  </div>\n\n  <!-- Debug Info (remove in production) -->\n  <div class=\"debug-info\" *ngIf=\"false\">\n    <p>Current Index: {{ currentCardIndex }}</p>\n    <p>Total Cards: {{ discoverUsrs?.length || 0 }}</p>\n    <p>Can Reset: {{ canReset }}</p>\n    <p>Processing: {{ isProcessing }}</p>\n  </div>\n\n  <ion-modal #modal trigger=\"open-modal\" [initialBreakpoint]=\"0.8\" [breakpoints]=\"[0, 0.8]\" (willPresent)=\"onWillPresent()\" (willDismiss)=\"onWillDismiss($event)\">\n    <ng-template>\n      <div class=\"div-modal-g\">\n        <ion-header class=\"header-filter ion-no-border\">\n          <ion-toolbar color=\"blanco\" mode=\"ios\">\n            <ion-title class=\"titleModal\">{{ 'DISCOVER.TitleFilter' | translate }}</ion-title>\n            <ion-buttons class=\"clearModal\" slot=\"end\" (click)=\"clearFilter()\">\n              {{ 'DISCOVER.ClearBtnFilter' | translate }}\n            </ion-buttons>\n          </ion-toolbar>\n        </ion-header>\n\n        <div class=\"div-modal\">\n          <form [formGroup]=\"filterForm\" (ngSubmit)=\"applyFilter()\">\n            <ion-list class=\"listModal ion-padding\">\n              <ion-row>\n                <ion-col size=\"10\">\n                  <h1 class=\"text-h1\">{{ 'DISCOVER.Title_Age' | translate }}</h1>\n                </ion-col>\n                <ion-col size=\"2\">\n                  <h1 class=\"text-h1-2\">{{ this.age_between.value.lower }} - {{ this.age_between.value.upper }}</h1>\n                </ion-col>\n              </ion-row>\n              <ion-range class=\"rangePersonal\" formControlName=\"age_between\" [dualKnobs]=\"true\" min=\"18\" max=\"100\"></ion-range>\n\n              <ion-row>\n                <ion-col size=\"10\">\n                  <h1 class=\"text-h1\">{{ 'DISCOVER.Title_Distancia' | translate }}</h1>\n                </ion-col>\n                <ion-col size=\"2\">\n                  <h1 class=\"text-h1-2\">1 - {{ this.distance.value }}</h1>\n                </ion-col>\n              </ion-row>\n              <ion-range class=\"rangePersonal\" formControlName=\"distance\" min=\"1\" max=\"1000\"></ion-range>\n\n              <ion-row>\n                <ion-col>\n                  <h1 class=\"text-subtitle\">{{ 'DISCOVER.SubTitle_Filter' | translate }}</h1>\n                </ion-col>\n              </ion-row>\n\n              <ion-row>\n                <ion-col size=\"10\">\n                  <h1 class=\"text-h1\">{{ 'DISCOVER.Title_Height' | translate }}</h1>\n                </ion-col>\n                <ion-col size=\"2\">\n                  <h1 class=\"text-h1-2\">{{ this.height.value.lower }} - {{ this.height.value.upper }}</h1>\n                </ion-col>\n              </ion-row>\n              <ion-range class=\"rangePersonal\" formControlName=\"height\" [dualKnobs]=\"true\" min=\"1\" max=\"8\"></ion-range>\n\n              <ion-row>\n                <ion-col>\n                  <h1 class=\"text-h1\">{{ 'DISCOVER.Title_Exercise' | translate }}</h1>\n                </ion-col>\n              </ion-row>\n              <ion-item lines=\"none\" detail>\n                <ion-select formControlName=\"exercise\" [interfaceOptions]=\"customExerciseOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n                  <li *ngFor=\"let obj of exercises\">\n                    <ion-select-option [value]=\"obj.id\">{{ obj.name }}</ion-select-option>\n                  </li>\n                </ion-select>\n              </ion-item>\n\n              <ion-row>\n                <ion-button class=\"apply-Bt\" color=\"primary1\" type=\"submit\">\n                  {{ 'DISCOVER.btnApply' | translate }}\n                </ion-button>\n              </ion-row>\n            </ion-list>\n          </form>\n        </div>\n      </div>\n    </ng-template>\n  </ion-modal>\n</ion-content>";
 
 /***/ })
 

@@ -30,7 +30,7 @@ const routes = [{
     loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_services_experience_service_ts"), __webpack_require__.e("common"), __webpack_require__.e("src_app_pages_tabExperience_tabExperience_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../tabExperience/tabExperience.module */ 57084)).then(m => m.TabExperiencePageModule)
   }, {
     path: 'discover',
-    loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_pages_match_detail-match-menu-popover_detail-match-menu-popover_page_ts"), __webpack_require__.e("src_app_pages_tabDiscover_tabDiscover_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ../tabDiscover/tabDiscover.module */ 30860)).then(m => m.TabDiscoverPageModule)
+    loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_pages_tabDiscover_tabDiscover_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../tabDiscover/tabDiscover.module */ 30860)).then(m => m.TabDiscoverPageModule)
   }, {
     path: 'match',
     loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_pages_tabMatch_tabMatch_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../tabMatch/tabMatch.module */ 46320)).then(m => m.TabMatchPageModule)

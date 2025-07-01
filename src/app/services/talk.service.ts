@@ -81,5 +81,31 @@ export class TalkService {
     });
   });
 }
+ async updateConversationByPerson(personId: string) {
+  const tVal = await this.userService.validaToken();
+  if( !tVal ) {
+    return;
+  }
+
+  const headers = new HttpHeaders()
+        .set('Content-Type', 'application/json')
+        .set('Authorization', this.userService.token);
+
+  return new Promise(resolve => {
+    this.http.get(`${URL}/chat/update/person/${personId}`, { headers }).subscribe({ 
+      next: resp => {
+        if(resp['sCode'] == 200){
+          resolve(resp['sData']);
+        }
+
+        resolve({});
+      },
+      error:err => {
+        console.log('ERR MATCHES', err);
+        resolve({});
+      }
+    });
+  });
+}
 
 }

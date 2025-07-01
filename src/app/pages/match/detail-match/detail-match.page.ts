@@ -164,7 +164,7 @@ export class DetailMatchPage implements OnInit {
     console.log(this.matchId);
     console.log('SEND MESSAGE');
     this.uiService.showLoader();
-    let resp = await this.talkService.updateConversation(this.matchId);
+    let resp = await this.talkService.updateConversationByPerson(this.matchId);
     this.uiService.hideLoader();
     if(Object.keys(resp).length === 0){
       console.log("Ocurrio un error alguno de los usuarios no esta registrado en chat.");
@@ -284,7 +284,7 @@ export class DetailMatchPage implements OnInit {
   async msghost(personid:any){
     console.log(personid);
      this.uiService.showLoader();
-    let resp = await this.talkService.updateConversation(personid.toString());
+    let resp = await this.talkService.updateConversationByPerson(personid.toString());
     this.uiService.hideLoader();
     if(Object.keys(resp).length === 0){
       console.log("Ocurrio un error alguno de los usuarios no esta registrado en chat.");

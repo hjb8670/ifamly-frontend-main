@@ -50,6 +50,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ 78848);
 /* harmony import */ var _notification_prompt_routing_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./notification-prompt-routing.module */ 84260);
 /* harmony import */ var _notification_prompt_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./notification-prompt.page */ 32200);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
+
 
 
 
@@ -59,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
 
 let NotificationPromptPageModule = class NotificationPromptPageModule {};
 NotificationPromptPageModule = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.NgModule)({
-  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormsModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonicModule, _notification_prompt_routing_module__WEBPACK_IMPORTED_MODULE_0__.NotificationPromptPageRoutingModule],
+  imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormsModule, _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.IonicModule, _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__.TranslateModule, _notification_prompt_routing_module__WEBPACK_IMPORTED_MODULE_0__.NotificationPromptPageRoutingModule],
   declarations: [_notification_prompt_page__WEBPACK_IMPORTED_MODULE_1__.NotificationPromptPage]
 })], NotificationPromptPageModule);
 
@@ -78,12 +80,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   NotificationPromptPage: () => (/* binding */ NotificationPromptPage)
 /* harmony export */ });
 /* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _notification_prompt_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./notification-prompt.page.html?ngResource */ 99136);
 /* harmony import */ var _notification_prompt_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./notification-prompt.page.scss?ngResource */ 95440);
 /* harmony import */ var _notification_prompt_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_notification_prompt_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 24040);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
 /* harmony import */ var src_app_services_notification_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/notification.service */ 44244);
 /* harmony import */ var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/user.service */ 90628);
 
@@ -94,16 +97,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 let NotificationPromptPage = class NotificationPromptPage {
-  constructor(userService, router, zone, notificationService) {
+  constructor(userService, router, translate, zone, notificationService) {
     this.userService = userService;
     this.router = router;
+    this.translate = translate;
     this.zone = zone;
     this.notificationService = notificationService;
+    this.loading = false;
   }
   allowNotifications() {
     var _this = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      _this.loading = true;
       try {
         const token = yield _this.notificationService.requestPermission();
         console.log(token);
@@ -113,12 +120,15 @@ let NotificationPromptPage = class NotificationPromptPage {
         // Force navigation inside Angular zone
         _this.zone.run(() => {
           _this.router.navigate(['/main/tabs/discover']);
+          _this.loading = false;
         });
       } catch (err) {
         console.error('Notification permission denied or failed:', err);
         _this.userService.setNotificationsAllowed(false);
+        _this.loading = false;
         _this.zone.run(() => {
           _this.router.navigate(['/main/tabs/discover']);
+          _this.loading = false;
         });
       }
     })();
@@ -133,13 +143,15 @@ let NotificationPromptPage = class NotificationPromptPage {
     }, {
       type: _angular_router__WEBPACK_IMPORTED_MODULE_5__.Router
     }, {
-      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__.NgZone
+      type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__.TranslateService
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.NgZone
     }, {
       type: src_app_services_notification_service__WEBPACK_IMPORTED_MODULE_3__.NotificationService
     }];
   }
 };
-NotificationPromptPage = (0,tslib__WEBPACK_IMPORTED_MODULE_7__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_6__.Component)({
+NotificationPromptPage = (0,tslib__WEBPACK_IMPORTED_MODULE_8__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_7__.Component)({
   selector: 'app-notification-prompt',
   template: _notification_prompt_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   styles: [(_notification_prompt_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]
@@ -207,7 +219,7 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-content class=\"ion-padding notification-page\">\n  <div class=\"notification-content\">\n    <img src=\"assets/notification-bell.png\" alt=\"Notification Bell\" class=\"bell-icon\" />\n\n    <h2 class=\"title\">Don’t miss a message or match!</h2>\n    <p class=\"subtitle\">\n      Turn on your notifications so we can let you know when you have new matches, likes, or messages.\n    </p>\n\n    <ion-button expand=\"block\" class=\"allow-btn\" (click)=\"allowNotifications()\">\n      Allow notifications\n    </ion-button>\n\n    <ion-button fill=\"clear\" class=\"skip-btn\" (click)=\"skip()\">Skip</ion-button>\n  </div>\n</ion-content>\n";
+module.exports = "<ion-content class=\"ion-padding notification-page\">\n  <div class=\"notification-content\">\n    <img src=\"assets/notification-bell.png\" alt=\"Notification Bell\" class=\"bell-icon\" />\n\n    <h2 class=\"title\">Don’t miss a message or match!</h2>\n    <p class=\"subtitle\">\n      Turn on your notifications so we can let you know when you have new matches, likes, or messages.\n    </p>\n\n    <ion-button expand=\"block\" class=\"allow-btn\" (click)=\"allowNotifications()\">\n      <ng-container *ngIf=\"!loading\">\n        {{ 'LOGIN.allowbtn' | translate }}\n      </ng-container>\n      <ng-container *ngIf=\"loading\">\n        <ion-spinner name=\"dots\" color=\"light\"></ion-spinner>\n      </ng-container>\n    </ion-button>\n\n    <ion-button fill=\"clear\" class=\"skip-btn\" (click)=\"skip()\"> {{ 'LOGIN.skipp' | translate }}</ion-button>\n  </div>\n</ion-content>\n";
 
 /***/ })
 

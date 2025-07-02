@@ -351,6 +351,7 @@ let MyMobilePage = class MyMobilePage {
     const user = {
       phone: ''
     };
+    this.userService.setUserr(user);
     this.router.navigate(['profile-details'], navegationExtras);
   }
   next() {
@@ -363,6 +364,7 @@ let MyMobilePage = class MyMobilePage {
       this.uiService.alertOK(this.translate.instant('MY-MOBILE.msgErrMobile'));
       return;
     }
+    console.log(this.mobile.value);
     let navegationExtras = {
       state: {
         email: this.email,
@@ -372,11 +374,18 @@ let MyMobilePage = class MyMobilePage {
         mobile: this.selectedCodePhone + this.mobile.value //this.mobile.value['internationalNumber']
       }
     };
-    const user = {
-      phone: this.selectedCodePhone + this.mobile.value
-    };
+    if (this.mobile.value !== '') {
+      const user = {
+        phone: this.selectedCodePhone + this.mobile.value
+      };
+      this.userService.setUserr(user);
+    } else {
+      const user = {
+        phone: ''
+      };
+      this.userService.setUserr(user);
+    }
     // Save it somewhere accessible (like a service or localStorage)
-    this.userService.setUserr(user);
     // Store OAuth provider info if available
     if (this.rs && (this.rs === 'google' || this.rs === 'apple')) {
       this.userService.setOAuthProvider(this.rs);

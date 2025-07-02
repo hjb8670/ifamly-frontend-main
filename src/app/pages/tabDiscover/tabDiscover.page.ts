@@ -386,9 +386,11 @@ export class TabDiscoverPage implements AfterViewInit {
 
       console.log('Loaded profiles:', discoverUsr_res.length);
       
-      // Add new profiles to the beginning of the array
-      this.discoverUsrs = [...discoverUsr_res, ...this.discoverUsrs];
-      this.currentCardIndex = discoverUsr_res.length - 1;
+      const newProfiles = discoverUsr_res.filter(
+        newUser => !this.discoverUsrs.some(existingUser => existingUser.personId === newUser.personId)
+      );
+      this.discoverUsrs = [...newProfiles, ...this.discoverUsrs];
+      this.currentCardIndex = newProfiles.length - 1;
       
       this.cdRef.detectChanges();
       

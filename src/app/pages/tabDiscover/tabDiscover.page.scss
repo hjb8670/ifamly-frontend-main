@@ -11,14 +11,47 @@
     padding: 16px;
   }
 }
+.profile-image-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 240px; // slightly bigger max
+  margin: 0 auto;
+}
 
 .profile-avatar {
-  width: 200px;
-  height: 200px;
-  margin-top: 2px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   border-radius: 10%;
   object-fit: cover;
   border: 3px solid #eee;
+  display: block;
+}
+
+/* Relationship label in bottom-left */
+.profile-role-label {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-family: 'Sk-Modernist-Bold';
+}
+
+/* Optional: make avatar larger on wider screens */
+@media screen and (min-width: 768px) {
+  .profile-image-wrapper {
+    max-width: 300px;
+  }
+}
+
+.footer-md {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
 }
 
 .profile-name {

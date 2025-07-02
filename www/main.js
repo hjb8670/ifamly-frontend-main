@@ -2501,7 +2501,7 @@ let UserService = class UserService {
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log('Email reset password', email);
       return new Promise(resolve => {
-        _this2.http.get(`${URL}/passwoord/resetPW/${email}/${lang}`).subscribe({
+        _this2.http.get(`${URL}/password/resetPW/${email}/${lang}`).subscribe({
           next: resp => {
             resolve(resp['sCode']);
           },
@@ -3419,7 +3419,7 @@ let UserService = class UserService {
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
-        _this32.http.get(`${URL}/passwoord/verifyCodeEmail/${email}/${lang}`, {
+        _this32.http.get(`${URL}/password/verifyCodeEmail/${email}/${lang}`, {
           headers
         }).subscribe({
           next: resp => {
@@ -3438,7 +3438,7 @@ let UserService = class UserService {
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_7__.HttpHeaders().set('Content-Type', 'application/json');
       return new Promise(resolve => {
-        _this33.http.get(`${URL}/passwoord/verifyCode/${email}/${code}`, {
+        _this33.http.get(`${URL}/password/verifyCode/${email}/${code}`, {
           headers
         }).subscribe({
           next: resp => {

@@ -107,14 +107,29 @@ export class MyMobilePage implements OnInit {
 
     return false;
   }
+  skip(){
+    let navegationExtras: NavigationExtras = {
+      state: {
+        email: this.email,
+        password: this.password,
+        name: this.name,
+        rs: this.rs,
+        mobile: '' //this.mobile.value['internationalNumber']
+      }
+    }
+    const user: User = {
+      phone: '',
+    };
+    this.router.navigate(['profile-details'], navegationExtras);
+  }
 
   next() {
     console.log("CREATE");
     //document.getElementById('item').style.border = "solid 2px #107CF1";
 
-    if(this.validaCampo(this.mobile, this.validation_messages.mobile)){
-      return;
-    }
+    // if(this.validaCampo(this.mobile, this.validation_messages.mobile)){
+    //   return;
+    // }
 
     if(this.errorTel) {
       this.uiService.alertOK(this.translate.instant('MY-MOBILE.msgErrMobile'));

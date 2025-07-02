@@ -110,28 +110,20 @@ let ChangePasswordPage = class ChangePasswordPage {
     //public usrApp: User;
     this.passwordForm = this.formBuilder.group({
       oldPassword: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required]],
-      password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required, this.regexValidator(new RegExp('(?=.*[a-z]).*$'), {
-        '1lowercase': true
-      }), this.regexValidator(new RegExp('(?=.*[A-Z]).*$'), {
-        '1uppercase': true
-      }), this.regexValidator(new RegExp('(?=.*[0-9]).*$'), {
-        '1number': true
-      }), this.regexValidator(new RegExp('(?=.*[#?!@$%^&*-+]).*$'), {
-        '1especial': true
-      }), this.regexValidator(new RegExp('.{8,}$'), {
-        'longmin': true
-      })]],
-      confirm: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required, this.regexValidator(new RegExp('(?=.*[a-z]).*$'), {
-        '1lowercase': true
-      }), this.regexValidator(new RegExp('(?=.*[A-Z]).*$'), {
-        '1uppercase': true
-      }), this.regexValidator(new RegExp('(?=.*[0-9]).*$'), {
-        '1number': true
-      }), this.regexValidator(new RegExp('(?=.*[#?!@$%^&*-+]).*$'), {
-        '1especial': true
-      }), this.regexValidator(new RegExp('.{8,}$'), {
-        'longmin': true
-      })]],
+      password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required
+      // this.regexValidator(new RegExp('(?=.*[a-z]).*$'), {'1lowercase': true}),
+      // this.regexValidator(new RegExp('(?=.*[A-Z]).*$'), {'1uppercase': true}),
+      // this.regexValidator(new RegExp('(?=.*[0-9]).*$'), {'1number': true}),
+      // this.regexValidator(new RegExp('(?=.*[#?!@$%^&*-+]).*$'), {'1especial': true}),
+      // this.regexValidator(new RegExp('.{8,}$'), {'longmin': true})
+      ]],
+      confirm: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_5__.Validators.required
+      // this.regexValidator(new RegExp('(?=.*[a-z]).*$'), {'1lowercase': true}),
+      // this.regexValidator(new RegExp('(?=.*[A-Z]).*$'), {'1uppercase': true}),
+      // this.regexValidator(new RegExp('(?=.*[0-9]).*$'), {'1number': true}),
+      // this.regexValidator(new RegExp('(?=.*[#?!@$%^&*-+]).*$'), {'1especial': true}),
+      // this.regexValidator(new RegExp('.{8,}$'), {'longmin': true})
+      ]],
       view: false,
       viewOld: false,
       viewC: false
@@ -144,41 +136,23 @@ let ChangePasswordPage = class ChangePasswordPage {
       'password': [{
         type: 'required',
         message: 'msgErrReqPassword'
-      }, {
-        type: '1lowercase',
-        message: 'msgErrMin'
-      }, {
-        type: '1uppercase',
-        message: 'msgErrMay'
-      }, {
-        type: '1number',
-        message: 'msgErrNum'
-      }, {
-        type: '1especial',
-        message: 'msgErrCarc'
-      }, {
-        type: 'longmin',
-        message: 'msgErrLongMin'
-      }],
+      }
+      //  { type: '1lowercase', message: 'msgErrMin'},
+      //  { type: '1uppercase', message: 'msgErrMay'},
+      //  { type: '1number', message: 'msgErrNum'},
+      //  { type: '1especial', message: 'msgErrCarc'},
+      //  { type: 'longmin', message: 'msgErrLongMin'}
+      ],
       'confirm': [{
         type: 'required',
         message: 'msgErrReqConfirm'
-      }, {
-        type: '1lowercase',
-        message: 'msgErrMin'
-      }, {
-        type: '1uppercase',
-        message: 'msgErrMay'
-      }, {
-        type: '1number',
-        message: 'msgErrNum'
-      }, {
-        type: '1especial',
-        message: 'msgErrCarc'
-      }, {
-        type: 'longmin',
-        message: 'msgErrLongMin'
-      }]
+      }
+      // { type: '1lowercase', message: 'msgErrMin'},
+      // { type: '1uppercase', message: 'msgErrMay'},
+      // { type: '1number', message: 'msgErrNum'},
+      // { type: '1especial', message: 'msgErrCarc'},
+      // { type: 'longmin', message: 'msgErrLongMin'}
+      ]
     };
     this.oldPassword.setValue("");
     this.password.setValue("");

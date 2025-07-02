@@ -9,6 +9,8 @@
     },
     
     "LOGIN": {
+        "allowbtn": "Allow notifications",
+        "skipp": "Skip",
         "btnSingUp": "Sign up",
         "WelcomeTxt1": "Welcome back!",
         "WelcomeTxt2": "you are back",

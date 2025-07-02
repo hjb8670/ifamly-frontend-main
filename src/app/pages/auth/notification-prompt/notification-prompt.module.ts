@@ -6,12 +6,14 @@ import { IonicModule } from '@ionic/angular';
 
 import { NotificationPromptPageRoutingModule } from './notification-prompt-routing.module';
 import { NotificationPromptPage } from './notification-prompt.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    TranslateModule,
     NotificationPromptPageRoutingModule
   ],
   declarations: [NotificationPromptPage]

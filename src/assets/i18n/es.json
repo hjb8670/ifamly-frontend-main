@@ -101,7 +101,6 @@
         "msgErrReqMobile": "Se requiere Teléfono Celular",
         "msgErrMobile": "Ingresa un Teléfono Celular válido"
     },
-
     "VC": {
         "Text": "Escribe el código de verificación que te hemos enviado a tu",
         "Phone": " telefono", 
@@ -112,7 +111,10 @@
         "ErrMesg": "Captura completo código de verificación",
         "ErrServ": "Servicio fuera de linea. Intenta más tarde",
         "ErrCode": "Código incorrecto. Solicita uno nuevo",
-        "ErrLengthCode": "Código debe ser de 6 dígitos. Solicitar uno nuevo"
+        "ErrLengthCode": "Código debe ser de 6 dígitos. Solicitar uno nuevo",
+        "ErrNoCode": "No existe ningún código de verificación. Solicita uno nuevo.",
+        "ErrExpiredCode": "El código de verificación ha vencido. Solicita uno nuevo.",
+        "WaitTimer": "Por favor espera hasta que el temporizador expire para reenviar el código."
     },
 
     "PROF-DETAIL": {

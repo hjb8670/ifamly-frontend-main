@@ -34,6 +34,7 @@ export class TabExperiencePage {
   public lanDate = 'en_US';
   public mostrarLoginFinito = true;
   showfilter: boolean = false;
+  private loadedExperienceIds: Set<number> = new Set(); // Track loaded experience IDs
 
   constructor(
     private router: Router,
@@ -118,6 +119,7 @@ export class TabExperiencePage {
     this.iniExp = 0;
     this.cateExp = null;
     this.experiences = [];
+    this.loadedExperienceIds.clear(); // Clear the set of loaded IDs
     
     const preloadImages = async (experiences) => {
       const imageUrls = experiences.map((exp) => exp.image);
@@ -143,22 +145,38 @@ export class TabExperiencePage {
   private async loadInitialExperiences() {
     // Load experiences in batches until we have a good initial set
     let hasMore = true;
+    let consecutiveEmptyBatches = 0;
+    const maxEmptyBatches = 3; // Stop after 3 consecutive empty batches
     
-    while (hasMore && this.experiences.length < 20) { // Load at least 20 experiences initially
+    while (hasMore && this.experiences.length < 30 && consecutiveEmptyBatches < maxEmptyBatches) {
       const newExperiences = await this.getProcessedExperiences();
       
       if (newExperiences.length === 0) {
-        hasMore = false;
+        consecutiveEmptyBatches++;
+        this.iniExp += this.deltaExp; // Still increment to avoid infinite loop
       } else {
-        this.experiences.push(...newExperiences);
+        consecutiveEmptyBatches = 0;
+        
+        // Filter out duplicates using experienceId
+        const uniqueNewExperiences = newExperiences.filter(exp => {
+          if (this.loadedExperienceIds.has(exp.experienceId)) {
+            return false; // Skip duplicate
+          }
+          this.loadedExperienceIds.add(exp.experienceId);
+          return true;
+        });
+        
+        if (uniqueNewExperiences.length > 0) {
+          this.experiences.push(...uniqueNewExperiences);
+        }
+        
         this.iniExp += this.deltaExp;
       }
     }
     
     this.filteredExperiences = [...this.experiences];
     
-    // Reset pagination for infinite scroll
-    this.iniExp = this.experiences.length;
+    console.log(`Loaded ${this.experiences.length} unique experiences`);
   }
 
   private async getProcessedExperiences(): Promise<Experience[]> {
@@ -213,6 +231,7 @@ export class TabExperiencePage {
     this.iniExp = 0;
     this.experiences = [];
     this.filteredExperiences = [];
+    this.loadedExperienceIds.clear(); // Clear the set of loaded IDs
     
     // Re-enable infinite scroll in case it was disabled
     if (this.infiniteScroll) {
@@ -229,7 +248,6 @@ export class TabExperiencePage {
   }
 
   async loadExp(ev: any){
-    const currentLength = this.experiences.length;
     const newExp = await this.getProcessedExperiences();
     
     setTimeout(() => {
@@ -237,10 +255,27 @@ export class TabExperiencePage {
         // No more experiences to load
         this.infiniteScroll.disabled = true;
       } else {
-        // Add new experiences and update filtered list
-        this.experiences.push(...newExp);
-        this.filteredExperiences = [...this.experiences];
+        // Filter out duplicates using experienceId
+        const uniqueNewExperiences = newExp.filter(exp => {
+          if (this.loadedExperienceIds.has(exp.experienceId)) {
+            return false; // Skip duplicate
+          }
+          this.loadedExperienceIds.add(exp.experienceId);
+          return true;
+        });
+        
+        if (uniqueNewExperiences.length > 0) {
+          // Add new unique experiences and update filtered list
+          this.experiences.push(...uniqueNewExperiences);
+          this.filteredExperiences = [...this.experiences];
+        }
+        
         this.iniExp += this.deltaExp;
+        
+        // If no new unique experiences were added, disable infinite scroll
+        if (uniqueNewExperiences.length === 0) {
+          this.infiniteScroll.disabled = true;
+        }
       }
       this.infiniteScroll.complete();
     }, 100);

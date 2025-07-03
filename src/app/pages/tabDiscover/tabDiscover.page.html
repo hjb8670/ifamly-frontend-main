@@ -23,8 +23,12 @@
   >
     <swiper-slide *ngFor="let usr of discoverUsrs; let i = index" [attr.data-index]="i">
       <ion-card class="profile-card" [class.current-card]="i === currentCardIndex">
-        <div (click)="openGallery(usr)">
-          <img class="profile-avatar" [src]="usr.image?.multimediaUrl || 'assets/icon/30-Default_no-image.jpeg'"/>
+        <div class="profile-image-wrapper" (click)="openGallery(usr)">
+          <img
+            class="profile-avatar"
+            [src]="usr.image?.multimediaUrl || 'assets/icon/30-Default_no-image.jpeg'"
+          />
+          <div class="profile-role-label">{{usr.iam_a.slice(1)}}</div>
         </div>
         <ion-card-content>
           <h2 class="profile-name">{{ usr.firstName }} {{ usr.lastName }}, {{ usr.age }}</h2>
@@ -58,7 +62,7 @@
       </ion-card>
     </swiper-slide>
   </swiper-container>
-
+<ion-footer *ngIf="!noDiscoverFound && discoverUsrs && discoverUsrs.length > 0">
   <ion-grid fixed *ngIf="!noDiscoverFound && discoverUsrs && discoverUsrs.length > 0">
     <ion-row class="row-btn ion-no-margin ion-no-padding">
       <ion-col size="4" class="ion-no-margin ion-no-padding">
@@ -86,7 +90,9 @@
         >
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid>  
+</ion-footer>
+
 
   <!-- Processing Indicator -->
   <div class="processing-indicator" *ngIf="isProcessing">

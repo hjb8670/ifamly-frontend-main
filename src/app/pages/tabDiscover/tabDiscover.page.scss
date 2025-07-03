@@ -2,34 +2,128 @@
 @import 'swiper/swiper-bundle.css';
 
 .profile-card {
-//   margin-left: 10px;
-//   margin-right: 10px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
   ion-card-content {
     padding: 16px;
   }
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    padding: 10px;
+    ion-card-content {
+      padding: 12px;
+    }
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    padding: 20px;
+    ion-card-content {
+      padding: 20px;
+    }
+  }
+}
+
+.profile-image-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 240px;
+  margin: 0 auto;
+  /* Smaller height (between 400px and 600px) */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    max-width: 150px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 300px) and (max-height: 700px) and (min-height: 500px) {
+    max-width: 150px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    max-width: 280px;
+  }
 }
 
 .profile-avatar {
-  width: 200px;
-  height: 200px;
-  margin-top: 2px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   border-radius: 10%;
   object-fit: cover;
   border: 3px solid #eee;
+  display: block;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    border-width: 2px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    border-width: 2px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    border-width: 4px;
+  }
+}
+
+/* Relationship label in bottom-left */
+.profile-role-label {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-family: 'Sk-Modernist-Bold';
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 10px;
+    padding: 3px 6px;
+    bottom: 6px;
+    left: 6px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 10px;
+    padding: 3px 6px;
+    bottom: 6px;
+    left: 6px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+}
+
+.footer-md {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
 }
 
 .profile-name {
   font-size: 25px;
   font-weight: bold;
   color: #333;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 20px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 20px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 30px;
+  }
 }
 
 .profile-description {
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* show 3 lines max */
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -37,15 +131,43 @@
   margin-top: 5px;
   font-size: 14px;
   color: orange;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
 }
-
-
 
 .profile-info-block {
   display: flex;
   margin-bottom: 6px;
   font-size: 13px;
   line-height: 1.3;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
 }
 
 .profile-info-block .info-label {
@@ -54,6 +176,18 @@
   color: #333;
   flex-shrink: 0;
   text-align: left;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    width: 80px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    width: 80px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    width: 120px;
+  }
 }
 
 .profile-info-block .info-value {
@@ -68,14 +202,27 @@
 .profile-section {
   margin-top: 16px;
   text-align: left;
-
   h3 {
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 6px;
     color: #555;
+    /* Smaller height */
+    @media screen and (max-height: 600px) and (min-height: 400px) {
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    /* Width 400-500px and Height 500-700px */
+    @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+    /* Larger height */
+    @media screen and (min-height: 800px) {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
   }
-
   ul {
     list-style: none;
     padding: 0;
@@ -84,6 +231,21 @@
       color: #333;
       padding-left: 12px;
       position: relative;
+      /* Smaller height */
+      @media screen and (max-height: 600px) and (min-height: 400px) {
+        font-size: 12px;
+        padding-left: 10px;
+      }
+      /* Width 400-500px and Height 500-700px */
+      @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+        font-size: 12px;
+        padding-left: 10px;
+      }
+      /* Larger height */
+      @media screen and (min-height: 800px) {
+        font-size: 16px;
+        padding-left: 14px;
+      }
     }
   }
 }
@@ -97,11 +259,9 @@
     font-size: 32px;
     color: #ff6b6b;
     cursor: pointer;
-
     &:nth-child(2) {
       color: #ffc107;
     }
-
     &:nth-child(3) {
       color: #4cd137;
     }
@@ -122,18 +282,18 @@ ion-card {
   margin-top: 2px;
 }
 
-ion-content{
-    --overflow:hidden;
+ion-content {
+  --overflow: hidden;
 }
 .hdPage {
-    background: var(--ion-color-blanco);
-    padding-bottom: 0px;
+  background: var(--ion-color-blanco);
+  padding-bottom: 2px;
 }
 
 ion-back-button {
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 15px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 15px;
 }
 
 .titlePage {
@@ -154,330 +314,721 @@ ion-back-button {
 }
 
 .menuBtn {
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 10px;
-    width: 50px;
-    height: 50px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    width: 40px;
+    height: 40px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    width: 40px;
+    height: 40px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 .menuIcon {
-    font-size: 28px;
-    margin-left: auto;
-    margin-right: auto;
+  font-size: 28px;
+  margin-left: auto;
+  margin-right: auto;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 22px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 22px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 32px;
+  }
 }
 
 .contenedorCard {
-    position: relative;
-    height: 82%;
+  position: relative;
+  height: 82%;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    height: 78%;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    height: 78%;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    height: 85%;
+  }
 }
 
 ion-card {
-    position: absolute;
-    width: 90%;
-    margin-left: 5%;
-    //margin-right: 5%;
-    //text-align: center;
-    /* border-style: solid;
-    border-width: 0;
-    border-radius: 15px; */
-    --background: none;
-    box-shadow: none !important;
+  position: absolute;
+  width: 90%;
+  margin-left: 5%;
+  --background: none;
+  box-shadow: none !important;
 }
 
 .card-img {
-    object-fit: cover;
-    width: 100%;
-    background-color: white;
-    //height: 550px;
-    border-style: solid;
-    border-width: 0;
-    border-radius: 15px;
+  object-fit: cover;
+  width: 100%;
+  background-color: white;
+  border-style: solid;
+  border-width: 0;
+  border-radius: 15px;
 }
 
 .card-boton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .card-gradient {
-    position: absolute;
-    background: linear-gradient(0deg, rgba(255, 79, 1, 1) 0%, rgba(255, 255, 255, 0) 25%);
-    width: 100%;
-    height: 100%;
-    border-style: solid;
-    border-width: 0;
-    border-radius: 15px;
-    top: 0;
+  position: absolute;
+  background: linear-gradient(0deg, rgba(255, 79, 1, 1) 0%, rgba(255, 255, 255, 0) 25%);
+  width: 100%;
+  height: 100%;
+  border-style: solid;
+  border-width: 0;
+  border-radius: 15px;
+  top: 0;
 }
 
 .menuBtn {
-    font-size: 18px;
-    background: var(--ion-color-blanco);
-    height: 48px;
-    width: 50px;
-    color: var(--ion-color-negro);
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 15px;
+  font-size: 18px;
+  background: var(--ion-color-blanco);
+  height: 48px;
+  width: 50px;
+  color: var(--ion-color-negro);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 15px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 14px;
+    height: 38px;
+    width: 40px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 14px;
+    height: 38px;
+    width: 40px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 20px;
+    height: 54px;
+    width: 60px;
+  }
 }
 
 .menuIcon {
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .card-title {
-    position: absolute;
-    font-family: 'Sk-Modernist-Bold';
-    font-size: 30px;
-    color: var(--ion-color-blanco);
-    bottom: 50px;
-    left: 15px;
+  position: absolute;
+  font-family: 'Sk-Modernist-Bold';
+  font-size: 30px;
+  color: var(--ion-color-blanco);
+  bottom: 50px;
+  left: 15px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 24px;
+    bottom: 40px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 24px;
+    bottom: 40px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 34px;
+    bottom: 60px;
+  }
 }
 
 .card-subtitle {
-    position: absolute;
-    font-family: 'Sk-Modernist-Regular';
-    font-size: 18px;
-    color: var(--ion-color-blanco);
-    bottom: 25px;
-    left: 15px;
+  position: absolute;
+  font-family: 'Sk-Modernist-Regular';
+  font-size: 18px;
+  color: var(--ion-color-blanco);
+  bottom: 25px;
+  left: 15px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 14px;
+    bottom: 20px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 14px;
+    bottom: 20px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 20px;
+    bottom: 30px;
+  }
 }
 
 .card-start {
-    position: absolute;
-    width: 13px;
-    bottom: 25px;
+  position: absolute;
+  width: 13px;
+  bottom: 25px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    width: 10px;
+    bottom: 20px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    width: 10px;
+    bottom: 20px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    width: 15px;
+    bottom: 30px;
+  }
 }
 
 .card-ratings {
-    position: absolute;
-    font-family: 'Sk-Modernist-Regular';
-    font-size: 12px;
-    color: var(--ion-color-blanco);
-    bottom: 25px;
-    right: 15px;
-    //right: 5%;
+  position: absolute;
+  font-family: 'Sk-Modernist-Regular';
+  font-size: 12px;
+  color: var(--ion-color-blanco);
+  bottom: 25px;
+  right: 15px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 10px;
+    bottom: 20px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 10px;
+    bottom: 20px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 14px;
+    bottom: 30px;
+  }
 }
 
 .card-like-dis {
-    position: absolute;
-    width: 26%;
-    top: 38%;
-    left: 38%;
+  position: absolute;
+  width: 26%;
+  top: 38%;
+  left: 38%;
 }
 
 .row-btn {
-    align-items: center;
-    text-align: center;
-    padding-left: 5%;
-    padding-right: 5%;
-    margin-top: 3%;
-    // padding-top: 1%;
+  align-items: center;
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .btn-small {
-    width: 60px;
+  width: 60px;
 }
 
 .btn-big {
-    width: 100px;
+  width: 100px;
 }
 
 //******** MODAL FILTER ***********//
 .header-filter {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .div-modal-g {
-    height: 75%;
+  height: 75%;
 }
 
 .div-modal {
-    height: 100%;
-    overflow-y: scroll;
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .listModal {
-    margin-top: 0;
-    padding-top: 0;
-    /* .ios {
-        margin-top: 8px;
-    } */
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .titleModal {
-    font-family: 'Sk-Modernist-Bold';
-    font-size: 22px;
+  font-family: 'Sk-Modernist-Bold';
+  font-size: 22px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 18px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 18px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 24px;
+  }
 }
 
 .clearModal {
-    font-family: 'Sk-Modernist-Bold';
-    font-size: 16px;
-    color: var(--ion-color-primary1);
-    padding-top: 14px;
-    //padding-right: 10px;
+  font-family: 'Sk-Modernist-Bold';
+  font-size: 16px;
+  color: var(--ion-color-primary1);
+  padding-top: 14px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 14px;
+    padding-top: 10px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 14px;
+    padding-top: 10px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 18px;
+    padding-top: 16px;
+  }
 }
 
 .text-h1 {
-    font-family: 'Sk-Modernist-Bold';
-    font-size: 16px;
-    color: var(--ion-color-negro);
-    /* margin-top: -10px;
-    margin-bottom: 0px; */
+  font-family: 'Sk-Modernist-Bold';
+  font-size: 16px;
+  color: var(--ion-color-negro);
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 14px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 14px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 18px;
+  }
 }
 
 .text-h1-2 {
-    font-family: 'Sk-Modernist-Regular';
-    font-size: 12px;
-    text-align: end;
-    color: var(--ion-color-gris1);
-    margin-top: 22px;
+  font-family: 'Sk-Modernist-Regular';
+  font-size: 12px;
+  text-align: end;
+  color: var(--ion-color-gris1);
+  margin-top: 22px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 10px;
+    margin-top: 18px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 10px;
+    margin-top: 18px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 14px;
+    margin-top: 25px;
+  }
 }
 
 ion-item {
-    --background: var(--ion-color-blanco);
-    --color: var(--ion-color-negro);
-    --color-focused: var(--ion-color-negro);
-    --border-width: 1px !important;
-    --border-radius: 15px;
-    --border-color: var(--ion-color-negro);
-    //--padding-bottom: 0px; 
-    --padding-start: 15px;
-    --highlight-color-invalid: none;
-    --highlight-color-valid: none;
-    --highlight-color-focused: none !important;
-    /* margin-top: 30px;
-    margin-bottom: 70px; */
+  --background: var(--ion-color-blanco);
+  --color: var(--ion-color-negro);
+  --color-focused: var(--ion-color-negro);
+  --border-width: 1px !important;
+  --border-radius: 15px;
+  --border-color: var(--ion-color-negro);
+  --padding-start: 15px;
+  --highlight-color-invalid: none;
+  --highlight-color-valid: none;
+  --highlight-color-focused: none !important;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    --padding-start: 12px;
+    --border-radius: 12px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    --padding-start: 12px;
+    --border-radius: 12px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    --padding-start: 18px;
+    --border-radius: 18px;
+  }
 }
 
 ion-select {
-    font-family: 'Sk-Modernist-Regular';
-    font-size: 16px;
-    --padding-end: 0px;
+  font-family: 'Sk-Modernist-Regular';
+  font-size: 16px;
+  --padding-end: 0px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 14px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 14px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 18px;
+  }
 }
 
 ion-select::part(icon) {
-    display: none !important;
+  display: none !important;
 }
 
 .rangePersonal {
-    --bar-background: var(--ion-color-gris1);
-    --bar-background-active: var(--ion-color-primary1);
-    --bar-height: 5px;
-    --knob-size: 28px;
-    --knob-border-radius: 50%;
-    --bar-border-radius: 20px;
-    --knob-background: var(--ion-color-primary1);
-    --knob-box-shadow: 0px 0px 0px 3px #fff;
-    padding-top: 0;
-    padding-bottom: 0;
+  --bar-background: var(--ion-color-gris1);
+  --bar-background-active: var(--ion-color-primary1);
+  --bar-height: 5px;
+  --knob-size: 28px;
+  --knob-border-radius: 50%;
+  --bar-border-radius: 20px;
+  --knob-background: var(--ion-color-primary1);
+  --knob-box-shadow: 0px 0px 0px 3px #fff;
+  padding-top: 0;
+  padding-bottom: 0;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    --bar-height: 4px;
+    --knob-size: 22px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    --bar-height: 4px;
+    --knob-size: 22px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    --bar-height: 6px;
+    --knob-size: 32px;
+  }
 }
 
 .text-subtitle {
-    font-family: 'Sk-Modernist-Bold';
-    font-size: 18px;
-    color: var(--ion-color-negro);
-    margin-bottom: -10px;
+  font-family: 'Sk-Modernist-Bold';
+  font-size: 18px;
+  color: var(--ion-color-negro);
+  margin-bottom: -10px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 16px;
+    margin-bottom: -8px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 16px;
+    margin-bottom: -8px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 20px;
+    margin-bottom: -12px;
+  }
 }
 
 .apply-Bt {
-    display: block;
-    font-family: 'Sk-Modernist-Bold';
-    font-size: 15px;
-    text-transform: none;
-    width: 100%;
-    height: 45px;
-    --border-radius: 10px;
-    --box-shadow: none;
-    margin-top: 40px;
-    margin-bottom: 20px;
+  display: block;
+  font-family: 'Sk-Modernist-Bold';
+  font-size: 15px;
+  text-transform: none;
+  width: 100%;
+  height: 45px;
+  --border-radius: 10px;
+  --box-shadow: none;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 14px;
+    height: 40px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 14px;
+    height: 40px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 16px;
+    height: 50px;
+    margin-top: 50px;
+    margin-bottom: 25px;
+  }
 }
 
 .item-toggle {
-    font-family: 'Sk-Modernist-Bold';
-    font-size: 16px;
-    --detail-icon-color: var(--ion-color-primary1);
-    --border-width: 0 !important;
-    --padding-start: 10px;
-    --padding-end: 0px !important;
-    margin-right: -10px;
+  font-family: 'Sk-Modernist-Bold';
+  font-size: 16px;
+  --detail-icon-color: var(--ion-color-primary1);
+  --border-width: 0 !important;
+  --padding-start: 10px;
+  --padding-end: 0px !important;
+  margin-right: -10px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 14px;
+    --padding-start: 8px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 14px;
+    --padding-start: 8px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 18px;
+    --padding-start: 12px;
+  }
 }
 
 .toggleChk {
-    display: flex;
-    --background: var(--ion-color-gris1);
-    --background-checked: var(--ion-color-primary1);
-    --handle-background: var(--ion-color-blanco);
-    --handle-background-checked: var(--ion-color-blanco);
-    --handle-spacing: 2px;
-    --handle-height: 25px;
-    --handle-width: 25px;
-    width: 50px;
-    height: 30px;
-    padding: 0;
-    padding-right: 0;
-    border: 0.6px solid var(--ion-color-blanco);
-    border-radius: 18px;
+  display: flex;
+  --background: var(--ion-color-gris1);
+  --background-checked: var(--ion-color-primary1);
+  --handle-background: var(--ion-color-blanco);
+  --handle-background-checked: var(--ion-color-blanco);
+  --handle-spacing: 2px;
+  --handle-height: 25px;
+  --handle-width: 25px;
+  width: 50px;
+  height: 30px;
+  padding: 0;
+  padding-right: 0;
+  border: 0.6px solid var(--ion-color-blanco);
+  border-radius: 18px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    --handle-height: 20px;
+    --handle-width: 20px;
+    width: 40px;
+    height: 25px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    --handle-height: 20px;
+    --handle-width: 20px;
+    width: 40px;
+    height: 25px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    --handle-height: 28px;
+    --handle-width: 28px;
+    width: 60px;
+    height: 35px;
+  }
 }
 
 .divNoFound {
-    height: 100%;
+  height: 100%;
 }
 
 .imgNoFound {
-    display: block;
-    width: 35%;
-    margin-top: 35%;
-    margin-left: auto;
-    margin-right: auto;
+  display: block;
+  width: 35%;
+  margin-top: 35%;
+  margin-left: auto;
+  margin-right: auto;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    width: 30%;
+    margin-top: 30%;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    width: 30%;
+    margin-top: 30%;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    width: 40%;
+    margin-top: 40%;
+  }
 }
 
 .pNoFoundRegular {
-    text-align: center;
-    font-family: 'Sk-Modernist-Regular';
-    font-size: 16px;
-    margin: 30px 20px 0 20px;
+  text-align: center;
+  font-family: 'Sk-Modernist-Regular';
+  font-size: 16px;
+  margin: 30px 20px 0 20px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 14px;
+    margin: 20px 15px 0 15px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 14px;
+    margin: 20px 15px 0 15px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 18px;
+    margin: 40px 25px 0 25px;
+  }
 }
 
 .pNoFound {
-    text-align: center;
-    font-family: 'Sk-Modernist-Bold';
-    font-size: 18px;
-    margin: 30px 20px 0 20px;
+  text-align: center;
+  font-family: 'Sk-Modernist-Bold';
+  font-size: 18px;
+  margin: 30px 20px 0 20px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    font-size: 16px;
+    margin: 20px 15px 0 15px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    font-size: 16px;
+    margin: 20px 15px 0 15px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    font-size: 20px;
+    margin: 40px 25px 0 25px;
+  }
 }
 
 .skeleton-container {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    gap: 12px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    gap: 12px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    gap: 20px;
+  }
 }
 
 .skeleton-img {
-    width: 100%;
-    //height: 500px;
-    border-radius: 8px;
+  width: 100%;
+  border-radius: 8px;
 }
 
 .skeleton-buttons {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 8px 0;
-    margin-top: 40px;
-    
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 0;
+  margin-top: 40px;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    padding: 6px 0;
+    margin-top: 30px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    padding: 6px 0;
+    margin-top: 30px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    padding: 10px 0;
+    margin-top: 50px;
+  }
 }
 
 .skeleton-btnT {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    width: 50px;
+    height: 50px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    width: 50px;
+    height: 50px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    width: 70px;
+    height: 70px;
+  }
 }
 
 .skeleton-btnL {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    width: 70px;
+    height: 70px;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    width: 70px;
+    height: 70px;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+ion-footer {
+  position: fixed;
+//   bottom: 0;
+  width: 100%;
+  background: var(--ion-color-blanco);
+  border-top: 1px solid #eee;
+  padding: 10px 0;
+  @media screen and (min-width: 768px) {
+    padding: 15px 0;
+  }
+  /* Smaller height */
+  @media screen and (max-height: 600px) and (min-height: 400px) {
+    padding: 8px 0;
+  }
+  /* Width 400-500px and Height 500-700px */
+  @media screen and (max-width: 500px) and (min-width: 400px) and (max-height: 700px) and (min-height: 500px) {
+    padding: 8px 0;
+  }
+  /* Larger height */
+  @media screen and (min-height: 800px) {
+    padding: 12px 0;
+  }
 }

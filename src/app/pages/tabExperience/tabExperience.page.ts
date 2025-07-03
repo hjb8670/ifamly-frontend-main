@@ -114,7 +114,11 @@ export class TabExperiencePage {
     this.experienceCat = <Catalog[]> await this.userService.getCatalogo(constants.catalogs.ExperienceCat.toString(), this.lanCatalogo);
     console.log('CAT EXP: ', this.experienceCat);
 
+    // Reset all pagination and category state
     this.iniExp = 0;
+    this.cateExp = null;
+    this.experiences = [];
+    
     const preloadImages = async (experiences) => {
       const imageUrls = experiences.map((exp) => exp.image);
       const promises = imageUrls.map((url) => {
@@ -128,18 +132,41 @@ export class TabExperiencePage {
       await Promise.all(promises);
     };
     
-    // Usage
-    this.experiences = (
-      <Experience[]>await this.getExperiences()
-    )
-      .filter(exp => new Date(exp.dateTime).getTime() >= Date.now()) // filter out past events
-      .sort((a, b) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()); // sort soonest to latest
-    
-    this.filteredExperiences = [...this.experiences];
+    // Load initial batch of experiences
+    await this.loadInitialExperiences();
     await preloadImages(this.experiences);
-    // Now, images should be cached, and blinking should be minimized
+    
     console.log('EXPERIENCIES: ', this.experiences);
     this.uiService.hideLoader();
+  }
+
+  private async loadInitialExperiences() {
+    // Load experiences in batches until we have a good initial set
+    let hasMore = true;
+    
+    while (hasMore && this.experiences.length < 20) { // Load at least 20 experiences initially
+      const newExperiences = await this.getProcessedExperiences();
+      
+      if (newExperiences.length === 0) {
+        hasMore = false;
+      } else {
+        this.experiences.push(...newExperiences);
+        this.iniExp += this.deltaExp;
+      }
+    }
+    
+    this.filteredExperiences = [...this.experiences];
+    
+    // Reset pagination for infinite scroll
+    this.iniExp = this.experiences.length;
+  }
+
+  private async getProcessedExperiences(): Promise<Experience[]> {
+    const rawExperiences = <Experience[]>await this.getExperiences();
+    
+    return rawExperiences
+      .filter(exp => new Date(exp.dateTime).getTime() >= Date.now()) // filter out past events
+      .sort((a, b) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()); // sort soonest to latest
   }
 
   async setAvatarImg(experience: Experience[]) {
@@ -176,23 +203,47 @@ export class TabExperiencePage {
   }
 
   async optionSelected(ev: any) {
-    this.cateExp = Number(ev.detail.value);
-    this.filteredExperiences = <Experience[]> await this.getExperiences();
-    console.log('EXPERIENCIES: ', this.filteredExperiences);
+    // Show loader for category change
+    await this.uiService.showLoader();
+    
+    // Fix: Handle "all" case properly by setting cateExp to null
+    this.cateExp = ev.detail.value === 'all' ? null : Number(ev.detail.value);
+    
+    // Reset everything for new category
+    this.iniExp = 0;
+    this.experiences = [];
+    this.filteredExperiences = [];
+    
+    // Re-enable infinite scroll in case it was disabled
+    if (this.infiniteScroll) {
+      this.infiniteScroll.disabled = false;
+    }
+    
+    // Load initial batch for the selected category
+    await this.loadInitialExperiences();
+    
+    console.log('EXPERIENCIES: ', this.experiences);
+    console.log('Selected category: ', this.cateExp);
+    
+    this.uiService.hideLoader();
   }
 
   async loadExp(ev: any){
-    this.iniExp += this.deltaExp;
-    const newExp = <Experience[]> await this.getExperiences();
-    await setTimeout(() => {
+    const currentLength = this.experiences.length;
+    const newExp = await this.getProcessedExperiences();
+    
+    setTimeout(() => {
       if(newExp.length < 1) {
-        this.iniExp -= this.deltaExp;
+        // No more experiences to load
         this.infiniteScroll.disabled = true;
       } else {
+        // Add new experiences and update filtered list
         this.experiences.push(...newExp);
+        this.filteredExperiences = [...this.experiences];
+        this.iniExp += this.deltaExp;
       }
       this.infiniteScroll.complete();
-    });
+    }, 100);
   }
 
   async getExperiences(): Promise<Experience[]> {

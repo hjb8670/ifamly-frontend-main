@@ -8,9 +8,14 @@
     </p>
 
     <ion-button expand="block" class="allow-btn" (click)="allowNotifications()">
-      Allow notifications
+      <ng-container *ngIf="!loading">
+        {{ 'LOGIN.allowbtn' | translate }}
+      </ng-container>
+      <ng-container *ngIf="loading">
+        <ion-spinner name="dots" color="light"></ion-spinner>
+      </ng-container>
     </ion-button>
 
-    <ion-button fill="clear" class="skip-btn" (click)="skip()">Skip</ion-button>
+    <ion-button fill="clear" class="skip-btn" (click)="skip()"> {{ 'LOGIN.skipp' | translate }}</ion-button>
   </div>
 </ion-content>

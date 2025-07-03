@@ -120,6 +120,7 @@ export class MyMobilePage implements OnInit {
     const user: User = {
       phone: '',
     };
+    this.userService.setUserr(user);
     this.router.navigate(['profile-details'], navegationExtras);
   }
 
@@ -135,6 +136,7 @@ export class MyMobilePage implements OnInit {
       this.uiService.alertOK(this.translate.instant('MY-MOBILE.msgErrMobile'));
       return;
     }
+    console.log(this.mobile.value);
 
     let navegationExtras: NavigationExtras = {
       state: {
@@ -145,12 +147,21 @@ export class MyMobilePage implements OnInit {
         mobile: this.selectedCodePhone + this.mobile.value //this.mobile.value['internationalNumber']
       }
     }
-    const user: User = {
-      phone: this.selectedCodePhone + this.mobile.value,
-    };
+    if(this.mobile.value !== ''){
+      const user: User = {
+        phone: this.selectedCodePhone + this.mobile.value,
+      };
+      this.userService.setUserr(user);
+    }else{
+      const user: User = {
+        phone: '',
+      };
+      this.userService.setUserr(user);
+    }
+   
 
     // Save it somewhere accessible (like a service or localStorage)
-    this.userService.setUserr(user);
+ 
     
     // Store OAuth provider info if available
     if (this.rs && (this.rs === 'google' || this.rs === 'apple')) {

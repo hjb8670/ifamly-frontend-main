@@ -69,7 +69,7 @@ async createInbox() {
     );
 
     this.inbox = await this.session.createInbox({
-      selected: this.session.getOrCreateConversation(this.idConversation),
+     // selected: this.session.getOrCreateConversation(this.idConversation),
       theme: 'ifamily' // <- make sure you have this theme in dashboard
     });
 

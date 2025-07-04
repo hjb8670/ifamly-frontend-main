@@ -131,6 +131,7 @@ let TabExperiencePage = class TabExperiencePage {
     this.lanDate = 'en_US';
     this.mostrarLoginFinito = true;
     this.showfilter = false;
+    this.loadedExperienceIds = new Set(); // Track loaded experience IDs
     this.activatedRoute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.isMyExp = this.router.getCurrentNavigation().extras.state.isMyExp;
@@ -187,7 +188,11 @@ let TabExperiencePage = class TabExperiencePage {
       //PAra que sirve este catalogo ?
       _this2.experienceCat = yield _this2.userService.getCatalogo(src_environments_constants__WEBPACK_IMPORTED_MODULE_4__.constants.catalogs.ExperienceCat.toString(), _this2.lanCatalogo);
       console.log('CAT EXP: ', _this2.experienceCat);
+      // Reset all pagination and category state
       _this2.iniExp = 0;
+      _this2.cateExp = null;
+      _this2.experiences = [];
+      _this2.loadedExperienceIds.clear(); // Clear the set of loaded IDs
       const preloadImages = /*#__PURE__*/function () {
         var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (experiences) {
           const imageUrls = experiences.map(exp => exp.image);
@@ -205,22 +210,59 @@ let TabExperiencePage = class TabExperiencePage {
           return _ref.apply(this, arguments);
         };
       }();
-      // Usage
-      _this2.experiences = (yield _this2.getExperiences()).filter(exp => new Date(exp.dateTime).getTime() >= Date.now()) // filter out past events
-      .sort((a, b) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()); // sort soonest to latest
-      _this2.filteredExperiences = [..._this2.experiences];
+      // Load initial batch of experiences
+      yield _this2.loadInitialExperiences();
       yield preloadImages(_this2.experiences);
-      // Now, images should be cached, and blinking should be minimized
       console.log('EXPERIENCIES: ', _this2.experiences);
       _this2.uiService.hideLoader();
     })();
   }
-  setAvatarImg(experience) {
+  loadInitialExperiences() {
     var _this3 = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      // Load experiences in batches until we have a good initial set
+      let hasMore = true;
+      let consecutiveEmptyBatches = 0;
+      const maxEmptyBatches = 3; // Stop after 3 consecutive empty batches
+      while (hasMore && _this3.experiences.length < 30 && consecutiveEmptyBatches < maxEmptyBatches) {
+        const newExperiences = yield _this3.getProcessedExperiences();
+        if (newExperiences.length === 0) {
+          consecutiveEmptyBatches++;
+          _this3.iniExp += _this3.deltaExp; // Still increment to avoid infinite loop
+        } else {
+          consecutiveEmptyBatches = 0;
+          // Filter out duplicates using experienceId
+          const uniqueNewExperiences = newExperiences.filter(exp => {
+            if (_this3.loadedExperienceIds.has(exp.experienceId)) {
+              return false; // Skip duplicate
+            }
+            _this3.loadedExperienceIds.add(exp.experienceId);
+            return true;
+          });
+          if (uniqueNewExperiences.length > 0) {
+            _this3.experiences.push(...uniqueNewExperiences);
+          }
+          _this3.iniExp += _this3.deltaExp;
+        }
+      }
+      _this3.filteredExperiences = [..._this3.experiences];
+      console.log(`Loaded ${_this3.experiences.length} unique experiences`);
+    })();
+  }
+  getProcessedExperiences() {
+    var _this4 = this;
+    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const rawExperiences = yield _this4.getExperiences();
+      return rawExperiences.filter(exp => new Date(exp.dateTime).getTime() >= Date.now()) // filter out past events
+      .sort((a, b) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()); // sort soonest to latest
+    })();
+  }
+  setAvatarImg(experience) {
+    var _this5 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       for (const exp of experience) {
         exp.image = '../../../assets/icon/30-Default_no-image.jpeg';
-        const res_imgs = yield _this3.experienceService.getIMGS(exp.experienceId.toString());
+        const res_imgs = yield _this5.experienceService.getIMGS(exp.experienceId.toString());
         for (const img of res_imgs) {
           if (img.avatar) {
             exp.image = img.multimediaUrl;
@@ -230,13 +272,13 @@ let TabExperiencePage = class TabExperiencePage {
     })();
   }
   openMenuPopover(ev) {
-    var _this4 = this;
+    var _this6 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const popover = yield _this4.popoverCtrl.create({
+      const popover = yield _this6.popoverCtrl.create({
         component: _experience_experience_menu_popover_experience_menu_popover_page__WEBPACK_IMPORTED_MODULE_3__.ExperienceMenuPopoverPage,
         event: ev,
         componentProps: {
-          isMyExp: _this4.isMyExp
+          isMyExp: _this6.isMyExp
         }
       });
       /* popover.onDidDismiss().then((result: object) => {
@@ -250,40 +292,71 @@ let TabExperiencePage = class TabExperiencePage {
     this.isBigList = !this.isBigList;
   }
   optionSelected(ev) {
-    var _this5 = this;
+    var _this7 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this5.cateExp = Number(ev.detail.value);
-      _this5.filteredExperiences = yield _this5.getExperiences();
-      console.log('EXPERIENCIES: ', _this5.filteredExperiences);
+      // Show loader for category change
+      yield _this7.uiService.showLoader();
+      // Fix: Handle "all" case properly by setting cateExp to null
+      _this7.cateExp = ev.detail.value === 'all' ? null : Number(ev.detail.value);
+      // Reset everything for new category
+      _this7.iniExp = 0;
+      _this7.experiences = [];
+      _this7.filteredExperiences = [];
+      _this7.loadedExperienceIds.clear(); // Clear the set of loaded IDs
+      // Re-enable infinite scroll in case it was disabled
+      if (_this7.infiniteScroll) {
+        _this7.infiniteScroll.disabled = false;
+      }
+      // Load initial batch for the selected category
+      yield _this7.loadInitialExperiences();
+      console.log('EXPERIENCIES: ', _this7.experiences);
+      console.log('Selected category: ', _this7.cateExp);
+      _this7.uiService.hideLoader();
     })();
   }
   loadExp(ev) {
-    var _this6 = this;
+    var _this8 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this6.iniExp += _this6.deltaExp;
-      const newExp = yield _this6.getExperiences();
-      yield setTimeout(() => {
+      const newExp = yield _this8.getProcessedExperiences();
+      setTimeout(() => {
         if (newExp.length < 1) {
-          _this6.iniExp -= _this6.deltaExp;
-          _this6.infiniteScroll.disabled = true;
+          // No more experiences to load
+          _this8.infiniteScroll.disabled = true;
         } else {
-          _this6.experiences.push(...newExp);
+          // Filter out duplicates using experienceId
+          const uniqueNewExperiences = newExp.filter(exp => {
+            if (_this8.loadedExperienceIds.has(exp.experienceId)) {
+              return false; // Skip duplicate
+            }
+            _this8.loadedExperienceIds.add(exp.experienceId);
+            return true;
+          });
+          if (uniqueNewExperiences.length > 0) {
+            // Add new unique experiences and update filtered list
+            _this8.experiences.push(...uniqueNewExperiences);
+            _this8.filteredExperiences = [..._this8.experiences];
+          }
+          _this8.iniExp += _this8.deltaExp;
+          // If no new unique experiences were added, disable infinite scroll
+          if (uniqueNewExperiences.length === 0) {
+            _this8.infiniteScroll.disabled = true;
+          }
         }
-        _this6.infiniteScroll.complete();
-      });
+        _this8.infiniteScroll.complete();
+      }, 100);
     })();
   }
   getExperiences() {
-    var _this7 = this;
+    var _this9 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       let exps;
-      if (_this7.isMyExp) {
-        exps = yield _this7.experienceService.getMyExperiences(_this7.iniExp.toString(), _this7.deltaExp.toString(), _this7.cateExp);
+      if (_this9.isMyExp) {
+        exps = yield _this9.experienceService.getMyExperiences(_this9.iniExp.toString(), _this9.deltaExp.toString(), _this9.cateExp);
       } else {
-        exps = yield _this7.experienceService.getExperiences(_this7.iniExp.toString(), _this7.deltaExp.toString(), _this7.user.location, _this7.cateExp);
+        exps = yield _this9.experienceService.getExperiences(_this9.iniExp.toString(), _this9.deltaExp.toString(), _this9.user.location, _this9.cateExp);
         //  debugger;
       }
-      yield _this7.setAvatarImg(exps);
+      yield _this9.setAvatarImg(exps);
       return exps;
     })();
   }

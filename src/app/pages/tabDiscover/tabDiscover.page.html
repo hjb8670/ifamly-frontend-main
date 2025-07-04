@@ -27,7 +27,7 @@
           <img class="profile-avatar" [src]="usr.image?.multimediaUrl || 'assets/icon/30-Default_no-image.jpeg'"/>
         </div>
         <ion-card-content>
-          <h2 class="profile-name">{{ usr.firstName }} {{ usr.lastName }}, {{ usr.age }}</h2>
+          <h2 class="profile-name">{{ usr.firstName }}, {{ usr.age }}</h2>
           <p class="profile-description">{{ usr.aboutMe }}</p>
 
           <div class="profile-info-block" *ngIf="usr.hobbies?.length">

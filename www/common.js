@@ -168,12 +168,14 @@ let TalkService = class TalkService {
       return new talkjs__WEBPACK_IMPORTED_MODULE_1__["default"].User(userId);
     })();
   }
-  createCurrentSession(idUsuario, nombre) {
+  createCurrentSession(idUsuario, firstName) {
     var _this = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       yield talkjs__WEBPACK_IMPORTED_MODULE_1__["default"].ready;
-      _this.currentUser = yield _this.getUser(idUsuario);
-      //Traer el appId desde BD 
+      _this.currentUser = new talkjs__WEBPACK_IMPORTED_MODULE_1__["default"].User({
+        id: idUsuario,
+        name: firstName // This is what TalkJS shows by default
+      });
       _this.session = new talkjs__WEBPACK_IMPORTED_MODULE_1__["default"].Session({
         appId: 't79Ku1zV',
         me: _this.currentUser
@@ -189,6 +191,7 @@ let TalkService = class TalkService {
         return null;
       }
       const conversation = _this2.session.getOrCreateConversation(idConversation);
+      console.log(conversation);
       // conversation.setParticipant(this.currentUser);
       // conversation.setParticipant(otherUser);
       return conversation;
@@ -370,43 +373,6 @@ __webpack_require__.r(__webpack_exports__);
 const Camera = (0,_capacitor_core__WEBPACK_IMPORTED_MODULE_0__.registerPlugin)('Camera', {
   web: () => __webpack_require__.e(/*! import() */ "node_modules_capacitor_camera_dist_esm_web_js").then(__webpack_require__.bind(__webpack_require__, /*! ./web */ 58472)).then(m => new m.CameraWeb())
 });
-
-
-
-/***/ }),
-
-/***/ 60744:
-/*!*********************************************************************!*\
-  !*** ./node_modules/@capacitor/geolocation/dist/esm/definitions.js ***!
-  \*********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-
-
-/***/ }),
-
-/***/ 60416:
-/*!***************************************************************!*\
-  !*** ./node_modules/@capacitor/geolocation/dist/esm/index.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Geolocation: () => (/* binding */ Geolocation)
-/* harmony export */ });
-/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/core */ 3536);
-/* harmony import */ var _capacitor_synapse__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/synapse */ 88504);
-/* harmony import */ var _definitions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./definitions */ 60744);
-
-
-const Geolocation = (0,_capacitor_core__WEBPACK_IMPORTED_MODULE_0__.registerPlugin)('Geolocation', {
-  web: () => __webpack_require__.e(/*! import() */ "node_modules_capacitor_geolocation_dist_esm_web_js").then(__webpack_require__.bind(__webpack_require__, /*! ./web */ 25424)).then(m => new m.GeolocationWeb())
-});
-(0,_capacitor_synapse__WEBPACK_IMPORTED_MODULE_1__.exposeSynapse)();
 
 
 
@@ -2053,62 +2019,6 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 
 "use strict";
 module.exports = "<ion-list class=\"ion-padding\">\n  <ion-item   [ngClass]=\"{'itemSelected' : op1Selected}\" (click)=\"selectOp(0)\" lines=\"none\" style=\"margin-bottom: 10px;\" detail=\"false\" mode=\"ios\">\n    <ion-label [ngClass]=\"{'labelselected' : op1Selected}\" text-wrap [innerHtml]=\"(isMyExp ? 'EXPERIENCE.MenuOp12' : 'EXPERIENCE.MenuOp1') | translate\"></ion-label>\n  </ion-item>\n  <ion-item [ngClass]=\"{'itemSelected' : op2Selected}\" (click)=\"selectOp(1)\" lines=\"none\" detail=\"false\" mode=\"ios\">\n    <ion-label [ngClass]=\"{'labelselected' : op2Selected}\" text-wrap>\n      {{ 'EXPERIENCE.MenuOp2' | translate }}\n    </ion-label>\n  </ion-item>\n</ion-list>\n";
-
-/***/ }),
-
-/***/ 88504:
-/*!**********************************************************!*\
-  !*** ./node_modules/@capacitor/synapse/dist/synapse.mjs ***!
-  \**********************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   exposeSynapse: () => (/* binding */ y)
-/* harmony export */ });
-/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
-
-function s(t) {
-  t.CapacitorUtils.Synapse = new Proxy({}, {
-    get(e, o) {
-      return new Proxy({}, {
-        get(w, r) {
-          return (c, p, n) => {
-            const i = t.Capacitor.Plugins[o];
-            if (i === void 0) {
-              n(new Error(`Capacitor plugin ${o} not found`));
-              return;
-            }
-            if (typeof i[r] != "function") {
-              n(new Error(`Method ${r} not found in Capacitor plugin ${o}`));
-              return;
-            }
-            (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-              try {
-                const a = yield i[r](c);
-                p(a);
-              } catch (a) {
-                n(a);
-              }
-            })();
-          };
-        }
-      });
-    }
-  });
-}
-function u(t) {
-  t.CapacitorUtils.Synapse = new Proxy({}, {
-    get(e, o) {
-      return t.cordova.plugins[o];
-    }
-  });
-}
-function y(t = !1) {
-  window.CapacitorUtils = window.CapacitorUtils || {}, window.Capacitor !== void 0 && !t ? s(window) : window.cordova !== void 0 && u(window);
-}
-
 
 /***/ })
 

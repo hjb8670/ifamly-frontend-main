@@ -59,7 +59,7 @@ const routes = [{
   // canLoad: [ UserGuard ]
 }, {
   path: 'location',
-  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_pages_auth_location_location_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/auth/location/location.module */ 94139)).then(m => m.LocationPageModule)
+  loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_pages_auth_location_location_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/auth/location/location.module */ 94139)).then(m => m.LocationPageModule)
 }, {
   path: 'notification-prompt',
   loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_pages_auth_notification-prompt_notification-prompt_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/auth/notification-prompt/notification-prompt.module */ 78220)).then(m => m.NotificationPromptPageModule)
@@ -85,7 +85,7 @@ const routes = [{
   canLoad: [_guards_user_guard__WEBPACK_IMPORTED_MODULE_0__.UserGuard]
 }, {
   path: 'edit-account',
-  loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_pages_account_edit-account_edit-account_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/account/edit-account/edit-account.module */ 54292)).then(m => m.EditAccountPageModule)
+  loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_pages_account_edit-account_edit-account_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/account/edit-account/edit-account.module */ 54292)).then(m => m.EditAccountPageModule)
 }, {
   path: 'settings-account',
   loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_pages_account_settings-account_settings-account_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/account/settings-account/settings-account.module */ 97768)).then(m => m.SettingsAccountPageModule)

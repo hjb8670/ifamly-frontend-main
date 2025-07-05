@@ -139,9 +139,9 @@ let TabsPage = class TabsPage {
     //Talkjs
     this.unreadMessages = 0; // Contador de mensajes no leídos
     this.activeDiscover = true;
-    // Subscribe to tab changes
+    // Subscribe to tab changes: only update UI, do not call setActiveTab
     this.tabService.currentTab$.subscribe(tab => {
-      this.changeIcon(tab);
+      this.updateActiveTabUI(tab);
     });
   }
   ngOnInit() {
@@ -152,56 +152,55 @@ let TabsPage = class TabsPage {
       _this.escucharTalkJS();
     })();
   }
-  changeIcon(page) {
-    var _this2 = this;
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      if (page == 'discover') {
-        _this2.activeExperience = false;
-        _this2.activeDiscover = true;
-        _this2.activeMatch = false;
-        _this2.activeMessage = false;
-        _this2.activeAccount = false;
-      } else if (page == 'match') {
-        _this2.activeExperience = false;
-        _this2.activeDiscover = false;
-        _this2.activeMatch = true;
-        _this2.activeMessage = false;
-        _this2.activeAccount = false;
-      } else if (page == 'experience') {
-        _this2.activeExperience = true;
-        _this2.activeDiscover = false;
-        _this2.activeMatch = false;
-        _this2.activeMessage = false;
-        _this2.activeAccount = false;
-      } else if (page == 'message') {
-        _this2.activeExperience = false;
-        _this2.activeDiscover = false;
-        _this2.activeMatch = false;
-        _this2.activeMessage = true;
-        _this2.activeAccount = false;
-      } else {
-        _this2.activeExperience = false;
-        _this2.activeDiscover = false;
-        _this2.activeMatch = false;
-        _this2.activeMessage = false;
-        _this2.activeAccount = true;
-      }
-      // Update the tab service
-      _this2.tabService.setActiveTab(page);
-    })();
+  updateActiveTabUI(page) {
+    if (page == 'discover') {
+      this.activeExperience = false;
+      this.activeDiscover = true;
+      this.activeMatch = false;
+      this.activeMessage = false;
+      this.activeAccount = false;
+    } else if (page == 'match') {
+      this.activeExperience = false;
+      this.activeDiscover = false;
+      this.activeMatch = true;
+      this.activeMessage = false;
+      this.activeAccount = false;
+    } else if (page == 'experience') {
+      this.activeExperience = true;
+      this.activeDiscover = false;
+      this.activeMatch = false;
+      this.activeMessage = false;
+      this.activeAccount = false;
+    } else if (page == 'message') {
+      this.activeExperience = false;
+      this.activeDiscover = false;
+      this.activeMatch = false;
+      this.activeMessage = true;
+      this.activeAccount = false;
+    } else {
+      this.activeExperience = false;
+      this.activeDiscover = false;
+      this.activeMatch = false;
+      this.activeMessage = false;
+      this.activeAccount = true;
+    }
+  }
+  // Only call setActiveTab when user clicks a tab
+  onTabClick(page) {
+    this.tabService.setActiveTab(page);
   }
   escucharTalkJS() {
-    var _this3 = this;
+    var _this2 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this3.session.unreads.onChange(conversations => {
-        _this3.unreadMessages = 0;
+      _this2.session.unreads.onChange(conversations => {
+        _this2.unreadMessages = 0;
         conversations.forEach(conver => {
-          if (_this3.unreadMessages >= 9) {
+          if (_this2.unreadMessages >= 9) {
             return;
           }
-          _this3.unreadMessages += conver.unreadMessageCount;
+          _this2.unreadMessages += conver.unreadMessageCount;
         });
-        _this3.cdr.detectChanges();
+        _this2.cdr.detectChanges();
       });
     })();
   }
@@ -316,7 +315,7 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-tabs>\n\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button tab=\"discover\" [ngClass]=\"{'border-tab' : activeDiscover}\" class=\"border-tab\" (click)=\"changeIcon('discover')\">\n      <ion-img *ngIf=\"activeDiscover\" src=\"../../../assets/icon/05-Discover_active.png\"></ion-img>\n      <ion-img *ngIf=\"!activeDiscover\" src=\"../../../assets/icon/05-Discover.png\"></ion-img>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"match\" [ngClass]=\"{'border-tab' : activeMatch}\" (click)=\"changeIcon('match')\">\n      <div class=\"red-dot\" *ngIf=\"matchService.newMatch\"></div>\n      <ion-img *ngIf=\"activeMatch\" src=\"../../../assets/icon/heart_active.png\"></ion-img>\n      <ion-img *ngIf=\"!activeMatch\" src=\"../../../assets/icon/heart.png\"></ion-img>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"experience\" [ngClass]=\"{'border-tab' : activeExperience}\" (click)=\"changeIcon('experience')\">\n      <ion-img *ngIf=\"activeExperience\" src=\"../../../assets/icon/04-Experince_active.png\"></ion-img>\n      <ion-img *ngIf=\"!activeExperience\" src=\"../../../assets/icon/04-Experince.png\"></ion-img>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"message\" [ngClass]=\"{'border-tab' : activeMessage}\" (click)=\"changeIcon('message')\">\n      <ion-img *ngIf=\"activeMessage\" src=\"../../../assets/icon/07-Messages_active.png\"></ion-img>\n      <ion-img *ngIf=\"!activeMessage\" src=\"../../../assets/icon/07-Message.png\"></ion-img>\n      <div *ngIf=\"unreadMessages !== 0\" class=\"numeroUnread\">{{unreadMessages}}</div>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"account\" [ngClass]=\"{'border-tab' : activeAccount}\" (click)=\"changeIcon('account')\">\n      <ion-img *ngIf=\"activeAccount\" src=\"../../../assets/icon/08-Account_active.png\"></ion-img>\n      <ion-img *ngIf=\"!activeAccount\" src=\"../../../assets/icon/08-Account.png\"></ion-img>\n    </ion-tab-button>\n  </ion-tab-bar>\n\n</ion-tabs>\n";
+module.exports = "<ion-tabs>\n\n  <ion-tab-bar slot=\"bottom\">\n    <ion-tab-button tab=\"discover\" [ngClass]=\"{'border-tab' : activeDiscover}\" class=\"border-tab\" (click)=\"onTabClick('discover')\">\n      <ion-img *ngIf=\"activeDiscover\" src=\"../../../assets/icon/05-Discover_active.png\"></ion-img>\n      <ion-img *ngIf=\"!activeDiscover\" src=\"../../../assets/icon/05-Discover.png\"></ion-img>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"match\" [ngClass]=\"{'border-tab' : activeMatch}\" (click)=\"onTabClick('match')\">\n      <div class=\"red-dot\" *ngIf=\"matchService.newMatch\"></div>\n      <ion-img *ngIf=\"activeMatch\" src=\"../../../assets/icon/heart_active.png\"></ion-img>\n      <ion-img *ngIf=\"!activeMatch\" src=\"../../../assets/icon/heart.png\"></ion-img>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"experience\" [ngClass]=\"{'border-tab' : activeExperience}\" (click)=\"onTabClick('experience')\">\n      <ion-img *ngIf=\"activeExperience\" src=\"../../../assets/icon/04-Experince_active.png\"></ion-img>\n      <ion-img *ngIf=\"!activeExperience\" src=\"../../../assets/icon/04-Experince.png\"></ion-img>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"message\" [ngClass]=\"{'border-tab' : activeMessage}\" (click)=\"onTabClick('message')\">\n      <ion-img *ngIf=\"activeMessage\" src=\"../../../assets/icon/07-Messages_active.png\"></ion-img>\n      <ion-img *ngIf=\"!activeMessage\" src=\"../../../assets/icon/07-Message.png\"></ion-img>\n      <div *ngIf=\"unreadMessages !== 0\" class=\"numeroUnread\">{{unreadMessages}}</div>\n    </ion-tab-button>\n\n    <ion-tab-button tab=\"account\" [ngClass]=\"{'border-tab' : activeAccount}\" (click)=\"onTabClick('account')\">\n      <ion-img *ngIf=\"activeAccount\" src=\"../../../assets/icon/08-Account_active.png\"></ion-img>\n      <ion-img *ngIf=\"!activeAccount\" src=\"../../../assets/icon/08-Account.png\"></ion-img>\n    </ion-tab-button>\n  </ion-tab-bar>\n\n</ion-tabs>\n";
 
 /***/ })
 

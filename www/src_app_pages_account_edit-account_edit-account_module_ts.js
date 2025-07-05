@@ -524,6 +524,43 @@ EditAccountPage = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([(0,_angula
 
 /***/ }),
 
+/***/ 60744:
+/*!*********************************************************************!*\
+  !*** ./node_modules/@capacitor/geolocation/dist/esm/definitions.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+
+/***/ }),
+
+/***/ 60416:
+/*!***************************************************************!*\
+  !*** ./node_modules/@capacitor/geolocation/dist/esm/index.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Geolocation: () => (/* binding */ Geolocation)
+/* harmony export */ });
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/core */ 3536);
+/* harmony import */ var _capacitor_synapse__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/synapse */ 88504);
+/* harmony import */ var _definitions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./definitions */ 60744);
+
+
+const Geolocation = (0,_capacitor_core__WEBPACK_IMPORTED_MODULE_0__.registerPlugin)('Geolocation', {
+  web: () => __webpack_require__.e(/*! import() */ "node_modules_capacitor_geolocation_dist_esm_web_js").then(__webpack_require__.bind(__webpack_require__, /*! ./web */ 25424)).then(m => new m.GeolocationWeb())
+});
+(0,_capacitor_synapse__WEBPACK_IMPORTED_MODULE_1__.exposeSynapse)();
+
+
+
+/***/ }),
+
 /***/ 20716:
 /*!******************************************************************************!*\
   !*** ./src/app/pages/account/edit-account/edit-account.page.scss?ngResource ***!
@@ -768,6 +805,62 @@ module.exports = ___CSS_LOADER_EXPORT___.toString();
 
 "use strict";
 module.exports = "<ion-header class=\"ion-no-border ion-padding\" color=\"blanco\" >\n  <ion-toolbar color=\"blanco\" >\n    <ion-buttons slot=\"start\">\n      <ion-icon name=\"chevron-back-outline\"  (click)=\"save()\"></ion-icon>\n    </ion-buttons>\n    <ion-title class=\"title_txt\" mode=\"ios\">{{ 'EDIT-ACCOUNT.TitleTxt' | translate }}</ion-title>\n    <ion-buttons slot=\"end\">\n      <!-- <ion-button class=\"save-Bt\" (click)=\"save()\">{{ 'EDIT-ACCOUNT.SaveTxt' | translate }}</ion-button> -->\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content color=\"blanco ion-padding\" fullscreen>\n  <form [formGroup]=\"editAccountForm\">\n    <ion-grid>\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitlePhoto' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-item lines=\"none\" detail (click)=\"setPhotoPrfile()\">\n        <ion-label text-wrap>{{ 'EDIT-ACCOUNT.PhotoText' | translate }}</ion-label>\n        <ion-label class=\"detailText\" slot=\"end\" text-wrap>{{ 'EDIT-ACCOUNT.ChangeText' | translate }}</ion-label>\n      </ion-item>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleLocation' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-item lines=\"none\" >\n        <ion-label class=\"label\">{{ 'EDIT-ACCOUNT.LabelLocGPS' | translate }}</ion-label>\n        <ion-toggle (click)=\"getCurrentPosition()\" class=\"toggleChk\" formControlName=\"locGPSToggle\"></ion-toggle>\n      </ion-item>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <!-- <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.LocationField' | translate }}</ion-label>  -->\n            <p>{{city}}, {{state}}, {{country}}</p>\n            <!-- <ion-input id=\"loc-trigger\" class=\"input-CItem\" [value]=\"location.value\" type=\"text\" inputmode=\"text\" ></ion-input> -->\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <!-- <ion-modal #modalLoc class=\"modal-loc\" [initialBreakpoint]=\"0.6\" [breakpoints]=\"[0.6, 0.6, 0.75]\" trigger=\"loc-trigger\">\n        <ng-template>\n          <ion-content class=\"content-cal\">\n            <ion-row class=\"contenedorLoc\">\n              <ion-col>\n                <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.country' | translate }}</p>\n              </ion-col>\n            </ion-row>\n            <ion-item class=\"ion-item-select contenedorLoc\" lines=\"none\" detail>\n              <ion-select formControlName=\"country\" [interfaceOptions]=\"customCountryOptions\" interface=\"action-sheet\" cancelText=\"Cancel\" (ionChange)=\"selectCountry()\">\n                <li *ngFor=\"let obj of countries\">\n                  <ion-select-option [value]=\"obj.id\">{{ obj.country }}</ion-select-option>\n                </li>\n              </ion-select>\n            </ion-item>\n            <ion-row class=\"contenedorLoc\">\n              <ion-col>\n                <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.state' | translate }}</p>\n              </ion-col>\n            </ion-row>\n            <ion-item class=\"ion-item-select contenedorLoc\" lines=\"none\" detail>\n              <ion-select formControlName=\"state\" [interfaceOptions]=\"customStateOptions\" interface=\"action-sheet\" cancelText=\"Cancel\" (ionChange)=\"selectState()\">\n                <li *ngFor=\"let obj of states\">\n                  <ion-select-option [value]=\"obj.id\">{{ obj.state }}</ion-select-option>\n                </li>\n              </ion-select>\n            </ion-item>\n            <ion-row class=\"contenedorLoc\">\n              <ion-col>\n                <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.city' | translate }}</p>\n              </ion-col>\n            </ion-row>\n            <ion-item class=\"ion-item-select contenedorLoc\" lines=\"none\" detail>\n              <ion-select formControlName=\"city\" [interfaceOptions]=\"customCityOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n                <li *ngFor=\"let obj of cities\">\n                  <ion-select-option [value]=\"obj.id\">{{ obj.city }}</ion-select-option>\n                </li>\n              </ion-select>\n            </ion-item>\n            <ion-button class=\"calInter-Bt\" color=\"blanco\"  color=\"primary1\" (click)=\"locationChange()\">{{ 'EDIT-ACCOUNT.btnSave' | translate }}</ion-button>\n          </ion-content>\n        </ng-template>\n      </ion-modal> -->\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleProfile' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.FName' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"fname\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.LName' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"lname\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n       <!-- <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'ABOUT-ME.Gender' | translate }}*</p>\n        </ion-col>\n      </ion-row>\n         <ion-item detail class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n               \n              <ion-select formControlName=\"gender_S\" [interfaceOptions]=\"customGenderOptions\" interface=\"action-sheet\"\n                placeholder=\"{{ 'ABOUT-ME.Gral_ph' | translate }}\" cancelText=\"Cancel\">\n                  <ion-select-option  *ngFor=\"let obj of genders\" [value]=\"obj.id\">{{ obj.name }}</ion-select-option>\n              </ion-select>\n            </ion-item> -->\n     \n      <ion-row> \n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.Title_iam' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-item class=\"ion-item-select\" lines=\"none\" detail>\n        <ion-select formControlName=\"iam_a\" [interfaceOptions]=\"customIamOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n          <li *ngFor=\"let obj of iams\">\n            <ion-select-option [value]=\"obj.id\">{{ obj.name.slice(1) }}</ion-select-option>\n          </li>\n        </ion-select>\n      </ion-item>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.Title_iam_a_looking_for' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-item class=\"ion-item-select\" lines=\"none\" detail>\n        <ion-select formControlName=\"iam_looking\"  [interfaceOptions]=\"customiam_lookingOptions\" interface=\"action-sheet\" cancelText=\"Cancel\">\n          <li *ngFor=\"let obj of iamlookings\">\n            <ion-select-option [value]=\"obj.id\">{{ obj.name.slice(1) }}</ion-select-option>\n          </li>\n        </ion-select>\n      </ion-item>\n      \n      <!-- <ion-row>\n        <ion-col>\n          <ion-button id=\"cal-trigger\" class=\"cal-Bt\"  color=\"primary1\">\n            <ion-img class=\"img-cal\" slot=\"start\" src=\"../../../../assets/icon/11-Calendar_white.png\"></ion-img>\n            <p class=\"text-cal\">{{ 'EDIT-ACCOUNT.TextCalBtn' | translate }}</p>\n            <p class=\"date-cal\">{{txtBirthDay}}</p>\n          </ion-button>\n        </ion-col>\n      </ion-row>\n      <ion-modal #modalC class=\"modal-cal\" [initialBreakpoint]=\"0.6\" [breakpoints]=\"[0.6, 0.6, 0.75]\" trigger=\"cal-trigger\">\n        <ng-template>\n          <ion-content class=\"content-cal\">\n            <ion-datetime\n              presentation=\"date\"\n              formControlName=\"bday\"\n              locale=\"{{ 'EDIT-ACCOUNT.lanCal' | translate }}\"\n              color=\"primary1\"\n              mode=\"ios\"\n            >\n              <span class=\"title-cal\" slot=\"title\">{{ 'EDIT-ACCOUNT.TitleCal' | translate }}</span>\n            </ion-datetime>\n            <ion-button class=\"calInter-Bt\" color=\"blanco\"  color=\"primary1\" (click)=\"setBirthday()\">{{ 'EDIT-ACCOUNT.btnSave' | translate }}</ion-button>\n          </ion-content>\n        </ng-template>\n      </ion-modal> -->\n      \n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleBio' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-item class=\"ion-item-long\" shape=\"round\" lines=\"none\" mode=\"md\">\n        <ion-textarea class=\"input-CItem\" formControlName=\"bio\" inputmode=\"text\" maxlength=\"500\" rows=\"6\" ></ion-textarea>\n      </ion-item>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleEducation' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col size=\"9\">\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.School' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"school\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n        <ion-col size=\"3\">\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.YearSchool' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"yearSchool\" type=\"number\" inputmode=\"numeric\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleWork' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.WorkTitle' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"workTitle\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.WorkCo' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"workCo\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n      <ion-row>\n        <ion-col>\n          <p class=\"txtTitle\">{{ 'EDIT-ACCOUNT.TitleMore' | translate }}</p>\n        </ion-col>\n      </ion-row>\n      <ion-item lines=\"none\" detail (click)=\"aboutMe()\">\n        <ion-label text-wrap>{{ 'EDIT-ACCOUNT.AboutMeText' | translate }}</ion-label>\n        <ion-label class=\"detailText\" slot=\"end\" text-wrap>{{ 'EDIT-ACCOUNT.ChangeText' | translate }}</ion-label>\n      </ion-item>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.Hometown' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"hometown\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n          <ion-item class=\"item-field\" fill=\"outline\" shape=\"round\" lines=\"none\" mode=\"md\">\n            <ion-label class=\"camposLabel-CItem\" position=\"floating\">{{ 'EDIT-ACCOUNT.Ethnicity' | translate }}</ion-label> \n            <ion-input class=\"input-CItem\" formControlName=\"ethnicity\" type=\"text\" inputmode=\"text\" ></ion-input>\n          </ion-item>\n        </ion-col>\n      </ion-row>\n\n\n    </ion-grid>\n  </form>\n</ion-content>\n";
+
+/***/ }),
+
+/***/ 88504:
+/*!**********************************************************!*\
+  !*** ./node_modules/@capacitor/synapse/dist/synapse.mjs ***!
+  \**********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   exposeSynapse: () => (/* binding */ y)
+/* harmony export */ });
+/* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
+
+function s(t) {
+  t.CapacitorUtils.Synapse = new Proxy({}, {
+    get(e, o) {
+      return new Proxy({}, {
+        get(w, r) {
+          return (c, p, n) => {
+            const i = t.Capacitor.Plugins[o];
+            if (i === void 0) {
+              n(new Error(`Capacitor plugin ${o} not found`));
+              return;
+            }
+            if (typeof i[r] != "function") {
+              n(new Error(`Method ${r} not found in Capacitor plugin ${o}`));
+              return;
+            }
+            (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+              try {
+                const a = yield i[r](c);
+                p(a);
+              } catch (a) {
+                n(a);
+              }
+            })();
+          };
+        }
+      });
+    }
+  });
+}
+function u(t) {
+  t.CapacitorUtils.Synapse = new Proxy({}, {
+    get(e, o) {
+      return t.cordova.plugins[o];
+    }
+  });
+}
+function y(t = !1) {
+  window.CapacitorUtils = window.CapacitorUtils || {}, window.Capacitor !== void 0 && !t ? s(window) : window.cordova !== void 0 && u(window);
+}
+
 
 /***/ })
 

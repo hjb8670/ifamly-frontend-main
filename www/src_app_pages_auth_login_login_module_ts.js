@@ -80,11 +80,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   LoginPage: () => (/* binding */ LoginPage)
 /* harmony export */ });
 /* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _login_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login.page.html?ngResource */ 87400);
 /* harmony import */ var _login_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./login.page.scss?ngResource */ 47144);
 /* harmony import */ var _login_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_login_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/core */ 94280);
 /* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/forms */ 71904);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ 24040);
@@ -111,7 +111,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginPage = class LoginPage {
-  constructor(formBuilder, router, translate, platform, uiService, userService, matchService, utilities, firebaseAuthService, googleSingInService) {
+  constructor(formBuilder, router, translate, platform, uiService, userService, matchService, utilities, zone, firebaseAuthService, googleSingInService) {
     this.formBuilder = formBuilder;
     this.router = router;
     this.translate = translate;
@@ -120,6 +120,7 @@ let LoginPage = class LoginPage {
     this.userService = userService;
     this.matchService = matchService;
     this.utilities = utilities;
+    this.zone = zone;
     this.firebaseAuthService = firebaseAuthService;
     this.googleSingInService = googleSingInService;
     this.verApp = 'v1.0.2 r20.03-3p';
@@ -148,6 +149,27 @@ let LoginPage = class LoginPage {
         message: 'msgErrReqPassword'
       }]
     };
+    // private async ValidaUsrGoogle(): Promise<boolean>{
+    //   this.idToken = await this.googleSingInService.refreshToken();
+    //   console.log('ID TOKEN - GOOGLE - ANT: ', this.idToken);
+    //   if (this.idToken !== null && this.idToken !== '' && this.idToken !== undefined) {
+    //     console.log('ID TOKEN - GOOGLE: ', this.idToken);
+    //     return await this.intoUser('google');
+    //   }
+    //   return false;
+    // }
+    // private async ValidaUsrApple(): Promise<boolean>{
+    //   try {
+    //     await this.firebaseAuthService.getIdToken({ forceRefresh: true }).then(async (idToken) => {
+    //       this.idToken = idToken;
+    //       console.log('ID TOKEN - APPLE:', this.idToken);
+    //       return await this.intoUser('apple');
+    //     });
+    //   } catch (error) {
+    //     console.log('ERROR AL OBTENER ID TOKEN - APPLE: ', error);
+    //   }
+    //   return false;
+    // }
     this.loading = false;
   }
   ngOnInit() {
@@ -161,16 +183,16 @@ let LoginPage = class LoginPage {
       userAgent: navigator.userAgent
     });
     // Initialize OAuth services for web platform
-    if (this.isWeb) {
-      console.log('Initializing OAuth services for web platform');
-      try {
-        this.googleSingInService.initialize();
-        this.firebaseAuthService.initialize();
-        console.log('OAuth services initialized successfully');
-      } catch (error) {
-        console.error('Failed to initialize OAuth services:', error);
-      }
-    }
+    // if (this.isWeb) {
+    //   console.log('Initializing OAuth services for web platform');
+    //   try {
+    //     this.googleSingInService.initialize();
+    //     this.firebaseAuthService.initialize();
+    //     console.log('OAuth services initialized successfully');
+    //   } catch (error) {
+    //     console.error('Failed to initialize OAuth services:', error);
+    //   }
+    // }
   }
   ionViewDidEnter() {
     var _this = this;
@@ -232,76 +254,42 @@ let LoginPage = class LoginPage {
       return false;
     })();
   }
-  ValidaUsrGoogle() {
+  singIn() {
     var _this3 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this3.idToken = yield _this3.googleSingInService.refreshToken();
-      console.log('ID TOKEN - GOOGLE - ANT: ', _this3.idToken);
-      if (_this3.idToken !== null && _this3.idToken !== '' && _this3.idToken !== undefined) {
-        console.log('ID TOKEN - GOOGLE: ', _this3.idToken);
-        return yield _this3.intoUser('google');
-      }
-      return false;
-    })();
-  }
-  ValidaUsrApple() {
-    var _this4 = this;
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      try {
-        yield _this4.firebaseAuthService.getIdToken({
-          forceRefresh: true
-        }).then( /*#__PURE__*/function () {
-          var _ref = (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (idToken) {
-            _this4.idToken = idToken;
-            console.log('ID TOKEN - APPLE:', _this4.idToken);
-            return yield _this4.intoUser('apple');
-          });
-          return function (_x) {
-            return _ref.apply(this, arguments);
-          };
-        }());
-      } catch (error) {
-        console.log('ERROR AL OBTENER ID TOKEN - APPLE: ', error);
-      }
-      return false;
-    })();
-  }
-  singIn() {
-    var _this5 = this;
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      _this5.loading = true;
+      _this3.loading = true;
       /* if(this.validaCampo(this.email, this.validation_messages.email)){
         return;
       } */
-      if (_this5.validaCampo(_this5.password, _this5.validation_messages.password)) {
-        _this5.loading = false;
+      if (_this3.validaCampo(_this3.password, _this3.validation_messages.password)) {
+        _this3.loading = false;
         return;
       }
-      yield _this5.uiService.showLoader();
+      yield _this3.uiService.showLoader();
       try {
-        const valido = yield _this5.userService.login(_this5.email.value, _this5.password.value);
+        const valido = yield _this3.userService.login(_this3.email.value, _this3.password.value);
         if (valido['ok']) {
           //this.navCtrl.navigateRoot( '/main/tabs/discover', { animated: true } );
-          _this5.userService.setUserRS(_this5.email.value, _this5.password.value, 'email');
-          yield _this5.goDiscovers();
+          _this3.userService.setUserRS(_this3.email.value, _this3.password.value, 'email');
+          yield _this3.goDiscovers();
         } else {
-          _this5.loading = false;
+          _this3.loading = false;
           if (valido['name'] === "HttpErrorResponse") {
-            if (valido['status'] === 401) _this5.uiService.alertOK(_this5.translate.instant('LOGIN.msgErrLogin'));else _this5.uiService.alertOK(_this5.translate.instant('LOGIN.msgErrCnx'));
+            if (valido['status'] === 401) _this3.uiService.alertOK(_this3.translate.instant('LOGIN.msgErrLogin'));else _this3.uiService.alertOK(_this3.translate.instant('LOGIN.msgErrCnx'));
           } else {
-            _this5.uiService.alertOK(_this5.translate.instant('LOGIN.msgErrLogin'));
+            _this3.uiService.alertOK(_this3.translate.instant('LOGIN.msgErrLogin'));
           }
         }
       } catch (err) {
-        _this5.loading = false;
+        _this3.loading = false;
         console.log('ERROR LOGIN: ', err);
-        _this5.uiService.alertOK(_this5.translate.instant('LOGIN.msgErrCnx'));
+        _this3.uiService.alertOK(_this3.translate.instant('LOGIN.msgErrCnx'));
       }
-      yield _this5.uiService.hideLoader();
+      yield _this3.uiService.hideLoader();
     })();
   }
   preLoadDis() {
-    var _this6 = this;
+    var _this4 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       try {
         const filter = {
@@ -321,8 +309,8 @@ let LoginPage = class LoginPage {
           religion: null,
           location: null
         };
-        let discoverU = yield _this6.matchService.getDiscoverProfiles("0", "10", filter);
-        yield _this6.setAvatarImg(discoverU);
+        let discoverU = yield _this4.matchService.getDiscoverProfiles("0", "10", filter);
+        yield _this4.setAvatarImg(discoverU);
         console.log('RE-LOAD DISCOVER_USR: ', discoverU);
         return discoverU;
       } catch (error) {
@@ -346,132 +334,118 @@ let LoginPage = class LoginPage {
     console.log("SING IN WITH FACEBOOK");
     this.uiService.alertOK(this.translate.instant('LOGIN.msgOtherSign'));
   }
-  singInGoogle() {
-    var _this7 = this;
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      console.log("SING IN WITH GOOGLE");
-      // Check if OAuth is available for current platform
-      if (!_this7.isMobile && !_this7.isWeb) {
-        _this7.uiService.alertOK('Google Sign-In is not available on this platform');
-        return;
-      }
-      let email_final = '';
-      let password_final = '';
-      try {
-        const usr = yield _this7.googleSingInService.loginViaGoogle();
-        if (usr === null) {
-          _this7.uiService.alertOK(_this7.translate.instant('LOGIN.msgErrGoogle'));
-          return;
-        }
-        let {
-          email,
-          password,
-          rs
-        } = yield _this7.userService.getUserRS();
-        console.log('EMAIL_SAVE: ', email);
-        console.log('PASSWORD_SAVE: ', password);
-        console.log('RS_SAVE: ', rs);
-        if (email === usr.email) {
-          email_final = email;
-          password_final = password;
-        } else {
-          email = '';
-          password = '';
-        }
-        if (email === null || password === null || email === '' || password === '') {
-          //Valida si el usuario ya esta registrado
-          const res = yield _this7.userService.existI(usr.email);
-          if (!res) {
-            //Si no esta registrado, se registra
-            _this7.goRegistro(usr.email, _this7.generateRandomPassword(), '', 'google');
-            return;
-          } else {
-            //Si esta registrado, se cambia password, se hace login y se guarda email y password
-            email_final = usr.email;
-            password_final = _this7.generateRandomPassword();
-            const resP = yield _this7.userService.upPas(usr.email, password_final);
-            if (resP) {
-              _this7.userService.setUserRS(email_final, password_final, 'google');
-            } else {
-              return;
-            }
-          }
-        }
-        const valido = yield _this7.userService.login(email_final, password_final);
-        if (valido['ok']) {
-          yield _this7.goDiscovers();
-        } else {
-          yield _this7.googleSingInService.logout();
-          _this7.uiService.alertOK(_this7.translate.instant('LOGIN.errRegistroMsg'));
-        }
-      } catch (error) {
-        console.log("Google Sign in Error", error);
-        _this7.uiService.alertOK(_this7.translate.instant('LOGIN.msgErrGoogle'));
-      }
-    })();
-  }
-  singInApple() {
-    var _this8 = this;
-    return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      console.log("SING IN WITH APPLE");
-      // Check if OAuth is available for current platform
-      if (!_this8.isMobile && !_this8.isWeb) {
-        _this8.uiService.alertOK('Apple Sign-In is not available on this platform');
-        return;
-      }
-      let email_final = '';
-      let password_final = '';
-      try {
-        const user = yield _this8.firebaseAuthService.signInWithApple();
-        console.log('USER APPLE: ', user);
-        let {
-          email,
-          password,
-          rs
-        } = yield _this8.userService.getUserRS();
-        console.log('EMAIL_SAVE: ', email);
-        console.log('PASSWORD_SAVE: ', password);
-        console.log('RS_SAVE: ', rs);
-        if (email === user.email) {
-          email_final = email;
-          password_final = password;
-        } else {
-          email = '';
-          password = '';
-        }
-        if (email === null || password === null || email === '' || password === '') {
-          //Valida si el usuario ya esta registrado
-          const res = yield _this8.userService.existI(user.email);
-          console.log('RES_EXIST: ', res);
-          if (!res) {
-            //Si no esta registrado, se registra
-            _this8.goRegistro(user.email, _this8.generateRandomPassword(), user.displayName, 'apple');
-            return;
-          } else {
-            //Si esta registrado, se cambia password, se hace login y se guarda email y password
-            email_final = user.email;
-            password_final = _this8.generateRandomPassword();
-            const resP = yield _this8.userService.upPas(user.email, password_final);
-            if (resP) {
-              _this8.userService.setUserRS(email_final, password_final, 'apple');
-            } else {
-              return;
-            }
-          }
-        }
-        const valido = yield _this8.userService.login(email_final, password_final);
-        if (valido['ok']) {
-          yield _this8.goDiscovers();
-        } else {
-          yield _this8.googleSingInService.logout();
-          _this8.uiService.alertOK(_this8.translate.instant('LOGIN.errRegistroMsg'));
-        }
-      } catch (error) {
-        console.log("Apple Sign in Error", error);
-        _this8.uiService.alertOK(_this8.translate.instant('LOGIN.msgErrApple'));
-      }
-    })();
-  }
+  // async singInGoogle() {
+  //   console.log("SING IN WITH GOOGLE");
+  //   // Check if OAuth is available for current platform
+  //   if (!this.isMobile && !this.isWeb) {
+  //     this.uiService.alertOK('Google Sign-In is not available on this platform');
+  //     return;
+  //   }
+  //   let email_final = '';
+  //   let password_final = '';
+  //   try {
+  //     const usr = await this.googleSingInService.loginViaGoogle();
+  //     if (usr === null) {
+  //       this.uiService.alertOK(this.translate.instant('LOGIN.msgErrGoogle'));
+  //       return;
+  //     }
+  //     let { email, password, rs } = await this.userService.getUserRS();
+  //     console.log('EMAIL_SAVE: ', email);
+  //     console.log('PASSWORD_SAVE: ', password);
+  //     console.log('RS_SAVE: ', rs);
+  //     if (email === usr.email) {
+  //       email_final = email;
+  //       password_final = password;
+  //     } else {
+  //       email = '';
+  //       password = '';
+  //     }
+  //     if (email === null || password === null || email === '' || password === '') {
+  //       //Valida si el usuario ya esta registrado
+  //       const res = await this.userService.existI(usr.email);
+  //       if (!res) {
+  //         //Si no esta registrado, se registra
+  //         this.goRegistro(usr.email, this.generateRandomPassword(), '', 'google');
+  //         return;
+  //       } else {
+  //         //Si esta registrado, se cambia password, se hace login y se guarda email y password
+  //         email_final = usr.email;
+  //         password_final = this.generateRandomPassword();
+  //         const resP = await this.userService.upPas(usr.email, password_final);
+  //         if (resP) {            
+  //           this.userService.setUserRS(email_final, password_final, 'google');
+  //         }else {
+  //           return
+  //         }
+  //       }
+  //     }
+  //     const valido = await this.userService.login(email_final, password_final);
+  //     if (valido['ok']) {
+  //       await this.goDiscovers();
+  //     } else {
+  //       await this.googleSingInService.logout();
+  //       this.uiService.alertOK(this.translate.instant('LOGIN.errRegistroMsg'));
+  //     }
+  //   } catch (error) {
+  //     console.log("Google Sign in Error", error);
+  //     this.uiService.alertOK(this.translate.instant('LOGIN.msgErrGoogle'));
+  //   }
+  // }
+  // async singInApple() {
+  //   console.log("SING IN WITH APPLE");
+  //   // Check if OAuth is available for current platform
+  //   if (!this.isMobile && !this.isWeb) {
+  //     this.uiService.alertOK('Apple Sign-In is not available on this platform');
+  //     return;
+  //   }
+  //   let email_final = '';
+  //   let password_final = '';
+  //   try {
+  //     const user = await this.firebaseAuthService.signInWithApple();
+  //     console.log('USER APPLE: ', user);
+  //     let { email, password, rs } = await this.userService.getUserRS();
+  //     console.log('EMAIL_SAVE: ', email);
+  //     console.log('PASSWORD_SAVE: ', password);
+  //     console.log('RS_SAVE: ', rs);
+  //     if (email === user.email) {
+  //       email_final = email;
+  //       password_final = password;
+  //     } else {
+  //       email = '';
+  //       password = '';
+  //     }
+  //     if (email === null || password === null || email === '' || password === '') {
+  //       //Valida si el usuario ya esta registrado
+  //       const res = await this.userService.existI(user.email);
+  //       console.log('RES_EXIST: ', res);
+  //       if (!res) {
+  //         //Si no esta registrado, se registra
+  //         this.goRegistro(user.email, this.generateRandomPassword(), user.displayName, 'apple');
+  //         return;
+  //       } else {
+  //         //Si esta registrado, se cambia password, se hace login y se guarda email y password
+  //         email_final = user.email;
+  //         password_final = this.generateRandomPassword();
+  //         const resP = await this.userService.upPas(user.email, password_final);
+  //         if (resP) {            
+  //           this.userService.setUserRS(email_final, password_final, 'apple');
+  //         }else {
+  //           return
+  //         }
+  //       }
+  //     }
+  //     const valido = await this.userService.login(email_final, password_final);
+  //     if (valido['ok']) {
+  //       await this.goDiscovers();
+  //     } else {
+  //       await this.googleSingInService.logout();
+  //       this.uiService.alertOK(this.translate.instant('LOGIN.errRegistroMsg'));
+  //     }
+  //   } catch (error) {
+  //     console.log("Apple Sign in Error", error);
+  //     this.uiService.alertOK(this.translate.instant('LOGIN.msgErrApple'));
+  //   }
+  // }
   generateRandomPassword() {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
     let password = '';
@@ -482,9 +456,9 @@ let LoginPage = class LoginPage {
     return password;
   }
   goRegistro(email, password, name, rs) {
-    var _this9 = this;
+    var _this5 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const res = yield _this9.utilities.getCountryISO();
+      const res = yield _this5.utilities.getCountryISO();
       console.log('RES: ', res);
       let contryISO = 'us';
       if (res['ok']) {
@@ -502,11 +476,11 @@ let LoginPage = class LoginPage {
           cISO: contryISO
         }
       };
-      _this9.router.navigate(['my-mobile'], navegationExtras);
+      _this5.router.navigate(['my-mobile'], navegationExtras);
     })();
   }
   params(parameters) {
-    var _this10 = this;
+    var _this6 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       let navegationExtras = {
         state: {
@@ -514,20 +488,22 @@ let LoginPage = class LoginPage {
           paramReturn: 'login'
         }
       };
-      _this10.router.navigate(['params'], navegationExtras);
+      _this6.router.navigate(['params'], navegationExtras);
     })();
   }
   goDiscovers() {
-    var _this11 = this;
+    var _this7 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const discoverUsrs = yield _this11.preLoadDis();
-      let navegationExtras = {
-        state: {
-          discoverUsrs
-        }
-      };
-      yield _this11.router.navigate(['/main/tabs/discover'], navegationExtras);
-      _this11.loading = false;
+      const discoverUsrs = yield _this7.preLoadDis();
+      _this7.zone.run( /*#__PURE__*/(0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+        let navegationExtras = {
+          state: {
+            discoverUsrs
+          }
+        };
+        _this7.router.navigate(['/main/tabs/discover'], navegationExtras);
+        _this7.loading = false;
+      }));
     })();
   }
   verContra() {
@@ -551,13 +527,15 @@ let LoginPage = class LoginPage {
     }, {
       type: src_app_services_utilities_service__WEBPACK_IMPORTED_MODULE_7__.UtilitiesService
     }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_13__.NgZone
+    }, {
       type: src_app_services_firebase_auth_service__WEBPACK_IMPORTED_MODULE_8__.FirebaseAuthService
     }, {
       type: src_app_services_google_sign_in_service__WEBPACK_IMPORTED_MODULE_6__.GoogleSignInService
     }];
   }
 };
-LoginPage = (0,tslib__WEBPACK_IMPORTED_MODULE_13__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_14__.Component)({
+LoginPage = (0,tslib__WEBPACK_IMPORTED_MODULE_14__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_13__.Component)({
   selector: 'app-login',
   template: _login_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   styles: [(_login_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]

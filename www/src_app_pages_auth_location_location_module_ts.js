@@ -82,19 +82,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   LocationPage: () => (/* binding */ LocationPage)
 /* harmony export */ });
 /* harmony import */ var _Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 35392);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tslib */ 21124);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! tslib */ 21124);
 /* harmony import */ var _location_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./location.page.html?ngResource */ 10632);
 /* harmony import */ var _location_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./location.page.scss?ngResource */ 34192);
 /* harmony import */ var _location_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_location_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 94280);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 24040);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 94280);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ 24040);
 /* harmony import */ var src_environments_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/environments/constants */ 57724);
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/core */ 72584);
 /* harmony import */ var _services_ui_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../services/ui.service */ 44136);
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../services/user.service */ 90628);
 /* harmony import */ var _services_match_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../services/match.service */ 5876);
-/* harmony import */ var _capacitor_geolocation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @capacitor/geolocation */ 60416);
-
 
 
 
@@ -240,10 +238,12 @@ let LocationPage = class LocationPage {
   getCurrentPosition() {
     var _this4 = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const coordinates = yield _capacitor_geolocation__WEBPACK_IMPORTED_MODULE_7__.Geolocation.getCurrentPosition();
-      console.log('Current position:', coordinates.coords);
-      const latitude = coordinates.coords.latitude;
-      const longitude = coordinates.coords.longitude;
+      // const coordinates = await Geolocation.getCurrentPosition();
+      // console.log('Current position:', coordinates.coords);
+      // const latitude = coordinates.coords.latitude;
+      // const longitude = coordinates.coords.longitude;
+      const latitude = 54.567567;
+      const longitude = 76.6567363;
       const res = yield _this4.userService.locationnewapi(latitude, longitude);
       // console.log(res); 
       _this4.newlocapiresp = res;
@@ -294,11 +294,11 @@ let LocationPage = class LocationPage {
   }
   static {
     this.ctorParameters = () => [{
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_8__.ActivatedRoute
+      type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.ActivatedRoute
     }, {
-      type: _angular_router__WEBPACK_IMPORTED_MODULE_8__.Router
+      type: _angular_router__WEBPACK_IMPORTED_MODULE_7__.Router
     }, {
-      type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_9__.TranslateService
+      type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__.TranslateService
     }, {
       type: _services_ui_service__WEBPACK_IMPORTED_MODULE_4__.UiService
     }, {
@@ -310,21 +310,21 @@ let LocationPage = class LocationPage {
   static {
     this.propDecorators = {
       modalCountry: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_10__.ViewChild,
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_9__.ViewChild,
         args: ['mCountry']
       }],
       modalState: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_10__.ViewChild,
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_9__.ViewChild,
         args: ['mState']
       }],
       modalCity: [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_10__.ViewChild,
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_9__.ViewChild,
         args: ['mCity']
       }]
     };
   }
 };
-LocationPage = (0,tslib__WEBPACK_IMPORTED_MODULE_11__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_10__.Component)({
+LocationPage = (0,tslib__WEBPACK_IMPORTED_MODULE_10__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_9__.Component)({
   selector: 'app-location',
   template: _location_page_html_ngResource__WEBPACK_IMPORTED_MODULE_1__,
   styles: [(_location_page_scss_ngResource__WEBPACK_IMPORTED_MODULE_2___default())]

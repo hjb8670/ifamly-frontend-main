@@ -120,12 +120,8 @@ let SettingsAccountPage = class SettingsAccountPage {
   logout() {
     var _this = this;
     return (0,_Users_mac_Desktop_My_Projects_frontend_ifamily_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      let res = yield _this.uiService.alertOK_CANCEL(_this.translate.instant('SETTINGS-ACOUNT.ConfirmLogout'));
-      if (!res) {
-        return;
-      }
-      //await this.googleSingInService.logout();  //Cerrar sesión en Google
-      //await this.firebaseAuthService.logout();  //Cerrar sesión en Firebase
+      const res = yield _this.uiService.alertOK_CANCEL(_this.translate.instant('SETTINGS-ACOUNT.ConfirmLogout'));
+      if (!res) return;
       const {
         rs
       } = yield _this.userService.getUserRS();
@@ -136,6 +132,7 @@ let SettingsAccountPage = class SettingsAccountPage {
       }
       yield _this.userService.removeUserRS();
       yield _this.userService.logout();
+      _this.router.navigate(['/login']);
     })();
   }
   langchange() {

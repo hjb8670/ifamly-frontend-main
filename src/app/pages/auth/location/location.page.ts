@@ -179,14 +179,13 @@ export class LocationPage implements OnInit {
   }
 
   async getCurrentPosition() {
-   // const coordinates = await Geolocation.getCurrentPosition();
-   // console.log('Current position:', coordinates.coords);
+    const coordinates = await Geolocation.getCurrentPosition();
+    console.log('Current position:', coordinates.coords);
   
-    // const latitude = coordinates.coords.latitude;
-    // const longitude = coordinates.coords.longitude;
+     const latitude = coordinates.coords.latitude;
+     const longitude = coordinates.coords.longitude;
 
-     const latitude =54.567567;
-     const longitude = 76.6567363;
+     
    
     const res = await this.userService.locationnewapi(latitude,longitude); 
    // console.log(res); 

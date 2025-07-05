@@ -65,7 +65,8 @@ async createInbox() {
     // Create TalkJS session and inbox with custom theme
     this.session = await this.talkService.createCurrentSession(
       user.personId,
-      `${user.firstName} ${user.lastName}`
+      user.firstName,
+      
     );
 
     this.inbox = await this.session.createInbox({

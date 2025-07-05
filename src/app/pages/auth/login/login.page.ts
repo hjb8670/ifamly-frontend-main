@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
@@ -59,6 +59,7 @@ export class LoginPage implements OnInit {
     private userService: UserService,
     private matchService: MatchService,
     private utilities: UtilitiesService,
+    private zone: NgZone,
     private firebaseAuthService: FirebaseAuthService,
     private googleSingInService: GoogleSignInService
   ) { }
@@ -76,16 +77,16 @@ export class LoginPage implements OnInit {
     });
     
     // Initialize OAuth services for web platform
-    if (this.isWeb) {
-      console.log('Initializing OAuth services for web platform');
-      try {
-        this.googleSingInService.initialize();
-        this.firebaseAuthService.initialize();
-        console.log('OAuth services initialized successfully');
-      } catch (error) {
-        console.error('Failed to initialize OAuth services:', error);
-      }
-    }
+    // if (this.isWeb) {
+    //   console.log('Initializing OAuth services for web platform');
+    //   try {
+    //     this.googleSingInService.initialize();
+    //     this.firebaseAuthService.initialize();
+    //     console.log('OAuth services initialized successfully');
+    //   } catch (error) {
+    //     console.error('Failed to initialize OAuth services:', error);
+    //   }
+    // }
   }
 
   async ionViewDidEnter() {
@@ -151,33 +152,33 @@ export class LoginPage implements OnInit {
     return false;
   }
 
-  private async ValidaUsrGoogle(): Promise<boolean>{
-    this.idToken = await this.googleSingInService.refreshToken();
-    console.log('ID TOKEN - GOOGLE - ANT: ', this.idToken);
+  // private async ValidaUsrGoogle(): Promise<boolean>{
+  //   this.idToken = await this.googleSingInService.refreshToken();
+  //   console.log('ID TOKEN - GOOGLE - ANT: ', this.idToken);
 
-    if (this.idToken !== null && this.idToken !== '' && this.idToken !== undefined) {
-      console.log('ID TOKEN - GOOGLE: ', this.idToken);
+  //   if (this.idToken !== null && this.idToken !== '' && this.idToken !== undefined) {
+  //     console.log('ID TOKEN - GOOGLE: ', this.idToken);
 
-      return await this.intoUser('google');
-    }
+  //     return await this.intoUser('google');
+  //   }
 
-    return false;
-  }
+  //   return false;
+  // }
 
-  private async ValidaUsrApple(): Promise<boolean>{
-    try {
-      await this.firebaseAuthService.getIdToken({ forceRefresh: true }).then(async (idToken) => {
-        this.idToken = idToken;
-        console.log('ID TOKEN - APPLE:', this.idToken);
+  // private async ValidaUsrApple(): Promise<boolean>{
+  //   try {
+  //     await this.firebaseAuthService.getIdToken({ forceRefresh: true }).then(async (idToken) => {
+  //       this.idToken = idToken;
+  //       console.log('ID TOKEN - APPLE:', this.idToken);
 
-        return await this.intoUser('apple');
-      });
-    } catch (error) {
-      console.log('ERROR AL OBTENER ID TOKEN - APPLE: ', error);
-    }
+  //       return await this.intoUser('apple');
+  //     });
+  //   } catch (error) {
+  //     console.log('ERROR AL OBTENER ID TOKEN - APPLE: ', error);
+  //   }
 
-    return false;
-  }
+  //   return false;
+  // }
   loading = false;
   async singIn() {
     this.loading = true;
@@ -272,147 +273,147 @@ export class LoginPage implements OnInit {
     this.uiService.alertOK(this.translate.instant('LOGIN.msgOtherSign'));
   }
 
-  async singInGoogle() {
-    console.log("SING IN WITH GOOGLE");
+  // async singInGoogle() {
+  //   console.log("SING IN WITH GOOGLE");
 
-    // Check if OAuth is available for current platform
-    if (!this.isMobile && !this.isWeb) {
-      this.uiService.alertOK('Google Sign-In is not available on this platform');
-      return;
-    }
+  //   // Check if OAuth is available for current platform
+  //   if (!this.isMobile && !this.isWeb) {
+  //     this.uiService.alertOK('Google Sign-In is not available on this platform');
+  //     return;
+  //   }
 
-    let email_final = '';
-    let password_final = '';
+  //   let email_final = '';
+  //   let password_final = '';
 
-    try {
-      const usr = await this.googleSingInService.loginViaGoogle();
+  //   try {
+  //     const usr = await this.googleSingInService.loginViaGoogle();
 
-      if (usr === null) {
-        this.uiService.alertOK(this.translate.instant('LOGIN.msgErrGoogle'));
-        return;
-      }
+  //     if (usr === null) {
+  //       this.uiService.alertOK(this.translate.instant('LOGIN.msgErrGoogle'));
+  //       return;
+  //     }
 
-      let { email, password, rs } = await this.userService.getUserRS();
-      console.log('EMAIL_SAVE: ', email);
-      console.log('PASSWORD_SAVE: ', password);
-      console.log('RS_SAVE: ', rs);
+  //     let { email, password, rs } = await this.userService.getUserRS();
+  //     console.log('EMAIL_SAVE: ', email);
+  //     console.log('PASSWORD_SAVE: ', password);
+  //     console.log('RS_SAVE: ', rs);
 
-      if (email === usr.email) {
-        email_final = email;
-        password_final = password;
-      } else {
-        email = '';
-        password = '';
-      }
+  //     if (email === usr.email) {
+  //       email_final = email;
+  //       password_final = password;
+  //     } else {
+  //       email = '';
+  //       password = '';
+  //     }
 
-      if (email === null || password === null || email === '' || password === '') {
-        //Valida si el usuario ya esta registrado
-        const res = await this.userService.existI(usr.email);
+  //     if (email === null || password === null || email === '' || password === '') {
+  //       //Valida si el usuario ya esta registrado
+  //       const res = await this.userService.existI(usr.email);
 
-        if (!res) {
-          //Si no esta registrado, se registra
-          this.goRegistro(usr.email, this.generateRandomPassword(), '', 'google');
-          return;
+  //       if (!res) {
+  //         //Si no esta registrado, se registra
+  //         this.goRegistro(usr.email, this.generateRandomPassword(), '', 'google');
+  //         return;
           
-        } else {
-          //Si esta registrado, se cambia password, se hace login y se guarda email y password
-          email_final = usr.email;
-          password_final = this.generateRandomPassword();
+  //       } else {
+  //         //Si esta registrado, se cambia password, se hace login y se guarda email y password
+  //         email_final = usr.email;
+  //         password_final = this.generateRandomPassword();
 
-          const resP = await this.userService.upPas(usr.email, password_final);
-          if (resP) {            
-            this.userService.setUserRS(email_final, password_final, 'google');
-          }else {
-            return
-          }
-        }
-      }
+  //         const resP = await this.userService.upPas(usr.email, password_final);
+  //         if (resP) {            
+  //           this.userService.setUserRS(email_final, password_final, 'google');
+  //         }else {
+  //           return
+  //         }
+  //       }
+  //     }
 
-      const valido = await this.userService.login(email_final, password_final);
+  //     const valido = await this.userService.login(email_final, password_final);
 
-      if (valido['ok']) {
-        await this.goDiscovers();
-      } else {
-        await this.googleSingInService.logout();
-        this.uiService.alertOK(this.translate.instant('LOGIN.errRegistroMsg'));
-      }
+  //     if (valido['ok']) {
+  //       await this.goDiscovers();
+  //     } else {
+  //       await this.googleSingInService.logout();
+  //       this.uiService.alertOK(this.translate.instant('LOGIN.errRegistroMsg'));
+  //     }
       
-    } catch (error) {
-      console.log("Google Sign in Error", error);
-      this.uiService.alertOK(this.translate.instant('LOGIN.msgErrGoogle'));
-    }
-  }
+  //   } catch (error) {
+  //     console.log("Google Sign in Error", error);
+  //     this.uiService.alertOK(this.translate.instant('LOGIN.msgErrGoogle'));
+  //   }
+  // }
 
-  async singInApple() {
-    console.log("SING IN WITH APPLE");
+  // async singInApple() {
+  //   console.log("SING IN WITH APPLE");
 
-    // Check if OAuth is available for current platform
-    if (!this.isMobile && !this.isWeb) {
-      this.uiService.alertOK('Apple Sign-In is not available on this platform');
-      return;
-    }
+  //   // Check if OAuth is available for current platform
+  //   if (!this.isMobile && !this.isWeb) {
+  //     this.uiService.alertOK('Apple Sign-In is not available on this platform');
+  //     return;
+  //   }
 
-    let email_final = '';
-    let password_final = '';
+  //   let email_final = '';
+  //   let password_final = '';
 
-    try {
-      const user = await this.firebaseAuthService.signInWithApple();
-      console.log('USER APPLE: ', user);
+  //   try {
+  //     const user = await this.firebaseAuthService.signInWithApple();
+  //     console.log('USER APPLE: ', user);
       
-      let { email, password, rs } = await this.userService.getUserRS();
-      console.log('EMAIL_SAVE: ', email);
-      console.log('PASSWORD_SAVE: ', password);
-      console.log('RS_SAVE: ', rs);
+  //     let { email, password, rs } = await this.userService.getUserRS();
+  //     console.log('EMAIL_SAVE: ', email);
+  //     console.log('PASSWORD_SAVE: ', password);
+  //     console.log('RS_SAVE: ', rs);
 
-      if (email === user.email) {
-        email_final = email;
-        password_final = password;
-      } else {
-        email = '';
-        password = '';
-      }
+  //     if (email === user.email) {
+  //       email_final = email;
+  //       password_final = password;
+  //     } else {
+  //       email = '';
+  //       password = '';
+  //     }
       
-      if (email === null || password === null || email === '' || password === '') {
-        //Valida si el usuario ya esta registrado
-        const res = await this.userService.existI(user.email);
+  //     if (email === null || password === null || email === '' || password === '') {
+  //       //Valida si el usuario ya esta registrado
+  //       const res = await this.userService.existI(user.email);
 
-        console.log('RES_EXIST: ', res);
+  //       console.log('RES_EXIST: ', res);
 
-        if (!res) {
-          //Si no esta registrado, se registra
-          this.goRegistro(user.email, this.generateRandomPassword(), user.displayName, 'apple');
-          return;
+  //       if (!res) {
+  //         //Si no esta registrado, se registra
+  //         this.goRegistro(user.email, this.generateRandomPassword(), user.displayName, 'apple');
+  //         return;
           
-        } else {
-          //Si esta registrado, se cambia password, se hace login y se guarda email y password
-          email_final = user.email;
-          password_final = this.generateRandomPassword();
+  //       } else {
+  //         //Si esta registrado, se cambia password, se hace login y se guarda email y password
+  //         email_final = user.email;
+  //         password_final = this.generateRandomPassword();
 
-          const resP = await this.userService.upPas(user.email, password_final);
-          if (resP) {            
-            this.userService.setUserRS(email_final, password_final, 'apple');
-          }else {
-            return
-          }
-        }
-      }
+  //         const resP = await this.userService.upPas(user.email, password_final);
+  //         if (resP) {            
+  //           this.userService.setUserRS(email_final, password_final, 'apple');
+  //         }else {
+  //           return
+  //         }
+  //       }
+  //     }
 
 
-      const valido = await this.userService.login(email_final, password_final);
+  //     const valido = await this.userService.login(email_final, password_final);
 
-      if (valido['ok']) {
-        await this.goDiscovers();
-      } else {
-        await this.googleSingInService.logout();
-        this.uiService.alertOK(this.translate.instant('LOGIN.errRegistroMsg'));
-      }
+  //     if (valido['ok']) {
+  //       await this.goDiscovers();
+  //     } else {
+  //       await this.googleSingInService.logout();
+  //       this.uiService.alertOK(this.translate.instant('LOGIN.errRegistroMsg'));
+  //     }
       
       
-    } catch (error) {
-      console.log("Apple Sign in Error", error);
-      this.uiService.alertOK(this.translate.instant('LOGIN.msgErrApple'));
-    }
-  }
+  //   } catch (error) {
+  //     console.log("Apple Sign in Error", error);
+  //     this.uiService.alertOK(this.translate.instant('LOGIN.msgErrApple'));
+  //   }
+  // }
 
   generateRandomPassword(): string {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
@@ -462,14 +463,16 @@ export class LoginPage implements OnInit {
 
   async goDiscovers() {
     const discoverUsrs = await this.preLoadDis();
-
-    let navegationExtras: NavigationExtras = {
-      state: {
-        discoverUsrs
+    this.zone.run(async () => {
+      let navegationExtras: NavigationExtras = {
+        state: {
+          discoverUsrs
+        }
       }
-    }
-    await this.router.navigate(['/main/tabs/discover'], navegationExtras);
-    this.loading = false;
+      this.router.navigate(['/main/tabs/discover'], navegationExtras);
+      this.loading = false;
+    });
+   
 
   }
 

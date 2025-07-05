@@ -22,16 +22,26 @@ export class TalkService {
     return new Talk.User(userId);
   }
 
-  async createCurrentSession(idUsuario: string, nombre: string) {
+  async createCurrentSession(idUsuario: string, firstName: string) {
     await Talk.ready;
-    this.currentUser = await this.getUser(idUsuario);
-    //Traer el appId desde BD 
-    this.session = new Talk.Session({
-         appId: 't79Ku1zV',
-         me: this.currentUser
+  
+    this.currentUser = new Talk.User({
+      id: idUsuario,
+      name: firstName, // This is what TalkJS shows by default
+      
     });
+
+
+
+    this.session = new Talk.Session({
+      appId: 't79Ku1zV',
+      me: this.currentUser
+    });
+  
     return this.session;
   }
+  
+  
 
   private async getOrCreateConversation(idConversation: string) {
     //const otherUser = await this.createUser(otherApplicationUser);
@@ -39,6 +49,7 @@ export class TalkService {
       return null;
     }
     const conversation = this.session.getOrCreateConversation(idConversation);
+    console.log(conversation);
     // conversation.setParticipant(this.currentUser);
     // conversation.setParticipant(otherUser);
     return conversation;

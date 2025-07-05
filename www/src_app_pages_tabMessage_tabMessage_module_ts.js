@@ -142,7 +142,7 @@ let TabMessagePage = class TabMessagePage {
         // Create TalkJS session and inbox with custom theme
         _this.session = yield _this.talkService.createCurrentSession(user.personId, `${user.firstName} ${user.lastName}`);
         _this.inbox = yield _this.session.createInbox({
-          selected: _this.session.getOrCreateConversation(_this.idConversation),
+          // selected: this.session.getOrCreateConversation(this.idConversation),
           theme: 'ifamily' // <- make sure you have this theme in dashboard
         });
         yield _this.inbox.mount(_this.talkjsContainer.nativeElement);

@@ -25,24 +25,25 @@ export class SettingsAccountPage implements OnInit {
 
   ngOnInit() {
   }
-  async logout(){
-    let res = await this.uiService.alertOK_CANCEL(this.translate.instant('SETTINGS-ACOUNT.ConfirmLogout'));
-    if(!res){
-      return;
-    }
-    //await this.googleSingInService.logout();  //Cerrar sesión en Google
-    //await this.firebaseAuthService.logout();  //Cerrar sesión en Firebase
-
+  async logout() {
+    const res = await this.uiService.alertOK_CANCEL(this.translate.instant('SETTINGS-ACOUNT.ConfirmLogout'));
+    if (!res) return;
+  
     const { rs } = await this.userService.getUserRS();
     if (rs === 'google') {
       await this.googleSingInService.logout();
     } else if (rs === 'apple') {
       await this.firebaseAuthService.logout();
     }
-
+  
     await this.userService.removeUserRS();
     await this.userService.logout();
+  
+    this.router.navigate(['/login']);
   }
+  
+
+  
 
     async langchange(){
     const modal = await this.modalController.create({

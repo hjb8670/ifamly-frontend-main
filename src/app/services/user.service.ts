@@ -894,6 +894,7 @@ export class UserService {
   async removeUserRS() {
     await this.dataStorageService.remove('email');
     await this.dataStorageService.remove('password');
+    
     await this.dataStorageService.remove('rs');
   }
 

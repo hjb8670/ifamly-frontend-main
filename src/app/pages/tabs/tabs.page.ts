@@ -31,9 +31,9 @@ export class TabsPage {
   ) {
     this.activeDiscover = true;
 
-    // Subscribe to tab changes
+    // Subscribe to tab changes: only update UI, do not call setActiveTab
     this.tabService.currentTab$.subscribe(tab => {
-      this.changeIcon(tab);
+      this.updateActiveTabUI(tab);
     });
   }
 
@@ -43,7 +43,7 @@ export class TabsPage {
     this.escucharTalkJS();
   }
 
-  async changeIcon(page) {
+  updateActiveTabUI(page: string) {
     if (page == 'discover') {
       this.activeExperience = false;
       this.activeDiscover = true;
@@ -75,8 +75,10 @@ export class TabsPage {
       this.activeMessage = false;
       this.activeAccount = true;
     }
-    
-    // Update the tab service
+  }
+
+  // Only call setActiveTab when user clicks a tab
+  onTabClick(page: string) {
     this.tabService.setActiveTab(page);
   }
 

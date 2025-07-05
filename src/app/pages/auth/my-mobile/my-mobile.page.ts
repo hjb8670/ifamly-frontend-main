@@ -9,7 +9,6 @@ import { UiService } from '../../../services/ui.service';
 import { IonModal } from '@ionic/angular';
 import { CodePhone } from 'src/app/interfaces/interfaces';
 import { codesCountries } from 'src/assets/codesPhoneCountry';
-import { th } from 'date-fns/locale';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -30,42 +29,37 @@ export class MyMobilePage implements OnInit {
   public codesPhone: CodePhone[] = codesCountries;
   private phoneNumberUtil = PhoneNumberUtil.getInstance();
   public errorTel = false;
-  //public contryISO='us';
-  
-  myMobileForm = this.formBuilder.group( {
-    mobile: ['', [
-      Validators.required, 
-      //IonIntlTelInputValidators.phone
-    ]]
+
+  myMobileForm = this.formBuilder.group({
+    mobile: ['', [Validators.required]],
   });
 
   public validation_messages = {
-    'mobile': [
-        { type: 'required', message: 'msgErrReqMobile'}, 
-        { type: 'phone', message: 'msgErrMobile' }
-    ]
+    mobile: [
+      { type: 'required', message: 'msgErrReqMobile' },
+      { type: 'phone', message: 'msgErrMobile' },
+    ],
   };
 
-  constructor(  
+  constructor(
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
-     private userService: UserService,
+    private userService: UserService,
     private router: Router,
     private translate: TranslateService,
     private uiService: UiService
-  ) { 
-    this.activatedRoute.queryParams.subscribe(params => {
+  ) {
+    this.activatedRoute.queryParams.subscribe((params) => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.email = this.router.getCurrentNavigation().extras.state.email;
         this.password = this.router.getCurrentNavigation().extras.state.password;
         this.name = this.router.getCurrentNavigation().extras.state.name;
         this.rs = this.router.getCurrentNavigation().extras.state.rs;
-        this.selectedCodeCountry = 'US';//this.router.getCurrentNavigation().extras.state.cISO.toUpperCase();
-        //Solución para que el codigo de celular se quedaba en +52 aunque fuera otro pais
-        let codeP = this.codesPhone.filter(code => {
-          return code.iso == this.selectedCodeCountry
-        });
-        this.selectedCodePhone = codeP[0]["code"];
+        this.selectedCodeCountry = 'US'; // Default to US or derive from cISO
+        let codeP = this.codesPhone.filter(
+          (code) => code.iso === this.selectedCodeCountry
+        );
+        this.selectedCodePhone = codeP[0]?.code || '+52';
 
         console.log('Email: ', this.email);
         console.log('Password: ', this.password);
@@ -75,18 +69,18 @@ export class MyMobilePage implements OnInit {
       }
     });
 
-    this.phoneNumberSubscription = this.mobile.valueChanges.subscribe((phoneNumber) => {
-      this.phoneNumberValidator(phoneNumber);
-    });
+    this.phoneNumberSubscription = this.mobile.valueChanges.subscribe(
+      (phoneNumber) => {
+        this.phoneNumberValidator(phoneNumber);
+      }
+    );
   }
 
   get mobile() {
     return this.myMobileForm.get('mobile');
   }
 
-  async ngOnInit() { 
-
-  }
+  async ngOnInit() {}
 
   ionViewDidEnter() {
     this.errorTel = false;
@@ -96,104 +90,119 @@ export class MyMobilePage implements OnInit {
     this.phoneNumberSubscription.unsubscribe();
   }
 
-  validaCampo(campo:any, message: any): boolean {
+  validaCampo(campo: any, message: any): boolean {
     for (let validation of message) {
-      if(campo.hasError(validation.type)) {
-        console.log(this.translate.instant('MY-MOBILE.'+validation.message));
-        this.uiService.alertOK(this.translate.instant('MY-MOBILE.'+validation.message));
+      if (campo.hasError(validation.type)) {
+        console.log(this.translate.instant('MY-MOBILE.' + validation.message));
+        this.uiService.alertOK(
+          this.translate.instant('MY-MOBILE.' + validation.message)
+        );
         return true;
       }
     }
-
     return false;
   }
-  skip(){
-    let navegationExtras: NavigationExtras = {
+
+  skip() {
+    let navigationExtras: NavigationExtras = {
       state: {
         email: this.email,
         password: this.password,
         name: this.name,
         rs: this.rs,
-        mobile: '' //this.mobile.value['internationalNumber']
-      }
-    }
+        mobile: '',
+      },
+    };
     const user: User = {
       phone: '',
     };
     this.userService.setUserr(user);
-    this.router.navigate(['profile-details'], navegationExtras);
+
+    // For email signup, go to VerificationCodePage; otherwise, go to profile-details
+    if (this.rs === 'email') {
+      this.router.navigate(['verification-code'], navigationExtras);
+    } else {
+      this.router.navigate(['profile-details'], navigationExtras);
+    }
   }
 
   next() {
-    console.log("CREATE");
-    //document.getElementById('item').style.border = "solid 2px #107CF1";
+    console.log('CREATE');
 
-    // if(this.validaCampo(this.mobile, this.validation_messages.mobile)){
-    //   return;
-    // }
-
-    if(this.errorTel) {
+    if (this.errorTel) {
       this.uiService.alertOK(this.translate.instant('MY-MOBILE.msgErrMobile'));
       return;
     }
     console.log(this.mobile.value);
 
-    let navegationExtras: NavigationExtras = {
+    let navigationExtras: NavigationExtras = {
       state: {
         email: this.email,
         password: this.password,
         name: this.name,
         rs: this.rs,
-        mobile: this.selectedCodePhone + this.mobile.value //this.mobile.value['internationalNumber']
-      }
-    }
-    if(this.mobile.value !== ''){
+        mobile: this.mobile.value
+          ? this.selectedCodePhone + this.mobile.value
+          : '',
+      },
+    };
+
+    if (this.mobile.value !== '') {
       const user: User = {
         phone: this.selectedCodePhone + this.mobile.value,
       };
       this.userService.setUserr(user);
-    }else{
+    } else {
       const user: User = {
         phone: '',
       };
       this.userService.setUserr(user);
     }
-   
 
-    // Save it somewhere accessible (like a service or localStorage)
- 
-    
     // Store OAuth provider info if available
     if (this.rs && (this.rs === 'google' || this.rs === 'apple')) {
       this.userService.setOAuthProvider(this.rs);
     }
-    
-    this.router.navigate(['profile-details'], navegationExtras);
-   
 
+    // For email signup, go to VerificationCodePage; otherwise, go to profile-details
+    if (this.rs === 'email') {
+      this.router.navigate(['verification-code'], navigationExtras);
+    } else {
+      this.router.navigate(['profile-details'], navigationExtras);
+    }
   }
 
   phoneNumberValidator(phoneNumber: string) {
-    if(phoneNumber == null || phoneNumber == undefined || phoneNumber == '') {
+    if (
+      phoneNumber == null ||
+      phoneNumber == undefined ||
+      phoneNumber == ''
+    ) {
       this.errorTel = false;
       return;
     }
-    
-    if(isNaN(Number(phoneNumber).valueOf())) {
+
+    if (isNaN(Number(phoneNumber).valueOf())) {
       this.errorTel = true;
       return;
     }
 
-    if(phoneNumber.length < 5) {
+    if (phoneNumber.length < 5) {
       this.errorTel = true;
       return;
     }
 
     if (phoneNumber) {
-      const parsedNumber = this.phoneNumberUtil.parse(phoneNumber, this.selectedCodeCountry);
+      const parsedNumber = this.phoneNumberUtil.parse(
+        phoneNumber,
+        this.selectedCodeCountry
+      );
 
       if (this.phoneNumberUtil.isValidNumber(parsedNumber)) {
-        const formattedNumber = this.phoneNumberUtil.format(parsedNumber, PhoneNumberFormat.E164);
+        const formattedNumber = this.phoneNumberUtil.format(
+          parsedNumber,
+          PhoneNumberFormat.E164
+        );
         this.errorTel = false;
       } else {
         this.errorTel = true;
@@ -203,11 +212,11 @@ export class MyMobilePage implements OnInit {
 
   codePhoneSelectionChanged(codeCountry: string) {
     this.selectedCodeCountry = codeCountry;
-    const codePhone = this.codesPhone.find((item) => item.iso === codeCountry)?.code || '';
+    const codePhone =
+      this.codesPhone.find((item) => item.iso === codeCountry)?.code || '';
     this.selectedCodePhone = codePhone;
 
     this.modal.dismiss();
     this.mobile.setValue(this.mobile.value);
   }
-
 }

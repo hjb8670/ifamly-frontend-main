@@ -118,7 +118,10 @@
         "ErrMesg": "Capture complete verification code",
         "ErrServ": "Offline service. Try again later",
         "ErrCode": "Incorrect code. Request a new",
-        "ErrLengthCode": "Code must be 6 digits. Request a new"
+        "ErrLengthCode": "Code must be 6 digits. Request a new",
+        "ErrNoCode": "No verification code exists. Please request a new code.",
+        "ErrExpiredCode": "The verification code has expired. Please request a new code.",
+        "WaitTimer": "Please wait until the timer expires to resend the code."
     },
 
     "PROF-DETAIL": {
